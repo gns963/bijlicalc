@@ -1,0 +1,36 @@
+{
+  "discomCode": "BESCOM",
+  "discomName": "Bangalore Electricity Supply Company Ltd (BESCOM)",
+  "state": "Karnataka",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        { "minUnits": 0, "maxUnits": 100, "ratePerUnit": 5.9 },
+        { "minUnits": 101, "maxUnits": 200, "ratePerUnit": 7.25 },
+        { "minUnits": 201, "maxUnits": null, "ratePerUnit": 8.6 }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 110
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0.36,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [
+    {
+      "schemeName": "Gruha Jyothi (up to 200 units free)",
+      "minUnits": 0,
+      "maxUnits": 200,
+      "discountType": "free",
+      "discountValue": 200,
+      "eligibility": "domestic Gruha Jyothi (within household baseline average)"
+    }
+  ],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://karnatakaelectricitybillcalculator.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — BESCOM LT-2a urban domestic slabs, ₹110/kW fixed and ₹0.36/unit KERC surcharge (Apr 2025). Gruha Jyothi free-200 is conditional on each household's prior-year average; this file models the simple free-200 case. Electricity tax not modelled. Pending primary KERC order cross-check."
+}

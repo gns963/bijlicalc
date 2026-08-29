@@ -1,0 +1,38 @@
+{
+  "discomCode": "TNEB",
+  "discomName": "Tamil Nadu Generation and Distribution Corporation (TANGEDCO)",
+  "state": "Tamil Nadu",
+  "billingCycle": "bimonthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        { "minUnits": 0, "maxUnits": 100, "ratePerUnit": 2.25 },
+        { "minUnits": 101, "maxUnits": 200, "ratePerUnit": 3.5 },
+        { "minUnits": 201, "maxUnits": 500, "ratePerUnit": 4.8 },
+        { "minUnits": 501, "maxUnits": null, "ratePerUnit": 6.4 }
+      ],
+      "fixedCharge": {
+        "basis": "perPhase",
+        "singlePhase": 100,
+        "threePhase": 200
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0.35,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [
+    {
+      "schemeName": "100 Units Free Domestic Subsidy (LT-IA)",
+      "minUnits": 0,
+      "maxUnits": 100,
+      "discountType": "free",
+      "discountValue": 100,
+      "eligibility": "eligible/BPL domestic"
+    }
+  ],
+  "effectiveFrom": "2026-04-01",
+  "sourceUrl": "https://www.tnerc.gov.in/Orders/orders.html",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "UNVERIFIED — figures supplied by user; pending cross-check against the TNERC LT tariff order"
+}

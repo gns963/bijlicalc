@@ -1,0 +1,28 @@
+{
+  "discomCode": "MSEDCL",
+  "discomName": "Maharashtra State Electricity Distribution Co. Ltd (MSEDCL / Mahavitaran)",
+  "state": "Maharashtra",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        { "minUnits": 0, "maxUnits": 100, "ratePerUnit": 3.25 },
+        { "minUnits": 101, "maxUnits": 300, "ratePerUnit": 6.14 },
+        { "minUnits": 301, "maxUnits": 500, "ratePerUnit": 8.45 },
+        { "minUnits": 501, "maxUnits": null, "ratePerUnit": 9.56 }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 150
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 16,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.mahadiscom.in/en/consumer/tariff-details/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — MSEDCL LT-I domestic slabs & 16% electricity duty per mahadiscom.in / MERC MYT order; wheeling charge and FAC NOT modelled, so estimates run low. Pending primary MERC order cross-check."
+}

@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "note": "Reference wattage for load/consumption estimation. For star-rated cooling appliances, ISEER (Indian Seasonal Energy Efficiency Ratio) is included where relevant. Wattage values are typical mid-range figures for estimation only, not nameplate guarantees.",
+    "lastUpdated": "2026-08-29",
+    "verifiedBy": "UNVERIFIED — indicative reference values; refine against BEE star-label data"
+  },
+  "categories": [
+    {
+      "category": "Cooling",
+      "appliances": [
+        { "name": "Ceiling Fan", "watts": 70, "typicalHoursPerDay": 12 },
+        { "name": "Table/Pedestal Fan", "watts": 55, "typicalHoursPerDay": 8 },
+        { "name": "Air Cooler", "watts": 200, "typicalHoursPerDay": 8 },
+        { "name": "Split AC 1.0 Ton (3-star)", "watts": 1050, "iseer": 3.5, "typicalHoursPerDay": 6 },
+        { "name": "Split AC 1.5 Ton (3-star)", "watts": 1550, "iseer": 3.55, "typicalHoursPerDay": 6 },
+        { "name": "Split AC 1.5 Ton (5-star)", "watts": 1250, "iseer": 4.7, "typicalHoursPerDay": 6 },
+        { "name": "Split AC 2.0 Ton (3-star)", "watts": 1950, "iseer": 3.5, "typicalHoursPerDay": 6 },
+        { "name": "Window AC 1.5 Ton (3-star)", "watts": 1650, "iseer": 3.1, "typicalHoursPerDay": 6 }
+      ]
+    },
+    {
+      "category": "Kitchen",
+      "appliances": [
+        { "name": "Refrigerator 200L (3-star)", "watts": 150, "typicalHoursPerDay": 24, "dutyCycle": 0.35 },
+        { "name": "Refrigerator 300L (4-star)", "watts": 200, "typicalHoursPerDay": 24, "dutyCycle": 0.3 },
+        { "name": "Microwave Oven", "watts": 1200, "typicalHoursPerDay": 0.5 },
+        { "name": "Induction Cooktop", "watts": 2000, "typicalHoursPerDay": 1 },
+        { "name": "Electric Kettle", "watts": 1500, "typicalHoursPerDay": 0.3 },
+        { "name": "Mixer/Grinder", "watts": 600, "typicalHoursPerDay": 0.3 },
+        { "name": "Toaster", "watts": 800, "typicalHoursPerDay": 0.2 }
+      ]
+    },
+    {
+      "category": "Water Heating",
+      "appliances": [
+        { "name": "Storage Geyser 15L (5-star)", "watts": 2000, "typicalHoursPerDay": 1 },
+        { "name": "Instant Geyser 3L", "watts": 3000, "typicalHoursPerDay": 0.4 },
+        { "name": "Immersion Rod", "watts": 1500, "typicalHoursPerDay": 0.5 }
+      ]
+    },
+    {
+      "category": "Lighting",
+      "appliances": [
+        { "name": "LED Bulb (9W)", "watts": 9, "typicalHoursPerDay": 6 },
+        { "name": "LED Tubelight (20W)", "watts": 20, "typicalHoursPerDay": 6 },
+        { "name": "CFL (15W)", "watts": 15, "typicalHoursPerDay": 6 }
+      ]
+    },
+    {
+      "category": "Entertainment & Devices",
+      "appliances": [
+        { "name": "LED TV 43\"", "watts": 80, "typicalHoursPerDay": 5 },
+        { "name": "LED TV 55\"", "watts": 120, "typicalHoursPerDay": 5 },
+        { "name": "Laptop", "watts": 65, "typicalHoursPerDay": 6 },
+        { "name": "Desktop + Monitor", "watts": 200, "typicalHoursPerDay": 6 },
+        { "name": "Wi-Fi Router", "watts": 10, "typicalHoursPerDay": 24 },
+        { "name": "Mobile Charger", "watts": 15, "typicalHoursPerDay": 3 }
+      ]
+    },
+    {
+      "category": "Laundry & Cleaning",
+      "appliances": [
+        { "name": "Washing Machine (semi-auto)", "watts": 500, "typicalHoursPerDay": 0.7 },
+        { "name": "Washing Machine (front-load)", "watts": 2000, "typicalHoursPerDay": 0.7 },
+        { "name": "Vacuum Cleaner", "watts": 1400, "typicalHoursPerDay": 0.3 },
+        { "name": "Electric Iron", "watts": 1000, "typicalHoursPerDay": 0.4 }
+      ]
+    },
+    {
+      "category": "Comfort Heating",
+      "appliances": [
+        { "name": "Room Heater (halogen)", "watts": 1000, "typicalHoursPerDay": 4 },
+        { "name": "Oil-Filled Radiator", "watts": 2000, "typicalHoursPerDay": 4 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "note": "State/UT -> DISCOM mapping. hasTariffFile indicates whether a populated src/data/tariffs/<code>.json exists yet.",
+    "lastUpdated": "2026-08-29"
+  },
+  "states": [
+    { "state": "Andhra Pradesh", "type": "state", "discoms": [
+      { "code": "APEPDCL", "name": "Eastern Power Distribution Co. of AP", "hasTariffFile": false },
+      { "code": "APSPDCL", "name": "Southern Power Distribution Co. of AP", "hasTariffFile": false },
+      { "code": "APCPDCL", "name": "Central Power Distribution Co. of AP", "hasTariffFile": false }
+    ]},
+    { "state": "Arunachal Pradesh", "type": "state", "discoms": [
+      { "code": "APDOP", "name": "Department of Power, Arunachal Pradesh", "hasTariffFile": false }
+    ]},
+    { "state": "Assam", "type": "state", "discoms": [
+      { "code": "APDCL", "name": "Assam Power Distribution Company Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Bihar", "type": "state", "discoms": [
+      { "code": "NBPDCL", "name": "North Bihar Power Distribution Co. Ltd", "hasTariffFile": false },
+      { "code": "SBPDCL", "name": "South Bihar Power Distribution Co. Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Chhattisgarh", "type": "state", "discoms": [
+      { "code": "CSPDCL", "name": "Chhattisgarh State Power Distribution Co. Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Goa", "type": "state", "discoms": [
+      { "code": "GED", "name": "Goa Electricity Department", "hasTariffFile": false }
+    ]},
+    { "state": "Gujarat", "type": "state", "discoms": [
+      { "code": "DGVCL", "name": "Dakshin Gujarat Vij Company Ltd", "hasTariffFile": false },
+      { "code": "MGVCL", "name": "Madhya Gujarat Vij Company Ltd", "hasTariffFile": false },
+      { "code": "PGVCL", "name": "Paschim Gujarat Vij Company Ltd", "hasTariffFile": false },
+      { "code": "UGVCL", "name": "Uttar Gujarat Vij Company Ltd", "hasTariffFile": false },
+      { "code": "TPL-AHD", "name": "Torrent Power (Ahmedabad/Gandhinagar/Surat)", "hasTariffFile": false }
+    ]},
+    { "state": "Haryana", "type": "state", "discoms": [
+      { "code": "DHBVN", "name": "Dakshin Haryana Bijli Vitran Nigam", "hasTariffFile": false },
+      { "code": "UHBVN", "name": "Uttar Haryana Bijli Vitran Nigam", "hasTariffFile": false }
+    ]},
+    { "state": "Himachal Pradesh", "type": "state", "discoms": [
+      { "code": "HPSEBL", "name": "Himachal Pradesh State Electricity Board Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Jharkhand", "type": "state", "discoms": [
+      { "code": "JBVNL", "name": "Jharkhand Bijli Vitran Nigam Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Karnataka", "type": "state", "discoms": [
+      { "code": "BESCOM", "name": "Bangalore Electricity Supply Company", "hasTariffFile": true },
+      { "code": "MESCOM", "name": "Mangalore Electricity Supply Company", "hasTariffFile": false },
+      { "code": "HESCOM", "name": "Hubli Electricity Supply Company", "hasTariffFile": false },
+      { "code": "GESCOM", "name": "Gulbarga Electricity Supply Company", "hasTariffFile": false },
+      { "code": "CESC-MYS", "name": "Chamundeshwari Electricity Supply Corporation", "hasTariffFile": false }
+    ]},
+    { "state": "Kerala", "type": "state", "discoms": [
+      { "code": "KSEB", "name": "Kerala State Electricity Board Ltd", "hasTariffFile": true }
+    ]},
+    { "state": "Madhya Pradesh", "type": "state", "discoms": [
+      { "code": "MPWZ", "name": "MP Paschim Kshetra Vidyut Vitaran Co. (West)", "hasTariffFile": false },
+      { "code": "MPCZ", "name": "MP Madhya Kshetra Vidyut Vitaran Co. (Central)", "hasTariffFile": false },
+      { "code": "MPEZ", "name": "MP Poorv Kshetra Vidyut Vitaran Co. (East)", "hasTariffFile": false }
+    ]},
+    { "state": "Maharashtra", "type": "state", "discoms": [
+      { "code": "MSEDCL", "name": "Maharashtra State Electricity Distribution Co. Ltd", "hasTariffFile": true },
+      { "code": "ADANI-MUM", "name": "Adani Electricity Mumbai Ltd", "hasTariffFile": false },
+      { "code": "TATA-MUM", "name": "Tata Power Company (Mumbai)", "hasTariffFile": false },
+      { "code": "BEST", "name": "Brihanmumbai Electric Supply & Transport", "hasTariffFile": false }
+    ]},
+    { "state": "Manipur", "type": "state", "discoms": [
+      { "code": "MSPDCL", "name": "Manipur State Power Distribution Co. Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Meghalaya", "type": "state", "discoms": [
+      { "code": "MePDCL", "name": "Meghalaya Power Distribution Corporation Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Mizoram", "type": "state", "discoms": [
+      { "code": "PED-MZ", "name": "Power & Electricity Department, Mizoram", "hasTariffFile": false }
+    ]},
+    { "state": "Nagaland", "type": "state", "discoms": [
+      { "code": "DOPN", "name": "Department of Power, Nagaland", "hasTariffFile": false }
+    ]},
+    { "state": "Odisha", "type": "state", "discoms": [
+      { "code": "TPCODL", "name": "TP Central Odisha Distribution Ltd", "hasTariffFile": false },
+      { "code": "TPWODL", "name": "TP Western Odisha Distribution Ltd", "hasTariffFile": false },
+      { "code": "TPSODL", "name": "TP Southern Odisha Distribution Ltd", "hasTariffFile": false },
+      { "code": "TPNODL", "name": "TP Northern Odisha Distribution Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Punjab", "type": "state", "discoms": [
+      { "code": "PSPCL", "name": "Punjab State Power Corporation Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Rajasthan", "type": "state", "discoms": [
+      { "code": "JVVNL", "name": "Jaipur Vidyut Vitran Nigam Ltd", "hasTariffFile": false },
+      { "code": "AVVNL", "name": "Ajmer Vidyut Vitran Nigam Ltd", "hasTariffFile": false },
+      { "code": "JdVVNL", "name": "Jodhpur Vidyut Vitran Nigam Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Sikkim", "type": "state", "discoms": [
+      { "code": "EPD-SK", "name": "Energy & Power Department, Sikkim", "hasTariffFile": false }
+    ]},
+    { "state": "Tamil Nadu", "type": "state", "discoms": [
+      { "code": "TNEB", "name": "Tamil Nadu Generation and Distribution Corp. (TANGEDCO)", "hasTariffFile": true }
+    ]},
+    { "state": "Telangana", "type": "state", "discoms": [
+      { "code": "TSSPDCL", "name": "Telangana Southern Power Distribution Co. Ltd", "hasTariffFile": false },
+      { "code": "TSNPDCL", "name": "Telangana Northern Power Distribution Co. Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Tripura", "type": "state", "discoms": [
+      { "code": "TSECL", "name": "Tripura State Electricity Corporation Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Uttar Pradesh", "type": "state", "discoms": [
+      { "code": "UPPCL", "name": "Uttar Pradesh Power Corporation Ltd (UPERC statewide schedule)", "hasTariffFile": true },
+      { "code": "PUVVNL", "name": "Purvanchal Vidyut Vitran Nigam Ltd", "hasTariffFile": false },
+      { "code": "MVVNL", "name": "Madhyanchal Vidyut Vitran Nigam Ltd", "hasTariffFile": false },
+      { "code": "PVVNL", "name": "Paschimanchal Vidyut Vitran Nigam Ltd", "hasTariffFile": false },
+      { "code": "DVVNL", "name": "Dakshinanchal Vidyut Vitran Nigam Ltd", "hasTariffFile": false },
+      { "code": "KESCO", "name": "Kanpur Electricity Supply Company", "hasTariffFile": false }
+    ]},
+    { "state": "Uttarakhand", "type": "state", "discoms": [
+      { "code": "UPCL", "name": "Uttarakhand Power Corporation Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "West Bengal", "type": "state", "discoms": [
+      { "code": "WBSEDCL", "name": "West Bengal State Electricity Distribution Co. Ltd", "hasTariffFile": true },
+      { "code": "CESC-KOL", "name": "CESC Limited (Kolkata)", "hasTariffFile": false }
+    ]},
+
+    { "state": "Andaman & Nicobar Islands", "type": "ut", "discoms": [
+      { "code": "ANED", "name": "Electricity Department, Andaman & Nicobar", "hasTariffFile": false }
+    ]},
+    { "state": "Chandigarh", "type": "ut", "discoms": [
+      { "code": "CED", "name": "UT Chandigarh Electricity Department", "hasTariffFile": false }
+    ]},
+    { "state": "Dadra & Nagar Haveli and Daman & Diu", "type": "ut", "discoms": [
+      { "code": "DNHPDCL", "name": "DNH & DD Power Distribution Corporation Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Delhi", "type": "ut", "discoms": [
+      { "code": "BRPL", "name": "BSES Rajdhani Power Ltd", "hasTariffFile": false },
+      { "code": "BYPL", "name": "BSES Yamuna Power Ltd", "hasTariffFile": false },
+      { "code": "TPDDL", "name": "Tata Power Delhi Distribution Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Jammu & Kashmir", "type": "ut", "discoms": [
+      { "code": "JPDCL", "name": "Jammu Power Distribution Corporation Ltd", "hasTariffFile": false },
+      { "code": "KPDCL", "name": "Kashmir Power Distribution Corporation Ltd", "hasTariffFile": false }
+    ]},
+    { "state": "Ladakh", "type": "ut", "discoms": [
+      { "code": "LPDD", "name": "Power Development Department, Ladakh", "hasTariffFile": false }
+    ]},
+    { "state": "Lakshadweep", "type": "ut", "discoms": [
+      { "code": "LED", "name": "Electricity Department, Lakshadweep", "hasTariffFile": false }
+    ]},
+    { "state": "Puducherry", "type": "ut", "discoms": [
+      { "code": "PED-PY", "name": "Puducherry Electricity Department", "hasTariffFile": false }
+    ]}
+  ]
+}

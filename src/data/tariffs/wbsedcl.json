@@ -1,0 +1,29 @@
+{
+  "discomCode": "WBSEDCL",
+  "discomName": "West Bengal State Electricity Distribution Co. Ltd (WBSEDCL)",
+  "state": "West Bengal",
+  "billingCycle": "quarterly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        { "minUnits": 0, "maxUnits": 102, "ratePerUnit": 4.1 },
+        { "minUnits": 103, "maxUnits": 180, "ratePerUnit": 5.34 },
+        { "minUnits": 181, "maxUnits": 300, "ratePerUnit": 6.15 },
+        { "minUnits": 301, "maxUnits": 600, "ratePerUnit": 6.65 },
+        { "minUnits": 601, "maxUnits": null, "ratePerUnit": 6.81 }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 90
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.wbsedcl.in/irj/go/km/docs/internet/new_website/pdf/Tariff_Volumn/Gist%20of%20Tariff%20Order%202025-26_28_03.pdf",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — WBSEDCL domestic quarterly slabs per WBERC order dated 20.03.2025 (eff 01.04.2025); fixed charge ₹30/kVA/month modelled as ₹90/kW per quarter. MVCA (monthly variable cost adjustment) and electricity duty NOT modelled. Pending primary WBERC order cross-check."
+}

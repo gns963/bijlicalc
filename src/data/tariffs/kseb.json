@@ -1,0 +1,31 @@
+{
+  "discomCode": "KSEB",
+  "discomName": "Kerala State Electricity Board Ltd (KSEB)",
+  "state": "Kerala",
+  "billingCycle": "bimonthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        { "minUnits": 0, "maxUnits": 100, "ratePerUnit": 3.35 },
+        { "minUnits": 101, "maxUnits": 200, "ratePerUnit": 4.25 },
+        { "minUnits": 201, "maxUnits": 300, "ratePerUnit": 5.35 },
+        { "minUnits": 301, "maxUnits": 400, "ratePerUnit": 7.2 },
+        { "minUnits": 401, "maxUnits": 500, "ratePerUnit": 8.5 },
+        { "minUnits": 501, "maxUnits": null, "ratePerUnit": 8.5 }
+      ],
+      "fixedCharge": {
+        "basis": "perPhase",
+        "singlePhase": 80,
+        "threePhase": 220
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 5,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.ensembleelectric.com/post/understanding-the-latest-changes-in-lt-consumer-electricity-tariffs-in-kerala",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — KSEB LT-1A telescopic slabs per KSERC Order 427/D(T)/2023 (eff 01.04.2025), converted from monthly to bi-monthly widths (×2). IMPORTANT: above 250 units/month KSEB switches to NON-telescopic (whole bill at one higher rate) — that regime is NOT modelled here, so this file is only valid up to 500 bi-monthly units (250/month). Pending primary KSERC order cross-check."
+}

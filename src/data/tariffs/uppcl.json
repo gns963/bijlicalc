@@ -1,0 +1,29 @@
+{
+  "discomCode": "UPPCL",
+  "discomName": "Uttar Pradesh Power Corporation Ltd (UPPCL)",
+  "state": "Uttar Pradesh",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        { "minUnits": 0, "maxUnits": 150, "ratePerUnit": 5.5 },
+        { "minUnits": 151, "maxUnits": 300, "ratePerUnit": 6.0 },
+        { "minUnits": 301, "maxUnits": 500, "ratePerUnit": 6.5 },
+        { "minUnits": 501, "maxUnits": null, "ratePerUnit": 7.0 }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 110
+      },
+      "meterRent": 20
+    }
+  ],
+  "fuelCostAdjustment": 0.15,
+  "electricityDutyPercent": 5,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://uppcl.org/site/writereaddata/siteContent/202511241802081345Press%20English%20FY%202025%2026.pdf",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — UPPCL urban LMV-1 domestic slabs, ₹110/kW fixed, ₹20 meter rent, ₹0.15/unit true-up and 5% duty per UPERC FY2025-26 schedule (uppcl.org). Rural schedule differs. Pending primary UPERC order cross-check."
+}
