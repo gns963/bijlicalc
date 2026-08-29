@@ -2,7 +2,7 @@
  * Validates every DISCOM tariff JSON in this folder against TariffFileSchema.
  * Run with:  npx tsx src/data/tariffs/_validate.ts
  */
-import { readdirSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { safeParseTariffFile } from './_schema'
@@ -14,7 +14,7 @@ const files = readdirSync(here).filter(
 
 let failures = 0
 for (const file of files) {
-  const data = require(join(here, file))
+  const data = JSON.parse(readFileSync(join(here, file), 'utf8'))
   const result = safeParseTariffFile(data)
   if (result.success) {
     console.log(`✅ ${file} is valid`)
