@@ -2,6 +2,15 @@ import Link from 'next/link'
 
 const GROUPS: { heading: string; links: { label: string; href: string }[] }[] = [
   {
+    heading: 'Tools',
+    links: [
+      { label: 'Electricity Bills', href: '/electricity' },
+      { label: 'Solar', href: '/solar' },
+      { label: 'AC', href: '/ac' },
+      { label: 'Financial', href: '/financial' },
+    ],
+  },
+  {
     heading: 'Company',
     links: [
       { label: 'About', href: '/about' },
@@ -22,6 +31,7 @@ const GROUPS: { heading: string; links: { label: string; href: string }[] }[] = 
     heading: 'Legal',
     links: [
       { label: 'Privacy', href: '/privacy' },
+      { label: 'Cookie Policy', href: '/cookie-policy' },
       { label: 'Terms', href: '/terms' },
     ],
   },
@@ -30,7 +40,7 @@ const GROUPS: { heading: string; links: { label: string; href: string }[] }[] = 
 export default function Footer() {
   return (
     <footer className="mt-16 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 md:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 md:grid-cols-5">
         <div>
           <p className="text-lg font-bold text-slate-900 dark:text-white">
             bijlicalc

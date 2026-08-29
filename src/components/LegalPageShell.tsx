@@ -6,10 +6,13 @@ export default function LegalPageShell({
   title,
   intro,
   children,
+  stub = true,
 }: {
   title: string
   intro: string
   children?: ReactNode
+  /** When false, omits the "this is a stub" footer note (for finished pages). */
+  stub?: boolean
 }) {
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">
@@ -27,8 +30,8 @@ export default function LegalPageShell({
         {children}
       </div>
       <p className="mt-10 text-sm text-slate-400">
-        Last updated: 29 August 2026 · This page is a stub and will be expanded
-        before launch.
+        Last updated: 29 August 2026
+        {stub ? ' · This page is a stub and will be expanded before launch.' : ''}
       </p>
     </main>
   )

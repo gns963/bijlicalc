@@ -167,8 +167,8 @@ export default function Home() {
           </ul>
         </section>
 
-        {/* 3 & 4. Solar + AC teasers */}
-        <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-14 md:grid-cols-2">
+        {/* 3 & 4. Solar + AC + Financial teasers */}
+        <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-14 md:grid-cols-3">
           {/* 3. Solar teaser */}
           <div className="flex flex-col rounded-2xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-900 dark:bg-amber-950/30">
             <span className="text-xs font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">
@@ -192,7 +192,7 @@ export default function Home() {
           {/* 4. AC hub teaser */}
           <div className="flex flex-col rounded-2xl border border-sky-200 bg-sky-50 p-6 dark:border-sky-900 dark:bg-sky-950/30">
             <span className="text-xs font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
-              Coming next
+              Live now
             </span>
             <h2 className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
               ❄️ AC Running Cost Hub
@@ -202,10 +202,30 @@ export default function Home() {
               using ISEER ratings and your state&apos;s electricity tariff.
             </p>
             <Link
-              href="/coming-soon"
+              href="/ac"
               className="mt-4 inline-block text-sm font-semibold text-sky-700 hover:text-sky-600 dark:text-sky-300"
             >
-              Notify me →
+              Open AC tools →
+            </Link>
+          </div>
+
+          {/* Financial teaser */}
+          <div className="flex flex-col rounded-2xl border border-emerald-200 bg-emerald-50 p-6 dark:border-emerald-900 dark:bg-emerald-950/30">
+            <span className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+              Live now
+            </span>
+            <h2 className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
+              🧮 Financial Calculators
+            </h2>
+            <p className="mt-2 flex-1 text-slate-600 dark:text-slate-300">
+              GST, SIP returns, new vs old tax regime (FY 2026-27) and gratuity —
+              the everyday money numbers, done right.
+            </p>
+            <Link
+              href="/financial"
+              className="mt-4 inline-block text-sm font-semibold text-emerald-700 hover:text-emerald-600 dark:text-emerald-300"
+            >
+              Open financial tools →
             </Link>
           </div>
         </section>
