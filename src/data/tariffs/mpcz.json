@@ -1,0 +1,44 @@
+{
+  "discomCode": "MPCZ",
+  "discomName": "MP Madhya Kshetra Vidyut Vitaran Co. (MPCZ)",
+  "state": "Madhya Pradesh",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 50,
+          "ratePerUnit": 4.25
+        },
+        {
+          "minUnits": 51,
+          "maxUnits": 100,
+          "ratePerUnit": 4.85
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 300,
+          "ratePerUnit": 6.3
+        },
+        {
+          "minUnits": 301,
+          "maxUnits": null,
+          "ratePerUnit": 7.25
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 20
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0.3,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.mperc.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Madhya Pradesh domestic tariff from secondary references; pending primary SERC order cross-check. The Atal Griha Jyoti ₹100 cap is not applied automatically here."
+}

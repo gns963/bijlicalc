@@ -1,0 +1,34 @@
+{
+  "discomCode": "PED-MZ",
+  "discomName": "Power & Electricity Department, Mizoram",
+  "state": "Mizoram",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 4.2
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": null,
+          "ratePerUnit": 6
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 30
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://power.mizoram.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Mizoram domestic tariff from secondary references; pending primary SERC order cross-check. Public slab detail is limited; the structure here is indicative and needs verification."
+}

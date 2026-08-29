@@ -1,0 +1,53 @@
+{
+  "discomCode": "BRPL",
+  "discomName": "BSES Rajdhani Power Ltd (BRPL, DERC)",
+  "state": "Delhi",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 200,
+          "ratePerUnit": 3
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": 400,
+          "ratePerUnit": 4.5
+        },
+        {
+          "minUnits": 401,
+          "maxUnits": 800,
+          "ratePerUnit": 6.5
+        },
+        {
+          "minUnits": 801,
+          "maxUnits": null,
+          "ratePerUnit": 8
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 100
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [
+    {
+      "schemeName": "Up to 200 free units (opt-in)",
+      "minUnits": 0,
+      "maxUnits": 200,
+      "discountType": "free",
+      "discountValue": 200,
+      "eligibility": "domestic (Delhi subsidy, opted-in)"
+    }
+  ],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.derc.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Delhi domestic tariff from secondary references; pending primary SERC order cross-check. The PPAC surcharge (~30% of energy charge) is not modelled, so real Delhi bills above the free tier run higher."
+}

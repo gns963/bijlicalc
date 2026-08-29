@@ -1,0 +1,39 @@
+{
+  "discomCode": "CED",
+  "discomName": "UT Chandigarh Electricity Department (CED, JERC)",
+  "state": "Chandigarh",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 150,
+          "ratePerUnit": 2.75
+        },
+        {
+          "minUnits": 151,
+          "maxUnits": 400,
+          "ratePerUnit": 4.8
+        },
+        {
+          "minUnits": 401,
+          "maxUnits": null,
+          "ratePerUnit": 5.4
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 30
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0.15,
+  "electricityDutyPercent": 5,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-11-01",
+  "sourceUrl": "https://jercuts.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Chandigarh domestic tariff from secondary references; pending primary SERC order cross-check."
+}

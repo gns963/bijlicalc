@@ -1,0 +1,29 @@
+{
+  "discomCode": "APDOP",
+  "discomName": "Department of Power, Arunachal Pradesh",
+  "state": "Arunachal Pradesh",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": null,
+          "ratePerUnit": 4.4
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 30
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://power.arunachal.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Arunachal Pradesh domestic tariff from secondary references; pending primary SERC order cross-check. Slab detail is limited; this uses the published flat domestic rate."
+}

@@ -1,0 +1,45 @@
+{
+  "discomCode": "EPD-SK",
+  "discomName": "Energy & Power Department, Sikkim (SERC)",
+  "state": "Sikkim",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 50,
+          "ratePerUnit": 1.1
+        },
+        {
+          "minUnits": 51,
+          "maxUnits": 100,
+          "ratePerUnit": 2.1
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 3.1
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": null,
+          "ratePerUnit": 4.1
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perPhase",
+        "singlePhase": 50,
+        "threePhase": 200
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 5,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://power.sikkim.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Sikkim domestic tariff from secondary references; pending primary SERC order cross-check."
+}

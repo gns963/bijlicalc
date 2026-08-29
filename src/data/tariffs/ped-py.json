@@ -1,0 +1,54 @@
+{
+  "discomCode": "PED-PY",
+  "discomName": "Puducherry Electricity Department (PED)",
+  "state": "Puducherry",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 2.9
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 4
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": 300,
+          "ratePerUnit": 6
+        },
+        {
+          "minUnits": 301,
+          "maxUnits": null,
+          "ratePerUnit": 7.5
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perPhase",
+        "singlePhase": 25,
+        "threePhase": 75
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 5,
+  "subsidySchemes": [
+    {
+      "schemeName": "50 free units (BPL)",
+      "minUnits": 0,
+      "maxUnits": 50,
+      "discountType": "free",
+      "discountValue": 50,
+      "eligibility": "BPL only"
+    }
+  ],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://electricity.py.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Puducherry domestic tariff from secondary references; pending primary SERC order cross-check."
+}

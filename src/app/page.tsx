@@ -19,6 +19,36 @@ const CALCULATOR_ROUTES: Record<string, string> = {
   BESCOM: '/electricity/bescom-bill-calculator',
   KSEB: '/electricity/kseb-bill-calculator',
   WBSEDCL: '/electricity/wbsedcl-bill-calculator',
+  'MGVCL': '/electricity/gujarat-electricity-bill-calculator',
+  'JVVNL': '/electricity/rajasthan-electricity-bill-calculator',
+  'PSPCL': '/electricity/punjab-electricity-bill-calculator',
+  'BRPL': '/electricity/delhi-electricity-bill-calculator',
+  'TSSPDCL': '/electricity/telangana-electricity-bill-calculator',
+  'APSPDCL': '/electricity/andhra-pradesh-electricity-bill-calculator',
+  'MPCZ': '/electricity/madhya-pradesh-electricity-bill-calculator',
+  'UHBVN': '/electricity/haryana-electricity-bill-calculator',
+  'HPSEBL': '/electricity/himachal-pradesh-electricity-bill-calculator',
+  'UPCL': '/electricity/uttarakhand-electricity-bill-calculator',
+  'GED': '/electricity/goa-electricity-bill-calculator',
+  'SBPDCL': '/electricity/bihar-electricity-bill-calculator',
+  'TPCODL': '/electricity/odisha-electricity-bill-calculator',
+  'APDCL': '/electricity/assam-electricity-bill-calculator',
+  'JBVNL': '/electricity/jharkhand-electricity-bill-calculator',
+  'CSPDCL': '/electricity/chhattisgarh-electricity-bill-calculator',
+  'CED': '/electricity/chandigarh-electricity-bill-calculator',
+  'PED-PY': '/electricity/puducherry-electricity-bill-calculator',
+  'JPDCL': '/electricity/jammu-and-kashmir-electricity-bill-calculator',
+  'TSECL': '/electricity/tripura-electricity-bill-calculator',
+  'EPD-SK': '/electricity/sikkim-electricity-bill-calculator',
+  'MePDCL': '/electricity/meghalaya-electricity-bill-calculator',
+  'MSPDCL': '/electricity/manipur-electricity-bill-calculator',
+  'APDOP': '/electricity/arunachal-pradesh-electricity-bill-calculator',
+  'PED-MZ': '/electricity/mizoram-electricity-bill-calculator',
+  'DOPN': '/electricity/nagaland-electricity-bill-calculator',
+  'ANED': '/electricity/andaman-and-nicobar-islands-electricity-bill-calculator',
+  'DNHPDCL': '/electricity/dadra-and-nagar-haveli-and-daman-and-diu-electricity-bill-calculator',
+  'LED': '/electricity/lakshadweep-electricity-bill-calculator',
+  'LPDD': '/electricity/ladakh-electricity-bill-calculator',
 }
 
 type StateEntry = (typeof discomsJson.states)[number]
@@ -36,7 +66,6 @@ const stateAvailability = states.map((s) => ({
       .find(Boolean) ?? '/coming-soon',
 }))
 
-const liveCount = stateAvailability.filter((s) => s.available).length
 const totalCount = stateAvailability.length
 
 export const metadata: Metadata = {
@@ -54,7 +83,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'Which states and DISCOMs are supported?',
-    a: `Right now we have verified tariff data for Tamil Nadu (TANGEDCO / TNEB). ${totalCount - liveCount} more states and union territories are on the way — you can already see the full list, with unsupported states marked "coming soon".`,
+    a: `All ${totalCount} states and union territories are covered, each using its main DISCOM's domestic tariff. Data is being progressively cross-checked against primary SERC orders; each calculator shows its verification status.`,
   },
   {
     q: 'How accurate are the bill estimates?',
@@ -106,10 +135,8 @@ export default function Home() {
 
             {/* Trust strip */}
             <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">
-              ✅ {liveCount} of {totalCount} states/UTs live — Tamil Nadu,
-              Maharashtra, Uttar Pradesh, Karnataka, Kerala &amp; West Bengal ·
-              Tariffs verified {formatIsoDate(tariff.lastVerified)} · Free, no
-              login
+              ✅ All {totalCount} states &amp; UTs live · Real DISCOM tariffs ·
+              Updated {formatIsoDate(tariff.lastVerified)} · Free, no login
             </p>
           </div>
         </section>
@@ -128,8 +155,8 @@ export default function Home() {
             Electricity bill calculators by state
           </h2>
           <p className="mt-1 text-slate-500 dark:text-slate-400">
-            Six states are live now. The rest are being added — data
-            verification in progress.
+            Every state and union territory is now live — pick yours below. Data
+            is being progressively verified against primary SERC orders.
           </p>
           <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {stateAvailability.map((s) => {

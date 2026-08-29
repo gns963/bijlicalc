@@ -1,0 +1,39 @@
+{
+  "discomCode": "JPDCL",
+  "discomName": "Jammu Power Distribution Corporation Ltd (JPDCL, JERC)",
+  "state": "Jammu & Kashmir",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 200,
+          "ratePerUnit": 2.45
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": 400,
+          "ratePerUnit": 4.2
+        },
+        {
+          "minUnits": 401,
+          "maxUnits": null,
+          "ratePerUnit": 4.6
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 10
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-09-01",
+  "sourceUrl": "https://www.jpdcl.co.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Jammu & Kashmir domestic tariff from secondary references; pending primary SERC order cross-check."
+}

@@ -1,0 +1,39 @@
+{
+  "discomCode": "TSECL",
+  "discomName": "Tripura State Electricity Corporation Ltd (TSECL)",
+  "state": "Tripura",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 0
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 4
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": null,
+          "ratePerUnit": 6
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 16
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0.2,
+  "electricityDutyPercent": 5,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-11-01",
+  "sourceUrl": "https://tsecl.tripura.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Tripura domestic tariff from secondary references; pending primary SERC order cross-check."
+}

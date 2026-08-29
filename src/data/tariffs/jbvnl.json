@@ -1,0 +1,38 @@
+{
+  "discomCode": "JBVNL",
+  "discomName": "Jharkhand Bijli Vitran Nigam Ltd (JBVNL)",
+  "state": "Jharkhand",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": null,
+          "ratePerUnit": 6.85
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 100
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [
+    {
+      "schemeName": "200 free units/month scheme",
+      "minUnits": 0,
+      "maxUnits": 200,
+      "discountType": "free",
+      "discountValue": 200,
+      "eligibility": "domestic (200 free units scheme)"
+    }
+  ],
+  "effectiveFrom": "2025-05-01",
+  "sourceUrl": "https://www.jserc.org/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Jharkhand domestic tariff from secondary references; pending primary SERC order cross-check."
+}

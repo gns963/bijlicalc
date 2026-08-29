@@ -1,0 +1,48 @@
+{
+  "discomCode": "PSPCL",
+  "discomName": "Punjab State Power Corporation Ltd (PSPCL)",
+  "state": "Punjab",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 3.49
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 300,
+          "ratePerUnit": 5.84
+        },
+        {
+          "minUnits": 301,
+          "maxUnits": null,
+          "ratePerUnit": 7.3
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 120
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [
+    {
+      "schemeName": "300 free units/month scheme",
+      "minUnits": 0,
+      "maxUnits": 300,
+      "discountType": "free",
+      "discountValue": 300,
+      "eligibility": "domestic (Punjab free-units scheme)"
+    }
+  ],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://pserc.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Punjab domestic tariff from secondary references; pending primary SERC order cross-check. PSPCL bills bi-monthly in practice and rates vary by load band; this uses a representative monthly schedule."
+}

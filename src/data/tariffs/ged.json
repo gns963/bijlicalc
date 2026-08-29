@@ -1,0 +1,49 @@
+{
+  "discomCode": "GED",
+  "discomName": "Goa Electricity Department (GED, JERC)",
+  "state": "Goa",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 2.1
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 3.1
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": 300,
+          "ratePerUnit": 4.2
+        },
+        {
+          "minUnits": 301,
+          "maxUnits": 400,
+          "ratePerUnit": 5.4
+        },
+        {
+          "minUnits": 401,
+          "maxUnits": null,
+          "ratePerUnit": 6.6
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 25
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://jercuts.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Goa domestic tariff from secondary references; pending primary SERC order cross-check. A ₹0.30/unit combined electricity + public-lighting duty is not modelled here."
+}

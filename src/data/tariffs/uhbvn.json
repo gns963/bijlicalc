@@ -1,0 +1,44 @@
+{
+  "discomCode": "UHBVN",
+  "discomName": "Uttar Haryana Bijli Vitran Nigam (UHBVN, HERC)",
+  "state": "Haryana",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 50,
+          "ratePerUnit": 2.2
+        },
+        {
+          "minUnits": 51,
+          "maxUnits": 100,
+          "ratePerUnit": 2.7
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 250,
+          "ratePerUnit": 5.25
+        },
+        {
+          "minUnits": 251,
+          "maxUnits": null,
+          "ratePerUnit": 6.45
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 120
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://herc.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Haryana domestic tariff from secondary references; pending primary SERC order cross-check. FPPCA fuel surcharge and electricity duty are not modelled here."
+}

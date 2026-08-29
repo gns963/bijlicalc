@@ -1,0 +1,29 @@
+{
+  "discomCode": "LED",
+  "discomName": "Electricity Department, Lakshadweep",
+  "state": "Lakshadweep",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": null,
+          "ratePerUnit": 1.5
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 20
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://lakshadweep.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Lakshadweep domestic tariff from secondary references; pending primary SERC order cross-check. Public slab detail is limited; this uses the indicative flat domestic rate."
+}

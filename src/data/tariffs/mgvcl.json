@@ -1,0 +1,44 @@
+{
+  "discomCode": "MGVCL",
+  "discomName": "Madhya Gujarat Vij Company Ltd (MGVCL, GERC)",
+  "state": "Gujarat",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 50,
+          "ratePerUnit": 3.05
+        },
+        {
+          "minUnits": 51,
+          "maxUnits": 100,
+          "ratePerUnit": 3.5
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 250,
+          "ratePerUnit": 4.15
+        },
+        {
+          "minUnits": 251,
+          "maxUnits": null,
+          "ratePerUnit": 5.2
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 90
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.gercin.org/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Gujarat domestic tariff from secondary references; pending primary SERC order cross-check. FPPCA (monthly fuel surcharge) and electricity duty are not modelled here."
+}

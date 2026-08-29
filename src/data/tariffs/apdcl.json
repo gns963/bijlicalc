@@ -1,0 +1,44 @@
+{
+  "discomCode": "APDCL",
+  "discomName": "Assam Power Distribution Company Ltd (APDCL)",
+  "state": "Assam",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 30,
+          "ratePerUnit": 2
+        },
+        {
+          "minUnits": 31,
+          "maxUnits": 120,
+          "ratePerUnit": 6
+        },
+        {
+          "minUnits": 121,
+          "maxUnits": 240,
+          "ratePerUnit": 7
+        },
+        {
+          "minUnits": 241,
+          "maxUnits": null,
+          "ratePerUnit": 7.6
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 70
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 5,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://aerc.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Assam domestic tariff from secondary references; pending primary SERC order cross-check."
+}

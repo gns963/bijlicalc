@@ -1,0 +1,53 @@
+{
+  "discomCode": "TSSPDCL",
+  "discomName": "Telangana Southern Power Distribution Co. (TGSPDCL/TSSPDCL)",
+  "state": "Telangana",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 50,
+          "ratePerUnit": 1.95
+        },
+        {
+          "minUnits": 51,
+          "maxUnits": 100,
+          "ratePerUnit": 3.1
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 4.8
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": null,
+          "ratePerUnit": 6.5
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 10
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 6,
+  "subsidySchemes": [
+    {
+      "schemeName": "Gruha Jyothi (up to 200 free units)",
+      "minUnits": 0,
+      "maxUnits": 200,
+      "discountType": "free",
+      "discountValue": 200,
+      "eligibility": "domestic Gruha Jyothi (white ration card)"
+    }
+  ],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.tserc.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Telangana domestic tariff from secondary references; pending primary SERC order cross-check."
+}

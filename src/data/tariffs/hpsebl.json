@@ -1,0 +1,39 @@
+{
+  "discomCode": "HPSEBL",
+  "discomName": "Himachal Pradesh State Electricity Board Ltd (HPSEBL)",
+  "state": "Himachal Pradesh",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 125,
+          "ratePerUnit": 0
+        },
+        {
+          "minUnits": 126,
+          "maxUnits": 300,
+          "ratePerUnit": 4.17
+        },
+        {
+          "minUnits": 301,
+          "maxUnits": null,
+          "ratePerUnit": 5.9
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 40
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://hperc.org/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Himachal Pradesh domestic tariff from secondary references; pending primary SERC order cross-check."
+}

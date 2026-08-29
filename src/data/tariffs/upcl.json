@@ -1,0 +1,44 @@
+{
+  "discomCode": "UPCL",
+  "discomName": "Uttarakhand Power Corporation Ltd (UPCL, UERC)",
+  "state": "Uttarakhand",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 3.65
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 5.25
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": 400,
+          "ratePerUnit": 7.15
+        },
+        {
+          "minUnits": 401,
+          "maxUnits": null,
+          "ratePerUnit": 7.8
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 85
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://uerc.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Uttarakhand domestic tariff from secondary references; pending primary SERC order cross-check. A ₹0.15/unit electricity duty and the rural/hill rebates are not modelled here."
+}

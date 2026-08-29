@@ -25,6 +25,36 @@ import uppclJson from '../../data/tariffs/uppcl.json'
 import bescomJson from '../../data/tariffs/bescom.json'
 import ksebJson from '../../data/tariffs/kseb.json'
 import wbsedclJson from '../../data/tariffs/wbsedcl.json'
+import mgvclJson from '../../data/tariffs/mgvcl.json'
+import jvvnlJson from '../../data/tariffs/jvvnl.json'
+import pspclJson from '../../data/tariffs/pspcl.json'
+import brplJson from '../../data/tariffs/brpl.json'
+import tsspdclJson from '../../data/tariffs/tsspdcl.json'
+import apspdclJson from '../../data/tariffs/apspdcl.json'
+import mpczJson from '../../data/tariffs/mpcz.json'
+import uhbvnJson from '../../data/tariffs/uhbvn.json'
+import hpseblJson from '../../data/tariffs/hpsebl.json'
+import upclJson from '../../data/tariffs/upcl.json'
+import gedJson from '../../data/tariffs/ged.json'
+import sbpdclJson from '../../data/tariffs/sbpdcl.json'
+import tpcodlJson from '../../data/tariffs/tpcodl.json'
+import apdclJson from '../../data/tariffs/apdcl.json'
+import jbvnlJson from '../../data/tariffs/jbvnl.json'
+import cspdclJson from '../../data/tariffs/cspdcl.json'
+import cedJson from '../../data/tariffs/ced.json'
+import pedpyJson from '../../data/tariffs/ped-py.json'
+import jpdclJson from '../../data/tariffs/jpdcl.json'
+import tseclJson from '../../data/tariffs/tsecl.json'
+import epdskJson from '../../data/tariffs/epd-sk.json'
+import mepdclJson from '../../data/tariffs/mepdcl.json'
+import mspdclJson from '../../data/tariffs/mspdcl.json'
+import apdopJson from '../../data/tariffs/apdop.json'
+import pedmzJson from '../../data/tariffs/ped-mz.json'
+import dopnJson from '../../data/tariffs/dopn.json'
+import anedJson from '../../data/tariffs/aned.json'
+import dnhpdclJson from '../../data/tariffs/dnhpdcl.json'
+import ledJson from '../../data/tariffs/led.json'
+import lpddJson from '../../data/tariffs/lpdd.json'
 
 // ---------------------------------------------------------------------------
 // Result types
@@ -429,6 +459,36 @@ export const tariffRegistry: Record<string, TariffFile> = {
   BESCOM: parseTariffFile(bescomJson),
   KSEB: parseTariffFile(ksebJson),
   WBSEDCL: parseTariffFile(wbsedclJson),
+  'MGVCL': parseTariffFile(mgvclJson),
+  'JVVNL': parseTariffFile(jvvnlJson),
+  'PSPCL': parseTariffFile(pspclJson),
+  'BRPL': parseTariffFile(brplJson),
+  'TSSPDCL': parseTariffFile(tsspdclJson),
+  'APSPDCL': parseTariffFile(apspdclJson),
+  'MPCZ': parseTariffFile(mpczJson),
+  'UHBVN': parseTariffFile(uhbvnJson),
+  'HPSEBL': parseTariffFile(hpseblJson),
+  'UPCL': parseTariffFile(upclJson),
+  'GED': parseTariffFile(gedJson),
+  'SBPDCL': parseTariffFile(sbpdclJson),
+  'TPCODL': parseTariffFile(tpcodlJson),
+  'APDCL': parseTariffFile(apdclJson),
+  'JBVNL': parseTariffFile(jbvnlJson),
+  'CSPDCL': parseTariffFile(cspdclJson),
+  'CED': parseTariffFile(cedJson),
+  'PED-PY': parseTariffFile(pedpyJson),
+  'JPDCL': parseTariffFile(jpdclJson),
+  'TSECL': parseTariffFile(tseclJson),
+  'EPD-SK': parseTariffFile(epdskJson),
+  'MePDCL': parseTariffFile(mepdclJson),
+  'MSPDCL': parseTariffFile(mspdclJson),
+  'APDOP': parseTariffFile(apdopJson),
+  'PED-MZ': parseTariffFile(pedmzJson),
+  'DOPN': parseTariffFile(dopnJson),
+  'ANED': parseTariffFile(anedJson),
+  'DNHPDCL': parseTariffFile(dnhpdclJson),
+  'LED': parseTariffFile(ledJson),
+  'LPDD': parseTariffFile(lpddJson),
 }
 
 export function getTariff(discomCode: string): TariffFile {

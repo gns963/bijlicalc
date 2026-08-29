@@ -1,0 +1,39 @@
+{
+  "discomCode": "MSPDCL",
+  "discomName": "Manipur State Power Distribution Co. Ltd (MSPDCL)",
+  "state": "Manipur",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 4.5
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 5.5
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": null,
+          "ratePerUnit": 6.5
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 70
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 5,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://jerc.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Manipur domestic tariff from secondary references; pending primary SERC order cross-check."
+}

@@ -1,0 +1,44 @@
+{
+  "discomCode": "JVVNL",
+  "discomName": "Jaipur Vidyut Vitran Nigam Ltd (JVVNL, RERC)",
+  "state": "Rajasthan",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 4.25
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 5.75
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": 400,
+          "ratePerUnit": 7.25
+        },
+        {
+          "minUnits": 401,
+          "maxUnits": null,
+          "ratePerUnit": 9.5
+        }
+      ],
+      "fixedCharge": {
+        "basis": "perLoad",
+        "perKW": 275
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0.22,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://rerc.rajasthan.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Rajasthan domestic tariff from secondary references; pending primary SERC order cross-check. Rajasthan’s per-unit electricity duty (~40 paise/unit) and urban cess are not modelled here."
+}

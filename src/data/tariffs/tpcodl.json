@@ -1,0 +1,44 @@
+{
+  "discomCode": "TPCODL",
+  "discomName": "TP Central Odisha Distribution Ltd (TPCODL, OERC)",
+  "state": "Odisha",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 3
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 4.8
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": 400,
+          "ratePerUnit": 5.8
+        },
+        {
+          "minUnits": 401,
+          "maxUnits": null,
+          "ratePerUnit": 6.2
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 25
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.oerc.gov.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Odisha domestic tariff from secondary references; pending primary SERC order cross-check. A ₹0.06/unit electricity duty is not modelled here."
+}

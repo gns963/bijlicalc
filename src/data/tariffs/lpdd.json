@@ -1,0 +1,39 @@
+{
+  "discomCode": "LPDD",
+  "discomName": "Power Development Department, Ladakh (JERC)",
+  "state": "Ladakh",
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "residential",
+      "slabs": [
+        {
+          "minUnits": 0,
+          "maxUnits": 100,
+          "ratePerUnit": 2
+        },
+        {
+          "minUnits": 101,
+          "maxUnits": 200,
+          "ratePerUnit": 2.5
+        },
+        {
+          "minUnits": 201,
+          "maxUnits": null,
+          "ratePerUnit": 3
+        }
+      ],
+      "fixedCharge": {
+        "basis": "flat",
+        "flat": 20
+      }
+    }
+  ],
+  "fuelCostAdjustment": 0,
+  "electricityDutyPercent": 0,
+  "subsidySchemes": [],
+  "effectiveFrom": "2025-04-01",
+  "sourceUrl": "https://www.jpdcl.co.in/",
+  "lastVerified": "2026-08-29",
+  "verifiedBy": "SOURCED (secondary) — Ladakh domestic tariff from secondary references; pending primary SERC order cross-check. No specific Ladakh tariff order was found; the entire schedule here is an approximation pending verification."
+}
