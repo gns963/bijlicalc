@@ -20,6 +20,34 @@ export interface DiscomPageConfig {
   intro: ReactNode
   explainer: { title: string; body: ReactNode }[]
   faqs: { q: string; a: string }[]
+
+  // --- Optional, richer sections. Only authored for states where we have
+  // genuine, sourced, DISCOM-specific content — never generic filler, so
+  // most of the 36 pages simply won't render these sections yet. ---
+
+  /** DISCOM codes for the live comparison table (e.g. neighbouring states). */
+  neighboringDiscoms?: string[]
+  /** Specific, real mechanical facts about this tariff people commonly misread. */
+  billTraps?: { title: string; body: ReactNode }[]
+  /** Short, dated, fact-checked history/structure paragraphs. */
+  aboutDiscom?: ReactNode[]
+  /** A single direct-answer coverage question, e.g. "Does X supply city Y?" */
+  coverageQA?: { q: string; a: ReactNode }
+  howToPay?: {
+    portalUrl: string
+    portalLabel: string
+    helpline: string
+    steps: string[]
+  }
+  /** A 2-column "cliff" rule callout (subsidy boundary, duty threshold, etc). */
+  thresholdCallout?: {
+    title: string
+    leftLabel: string
+    leftValue: string
+    rightLabel: string
+    rightValue: string
+    note: string
+  }
 }
 
 export const CALCULATOR_PAGES: DiscomPageConfig[] = [
@@ -27,7 +55,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
   {
     slug: 'tneb-bill-calculator',
     discomCode: 'TNEB',
-    h1: 'TNEB Bill Calculator (TANGEDCO, Tamil Nadu)',
+    h1: 'TNEB Electricity Bill Calculator 2026 — Estimate Your Tamil Nadu (TANGEDCO) Bill',
     breadcrumbLabel: 'TNEB Bill Calculator',
     metaTitle:
       'TNEB Bill Calculator 2026 — TANGEDCO Electricity Bill (Tamil Nadu)',
@@ -35,6 +63,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       'Calculate your TNEB (TANGEDCO) electricity bill for Tamil Nadu. Bi-monthly telescopic slabs, 100 free units subsidy, fuel cost adjustment and fixed charges — with a monthly-equivalent figure.',
     exampleUnits: 250,
     exampleEligible: true,
+    neighboringDiscoms: ['KSEB', 'BESCOM', 'APSPDCL'],
     intro: (
       <>
         Estimate your TANGEDCO electricity bill for Tamil Nadu. TNEB bills
@@ -78,22 +107,144 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     ],
     faqs: [
       {
-        q: 'Is the TNEB bill calculated monthly or bi-monthly?',
-        a: 'TANGEDCO bills domestic consumers once every two months. Enter the units for the ~60-day cycle; the calculator also shows a monthly-equivalent (total ÷ 2).',
+        q: 'How is my TNEB electricity bill calculated?',
+        a: 'TANGEDCO bills residential (LT-IA) consumers bi-monthly. Your bill is the sum of telescopic slab-wise energy charges, plus a ₹0.35/unit fuel cost adjustment (FCA) and a phase-based fixed charge, minus the 100-unit free subsidy if you qualify.',
       },
       {
-        q: 'How are the 100 free units applied?',
-        a: 'Eligible domestic consumers get the first 100 units of the bi-monthly cycle free, valued at the ₹2.25 lowest-slab rate.',
+        q: "What is TNEB's current tariff for domestic (LT-IA) connections?",
+        a: 'Telescopic slabs of ₹2.25/unit (0–100), ₹3.50/unit (101–200), ₹4.80/unit (201–500) and ₹6.40/unit (501+), plus a fixed charge of ₹100 single-phase or ₹200 three-phase per bi-monthly cycle.',
       },
       {
-        q: 'What is the fuel cost adjustment on my TNEB bill?',
-        a: 'FCA is a per-unit surcharge reflecting TANGEDCO’s power-purchase costs, currently ₹0.35/unit.',
+        q: 'Why is my TNEB bill bi-monthly instead of monthly?',
+        a: 'TANGEDCO reads domestic meters once every two months, so a bill covers roughly 60 days rather than 30. To compare against a "monthly" figure, divide the bi-monthly total by two — this calculator does that automatically as the monthly-equivalent.',
       },
       {
-        q: 'Does this calculator give an exact bill?',
-        a: 'It is a close estimate based on the published LT-IA domestic tariff. Your actual bill can vary with rounding, meter rent and FCA revisions.',
+        q: 'Do I get free electricity units from TNEB?',
+        a: 'Eligible domestic consumers get the first 100 units of each bi-monthly cycle free, valued at the ₹2.25 lowest-slab rate — a flat ₹225 reduction, not a percentage discount. It applies regardless of how many total units you use in the cycle.',
+      },
+      {
+        q: 'What is Fuel Cost Adjustment (FCA) and why is it on my bill?',
+        a: 'FCA is a per-unit surcharge, currently ₹0.35/unit, that reflects TANGEDCO’s changing power-purchase cost. It is separate from and added on top of the slab energy charge.',
+      },
+      {
+        q: 'How can I reduce my TNEB electricity bill?',
+        a: 'Confirm your 100-unit subsidy eligibility is correctly marked on your account, and keep usage below your next slab threshold where practical — the jump from ₹3.50 to ₹4.80/unit at 200 units is the most common one people cross unintentionally in summer.',
+      },
+      {
+        q: 'Is solar worth it for a typical TNEB household?',
+        a: 'Often yes — TNEB’s top domestic slab (₹6.40/unit) is high enough that a rooftop system can offset your most expensive units first. Use our solar ROI calculator, pre-filled for Tamil Nadu tariffs, to see your payback period.',
+      },
+      {
+        q: "What's the difference between TNEB, TANGEDCO and TNPDCL?",
+        a: 'TNEB (Tamil Nadu Electricity Board) was the original integrated utility until it was restructured on 1 November 2010 into TNEB Ltd (holding company), TANGEDCO (generation and distribution) and TANTRANSCO (transmission). On 27 June 2024, TANGEDCO’s distribution business was renamed Tamil Nadu Power Distribution Corporation Ltd (TNPDCL) — though “TNEB” and “TANGEDCO” both remain in everyday use for bills.',
+      },
+      {
+        q: 'How do I check or pay my TNEB bill online?',
+        a: 'Pay via the official TANGEDCO/TNEB portal at tnebnet.org, or through the TANGEDCO website’s "Pay Online" → "Quick Pay" option. For outages, billing issues or meter problems, call the 24×7 helpline 1912.',
+      },
+      {
+        q: 'How often are TNEB tariff rates updated, and how do you keep this calculator accurate?',
+        a: 'TNERC reviews domestic tariffs periodically, with CPI-linked adjustments typically each July. We record the source order URL and a last-verified date on every tariff file — visible at the bottom of this page — and update the data whenever a new order is issued.',
       },
     ],
+    billTraps: [
+      {
+        title: 'The 100-unit "all or nothing" myth',
+        body: (
+          <>
+            Some people assume that using more than 100 units forfeits the
+            free-unit subsidy entirely. It doesn&apos;t — the first 100 units
+            are deducted at the ₹2.25 rate regardless of your total
+            consumption for the cycle, so a 300-unit bill still gets the same
+            ₹225 reduction as a 100-unit bill.
+          </>
+        ),
+      },
+      {
+        title: 'Phase mismatch on the fixed charge',
+        body: (
+          <>
+            TNEB&apos;s fixed charge depends on your connection phase, not your
+            sanctioned load: ₹100 for single-phase, ₹200 for three-phase, per
+            bi-monthly cycle. If your household has a three-phase connection
+            (common for homes with higher-capacity ACs or motors), your fixed
+            charge is double what a single-phase neighbour pays.
+          </>
+        ),
+      },
+      {
+        title: 'The summer slab jump',
+        body: (
+          <>
+            Running an AC through summer often pushes consumption from the
+            ₹3.50/unit band into the ₹4.80/unit band. Only the units above 200
+            are charged at the higher rate — it&apos;s not retroactive — but
+            the marginal jump surprises people comparing a summer bill to a
+            winter one.
+          </>
+        ),
+      },
+      {
+        title: 'Reading-date drift',
+        body: (
+          <>
+            Because billing is bi-monthly, your meter-read date can drift by a
+            few days each cycle. Comparing &ldquo;this January&apos;s
+            bill&rdquo; to &ldquo;last January&apos;s bill&rdquo; isn&apos;t
+            always a clean 60-day-to-60-day comparison — check the actual
+            reading dates on both bills before concluding your usage changed.
+          </>
+        ),
+      },
+    ],
+    aboutDiscom: [
+      <>
+        Tamil Nadu Electricity Board (TNEB) was formed on 1 July 1957 as a
+        single, vertically integrated utility. On 1 November 2010, under the
+        Electricity Act 2003, it was restructured into three entities: TNEB
+        Ltd (holding company), Tamil Nadu Generation and Distribution
+        Corporation Ltd (TANGEDCO) for generation and distribution, and Tamil
+        Nadu Transmission Corporation Ltd (TANTRANSCO) for transmission.
+      </>,
+      <>
+        On 27 June 2024, TANGEDCO&apos;s distribution business was renamed
+        Tamil Nadu Power Distribution Corporation Ltd (TNPDCL). Both
+        &quot;TANGEDCO&quot; and the older &quot;TNEB&quot; name remain in
+        everyday use — on bills, signage and customer service — alongside the
+        newer TNPDCL name.
+      </>,
+    ],
+    coverageQA: {
+      q: 'Does TNEB (TANGEDCO/TNPDCL) supply electricity to Chennai?',
+      a: (
+        <>
+          Yes. Unlike cities such as Mumbai or Delhi, which have multiple
+          private distribution licensees, Tamil Nadu has a single distribution
+          utility covering the entire state — including Chennai, Coimbatore,
+          Madurai, Tiruchirappalli, Tirunelveli, Salem and Vellore. There is no
+          separate city-specific electricity board in Tamil Nadu.
+        </>
+      ),
+    },
+    howToPay: {
+      portalUrl: 'https://www.tnebnet.org/awp/login?locale=en',
+      portalLabel: 'tnebnet.org (official TANGEDCO payment portal)',
+      helpline: '1912 (24×7) · 044-28521109',
+      steps: [
+        'Visit the official TANGEDCO/TNEB website and select "Pay Online" under Online Payment Services',
+        'Choose "Quick Pay" and enter your Consumer/Service Connection number',
+        'Verify the displayed bill amount and pay via UPI, card or net banking',
+        'Save the payment receipt/reference number for your records',
+      ],
+    },
+    thresholdCallout: {
+      title: 'The 100-unit subsidy line',
+      leftLabel: '0–100 units',
+      leftValue: 'Free',
+      rightLabel: '101+ units',
+      rightValue: 'Metered from ₹2.25',
+      note: 'Eligible domestic consumers get the first 100 units of every bi-monthly cycle free. Units beyond 100 are billed telescopically starting at the same ₹2.25 rate — crossing 100 units does not cancel the subsidy already applied to the first 100.',
+    },
   },
 
   // -------------------------------------------------------------- MSEDCL

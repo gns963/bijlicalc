@@ -448,7 +448,51 @@ export function computeBill(
 }
 
 // ---------------------------------------------------------------------------
-// 5. Full bill — registry wrapper (resolves discomCode)
+// 5. Reverse calculator — budget in, max units out
+// ---------------------------------------------------------------------------
+
+export interface BudgetToUnitsResult {
+  maxUnits: number
+  bill: BillBreakdown
+}
+
+/**
+ * Binary-searches for the highest whole-unit consumption whose bill does not
+ * exceed `budget`. Total bill is monotonic non-decreasing in units (subsidies
+ * are bounded rebates, never a growing discount), so binary search is valid.
+ */
+export function findMaxUnitsForBudget(
+  tariff: TariffFile,
+  budget: number,
+  input: Omit<BillInput, 'discomCode' | 'unitsConsumed'>,
+): BudgetToUnitsResult {
+  if (budget <= 0) {
+    const bill = computeBill(tariff, { ...input, unitsConsumed: 0 })
+    return { maxUnits: 0, bill }
+  }
+
+  let lo = 0
+  let hi = 100000
+  // Widen the upper bound if even the ceiling is affordable (rare, cheap tariffs).
+  while (computeBill(tariff, { ...input, unitsConsumed: hi }).total <= budget && hi < 10_000_000) {
+    hi *= 2
+  }
+
+  while (lo < hi) {
+    const mid = Math.ceil((lo + hi + 1) / 2)
+    const total = computeBill(tariff, { ...input, unitsConsumed: mid }).total
+    if (total <= budget) {
+      lo = mid
+    } else {
+      hi = mid - 1
+    }
+  }
+
+  return { maxUnits: lo, bill: computeBill(tariff, { ...input, unitsConsumed: lo }) }
+}
+
+// ---------------------------------------------------------------------------
+// 6. Full bill — registry wrapper (resolves discomCode)
 // ---------------------------------------------------------------------------
 
 /** Bundled tariffs, validated at load time. Add new DISCOMs here. */

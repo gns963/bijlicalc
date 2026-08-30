@@ -5,6 +5,8 @@ import {
   calculateFullBill,
   calculateSlabCharges,
   computeBill,
+  findMaxUnitsForBudget,
+  getTariff,
 } from './electricity'
 
 // TANGEDCO residential slabs (from tneb.json) reused across primitive tests.
@@ -173,5 +175,43 @@ describe('computeBill — commercial connection (no subsidy)', () => {
 
     // Monthly DISCOM → no monthly-equivalent split.
     expect(bill.monthlyEquivalent).toBeNull()
+  })
+})
+
+describe('findMaxUnitsForBudget', () => {
+  const tneb = getTariff('TNEB')
+
+  it('finds units whose bill sits at or just under the budget', () => {
+    const { maxUnits, bill } = findMaxUnitsForBudget(tneb, 777.5, {
+      connectionType: 'residential',
+      phase: 'single',
+      eligibility: 'eligible/BPL domestic',
+    })
+    // 250 units is the known TNEB worked example at exactly ₹777.50.
+    expect(maxUnits).toBe(250)
+    expect(bill.total).toBeLessThanOrEqual(777.5)
+  })
+
+  it('one more unit would exceed the budget', () => {
+    const { maxUnits } = findMaxUnitsForBudget(tneb, 777.5, {
+      connectionType: 'residential',
+      phase: 'single',
+      eligibility: 'eligible/BPL domestic',
+    })
+    const oneMore = computeBill(tneb, {
+      connectionType: 'residential',
+      unitsConsumed: maxUnits + 1,
+      phase: 'single',
+      eligibility: 'eligible/BPL domestic',
+    })
+    expect(oneMore.total).toBeGreaterThan(777.5)
+  })
+
+  it('returns 0 units for a budget below the fixed charge', () => {
+    const { maxUnits } = findMaxUnitsForBudget(tneb, 5, {
+      connectionType: 'residential',
+      phase: 'single',
+    })
+    expect(maxUnits).toBe(0)
   })
 })
