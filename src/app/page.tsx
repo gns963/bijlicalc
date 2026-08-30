@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Footer from '@/components/Footer'
 import LeadGenForm from '@/components/LeadGenForm'
 import MeterDial from '@/components/MeterDial'
 import discomsJson from '@/data/discoms.json'
@@ -536,8 +535,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <Footer />
 
       <script
         type="application/ld+json"

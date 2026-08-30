@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Zilla_Slab } from 'next/font/google'
+import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import './globals.css'
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <body className="flex min-h-full flex-col bg-white text-ash dark:bg-[#0f1420] dark:text-gazette-cream">
         <Header />
         <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   )
