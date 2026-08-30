@@ -1900,6 +1900,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Chandigarh electricity bill (UT Chandigarh Electricity Department (CED, JERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Chandigarh charges ₹2.75/unit for the first 150 units.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['PSPCL', 'UHBVN'],
     intro: "Estimate your UT Chandigarh Electricity Department (CED, JERC) electricity bill for Chandigarh. Chandigarh charges ₹2.75/unit for the first 150 units. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A cheap 150-unit first slab", body: "Chandigarh keeps the first 150 units at just ₹2.75/unit, one of the better deals for small urban households, with a 5% electricity duty charged on energy plus fixed charges and a ₹0.15/unit fuel adjustment." },
@@ -1909,7 +1910,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Chandigarh electricity tariff telescopic?", a: "Yes. Chandigarh charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Chandigarh domestic connection?", a: "The fixed charge is a flat ₹30/month." },
       { q: "How accurate is this Chandigarh bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official CED bill." },
+      { q: "Is Chandigarh's electricity distribution still run by the government?", a: "No, not anymore. After Punjab & Haryana High Court and Supreme Court approvals, the UT handed over distribution to Chandigarh Power Distribution Ltd (CPDL) — a subsidiary of Eminent Electricity Distribution Ltd (EEDL) under the RP-Sanjiv Goenka (CESC) Group — on 1 February 2025, for around ₹871 crore. Slab rates continue to be approved by the same regulator (JERC), not set unilaterally by CPDL." },
+      { q: "How do I check or pay my Chandigarh electricity bill online?", a: "Pay via CPDL's official portal at chandigarhpower.com or the CPDL app, entering your Contract Account (CA) number. For queries, call the 24×7 helpline 19121 or +91 92402 16666." },
+      { q: "What is CED, and how did Chandigarh's power supply change?", a: "Local electricity distribution was taken over by the Chandigarh Administration from the Punjab State Electricity Board on 2 May 1967, and run by the Electricity Wing of the Engineering Department (CED) for decades. In 2025 it became the first Union Territory power utility to be privatised, transferring to Chandigarh Power Distribution Ltd (CPDL)." },
     ],
+    billTraps: [
+      { title: "CED is now CPDL — a private operator, not a government office", body: "Since 1 February 2025, Chandigarh's power distribution has been run by Chandigarh Power Distribution Ltd (CPDL), part of the RPSG/CESC Group — not the UT government department. Older bookmarks or references to the government's sampark.chd.nic.in payment page may be out of date; use CPDL's official chandigarhpower.com portal." },
+      { title: "Fixed charge is a flat ₹30/month, not per-phase or per-kW", body: "Unlike Punjab or Haryana next door, which charge based on load or phase, Chandigarh charges a single flat ₹30/month fixed charge for every domestic connection." },
+      { title: "Privatisation didn't change the regulator or tariff-setting process", body: "CPDL still operates under JERC-approved tariffs, the same regulatory framework as before privatisation — rates aren't set unilaterally by the new private operator." },
+    ],
+    aboutDiscom: [
+      "Chandigarh's local electricity distribution was taken over by the Chandigarh Administration from the Punjab State Electricity Board on 2 May 1967, and run for decades by the Electricity Wing of the Engineering Department (CED) as a UT government department.",
+      "In May 2020, the Union Power Ministry decided to privatise power distribution across Union Territories, starting with Chandigarh. After Punjab & Haryana High Court (November 2024) and Supreme Court (December 2024) approvals, distribution transferred to Chandigarh Power Distribution Ltd (CPDL) — a subsidiary of Eminent Electricity Distribution Ltd (EEDL), part of the RP-Sanjiv Goenka (CESC) Group — on 1 February 2025, for a consideration of around ₹871 crore. CPDL now serves over 240,000 customers across Chandigarh's 114 sq km.",
+    ],
+    coverageQA: {
+      q: "Is Chandigarh's electricity still supplied by a government department?",
+      a: "No. Since 1 February 2025, Chandigarh Power Distribution Ltd (CPDL) — a private company under the RPSG/CESC Group — has run distribution and billing for the whole UT, taking over from the former government-run CED. Tariffs remain JERC-regulated.",
+    },
+    howToPay: {
+      portalUrl: "https://chandigarhpower.com/",
+      portalLabel: "chandigarhpower.com (official CPDL portal)",
+      helpline: "19121 / +91 92402 16666 (24×7)",
+      steps: [
+        "Visit the official CPDL bill payment portal or open the CPDL app",
+        "Enter your Contract Account (CA) number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking (no gateway charges)",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "puducherry-electricity-bill-calculator",
@@ -2112,6 +2140,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Meghalaya electricity bill (Meghalaya Power Distribution Corporation Ltd (MePDCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Meghalaya uses a three-slab tariff with an ₹80/kW fixed charge.",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['APDCL', 'WBSEDCL'],
     intro: "Estimate your Meghalaya Power Distribution Corporation Ltd (MePDCL) electricity bill for Meghalaya. Meghalaya uses a three-slab tariff with an ₹80/kW fixed charge. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A flat-ish three-slab tariff", body: "Meghalaya uses a compact three-slab telescopic tariff (₹4.50 / ₹5.00 / ₹6.50) with a relatively high ₹80/kW fixed charge and a 5% electricity duty. BPL homes get a concessional ₹3.65/unit for the first 30 units." },
@@ -2121,7 +2150,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Meghalaya electricity tariff telescopic?", a: "Yes. Meghalaya charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Meghalaya domestic connection?", a: "The fixed charge is ₹80 per kW of sanctioned load." },
       { q: "How accurate is this Meghalaya bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official MePDCL bill." },
+      { q: "Does MePDCL supply electricity across all of Meghalaya, including Shillong?", a: "Yes. MePDCL is the distribution arm for the entire state, headquartered in Shillong, and covers both urban and rural areas under the Meghalaya Power Sector Transfer Scheme, 2010." },
+      { q: "How do I check or pay my MePDCL bill online?", a: "Pay via the MeECL group's online portal (meghapower.com / MeECL's Pay Bill page) using your Consumer ID. For queries, call the 24×7 toll-free helpline 1912, or 0364-2590610 in Shillong." },
+      { q: "What is MePDCL, and how did it form?", a: "MePDCL was incorporated on 18 December 2009, after Meghalaya unbundled its State Electricity Board under the Meghalaya Power Sector Reforms Transfer Scheme, 2010, into four companies: MeECL (holding), MePDCL (distribution), MePGCL (generation) and MePTCL (transmission)." },
     ],
+    billTraps: [
+      { title: "MePDCL bills you, MeECL is the parent holding company", body: "Meghalaya's power sector has four sister companies under the Meghalaya Power Sector Transfer Scheme — MeECL is the holding company, while MePDCL is the one that actually distributes power and issues your bill. Make sure any portal or complaint you use is the MePDCL-specific one." },
+      { title: "The ₹80/kW fixed charge is high relative to neighbours", body: "Meghalaya's fixed charge of ₹80 per kW of sanctioned load is on the higher end among northeast states — a larger sanctioned load adds meaningfully more to your fixed charge than in states with flat or lower per-kW rates." },
+      { title: "The BPL concessional rate isn't applied automatically", body: "A ₹3.65/unit concessional rate for the first 30 units is available to BPL households, but this calculator uses the standard domestic slabs — check your own BPL/scheme eligibility separately." },
+    ],
+    aboutDiscom: [
+      "Under the Meghalaya Power Sector Reforms Transfer Scheme, 2010, the state government unbundled the former Meghalaya State Electricity Board into four companies: Meghalaya Energy Corporation Ltd (MeECL, the holding company), Meghalaya Power Distribution Corporation Ltd (MePDCL, distribution), Meghalaya Power Generation Corporation Ltd (MePGCL, generation) and Meghalaya Power Transmission Corporation Ltd (MePTCL, transmission).",
+      "MePDCL itself was incorporated on 18 December 2009 and has been vested with statewide distribution since the transfer scheme took effect, serving both urban centres like Shillong and rural areas across the state.",
+    ],
+    coverageQA: {
+      q: "Does MePDCL supply electricity across all of Meghalaya, including Shillong?",
+      a: "Yes. MePDCL is the sole distribution utility for the entire state, headquartered in Shillong, and its network reaches both urban and rural areas under the state's 2010 power sector transfer scheme.",
+    },
+    howToPay: {
+      portalUrl: "https://www.meghapower.com/",
+      portalLabel: "meghapower.com (official MeECL/MePDCL bill payment portal)",
+      helpline: "1912 (24×7 toll-free) / 0364-2590610 (Shillong)",
+      steps: [
+        "Visit the MeECL group's online bill payment portal",
+        "Enter your Consumer ID and registered mobile number",
+        "Verify the pending bill amount and pay online",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "manipur-electricity-bill-calculator",
@@ -2132,6 +2188,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Manipur electricity bill (Manipur State Power Distribution Co. Ltd (MSPDCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Manipur uses a simple three-tier domestic tariff.",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['APDCL', 'DOPN'],
     intro: "Estimate your Manipur State Power Distribution Co. Ltd (MSPDCL) electricity bill for Manipur. Manipur uses a simple three-tier domestic tariff. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A simple three-tier structure", body: "Manipur charges domestic consumers on a three-tier telescopic basis (₹4.50 / ₹5.50 / ₹6.50) with a ₹70/kW monthly fixed charge and a 5% electricity duty." },
@@ -2141,7 +2198,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Manipur electricity tariff telescopic?", a: "Yes. Manipur charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Manipur domestic connection?", a: "The fixed charge is ₹70 per kW of sanctioned load." },
       { q: "How accurate is this Manipur bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official MSPDCL bill." },
+      { q: "Does MSPDCL supply electricity across all of Manipur, including Imphal?", a: "Yes. MSPDCL is the state distribution utility and deemed licensee for the whole of Manipur, including Imphal, with divisional operations across the state's districts." },
+      { q: "How do I check or pay my MSPDCL bill online?", a: "Pay via the official e-Bill portal at billing.mspdcl.info. For queries, call the toll-free helpline 1912, the Imphal helpline (0385) 2410060, or WhatsApp +91 76400 81238." },
+      { q: "What is MSPDCL, and how did it form?", a: "MSPDCL was created on 1 February 2014 when the erstwhile Electricity Department, Government of Manipur, was unbundled under the Manipur State Electricity Reforms Transfer Scheme, 2013, into Manipur State Power Company Ltd (MSPCL) and Manipur State Power Distribution Co. Ltd (MSPDCL) — a 100% subsidiary of MSPCL that now handles distribution and retail supply as the state's deemed licensee." },
     ],
+    billTraps: [
+      { title: "MSPDCL is a subsidiary of MSPCL — check which one you need", body: "MSPCL (the parent) and MSPDCL (distribution) are separate companies with separate contact channels. For billing, meter or supply issues, use MSPDCL's portal and helpline, not MSPCL's." },
+      { title: "Fixed charge is per kW, not a flat monthly amount", body: "Manipur's ₹70/kW fixed charge scales with your sanctioned load — a higher-load connection carries a proportionally higher fixed charge than a small single-point residential connection." },
+      { title: "5% electricity duty applies on top of energy and fixed charges", body: "Like most northeast states, Manipur adds a 5% electricity duty to the combined energy and fixed charge — easy to forget when mentally estimating from the slab rates alone." },
+    ],
+    aboutDiscom: [
+      "The erstwhile Electricity Department, Government of Manipur, was unbundled on 1 February 2014 under the Manipur State Electricity Reforms Transfer Scheme, 2013 (as mandated by the Electricity Act, 2003), into two state-owned companies: Manipur State Power Company Ltd (MSPCL) and Manipur State Power Distribution Co. Ltd (MSPDCL).",
+      "MSPDCL is a 100% subsidiary of MSPCL, incorporated to carry out power distribution and retail supply within the state as a deemed licensee. It houses the entire 11kV-and-below distribution network across Manipur's districts, including Imphal.",
+    ],
+    coverageQA: {
+      q: "Does MSPDCL supply electricity across all of Manipur, including Imphal?",
+      a: "Yes. MSPDCL is Manipur's sole distribution licensee, operating divisional offices across the state's districts, including Imphal East and Imphal West — there is no separate DISCOM for the capital.",
+    },
+    howToPay: {
+      portalUrl: "https://billing.mspdcl.info/",
+      portalLabel: "billing.mspdcl.info (official MSPDCL e-Bill portal)",
+      helpline: "1912 (toll-free) / (0385) 2410060 (Imphal)",
+      steps: [
+        "Visit the official MSPDCL e-Bill portal",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "arunachal-pradesh-electricity-bill-calculator",
@@ -2152,6 +2236,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Arunachal Pradesh electricity bill (Department of Power, Arunachal Pradesh). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Arunachal Pradesh charges a flat ₹4.40/unit with no slabs.",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['APDCL', 'DOPN'],
     intro: "Estimate your Department of Power, Arunachal Pradesh electricity bill for Arunachal Pradesh. Arunachal Pradesh charges a flat ₹4.40/unit with no slabs. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A single flat rate", body: "Arunachal Pradesh uses a flat domestic tariff of about ₹4.40 per unit with no telescopic slabs — every unit is billed at the same rate. Power is run by the state Department of Power." },
@@ -2161,7 +2246,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Arunachal Pradesh electricity tariff telescopic?", a: "Arunachal Pradesh uses a flat domestic rate rather than telescopic slabs — every unit is billed at the same rate." },
       { q: "What is the fixed charge for a Arunachal Pradesh domestic connection?", a: "The fixed charge is a flat ₹30/month." },
       { q: "How accurate is this Arunachal Pradesh bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Slab detail is limited; this uses the published flat domestic rate. Always confirm against your official APDOP bill." },
+      { q: "Does the Department of Power supply electricity across all of Arunachal Pradesh?", a: "Yes. The Department of Power (DoP) is the state government body responsible for transmission and distribution of electricity throughout Arunachal Pradesh, headquartered in Itanagar, with divisional offices across the state's districts." },
+      { q: "How do I check or pay my Arunachal Pradesh electricity bill online?", a: "Pay via the official DoP portal at arpdop.gov.in. For power-supply complaints, call the 24×7 toll-free helpline 1912; for online payment issues, prepaid support is at 60338-74608/09 and postpaid support at 60338-74612/13." },
+      { q: "What is APDOP, and is it a corporatized DISCOM?", a: "No. Unlike most Indian states, Arunachal Pradesh has not corporatized its power utility into a separate DISCOM company — the Department of Power (DoP) operates directly as a state government department, handling policy, transmission and distribution together." },
     ],
+    billTraps: [
+      { title: "A flat rate means no slab-based savings for low usage", body: "Because Arunachal Pradesh has no telescopic slabs, a low-consumption household doesn't get a cheaper starting rate the way it would in most other states — every unit, from the first to the last, costs the same ₹4.40." },
+      { title: "DoP is a government department, not a company", body: "Billing, complaints and connections are handled directly by the state Department of Power rather than a separate corporatized DISCOM — support channels and processes can look different from neighbouring states with a company-style utility." },
+      { title: "Published slab/rate detail is limited for this state", body: "Public secondary sources for Arunachal Pradesh's tariff structure are thinner than for most states — this estimate uses the published flat domestic rate, and you should treat it as indicative pending confirmation against your own bill or the APSERC tariff order." },
+    ],
+    aboutDiscom: [
+      "The Department of Power (DoP), Government of Arunachal Pradesh, is a state government department — not a corporatized company — responsible for transmission and distribution of electricity across the state, and for advising the state government on power-sector matters.",
+      "DoP is headquartered in Itanagar and operates through divisional and sub-divisional offices across Arunachal Pradesh's districts. Tariffs are approved by the Arunachal Pradesh State Electricity Regulatory Commission (APSERC).",
+    ],
+    coverageQA: {
+      q: "Does the Department of Power supply electricity across all of Arunachal Pradesh?",
+      a: "Yes. DoP is the sole transmission and distribution authority for the entire state, operating through district-level divisional offices rather than a separate regional DISCOM structure.",
+    },
+    howToPay: {
+      portalUrl: "https://www.arpdop.gov.in/",
+      portalLabel: "arpdop.gov.in (official Department of Power portal)",
+      helpline: "1912 (24×7 toll-free) / support@arpdop.gov.in",
+      steps: [
+        "Visit the official Department of Power bill payment portal",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via the listed online payment options",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "mizoram-electricity-bill-calculator",
