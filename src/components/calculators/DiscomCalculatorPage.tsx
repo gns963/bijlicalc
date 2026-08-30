@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import SolarCrossSell from '@/components/SolarCrossSell'
 import Calculator from '@/components/calculators/ElectricityCalculator'
+import TariffSidebar from '@/components/calculators/TariffSidebar'
 import type { DiscomPageConfig } from '@/data/calculator-pages'
 import type { FixedCharge } from '@/data/tariffs/_schema'
 import { computeBill, getTariff } from '@/lib/calc/electricity'
@@ -29,6 +30,12 @@ export default function DiscomCalculatorPage({
     tariff.connectionTypes.find((c) => c.connectionType === 'residential') ??
     tariff.connectionTypes[0]
   const path = `/electricity/${config.slug}`
+
+  const slabCount = residential.slabs.length
+  const fcaIncluded = tariff.fuelCostAdjustment > 0
+  const freeUnitsScheme = tariff.subsidySchemes.find(
+    (s) => s.discountType === 'free',
+  )
 
   const example = computeBill(tariff, {
     connectionType: residential.connectionType,
@@ -81,7 +88,7 @@ export default function DiscomCalculatorPage({
   }
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
+    <main className="mx-auto max-w-6xl px-4 py-8">
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
@@ -103,15 +110,47 @@ export default function DiscomCalculatorPage({
         </ol>
       </nav>
 
+      <div className="mx-auto max-w-4xl">
       {/* H1 + intro */}
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+      <header className="mb-6">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-brass/30 bg-brass/10 px-3 py-1 text-xs font-semibold text-brass">
+          {tariff.discomCode} · {cycleLabel(tariff.billingCycle)} slab logic ·
+          FCA {fcaIncluded ? 'included' : 'none'}
+        </span>
+        <h1 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink-navy sm:text-4xl dark:text-gazette-cream">
           {config.h1}
         </h1>
-        <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
+        <p className="mt-3 text-lg text-ash/80 dark:text-gazette-cream/70">
           {config.intro}
         </p>
       </header>
+
+      {/* Stat chips */}
+      <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {[
+          ['📊', `${slabCount}`, slabCount === 1 ? 'Tariff slab' : 'Tariff slabs'],
+          ['📅', cycleLabel(tariff.billingCycle), 'Billing'],
+          ['⚡', fcaIncluded ? `₹${tariff.fuelCostAdjustment}` : 'None', 'FCA / unit'],
+          freeUnitsScheme
+            ? ['🎁', `${freeUnitsScheme.discountValue}u`, 'Free subsidy']
+            : ['🔎', formatIsoDate(tariff.lastVerified), 'Verified'],
+        ].map(([icon, big, small]) => (
+          <div
+            key={small}
+            className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-center dark:border-slate-700 dark:bg-slate-900"
+          >
+            <span className="text-lg" aria-hidden>
+              {icon}
+            </span>
+            <p className="mt-1 font-display text-lg font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+              {big}
+            </p>
+            <p className="text-[11px] uppercase tracking-wide text-ash/50 dark:text-gazette-cream/40">
+              {small}
+            </p>
+          </div>
+        ))}
+      </div>
 
       {/* Server-rendered worked example */}
       <section
@@ -151,21 +190,26 @@ export default function DiscomCalculatorPage({
           .
         </p>
       </section>
+      </div>
 
-      {/* Interactive calculator */}
+      {/* Interactive calculator + sidebar */}
       <section aria-labelledby="calculator" className="mb-10">
-        <h2 id="calculator" className="mb-4 text-2xl font-semibold">
+        <h2 id="calculator" className="mb-4 font-display text-2xl font-bold text-ink-navy dark:text-gazette-cream">
           Calculate your bill
         </h2>
-        <Calculator tariff={tariff} defaultUnits={config.exampleUnits} />
+        <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+          <Calculator tariff={tariff} defaultUnits={config.exampleUnits} />
+          <TariffSidebar tariff={tariff} />
+        </div>
       </section>
 
+      <div className="mx-auto max-w-4xl">
       {/* Cross-sell to the solar ROI calculator */}
       <SolarCrossSell state={tariff.state} />
 
       {/* Live tariff slab table */}
       <section aria-labelledby="tariff-table" className="mb-10">
-        <h2 id="tariff-table" className="mb-4 text-2xl font-semibold">
+        <h2 id="tariff-table" className="mb-4 font-display text-2xl font-bold text-ink-navy dark:text-gazette-cream">
           {tariff.state} residential tariff slabs
         </h2>
         <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
@@ -220,7 +264,7 @@ export default function DiscomCalculatorPage({
 
       {/* State-specific explainer */}
       <section aria-labelledby="how-calculated" className="mb-10">
-        <h2 id="how-calculated" className="mb-4 text-2xl font-semibold">
+        <h2 id="how-calculated" className="mb-4 font-display text-2xl font-bold text-ink-navy dark:text-gazette-cream">
           How the {config.discomCode} bill is calculated
         </h2>
         <div className="space-y-4 text-slate-700 dark:text-slate-300">
@@ -237,7 +281,7 @@ export default function DiscomCalculatorPage({
 
       {/* FAQ */}
       <section aria-labelledby="faq" className="mb-10">
-        <h2 id="faq" className="mb-4 text-2xl font-semibold">
+        <h2 id="faq" className="mb-4 font-display text-2xl font-bold text-ink-navy dark:text-gazette-cream">
           Frequently asked questions
         </h2>
         <div className="divide-y divide-slate-200 dark:divide-slate-700">
@@ -273,6 +317,7 @@ export default function DiscomCalculatorPage({
           {tariff.verifiedBy}
         </p>
       </footer>
+      </div>
 
       <script
         type="application/ld+json"

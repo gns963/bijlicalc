@@ -39,8 +39,35 @@ export function OptionCardGroup<T extends string>({
   onChange: (v: T) => void
   columns?: 2 | 3 | 4
 }) {
+  // A single option has nothing to toggle between — show it as a compact
+  // status chip instead of a grid card flanked by empty cells.
+  if (options.length === 1) {
+    const only = options[0]
+    return (
+      <div>
+        <span className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+          {legend}
+        </span>
+        <div className="inline-flex items-center gap-2 rounded-xl border-2 border-brass bg-brass/10 px-4 py-2 text-ink-navy dark:text-gazette-cream">
+          <span aria-hidden className="text-xl">
+            {only.icon}
+          </span>
+          <span className="text-sm font-semibold">{only.label}</span>
+          <span className="text-[10px] font-medium uppercase tracking-wide text-brass">
+            only option
+          </span>
+        </div>
+      </div>
+    )
+  }
+
+  const effectiveColumns = Math.min(columns, options.length) as 2 | 3 | 4
   const cols =
-    columns === 2 ? 'grid-cols-2' : columns === 3 ? 'grid-cols-3' : 'grid-cols-2 sm:grid-cols-4'
+    effectiveColumns === 2
+      ? 'grid-cols-2'
+      : effectiveColumns === 3
+        ? 'grid-cols-3'
+        : 'grid-cols-2 sm:grid-cols-4'
   return (
     <fieldset>
       <legend className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">

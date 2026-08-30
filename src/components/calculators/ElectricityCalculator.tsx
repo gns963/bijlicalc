@@ -38,7 +38,10 @@ export default function ElectricityCalculator({
   const [connectionType, setConnectionType] = useState<ConnectionCategory>(
     categories[0],
   )
+  const [inputMode, setInputMode] = useState<'units' | 'reading'>('units')
   const [unitsStr, setUnitsStr] = useState(String(defaultUnits))
+  const [prevReading, setPrevReading] = useState('')
+  const [currReading, setCurrReading] = useState('')
   const [phase, setPhase] = useState<'single' | 'three'>('single')
   const [load, setLoad] = useState(3)
   const [eligible, setEligible] = useState(true)
@@ -52,8 +55,15 @@ export default function ElectricityCalculator({
   const cycleWord = tariff.billingCycle
   const isMultiMonth = cycleWord !== 'monthly'
 
+  const readingUnits = Math.max(
+    0,
+    (Number(currReading) || 0) - (Number(prevReading) || 0),
+  )
+  const effectiveUnitsStr =
+    inputMode === 'reading' ? String(readingUnits) : unitsStr
+
   const { bill, error } = useMemo(() => {
-    const units = Number(unitsStr)
+    const units = Number(effectiveUnitsStr)
     if (!Number.isFinite(units) || units < 0) {
       return { bill: null, error: 'Enter a valid number of units.' }
     }
@@ -75,7 +85,7 @@ export default function ElectricityCalculator({
   }, [
     tariff,
     connectionType,
-    unitsStr,
+    effectiveUnitsStr,
     phase,
     load,
     eligible,
@@ -144,33 +154,104 @@ export default function ElectricityCalculator({
         )}
 
         <div>
-          <label
-            htmlFor="units"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
-          >
-            Units consumed (kWh)
-            {isMultiMonth && (
-              <span className="font-normal text-ash/50 dark:text-gazette-cream/40">
-                {' '}
-                — for the {cycleLabel(cycleWord)} cycle
-              </span>
-            )}
-          </label>
-          <div className="relative">
-            <input
-              id="units"
-              type="number"
-              inputMode="numeric"
-              min={0}
-              placeholder="e.g. 250"
-              value={unitsStr}
-              onChange={(e) => setUnitsStr(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 pr-14 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
-            />
-            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm text-ash/40 dark:text-gazette-cream/40">
-              kWh
-            </span>
+          <div className="mb-1.5 flex items-center justify-between">
+            <label
+              htmlFor="units"
+              className="block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            >
+              Units consumed
+              {isMultiMonth && (
+                <span className="font-normal text-ash/50 dark:text-gazette-cream/40">
+                  {' '}
+                  — {cycleLabel(cycleWord)} cycle
+                </span>
+              )}
+            </label>
+            <div className="flex overflow-hidden rounded-lg border border-slate-200 text-xs dark:border-slate-700">
+              {(
+                [
+                  ['units', 'Direct units'],
+                  ['reading', 'Meter reading'],
+                ] as const
+              ).map(([val, label]) => (
+                <button
+                  key={val}
+                  type="button"
+                  onClick={() => setInputMode(val)}
+                  aria-pressed={inputMode === val}
+                  className={`px-2.5 py-1 font-medium transition ${
+                    inputMode === val
+                      ? 'bg-brass text-ink-navy'
+                      : 'bg-white text-ash/60 dark:bg-slate-800 dark:text-gazette-cream/50'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
+
+          {inputMode === 'units' ? (
+            <div className="relative">
+              <input
+                id="units"
+                type="number"
+                inputMode="numeric"
+                min={0}
+                placeholder="e.g. 250"
+                value={unitsStr}
+                onChange={(e) => setUnitsStr(e.target.value)}
+                className="w-full rounded-lg border border-slate-300 px-3 py-2.5 pr-14 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+              />
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm text-ash/40 dark:text-gazette-cream/40">
+                kWh
+              </span>
+            </div>
+          ) : (
+            <div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    htmlFor="prev-reading"
+                    className="mb-1 block text-xs text-ash/50 dark:text-gazette-cream/40"
+                  >
+                    Previous reading
+                  </label>
+                  <input
+                    id="prev-reading"
+                    type="number"
+                    inputMode="numeric"
+                    min={0}
+                    placeholder="e.g. 4320"
+                    value={prevReading}
+                    onChange={(e) => setPrevReading(e.target.value)}
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="curr-reading"
+                    className="mb-1 block text-xs text-ash/50 dark:text-gazette-cream/40"
+                  >
+                    Current reading
+                  </label>
+                  <input
+                    id="curr-reading"
+                    type="number"
+                    inputMode="numeric"
+                    min={0}
+                    placeholder="e.g. 4570"
+                    value={currReading}
+                    onChange={(e) => setCurrReading(e.target.value)}
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                  />
+                </div>
+              </div>
+              <p className="mt-1.5 text-xs text-ash/50 dark:text-gazette-cream/40">
+                = <span className="font-semibold tabular-nums text-brass">{readingUnits}</span> units consumed
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="flex items-center justify-between rounded-lg bg-gazette-cream px-3 py-2 text-xs text-ash/70 dark:bg-slate-800 dark:text-gazette-cream/60">
