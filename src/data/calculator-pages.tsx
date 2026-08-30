@@ -2284,6 +2284,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Mizoram electricity bill (Power & Electricity Department, Mizoram). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Mizoram has a comparatively high domestic tariff (from ~₹4.20/unit).",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['TSECL', 'MSPDCL'],
     intro: "Estimate your Power & Electricity Department, Mizoram electricity bill for Mizoram. Mizoram has a comparatively high domestic tariff (from ~₹4.20/unit). Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A high north-eastern tariff", body: "Mizoram’s domestic power is relatively expensive by Indian standards, starting around ₹4.20/unit. Detailed public slab data is limited, so this uses an indicative two-slab structure." },
@@ -2293,7 +2294,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Mizoram electricity tariff telescopic?", a: "Yes. Mizoram charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Mizoram domestic connection?", a: "The fixed charge is a flat ₹30/month." },
       { q: "How accurate is this Mizoram bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Public slab detail is limited; the structure here is indicative and needs verification. Always confirm against your official PED-MZ bill." },
+      { q: "Does PED-MZ supply electricity across all of Mizoram, including Aizawl?", a: "Yes. The Power & Electricity Department is an integrated utility responsible for generation, transmission and distribution across the whole state, headquartered in Aizawl." },
+      { q: "How do I check or pay my Mizoram PED bill online?", a: "Pay via the official portal at power.mizoram.gov.in or powerbilling.mizoram.gov.in. For queries, call 0389-2321650, 0389-2322174 or 0389-2310169." },
+      { q: "What is PED-MZ, and how did it form?", a: "Mizoram's power sector was managed by the Assam State Electricity Board until March 1975, when the Power & Electricity Department (PED) was created as Mizoram gained its own administration. It reached full directorate status in 1983 with a Chief Engineer, and an Engineer-in-Chief post was added in 2008 to head the department." },
     ],
+    billTraps: [
+      { title: "A single department runs generation through to your meter", body: "Unlike states that have split generation, transmission and distribution into separate companies, Mizoram's PED handles all three as one integrated department — useful to know since a single helpline covers supply issues end-to-end." },
+      { title: "The jump above 100 units is steep", body: "Mizoram's rate rises from ₹4.20 to ₹6.00/unit once you cross 100 units — a roughly 43% jump on every unit beyond the first slab, larger than in many other states." },
+      { title: "Fixed charge is a flat ₹30/month, not tied to load", body: "Every domestic connection pays the same ₹30 fixed charge regardless of sanctioned load or phase, unlike neighbouring Tripura and Manipur, which charge per kW." },
+    ],
+    aboutDiscom: [
+      "Before Mizoram had its own power administration, electricity generation and distribution were managed by the Assam State Electricity Board (ASEB) until March 1975. The Power & Electricity Department (PED) was created that year under the State PWD's Superintending Engineer before becoming independent in the early 1980s.",
+      "PED reached full directorate-level status in 1983 with the creation of a Chief Engineer post, and an Engineer-in-Chief post was added in 2008 as head of department. PED functions as an integrated utility — generation, transmission, distribution and despatch — headquartered in Khatla, Aizawl.",
+    ],
+    coverageQA: {
+      q: "Does PED-MZ supply electricity across all of Mizoram, including Aizawl?",
+      a: "Yes. PED is Mizoram's sole, integrated power utility, covering generation, transmission and distribution statewide from its Aizawl headquarters.",
+    },
+    howToPay: {
+      portalUrl: "https://power.mizoram.gov.in/",
+      portalLabel: "power.mizoram.gov.in (official PED Mizoram portal)",
+      helpline: "0389-2321650 / 0389-2322174 / 0389-2310169",
+      steps: [
+        "Visit the official PED Mizoram bill payment portal",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via the listed online options or BBPS",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "nagaland-electricity-bill-calculator",
@@ -2304,6 +2332,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Nagaland electricity bill (Department of Power, Nagaland). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Nagaland has one of India’s highest domestic tariffs.",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['APDCL', 'MSPDCL'],
     intro: "Estimate your Department of Power, Nagaland electricity bill for Nagaland. Nagaland has one of India’s highest domestic tariffs. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Among the highest tariffs in India", body: "Nagaland’s domestic electricity is among the most expensive in the country. Reliable public slab data is scarce, so this uses an indicative structure starting near ₹3.80/unit." },
@@ -2313,7 +2342,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Nagaland electricity tariff telescopic?", a: "Yes. Nagaland charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Nagaland domestic connection?", a: "The fixed charge is a flat ₹30/month." },
       { q: "How accurate is this Nagaland bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Public slab detail is limited; the structure here is indicative and needs verification. Always confirm against your official DOPN bill." },
+      { q: "Does DOPN supply electricity across all of Nagaland, including Kohima and Dimapur?", a: "Yes, in most areas — DOPN manages power distribution to urban and rural areas statewide, including Kohima and Dimapur, though many villages are 'communitised', with local Village Electricity Boards handling last-mile management under DOPN's oversight." },
+      { q: "How do I check or pay my Nagaland DOPN bill online?", a: "Pay via the Web Self Service portal at prepaid.dopn.gov.in. For queries, call the helpline 0370-2240178 or 0370-2243149." },
+      { q: "What is DOPN, and what is electricity communitisation?", a: "The Department of Power, Nagaland (DOPN) is the state government body for generation, transmission and distribution. Facing recurring losses, Nagaland introduced an electricity 'communitisation' policy in the early 2000s, handing day-to-day distribution management in many villages to local Village Electricity Boards while DOPN retains overall responsibility." },
     ],
+    billTraps: [
+      { title: "Communitised villages may have a different day-to-day contact", body: "Under Nagaland's communitisation policy, many villages have their electricity management handled locally by Village Electricity Boards or Village Councils rather than DOPN directly — check with your local body first if you're outside a major town like Kohima or Dimapur." },
+      { title: "The jump above 100 units is large", body: "Nagaland's domestic rate rises from ₹3.80 to ₹6.50/unit once you cross 100 units — a jump of over 70% on every additional unit, one of the steepest slab jumps among the states on this site." },
+      { title: "Published tariff detail is thin for this state", body: "Public secondary sources for Nagaland's exact domestic slab structure are limited — treat this estimate as indicative and confirm the current rate against your own DOPN bill." },
+    ],
+    aboutDiscom: [
+      "The Department of Power, Nagaland (DOPN) is the state government department responsible for generation, transmission and distribution of electricity across the state, managing supply to both urban centres and rural areas.",
+      "Facing recurring financial losses in the distribution business, the Nagaland government introduced an electricity 'communitisation' policy in the early 2000s, transferring day-to-day distribution management and revenue collection in many villages to local Village Electricity Boards, while DOPN retains ownership of the network and overall responsibility for supply.",
+    ],
+    coverageQA: {
+      q: "Does DOPN supply electricity across all of Nagaland, including Kohima and Dimapur?",
+      a: "Yes. DOPN is responsible for power distribution statewide, including Kohima and Dimapur. In many villages, day-to-day distribution management has been handed to local Village Electricity Boards under the state's communitisation policy, but DOPN remains the overall utility.",
+    },
+    howToPay: {
+      portalUrl: "https://prepaid.dopn.gov.in/",
+      portalLabel: "prepaid.dopn.gov.in (official DOPN Web Self Service portal)",
+      helpline: "0370-2240178 / 0370-2243149",
+      steps: [
+        "Visit the DOPN Web Self Service (WSS) portal",
+        "Register or log in, then look up your bill by Consumer Number",
+        "Verify the amount and pay via the listed online options",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "andaman-and-nicobar-islands-electricity-bill-calculator",
@@ -2333,7 +2389,30 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Andaman & Nicobar Islands electricity tariff telescopic?", a: "Yes. Andaman & Nicobar Islands charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Andaman & Nicobar Islands domestic connection?", a: "The fixed charge is a flat ₹30/month." },
       { q: "How accurate is this Andaman & Nicobar Islands bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Public slab detail is limited; the structure here is indicative and needs verification. Always confirm against your official ANED bill." },
+      { q: "Does ANED run one power grid for the whole territory?", a: "No. Because the islands are separated by sea over great distances, there is no single unified grid — instead around 35 independent diesel power houses each supply their own local area. ANED oversees all of them, but reliability can vary island by island." },
+      { q: "How do I check or pay my Andaman & Nicobar electricity bill online?", a: "Pay via the Urja Pay portal at urjapay.andaman.gov.in. For queries, call the toll-free number 1800-345-1111, or the emergency line 03192-230323." },
+      { q: "What is ANED, and how far back does its history go?", a: "The Electricity Department, Andaman & Nicobar (ANED) traces back to a 100 kW steam-driven generator installed by the British at Ross Island in 1926, followed by DC generating sets at Port Blair in 1929. After Independence, two 550 kW steam turbines were commissioned at the Chatham Island power house in 1951, the start of the department's modern network." },
     ],
+    billTraps: [
+      { title: "There's no single islands-wide grid", body: "Unlike a mainland state DISCOM, ANED runs roughly 35 separate diesel power houses across the islands rather than one interconnected grid — supply reliability depends on your specific island's local power house, not a shared statewide system." },
+      { title: "The jump above 100 units is large", body: "ANED's rate nearly doubles from ₹2.75 to ₹5.00/unit once you cross 100 units — plan for a meaningfully higher marginal cost if your household regularly uses more than that." },
+      { title: "Not every village is electrified via the conventional grid", body: "Of 547 villages in the territory, 479 are electrified through conventional supply or solar power plants, and 68 uninhabited villages are not electrified at all — solar-served hamlets may have different billing arrangements than this calculator assumes." },
+    ],
+    aboutDiscom: [
+      "The Electricity Department, Andaman & Nicobar (ANED) traces its roots to 1926, when the British installed a 100 kW steam-driven generator at Ross Island, followed by DC generating sets at Port Blair in 1929. After Independence, two 550 kW steam turbines were commissioned at the Chatham Island power house in 1951.",
+      "Because the islands are separated by sea over long distances, ANED does not run a single unified grid — it operates around 35 independent diesel power houses, each serving its own local area, alongside solar power plants for some remote villages.",
+    ],
+    howToPay: {
+      portalUrl: "https://urjapay.andaman.gov.in/",
+      portalLabel: "urjapay.andaman.gov.in (official Urja Pay portal)",
+      helpline: "1800-345-1111 (toll-free) / 03192-230323 (emergency)",
+      steps: [
+        "Visit the official Urja Pay bill payment portal",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via the listed online options",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "dadra-and-nagar-haveli-and-daman-and-diu-electricity-bill-calculator",
@@ -2344,6 +2423,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Dadra & Nagar Haveli and Daman & Diu electricity bill (DNH & DD Power Distribution Corporation Ltd (DNHPDCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. DNH & DD uses a simple two-slab domestic tariff (₹4.00 / ₹6.50).",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['MGVCL'],
     intro: "Estimate your DNH & DD Power Distribution Corporation Ltd (DNHPDCL) electricity bill for Dadra & Nagar Haveli and Daman & Diu. DNH & DD uses a simple two-slab domestic tariff (₹4.00 / ₹6.50). Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Low-cost power in an industrial UT", body: "The Dadra & Nagar Haveli and Daman & Diu UT is heavily industrial and offers some of India’s cheapest power to industry; domestic supply uses a simple two-slab structure of about ₹4.00 and ₹6.50/unit." },
@@ -2353,7 +2433,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Dadra & Nagar Haveli and Daman & Diu electricity tariff telescopic?", a: "Yes. Dadra & Nagar Haveli and Daman & Diu charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Dadra & Nagar Haveli and Daman & Diu domestic connection?", a: "The fixed charge is a flat ₹30/month." },
       { q: "How accurate is this Dadra & Nagar Haveli and Daman & Diu bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official DNHPDCL bill." },
+      { q: "Is DNH & DD's power distribution privatised?", a: "Yes. Since April 2022, retail distribution has been run by a new joint-venture company, Dadra and Nagar Haveli and Daman and Diu Power Distribution Corporation Ltd (DNHDDPDCL), in which Torrent Power holds 51% and the UT administration holds the remaining 49% — one of the first Union Territories to privatise power distribution." },
+      { q: "How do I check or pay my DNH & DD electricity bill online?", a: "Pay via Torrent Power's consumer portal at connect.torrentpower.com. For queries, call the helpline 19126, toll-free 1800-233-9500, or the reception line +91-260-2406500." },
+      { q: "What is the difference between DNHPDCL and DNHDDPDCL?", a: "DNH Power Distribution Corporation Ltd (DNHPDCL), founded in 2012, now operates as DNH & DD Power Corporation Ltd and handles only transmission — 220/66 kV substations and solar generation — and remains 100% UT-owned. Retail distribution and billing moved to the separate Torrent Power joint venture, DNHDDPDCL, from 1 April 2022, after the two former UTs merged into one on 26 January 2020." },
     ],
+    billTraps: [
+      { title: "Distribution and transmission are now separate companies", body: "DNH & DD Power Corporation Ltd (formerly DNHPDCL) now handles only transmission and is fully UT-owned, while your actual bill and retail supply come from the separately branded Torrent Power joint venture, DNHDDPDCL — don't confuse the two similarly named entities." },
+      { title: "Your bill comes via a private operator's portal, not a .gov.in domain", body: "Since April 2022, bill payment runs through Torrent Power's own consumer portal (connect.torrentpower.com) rather than a UT government site — bookmark the correct one to avoid confusion with older DNH-specific government pages." },
+      { title: "The jump above 100 units is large", body: "The domestic rate rises from ₹4.00 to ₹6.50/unit once you cross 100 units — a 62% jump on every additional unit." },
+    ],
+    aboutDiscom: [
+      "The Union Territories of Dadra & Nagar Haveli and Daman & Diu merged into a single UT on 26 January 2020. DNH Power Distribution Corporation Ltd (DNHPDCL), originally founded in 2012 to serve DNH, was restructured and renamed DNH & DD Power Corporation Ltd, retaining only the transmission function (220/66 kV substations and solar generation) as a 100% UT-owned entity.",
+      "From 1 April 2022, retail distribution and billing across the whole merged UT moved to a new joint-venture company, Dadra and Nagar Haveli and Daman and Diu Power Distribution Corporation Ltd (DNHDDPDCL), with Torrent Power holding 51% and the UT administration the remaining 49% — one of the first Indian Union Territories to privatise its power distribution business. The venture serves roughly 150,000 customers.",
+    ],
+    coverageQA: {
+      q: "Does one company handle both Dadra & Nagar Haveli and Daman & Diu?",
+      a: "Yes, for retail distribution — DNHDDPDCL (the Torrent Power joint venture) supplies both parts of the merged UT under one tariff. A separate, fully UT-owned company (DNH & DD Power Corporation Ltd, formerly DNHPDCL) handles transmission infrastructure only.",
+    },
+    howToPay: {
+      portalUrl: "https://connect.torrentpower.com/tplcp/index.php/crCustmast/quickpay",
+      portalLabel: "connect.torrentpower.com (official Torrent Power billing portal)",
+      helpline: "19126 / 1800-233-9500 / +91-260-2406500",
+      steps: [
+        "Visit Torrent Power's official DNH & DD quick-pay portal",
+        "Enter your Service Connection Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "lakshadweep-electricity-bill-calculator",
@@ -2373,7 +2480,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Lakshadweep electricity tariff telescopic?", a: "Lakshadweep uses a flat domestic rate rather than telescopic slabs — every unit is billed at the same rate." },
       { q: "What is the fixed charge for a Lakshadweep domestic connection?", a: "The fixed charge is a flat ₹20/month." },
       { q: "How accurate is this Lakshadweep bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Public slab detail is limited; this uses the indicative flat domestic rate. Always confirm against your official LED bill." },
+      { q: "Does LED supply electricity to every inhabited island?", a: "Yes. All inhabited islands are electrified — Minicoy was first in 1962, Kavaratti in 1964, Amini and Andrott in 1965–66, and Bitra last in 1982. LED runs electricity service sub-divisions on Minicoy, Kavaratti, Amini, Andrott, Kalpeni, Agatti, Kadmat, Chetlat, Bitra and Bangaram." },
+      { q: "How do I check or pay my Lakshadweep LED bill online?", a: "Pay via the official portal at powerlak.gov.in, or the POWERLAK Services mobile app. For queries, call the consumer care helpline 04896-262363." },
+      { q: "Why is Lakshadweep's tariff a single flat rate rather than slabs?", a: "Lakshadweep's small, dispersed island population and diesel-based generation are billed on a simple, heavily subsidised flat rate rather than the multi-slab structures used in most mainland states — every unit costs the same, whether you use 20 units or 200." },
     ],
+    billTraps: [
+      { title: "A flat rate means no low-usage discount, but no high-usage penalty either", body: "Because every unit costs the same ~₹1.50, there's no cheaper starter slab for light users, but equally there's no steep jump in rate as consumption rises — unlike most other states on this site." },
+      { title: "Each island runs on its own diesel supply", body: "Power on the islands is diesel-generated locally rather than drawn from a mainland grid, so supply reliability and outage patterns can vary between islands even though the tariff is uniform." },
+      { title: "Published tariff detail is limited for this UT", body: "Public secondary sources for Lakshadweep's exact domestic tariff structure are thin — treat this flat-rate estimate as indicative and confirm against your own LED bill." },
+    ],
+    aboutDiscom: [
+      "The Electricity Department, Lakshadweep (LED), electrified the islands gradually: Minicoy was the first, in 1962, followed by Kavaratti in 1964, Amini and Andrott in 1965 and 1966, and Bitra — the last — in 1982.",
+      "LED operates electricity service sub-divisions across the inhabited islands — Minicoy, Kavaratti, Amini, Andrott, Kalpeni, Agatti, Kadmat, Chetlat, Bitra and Bangaram — with its main divisional office headquartered in Kavaratti.",
+    ],
+    coverageQA: {
+      q: "Does LED supply electricity to every inhabited island in Lakshadweep?",
+      a: "Yes. All inhabited islands have been electrified since 1982, when Bitra — the last — was connected. LED runs separate service sub-divisions on each inhabited island, with its main office in Kavaratti.",
+    },
+    howToPay: {
+      portalUrl: "https://powerlak.gov.in/",
+      portalLabel: "powerlak.gov.in (official LED bill payment portal)",
+      helpline: "04896-262363 (consumer care)",
+      steps: [
+        "Visit the official POWERLAK bill payment portal or open the POWERLAK app",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via the listed online options",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "ladakh-electricity-bill-calculator",
@@ -2384,6 +2518,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Ladakh electricity bill (Power Development Department, Ladakh (JERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Ladakh is approximated from the JERC J&K subsidised schedule.",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['JPDCL', 'HPSEBL'],
     intro: "Estimate your Power Development Department, Ladakh (JERC) electricity bill for Ladakh. Ladakh is approximated from the JERC J&K subsidised schedule. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Approximated from the JERC schedule", body: "A specific published Ladakh domestic tariff order was not available at the time of writing, so this calculator approximates Ladakh using the heavily-subsidised JERC (Jammu & Kashmir/Ladakh) domestic pattern. Treat every figure as indicative until confirmed." },
@@ -2393,7 +2528,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Ladakh electricity tariff telescopic?", a: "Yes. Ladakh charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Ladakh domestic connection?", a: "The fixed charge is a flat ₹20/month." },
       { q: "How accurate is this Ladakh bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. No specific Ladakh tariff order was found; the entire schedule here is an approximation pending verification. Always confirm against your official LPDD bill." },
+      { q: "Does LPDD supply electricity to both Leh and Kargil districts?", a: "Yes. LPDD is the sole power utility for the Union Territory of Ladakh, covering generation, transmission and distribution across both Leh and Kargil districts, including small hydro plants supplying the local grid." },
+      { q: "How do I check or pay my Ladakh LPDD bill online?", a: "Pay via the LPDD consumer portal at lpddconsumer.ugoerp.com or billsahuliyat.jkpdd.net. For queries, contact your local LPDD division office — a single UT-wide toll-free helpline was not confirmed in public sources at the time of writing." },
+      { q: "What is LPDD, and when did it form?", a: "The Ladakh Power Development Department (LPDD) was established after Ladakh became a separate Union Territory in 2019, following the reorganisation of the former state of Jammu & Kashmir. It comprises three verticals — generation, transmission and distribution — and runs small hydro plants across Leh and Kargil." },
     ],
+    billTraps: [
+      { title: "This tariff is an approximation, not a confirmed Ladakh-specific order", body: "No dedicated, published Ladakh domestic tariff order was found — this calculator approximates Ladakh's likely rates from the JERC Jammu & Kashmir schedule since both fall under the same regulatory framework. Treat every figure as indicative and confirm against your own LPDD bill." },
+      { title: "LPDD is separate from J&K's JPDCL and KPDCL", body: "Since Ladakh became its own Union Territory in 2019, its power utility (LPDD) is a distinct entity from Jammu's JPDCL and Kashmir's KPDCL, even though all three currently sit under the same JERC regulatory umbrella." },
+      { title: "A confirmed UT-wide helpline number is hard to find publicly", body: "Unlike most states with a well-publicised 1912 or toll-free line, LPDD's public helpline information is limited — your local division office or the LPDD consumer portal are the more reliable contact points." },
+    ],
+    aboutDiscom: [
+      "The Ladakh Power Development Department (LPDD) was established after Ladakh was carved out as a separate Union Territory in 2019, following the reorganisation of the former state of Jammu & Kashmir. LPDD comprises three verticals — generation, transmission and distribution — and is the sole power utility for the UT.",
+      "LPDD operates several small hydro power plants across Leh and Kargil districts, with roughly 10 MW of installed capacity and further hydro projects under construction, alongside grid input from other sources for the region's 66kV/33kV/11kV distribution network.",
+    ],
+    coverageQA: {
+      q: "Does LPDD supply electricity to both Leh and Kargil districts?",
+      a: "Yes. LPDD is the only power distribution utility in the Union Territory of Ladakh, covering generation, transmission and distribution across both Leh and Kargil districts.",
+    },
+    howToPay: {
+      portalUrl: "https://lpddconsumer.ugoerp.com/",
+      portalLabel: "lpddconsumer.ugoerp.com (LPDD consumer portal)",
+      helpline: "Contact your local LPDD division office via lpdd.ladakh.gov.in",
+      steps: [
+        "Visit the LPDD consumer portal or the official LPDD website",
+        "Enter your Consumer/Account Number to fetch your current bill",
+        "Verify the amount and pay via the listed online options",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
 ]
 
