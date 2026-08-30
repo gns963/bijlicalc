@@ -1420,6 +1420,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Madhya Pradesh electricity bill (MP Madhya Kshetra Vidyut Vitaran Co. (MPCZ)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Madhya Pradesh caps small (≤100 unit) bills at ₹100 under Atal Griha Jyoti.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['MSEDCL', 'UPPCL', 'CSPDCL'],
     intro: "Estimate your MP Madhya Kshetra Vidyut Vitaran Co. (MPCZ) electricity bill for Madhya Pradesh. Madhya Pradesh caps small (≤100 unit) bills at ₹100 under Atal Griha Jyoti. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Atal Griha Jyoti — a ₹100 bill cap", body: "Under the Atal Griha Jyoti Yojana, eligible low-load (≤1 kW) households using 100 units or less a month have their entire bill capped at a flat ₹100. Above that, normal telescopic slabs and a ₹0.30/unit VCA surcharge apply." },
@@ -1429,7 +1430,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Madhya Pradesh electricity tariff telescopic?", a: "Yes. Madhya Pradesh charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Madhya Pradesh domestic connection?", a: "The fixed charge is ₹20 per kW of sanctioned load." },
       { q: "How accurate is this Madhya Pradesh bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. The Atal Griha Jyoti ₹100 cap is not applied automatically here. Always confirm against your official MPCZ bill." },
+      { q: "Does MPCZ supply electricity to Indore?", a: "No. MPCZ (Madhya Kshetra) covers Bhopal, Gwalior and the central commissionaries of Bhopal, Hoshangabad and Chambal. Indore is served by a separate company, MPWZ (Paschim Kshetra), covering the western Malwa region including Ujjain." },
+      { q: "How do I check or pay my MPCZ bill online?", a: "Pay via the MP Online portal at mpeb.mponline.gov.in, or the official MPCZ website. For queries, call the 24×7 toll-free helpline 1912 or 1800-233-1912." },
+      { q: "What is MPCZ, and how did it form?", a: "The Madhya Pradesh State Electricity Board (MPSEB) was unbundled in July 2002, under the state's power reform act, into five companies with MPSEB as holding entity — three regional distribution companies (MPCZ, MPWZ, MPEZ) plus separate generation and transmission companies." },
     ],
+    billTraps: [
+      { title: "MPCZ doesn't cover Indore", body: "Madhya Pradesh has three regional distribution companies. MPCZ covers Bhopal and central MP; Indore and the western Malwa region are billed by MPWZ instead, on a similar but separately-administered tariff." },
+      { title: "The Atal Griha Jyoti cap isn't automatic here", body: "Households using 100 units or less with a sanctioned load of 1 kW or below can have their entire bill capped at ₹100 under this scheme — but it requires eligibility and isn't applied automatically by this calculator." },
+      { title: "The VCA surcharge moves and isn't included", body: "MPCZ's ₹0.30/unit variable cost adjustment can change, and isn't reflected in this estimate, so your real bill may differ slightly." },
+    ],
+    aboutDiscom: [
+      "The Madhya Pradesh State Electricity Board (MPSEB) was unbundled in July 2002 under the state's power sector reform, with MPSEB continuing as a holding company over three regional distribution companies — MP Madhya Kshetra Vidyut Vitaran Co. (MPCZ, central), MP Paschim Kshetra Vidyut Vitaran Co. (MPWZ, west) and MP Poorv Kshetra Vidyut Vitaran Co. (MPEZ, east) — plus separate generation and transmission companies.",
+      "MPCZ serves Bhopal, Gwalior and the Bhopal, Hoshangabad, Gwalior and Chambal commissionaries. Indore falls under MPWZ instead.",
+    ],
+    coverageQA: {
+      q: "Does MPCZ supply electricity to Indore?",
+      a: "No. Indore and the western Malwa region (including Ujjain) are served by MPWZ (MP Paschim Kshetra Vidyut Vitaran Co.), a separate regional discom. MPCZ covers Bhopal, Gwalior and central Madhya Pradesh.",
+    },
+    howToPay: {
+      portalUrl: "https://mpeb.mponline.gov.in/",
+      portalLabel: "mpeb.mponline.gov.in (MP Online bill payment)",
+      helpline: "1912 / 1800-233-1912 (24×7)",
+      steps: [
+        "Visit the MP Online electricity bill payment portal",
+        "Enter your IVRS/Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "haryana-electricity-bill-calculator",
@@ -1440,6 +1468,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Haryana electricity bill (Uttar Haryana Bijli Vitran Nigam (UHBVN, HERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Haryana keeps low-use slabs cheap, then rises steeply.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['BRPL', 'PSPCL', 'UPPCL'],
     intro: "Estimate your Uttar Haryana Bijli Vitran Nigam (UHBVN, HERC) electricity bill for Haryana. Haryana keeps low-use slabs cheap, then rises steeply. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A split low-use vs high-use structure", body: "Haryana keeps the first two slabs very cheap (₹2.20 and ₹2.70) to protect low-use households, then rises sharply for higher consumption. UHBVN and DHBVN follow the same HERC schedule." },
@@ -1449,7 +1478,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Haryana electricity tariff telescopic?", a: "Yes. Haryana charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Haryana domestic connection?", a: "The fixed charge is ₹120 per kW of sanctioned load." },
       { q: "How accurate is this Haryana bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. FPPCA fuel surcharge and electricity duty are not modelled here. Always confirm against your official UHBVN bill." },
+      { q: "Does UHBVN supply electricity to Gurgaon or Faridabad?", a: "No. Both Gurgaon and Faridabad are served by DHBVN (Dakshin Haryana Bijli Vitran Nigam), not UHBVN. UHBVN covers northern Haryana — Panchkula, Ambala, Yamunanagar, Kurukshetra, Karnal, Panipat, Sonepat, Rohtak and Jind — while DHBVN covers the south (including Gurgaon, Faridabad, Hisar and Rewari)." },
+      { q: "How do I check or pay my UHBVN bill online?", a: "Pay via the official portal at uhbvn.org.in. For queries or outages, call the toll-free helpline 1912 or 1800-180-1550." },
+      { q: "What is UHBVN, and how did it form?", a: "The Haryana State Electricity Board (HSEB) was unbundled on 14 August 1998 under the Haryana Electricity Reforms Act. Its distribution assets were split between Uttar Haryana Bijli Vitran Nigam (UHBVN, north) and Dakshin Haryana Bijli Vitran Nigam (DHBVN, south), both commencing operations on 1 July 1999." },
     ],
+    billTraps: [
+      { title: "UHBVN doesn't cover Gurgaon or Faridabad", body: "Haryana's two discoms are split north/south, not by a single statewide company. If your connection is in Gurgaon, Faridabad, Hisar or Rewari, your actual discom is DHBVN, not UHBVN — both share the same HERC tariff shown here." },
+      { title: "The cheap starting slabs end quickly", body: "UHBVN's first two slabs (₹2.20 and ₹2.70) are unusually cheap, but the rate rises sharply after 100–150 units — a bill can jump noticeably once you're past the protected low-use bands." },
+      { title: "FPPCA surcharge and duty aren't in this estimate", body: "Haryana's fuel and power purchase cost adjustment and electricity duty are not modelled, so your real UHBVN bill will run a little higher than this calculator shows." },
+    ],
+    aboutDiscom: [
+      "The Haryana State Electricity Board (HSEB) was unbundled on 14 August 1998, under the Haryana Electricity Reforms Act. Its distribution business was split geographically and transferred to two new companies — Uttar Haryana Bijli Vitran Nigam (UHBVN) and Dakshin Haryana Bijli Vitran Nigam (DHBVN) — both commencing operations on 1 July 1999.",
+      "UHBVN serves northern Haryana: Panchkula, Ambala, Yamunanagar, Kurukshetra, Kaithal, Karnal, Panipat, Sonepat, Rohtak and Jhajjar/Jind districts. DHBVN covers the south, including Gurgaon, Faridabad, Hisar, Fatehabad, Bhiwani, Sirsa, Mewat and Rewari.",
+    ],
+    coverageQA: {
+      q: "Does UHBVN supply electricity to Gurgaon?",
+      a: "No. Gurgaon (and Faridabad) are served by DHBVN (Dakshin Haryana Bijli Vitran Nigam), Haryana's southern discom. UHBVN covers the northern districts — Panchkula, Ambala, Karnal, Panipat, Rohtak and others.",
+    },
+    howToPay: {
+      portalUrl: "https://www.uhbvn.org.in/",
+      portalLabel: "uhbvn.org.in (official UHBVN portal)",
+      helpline: "1912 / 1800-180-1550 (24×7)",
+      steps: [
+        "Visit the official UHBVN payment gateway",
+        "Enter your Account/Consumer number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "himachal-pradesh-electricity-bill-calculator",
@@ -1460,6 +1516,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Himachal Pradesh electricity bill (Himachal Pradesh State Electricity Board Ltd (HPSEBL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Himachal Pradesh gives the first 125 units free each month.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['UPCL', 'PSPCL', 'JPDCL'],
     intro: "Estimate your Himachal Pradesh State Electricity Board Ltd (HPSEBL) electricity bill for Himachal Pradesh. Himachal Pradesh gives the first 125 units free each month. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "First 125 units free", body: "Himachal continues to give domestic consumers their first 125 units free of cost. From 126 units the slabs are merged into a single subsidised ₹4.17/unit, and above 300 units the full ₹5.90/unit applies with the earlier subsidy withdrawn." },
@@ -1469,7 +1526,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Himachal Pradesh electricity tariff telescopic?", a: "Yes. Himachal Pradesh charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Himachal Pradesh domestic connection?", a: "The fixed charge is a flat ₹40/month." },
       { q: "How accurate is this Himachal Pradesh bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official HPSEBL bill." },
+      { q: "Does HPSEBL supply electricity to all of Himachal Pradesh?", a: "Yes. HPSEBL is the sole distribution licensee for the entire state — unlike Rajasthan or Haryana, there's no regional split to check." },
+      { q: "How do I check or pay my HPSEBL bill online?", a: "Pay via the official HPSEB Quick Pay portal at hpseb.in, or the HPSEBL mobile app. For queries, call the toll-free helpline 1800-180-8060 or 1912." },
+      { q: "What is HPSEBL, and how did it form?", a: "The Himachal Pradesh State Electricity Board was constituted on 1 September 1971 under the Electricity Supply Act, 1948. It was reorganised into a limited company — Himachal Pradesh State Electricity Board Ltd (HPSEBL) — with effect from 14 June 2010, under the Companies Act." },
     ],
+    billTraps: [
+      { title: "The first 125 units genuinely stay free", body: "Himachal's slabs are telescopic — the first 125 units are free regardless of how much more you use that month, and only the units above 125 are billed at ₹4.17, then ₹5.90 above 300. Going over 125 units does not retroactively charge you for the free block." },
+      { title: "The band above 300 units rises steeply", body: "The jump from ₹4.17 to ₹5.90/unit for consumption above 300 is a meaningful step up — a summer AC month can cost noticeably more per additional unit than a winter one." },
+      { title: "HPSEBL is statewide — no regional discom to check", body: "Unlike several neighbouring states, Himachal Pradesh has one electricity board for the whole state, so there's no risk of being on a different discom than expected." },
+    ],
+    aboutDiscom: [
+      "The Himachal Pradesh State Electricity Board was constituted on 1 September 1971, under the Electricity Supply Act, 1948, as a vertically integrated state utility.",
+      "It was reorganised into Himachal Pradesh State Electricity Board Ltd (HPSEBL), a limited company, with effect from 14 June 2010. HPSEBL remains the sole distribution licensee for the entire state, headquartered in Shimla.",
+    ],
+    coverageQA: {
+      q: "Does HPSEBL supply electricity to all of Himachal Pradesh?",
+      a: "Yes. HPSEBL is the single, statewide distribution licensee for Himachal Pradesh, including Shimla — there is no regional split like in Rajasthan, Haryana or Uttar Pradesh.",
+    },
+    howToPay: {
+      portalUrl: "https://www.hpseb.in/HPSEBQuickPay/index.html",
+      portalLabel: "hpseb.in (HPSEB Quick Pay portal)",
+      helpline: "1800-180-8060 / 1912 (24×7)",
+      steps: [
+        "Visit the HPSEB Quick Pay portal or the HPSEBL app",
+        "Enter your Consumer Account number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "uttarakhand-electricity-bill-calculator",
@@ -1480,6 +1564,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Uttarakhand electricity bill (Uttarakhand Power Corporation Ltd (UPCL, UERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Uttarakhand tiers its fixed charge by load and gives rural/hill rebates.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['HPSEBL', 'UPPCL', 'JPDCL'],
     intro: "Estimate your Uttarakhand Power Corporation Ltd (UPCL, UERC) electricity bill for Uttarakhand. Uttarakhand tiers its fixed charge by load and gives rural/hill rebates. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Load-tiered fixed charge and hill rebates", body: "Uttarakhand’s fixed charge is tiered by sanctioned load (₹75 up to 1 kW, ₹85 up to 4 kW, ₹100 above), and rural areas get a 5% and hill areas a 10% rebate on the bill." },
@@ -1489,7 +1574,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Uttarakhand electricity tariff telescopic?", a: "Yes. Uttarakhand charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Uttarakhand domestic connection?", a: "The fixed charge is a flat ₹85/month." },
       { q: "How accurate is this Uttarakhand bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. A ₹0.15/unit electricity duty and the rural/hill rebates are not modelled here. Always confirm against your official UPCL bill." },
+      { q: "Does UPCL supply electricity to all of Uttarakhand?", a: "Yes. UPCL is the sole distribution licensee for the entire state, covering all 13 districts including Dehradun, Haridwar, Nainital and Udham Singh Nagar — there is no regional split." },
+      { q: "How do I check or pay my UPCL bill online?", a: "Pay via the official Web Self Service portal at upcl.org. For queries, call the toll-free helpline 1800-419-0405 or 1912." },
+      { q: "What is UPCL, and how did it form?", a: "When the state of Uttarakhand was carved out of Uttar Pradesh under the UP Reorganisation Act, 2000, the erstwhile UP State Electricity Board's assets in the new state were transferred to Uttarakhand Power Corporation Ltd (UPCL), incorporated on 12 February 2001." },
     ],
+    billTraps: [
+      { title: "The fixed charge depends on your sanctioned load tier", body: "UPCL charges ₹75/month up to 1 kW, ₹85/month up to 4 kW, and ₹100/month above that — not a single flat fee. A larger sanctioned load raises the fixed charge even if your usage stays the same." },
+      { title: "Rural and hill rebates aren't applied automatically", body: "Rural connections get a 5% rebate and hill-area connections a 10% rebate on the bill, but this calculator does not apply these automatically — factor them in separately if you qualify." },
+      { title: "Electricity duty isn't in this estimate", body: "A ₹0.15/unit electricity duty applies on top of the slab charges and is not modelled here, so your real UPCL bill will run slightly higher." },
+    ],
+    aboutDiscom: [
+      "When Uttarakhand was created from Uttar Pradesh under the UP Reorganisation Act, 2000 — following the 1999 trifurcation of the erstwhile UP State Electricity Board under the UP Electricity Reforms Act, 1999 — its share of distribution assets was transferred to a new company, Uttarakhand Power Corporation Ltd (UPCL), incorporated on 12 February 2001.",
+      "UPCL is the sole distribution licensee for the state, serving all 13 districts — Dehradun, Haridwar, Nainital, Udham Singh Nagar, Pauri, Tehri, Pithoragarh, Almora, Uttarkashi, Rudraprayag, Chamoli, Bageshwar and Champawat.",
+    ],
+    coverageQA: {
+      q: "Does UPCL supply electricity to Dehradun and Nainital?",
+      a: "Yes. UPCL is the sole distribution licensee for all of Uttarakhand, including Dehradun and Nainital — there is no regional split like in neighbouring Uttar Pradesh.",
+    },
+    howToPay: {
+      portalUrl: "https://www.upcl.org/",
+      portalLabel: "upcl.org (UPCL Web Self Service)",
+      helpline: "1800-419-0405 / 1912 (24×7)",
+      steps: [
+        "Visit the official UPCL Web Self Service portal",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "goa-electricity-bill-calculator",
