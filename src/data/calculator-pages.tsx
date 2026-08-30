@@ -1164,6 +1164,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Rajasthan electricity bill (Jaipur Vidyut Vitran Nigam Ltd (JVVNL, RERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Rajasthan bills monthly with a high ₹275/kW fixed charge.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['MGVCL', 'UPPCL', 'UHBVN'],
     intro: "Estimate your Jaipur Vidyut Vitran Nigam Ltd (JVVNL, RERC) electricity bill for Rajasthan. Rajasthan bills monthly with a high ₹275/kW fixed charge. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A high per-kW fixed charge", body: "Rajasthan levies one of India’s steepest domestic fixed charges at around ₹275 per kW of sanctioned load per month, so a 2 kW connection pays roughly ₹550 in fixed charges before any energy is billed. The same RERC schedule applies to JVVNL, AVVNL and JdVVNL." },
@@ -1173,7 +1174,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Rajasthan electricity tariff telescopic?", a: "Yes. Rajasthan charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Rajasthan domestic connection?", a: "The fixed charge is ₹275 per kW of sanctioned load." },
       { q: "How accurate is this Rajasthan bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Rajasthan’s per-unit electricity duty (~40 paise/unit) and urban cess are not modelled here. Always confirm against your official JVVNL bill." },
+      { q: "Does JVVNL supply electricity to all of Rajasthan?", a: "No. JVVNL covers Jaipur and roughly a dozen eastern districts (including Dausa, Alwar, Bharatpur, Kota, Bundi and Sawai Madhopur). The rest of the state is split between AVVNL (Ajmer, central/southern Rajasthan) and JdVVNL (Jodhpur, western Rajasthan) — all three follow the same RERC tariff." },
+      { q: "How do I check or pay my JVVNL bill online?", a: "Pay via the official energy.rajasthan.gov.in/jvvnl portal. For queries or outages, call the 24×7 helpline 1912 or 1800-180-6507." },
+      { q: "What is JVVNL, and how did it form?", a: "JVVNL (Jaipur Vidyut Vitran Nigam Ltd) was incorporated on 19 June 2000, when the Rajasthan State Electricity Board (RSEB) was unbundled into separate generation, transmission and three regional distribution companies — JVVNL, AVVNL and JdVVNL." },
     ],
+    billTraps: [
+      { title: "JVVNL is not statewide", body: "Rajasthan has three separate distribution companies by region — JVVNL (east, around Jaipur), AVVNL (central/south, around Ajmer) and JdVVNL (west, around Jodhpur). If your address is outside JVVNL's districts, your actual discom and billing portal differ, even though the tariff is the same." },
+      { title: "The fixed charge is unusually steep", body: "At ₹275 per kW of sanctioned load, a modest 2 kW household connection pays around ₹550 in fixed charges alone each month, before a single unit is billed — among the highest fixed charges of any Indian state." },
+      { title: "Electricity duty and urban cess aren't in this estimate", body: "Rajasthan's roughly 40 paise/unit electricity duty and an urban cess are not modelled here, so your real JVVNL bill will run a little higher than this calculator shows." },
+    ],
+    aboutDiscom: [
+      "The Rajasthan State Electricity Board (RSEB) was unbundled on 19 June 2000 into separate generation, transmission and distribution entities. Distribution was further split by region into three companies: Jaipur Vidyut Vitran Nigam Ltd (JVVNL) for the east, Ajmer Vidyut Vitran Nigam Ltd (AVVNL) for the central/south, and Jodhpur Vidyut Vitran Nigam Ltd (JdVVNL) for the west.",
+      "JVVNL serves Jaipur and around a dozen eastern districts — including Dausa, Alwar, Bharatpur, Kota, Bundi, Baran, Jhalawar, Sawai Madhopur and Karauli. All three Rajasthan discoms bill on the same RERC-approved tariff.",
+    ],
+    coverageQA: {
+      q: "Does JVVNL supply electricity to all of Rajasthan?",
+      a: "No. JVVNL covers Jaipur and the eastern districts of Rajasthan. Central and southern Rajasthan (around Ajmer) is served by AVVNL, and western Rajasthan (around Jodhpur) by JdVVNL — all three use the same RERC tariff shown on this page, but bill separately.",
+    },
+    howToPay: {
+      portalUrl: "https://energy.rajasthan.gov.in/jvvnl",
+      portalLabel: "energy.rajasthan.gov.in/jvvnl (official JVVNL portal)",
+      helpline: "1912 / 1800-180-6507 (24×7)",
+      steps: [
+        "Visit the official JVVNL portal",
+        "Enter your K-Number (Consumer ID) to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "punjab-electricity-bill-calculator",
@@ -1184,6 +1212,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Punjab electricity bill (Punjab State Power Corporation Ltd (PSPCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Punjab offers up to 300 free units a month to domestic consumers.",
     exampleUnits: 250,
     exampleEligible: false,
+    neighboringDiscoms: ['UHBVN', 'JVVNL', 'CED'],
     intro: "Estimate your Punjab State Power Corporation Ltd (PSPCL) electricity bill for Punjab. Punjab offers up to 300 free units a month to domestic consumers. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "300 free units a month", body: "Punjab gives eligible domestic households up to 300 units of free electricity every month, which zeroes out the bill for most families. Note the scheme has a threshold — exceeding it in a cycle can make the whole bill payable — and PSPCL’s per-unit rate also varies by sanctioned load band." },
@@ -1193,7 +1222,42 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Punjab electricity tariff telescopic?", a: "Yes. Punjab charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Punjab domestic connection?", a: "The fixed charge is a flat ₹120/month." },
       { q: "How accurate is this Punjab bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. PSPCL bills bi-monthly in practice and rates vary by load band; this uses a representative monthly schedule. Always confirm against your official PSPCL bill." },
+      { q: "Does PSPCL cover all of Punjab?", a: "Yes — unlike Rajasthan, Gujarat or UP, Punjab has a single distribution company. PSPCL covers the entire state." },
+      { q: "How do I check or pay my PSPCL bill online?", a: "Pay via the official portal at billpayment.pspcl.in or the PSPCL mobile app. For queries or outages, call the 24×7 helpline 1912." },
+      { q: "What is PSPCL, and how did it form?", a: "PSPCL (Punjab State Power Corporation Ltd) was incorporated on 16 April 2010, when the Punjab State Electricity Board (PSEB) was unbundled into PSPCL (generation and distribution) and PSTCL (transmission)." },
     ],
+    billTraps: [
+      { title: "300 free units isn't unconditional", body: "The scheme has an eligibility threshold; exceeding it in a billing cycle can make the entire bill payable rather than just the units above 300 — check your account's eligibility status rather than assuming coverage." },
+      { title: "The per-unit rate varies by sanctioned load band", body: "PSPCL's slab rates differ depending on your connection's load category (up to 2 kW, 2–7 kW, 7–20 kW), so two households using the same units can be billed differently based on sanctioned load alone." },
+      { title: "Billing is bi-monthly in practice", body: "This calculator uses a representative monthly schedule, but many PSPCL domestic bills are actually issued every two months — check your bill's actual period before comparing to this estimate." },
+    ],
+    aboutDiscom: [
+      "The Punjab State Electricity Board (PSEB) was unbundled on 16 April 2010 into Punjab State Power Corporation Ltd (PSPCL), which took over generation and distribution, and Punjab State Transmission Corporation Ltd (PSTCL), which took over transmission and state load dispatch.",
+      "Unlike several neighbouring states, Punjab was not further split by region — PSPCL is the sole distribution company for the entire state.",
+    ],
+    coverageQA: {
+      q: "Does PSPCL supply electricity to all of Punjab?",
+      a: "Yes. PSPCL is Punjab's single, statewide distribution company — there is no regional split like Rajasthan's three discoms or Uttar Pradesh's five.",
+    },
+    howToPay: {
+      portalUrl: "https://billpayment.pspcl.in/",
+      portalLabel: "billpayment.pspcl.in (official PSPCL portal)",
+      helpline: "1912 (24×7)",
+      steps: [
+        "Visit the official PSPCL bill payment portal or app",
+        "Enter your Account/Consumer number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
+    thresholdCallout: {
+      title: "The 300-unit free-power line",
+      leftLabel: "Within eligibility",
+      leftValue: "Free (up to 300u)",
+      rightLabel: "Exceed the threshold",
+      rightValue: "Full bill may apply",
+      note: "Eligible domestic households get up to 300 free units a month, but exceeding the scheme's threshold in a billing cycle can make the entire bill payable — not just the units above 300. Confirm your eligibility status rather than assuming coverage.",
+    },
   },
   {
     slug: "delhi-electricity-bill-calculator",
@@ -1260,6 +1324,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Telangana electricity bill (Telangana Southern Power Distribution Co. (TGSPDCL/TSSPDCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Telangana gives white-ration-card homes up to 200 free units under Gruha Jyothi.",
     exampleUnits: 250,
     exampleEligible: false,
+    neighboringDiscoms: ['APSPDCL', 'BESCOM', 'CSPDCL'],
     intro: "Estimate your Telangana Southern Power Distribution Co. (TGSPDCL/TSSPDCL) electricity bill for Telangana. Telangana gives white-ration-card homes up to 200 free units under Gruha Jyothi. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Gruha Jyothi free 200 units", body: "Domestic consumers with a white ration card get up to 200 units free each month under the Gruha Jyothi scheme. Above that, telescopic slabs apply, plus a 6% electricity duty. TGSPDCL and TGNPDCL share the same TSERC tariff." },
@@ -1269,7 +1334,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Telangana electricity tariff telescopic?", a: "Yes. Telangana charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Telangana domestic connection?", a: "The fixed charge is ₹10 per kW of sanctioned load." },
       { q: "How accurate is this Telangana bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official TSSPDCL bill." },
+      { q: "Does TGSPDCL/TSSPDCL supply Hyderabad?", a: "Yes. TGSPDCL (Southern Power Distribution Company of Telangana, sometimes still called TSSPDCL) covers Hyderabad along with 14 other southern districts. The remaining 18 northern districts are served by TGNPDCL." },
+      { q: "How do I check or pay my TGSPDCL bill online?", a: "Pay via the official portal at tgsouthernpower.org or the TGSPDCL Citizen app. For queries, call the 24×7 helpline 1912 or 1800-599-01912." },
+      { q: "What is TGSPDCL, and how did it form?", a: "When Andhra Pradesh was bifurcated on 2 June 2014 under the AP Reorganisation Act, the erstwhile APSEB's southern distribution arm serving the new Telangana state was restructured and renamed Telangana State Southern Power Distribution Company Ltd (TGSPDCL/TSSPDCL)." },
     ],
+    billTraps: [
+      { title: "TGSPDCL is southern Telangana only", body: "TGSPDCL (also called TSSPDCL) covers Hyderabad and 14 southern districts. The 18 northern districts, with headquarters at Hanumakonda, are served by a separate company, TGNPDCL — both share the same TSERC tariff shown here." },
+      { title: "Gruha Jyothi requires a white ration card", body: "The 200-free-units scheme is tied specifically to holding a white ration card, not just being a domestic consumer generally — check your card status rather than assuming eligibility." },
+      { title: "6% electricity duty applies on top of slabs", body: "Telangana's 6% electricity duty is charged on the energy charge in addition to the slab rates and fixed charge, and is often overlooked when estimating a bill by hand." },
+    ],
+    aboutDiscom: [
+      "When the state of Andhra Pradesh was bifurcated on 2 June 2014 under the Andhra Pradesh Reorganisation Act, 2014, the distribution business serving the newly created Telangana was restructured into two companies: Telangana State Southern Power Distribution Company Ltd (TGSPDCL, also referred to as TSSPDCL) and Telangana State Northern Power Distribution Company Ltd (TGNPDCL).",
+      "TGSPDCL covers Hyderabad and 14 other southern districts (including Rangareddy, Medchal, Nalgonda and Mahabubnagar), serving around 11.1 million consumers. TGNPDCL covers the 18 northern districts from Hanumakonda.",
+    ],
+    coverageQA: {
+      q: "Does TGSPDCL (TSSPDCL) supply electricity to Hyderabad?",
+      a: "Yes. TGSPDCL covers Hyderabad along with 14 southern Telangana districts. The 18 northern districts are served by the separate Telangana State Northern Power Distribution Company (TGNPDCL), on the same TSERC tariff.",
+    },
+    howToPay: {
+      portalUrl: "https://tgsouthernpower.org/electricitybillpayonline",
+      portalLabel: "tgsouthernpower.org (official TGSPDCL portal)",
+      helpline: "1912 / 1800-599-01912 (24×7)",
+      steps: [
+        "Visit the official TGSPDCL website or Citizen app",
+        "Enter your Unique Service Number (USC) to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "andhra-pradesh-electricity-bill-calculator",
@@ -1280,6 +1372,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Andhra Pradesh electricity bill (Southern Power Distribution Co. of AP (APSPDCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Andhra Pradesh uses a six-slab telescopic domestic tariff.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['TSSPDCL', 'TNEB', 'KSEB'],
     intro: "Estimate your Southern Power Distribution Co. of AP (APSPDCL) electricity bill for Andhra Pradesh. Andhra Pradesh uses a six-slab telescopic domestic tariff. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A fine-grained six-slab tariff", body: "Andhra Pradesh uses an unusually detailed six-slab telescopic tariff for domestic (LT-1) connections, from ₹1.90/unit for the first 30 units up to ₹9.75 above 400. APEPDCL, APCPDCL and APSPDCL all follow the same unified APERC schedule." },
@@ -1289,7 +1382,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Andhra Pradesh electricity tariff telescopic?", a: "Yes. Andhra Pradesh charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Andhra Pradesh domestic connection?", a: "The fixed charge is ₹10 per kW of sanctioned load." },
       { q: "How accurate is this Andhra Pradesh bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. A flat ₹0.06/unit electricity duty is not modelled here. Always confirm against your official APSPDCL bill." },
+      { q: "Does APSPDCL supply electricity to Visakhapatnam?", a: "No. Visakhapatnam is served by APEPDCL (Eastern Power Distribution Company of AP), a separate distribution company. APSPDCL covers Vijayawada, Guntur, Nellore, Kurnool, Kadapa and Prakasam — check which company's name is on your bill." },
+      { q: "How do I check or pay my APSPDCL bill online?", a: "Pay via the official portal at apspdcl.in, using the digital payment section. For queries, call the helpline 1800-425-155333 or the 24×7 power-supply number 1912." },
+      { q: "What is APSPDCL, and how did it form?", a: "APSPDCL was incorporated on 1 April 2000 to distribute power in Krishna, Guntur, Prakasam, Nellore, Chittoor and Kadapa districts. After Andhra Pradesh was bifurcated on 2 June 2014, Anantapur and Kurnool districts were added to its territory." },
     ],
+    billTraps: [
+      { title: "APSPDCL doesn't cover Visakhapatnam", body: "Vizag and the surrounding coastal-north districts are served by a separate company, APEPDCL, not APSPDCL. Confirm which company issues your bill before relying on this calculator." },
+      { title: "The six-slab structure is easy to miscalculate by hand", body: "With six separate telescopic bands from ₹1.90 to ₹9.75/unit, manually estimating an AP bill is error-prone — small mistakes in which units fall in which band compound quickly." },
+      { title: "The ₹0.06/unit electricity duty isn't in this estimate", body: "It's a small flat addition, but consistently omitted when people estimate their bill by hand." },
+    ],
+    aboutDiscom: [
+      "Southern Power Distribution Company of AP Ltd (APSPDCL) was incorporated on 1 April 2000 to distribute electricity in Krishna, Guntur, Prakasam, Nellore, Chittoor and Kadapa districts, headquartered at Tirupati.",
+      "When Andhra Pradesh was bifurcated on 2 June 2014 to create Telangana, Anantapur and Kurnool districts were added to APSPDCL's territory. Coastal-north Andhra Pradesh, including Visakhapatnam, is served by a separate company, APEPDCL (Eastern Power Distribution Company).",
+    ],
+    coverageQA: {
+      q: "Does APSPDCL supply electricity to Visakhapatnam?",
+      a: "No. Visakhapatnam is covered by APEPDCL (Andhra Pradesh Eastern Power Distribution Company), a separate distribution licensee. APSPDCL covers Vijayawada, Guntur, Nellore, Kurnool, Kadapa, Anantapur and Prakasam.",
+    },
+    howToPay: {
+      portalUrl: "https://apspdcl.in/digital_payment.php",
+      portalLabel: "apspdcl.in (official APSPDCL portal)",
+      helpline: "1800-425-155333 / 1912 (24×7)",
+      steps: [
+        "Visit the official APSPDCL digital payment portal",
+        "Enter your Service Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "madhya-pradesh-electricity-bill-calculator",
