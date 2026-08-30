@@ -259,6 +259,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       'Estimate your MSEDCL (Mahavitaran) electricity bill for Maharashtra. Monthly telescopic slabs, 16% electricity duty and fixed charge — with clear caveats on wheeling charge and FAC.',
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['MGVCL', 'BESCOM', 'MPCZ'],
     intro: (
       <>
         Estimate your MSEDCL (Mahavitaran) electricity bill for Maharashtra.
@@ -319,7 +320,118 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
         q: 'Is there a free-units subsidy like Tamil Nadu?',
         a: 'No standing free-units scheme applies to general MSEDCL domestic consumers. A separate relief of up to 10% for households under 100 units/month is being phased in from FY 2026.',
       },
+      {
+        q: 'Why does my MSEDCL bill jump so much between 100 and 101 units?',
+        a: 'MSEDCL’s slab rate nearly doubles at that boundary — ₹3.25/unit up to 100 units, then ₹6.14/unit for 101–300. Only the units above 100 are charged at the higher rate (it’s telescopic, not retroactive), but the jump is one of the steepest of any Indian DISCOM.',
+      },
+      {
+        q: 'Does MSEDCL supply electricity to Mumbai?',
+        a: 'Mostly no. Most of Mumbai city is served by BEST, Tata Power and Adani Electricity Mumbai, not MSEDCL. MSEDCL does supply some Mumbai suburbs, such as Mulund and Bhandup, and the rest of Maharashtra state.',
+      },
+      {
+        q: 'How do I check or pay my MSEDCL bill online?',
+        a: 'Pay via the official MSEDCL Web Self Service portal at wss.mahadiscom.in, or the MahaVitaran app. For queries, call the 24×7 toll-free helpline 1912 or 1800-233-3435.',
+      },
+      {
+        q: 'What is MSEDCL/Mahavitaran, and how is it different from MSEB?',
+        a: 'The Maharashtra State Electricity Board (MSEB) was unbundled on 6 June 2005, under the Electricity Act 2003, into four companies: MSEB Holding Co., Mahagenco (generation), Mahatransco (transmission) and Mahavitaran/MSEDCL (distribution) — the entity that bills domestic consumers today.',
+      },
     ],
+    billTraps: [
+      {
+        title: 'The 100-unit slab cliff',
+        body: (
+          <>
+            Crossing from 100 to 101 units doesn&apos;t just add one unit&apos;s
+            cost — every unit from 101 onward is billed at ₹6.14 instead of
+            ₹3.25, nearly double. It&apos;s telescopic (the first 100 units
+            stay at ₹3.25 regardless), but the marginal jump is steeper than
+            most states&apos;.
+          </>
+        ),
+      },
+      {
+        title: "16% duty — one of India's highest",
+        body: (
+          <>
+            Maharashtra&apos;s 16% electricity duty applies on top of energy,
+            wheeling and fixed charges combined — well above the 0–5% most
+            states charge. It&apos;s often the second-largest line on the bill
+            after the energy charge itself.
+          </>
+        ),
+      },
+      {
+        title: 'Monthly, not bi-monthly',
+        body: (
+          <>
+            If you&apos;re used to a bi-monthly cycle (as in Tamil Nadu or
+            Kerala), note MSEDCL reads meters and bills every month — the
+            units you enter should be one month&apos;s consumption, not two.
+          </>
+        ),
+      },
+      {
+        title: 'Wheeling charge and FAC push the real bill higher',
+        body: (
+          <>
+            This calculator doesn&apos;t yet model MSEDCL&apos;s separate
+            per-unit wheeling charge or its monthly Fuel Adjustment Charge
+            (FAC). Your actual Mahavitaran bill will run somewhat higher than
+            the estimate shown here.
+          </>
+        ),
+      },
+    ],
+    aboutDiscom: [
+      <>
+        The Maharashtra State Electricity Board (MSEB) was unbundled on 6 June
+        2005, under the Electricity Act 2003, into four separate companies:
+        MSEB Holding Company, Maharashtra State Power Generation Co.
+        (Mahagenco), Maharashtra State Electricity Transmission Co.
+        (Mahatransco), and Maharashtra State Electricity Distribution Co. Ltd
+        (MSEDCL) — commonly called Mahavitaran or Mahadiscom — which handles
+        billing and distribution.
+      </>,
+      <>
+        MSEDCL distributes power across almost all of Maharashtra, but not
+        most of Mumbai city itself: BEST, Tata Power and Adani Electricity
+        Mumbai hold the distribution licences there, while MSEDCL covers some
+        Mumbai suburbs (such as Mulund and Bhandup) and the rest of the state.
+      </>,
+    ],
+    coverageQA: {
+      q: 'Does MSEDCL supply electricity to Mumbai?',
+      a: (
+        <>
+          Not for most of the city. Mumbai proper is served by three other
+          licensees — BEST, Tata Power and Adani Electricity Mumbai — while
+          MSEDCL covers the rest of Maharashtra plus a few Mumbai suburbs like
+          Mulund and Bhandup. If your bill doesn&apos;t say MSEDCL or
+          Mahavitaran, check which of the three Mumbai licensees you&apos;re
+          actually on.
+        </>
+      ),
+    },
+    howToPay: {
+      portalUrl: 'https://wss.mahadiscom.in/wss/wss_view_pay_bill.aspx',
+      portalLabel: 'wss.mahadiscom.in (MSEDCL Web Self Service)',
+      helpline: '1912 / 1800-233-3435 (24×7)',
+      steps: [
+        'Visit the MSEDCL Web Self Service portal or open the MahaVitaran app',
+        'Enter your Consumer Number to fetch your current bill',
+        'Verify the amount and pay via UPI, card or net banking',
+        'Download the receipt for your records',
+      ],
+    },
+    thresholdCallout: {
+      title: 'The 100-unit rate cliff',
+      leftLabel: '0–100 units',
+      leftValue: '₹3.25/unit',
+      rightLabel: '101+ units',
+      rightValue: '₹6.14/unit',
+      note: 'Only the units above 100 are billed at the higher rate — the jump is telescopic, not retroactive — but at nearly 2×, it is one of the steepest single-slab jumps of any major Indian DISCOM.',
+    },
   },
 
   // -------------------------------------------------------------- UPPCL
@@ -409,6 +521,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       'Estimate your BESCOM electricity bill for Karnataka. Monthly LT-2a slabs, ₹110/kW fixed charge, ₹0.36/unit surcharge, and the Gruha Jyothi up-to-200-free scheme explained.',
     exampleUnits: 250,
     exampleEligible: false,
+    neighboringDiscoms: ['TNEB', 'KSEB', 'APSPDCL'],
     intro: (
       <>
         Estimate your BESCOM electricity bill for Karnataka. BESCOM bills{' '}
@@ -461,7 +574,116 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
         q: 'Does BESCOM bill monthly?',
         a: 'Yes, BESCOM issues domestic bills every month, and the Gruha Jyothi eligibility is assessed on each month’s consumption.',
       },
+      {
+        q: 'Does BESCOM cover the whole of Bangalore?',
+        a: 'BESCOM covers Bangalore Urban and Bangalore Rural districts plus six neighbouring districts (Chikkaballapura, Kolar, Davanagere, Tumkur, Chitradurga, Ramanagara) — the rest of Karnataka is served by MESCOM, HESCOM, GESCOM and CESC.',
+      },
+      {
+        q: 'How do I check or pay my BESCOM bill online?',
+        a: 'Pay via the official BESCOM website (bescom.co.in) or the BESCOM Mithra app. For outages or billing issues, call the 24×7 helpline 1912.',
+      },
+      {
+        q: "What's the difference between BESCOM and KPTCL?",
+        a: 'KPTCL (Karnataka Power Transmission Corporation) used to handle both transmission and distribution. On 1 June 2002 its distribution business was split into five regional companies, one of which is BESCOM — covering Bangalore and the surrounding districts.',
+      },
+      {
+        q: 'How often is the BESCOM tariff updated?',
+        a: 'KERC reviews rates periodically, with a notable ₹0.36/unit surcharge added from April 2025. We record the source order and a last-verified date on every tariff — visible at the bottom of this page.',
+      },
     ],
+    billTraps: [
+      {
+        title: "Gruha Jyothi isn't a flat 200 free units",
+        body: (
+          <>
+            The free allowance is capped at your household&apos;s own average
+            consumption from the previous year (plus a buffer), up to a
+            maximum of 200 units — not automatically 200 for everyone. Two
+            neighbours with different past usage can have different free
+            allowances.
+          </>
+        ),
+      },
+      {
+        title: 'Exceed your baseline, lose the whole month',
+        body: (
+          <>
+            If you use more than your sanctioned Gruha Jyothi baseline in a
+            given month, the scheme typically withdraws the subsidy for the
+            entire month&apos;s bill — not just the units above the baseline.
+            A one-off high-usage month can cost more than expected.
+          </>
+        ),
+      },
+      {
+        title: 'Fixed charge scales with sanctioned load',
+        body: (
+          <>
+            BESCOM&apos;s ₹110/kW fixed charge is based on your sanctioned
+            load, not a flat per-connection fee. A higher sanctioned load
+            (useful for running an AC or larger appliances) raises the fixed
+            charge regardless of how many units you actually use.
+          </>
+        ),
+      },
+      {
+        title: 'The ₹0.36 KERC surcharge is separate from the slab rate',
+        body: (
+          <>
+            Added from April 2025, this per-unit surcharge sits on top of the
+            published slab rates and applies to every consumer category — it
+            won&apos;t appear as a &ldquo;slab&rdquo; on your bill but does add
+            to the total.
+          </>
+        ),
+      },
+    ],
+    aboutDiscom: [
+      <>
+        BESCOM (Bangalore Electricity Supply Company Ltd) was formed on 1 June
+        2002, when the Karnataka Power Transmission Corporation Ltd
+        (KPTCL)&apos;s distribution business was split into five regional
+        companies — BESCOM, MESCOM, HESCOM, GESCOM and CESC — while KPTCL
+        retained transmission.
+      </>,
+      <>
+        BESCOM&apos;s territory covers Bangalore Urban and Bangalore Rural
+        districts plus six neighbouring districts (Chikkaballapura, Kolar,
+        Davanagere, Tumkur, Chitradurga and Ramanagara) — a wider area than
+        Bangalore city alone.
+      </>,
+    ],
+    coverageQA: {
+      q: 'Does BESCOM supply all of Bangalore city?',
+      a: (
+        <>
+          Yes for Bangalore itself, but BESCOM&apos;s territory extends well
+          beyond the city — it covers eight districts in total. If your
+          connection is outside Bangalore Urban/Rural (for example in
+          Mangalore, Hubli or Gulbarga), you&apos;re more likely served by
+          MESCOM, HESCOM or GESCOM instead.
+        </>
+      ),
+    },
+    howToPay: {
+      portalUrl: 'https://bescom.co.in',
+      portalLabel: 'bescom.co.in (official BESCOM website)',
+      helpline: '1912 (24×7)',
+      steps: [
+        'Visit bescom.co.in or open the BESCOM Mithra app',
+        'Enter your Account ID (RR Number) to view your current bill',
+        'Verify the amount and pay via UPI, card or net banking',
+        'Save the digital receipt for your records',
+      ],
+    },
+    thresholdCallout: {
+      title: 'The Gruha Jyothi baseline rule',
+      leftLabel: 'Within your baseline',
+      leftValue: 'Free (up to 200u)',
+      rightLabel: 'Exceed your baseline',
+      rightValue: 'Full bill for the month',
+      note: 'Your free allowance is capped at your own past average consumption, not a flat 200 units. Cross your sanctioned baseline in any month and the subsidy is typically withdrawn for that entire month, not just the excess units.',
+    },
   },
 
   // -------------------------------------------------------------- KSEB
@@ -476,6 +698,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       'Estimate your KSEB electricity bill for Kerala. Bi-monthly billing, telescopic slabs up to 250 units/month, and a clear explanation of the non-telescopic cliff above 250 units.',
     exampleUnits: 300,
     exampleEligible: false,
+    neighboringDiscoms: ['TNEB', 'BESCOM', 'APSPDCL'],
     intro: (
       <>
         Estimate your KSEB electricity bill for Kerala. KSEB bills domestic
@@ -538,7 +761,101 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
         q: 'Is there an electricity duty in Kerala?',
         a: 'Yes, a 5% electricity duty applies on the energy charge, along with a per-month fixed charge billed bi-monthly.',
       },
+      {
+        q: 'Does KSEB supply electricity to all of Kerala?',
+        a: 'Almost all — KSEB Limited (KSEBL) covers the entire state except the Thrissur Municipal Corporation area, the Munnar (Kannan Devan Hills) area, and a handful of small industrial-park licensees, which have their own separate distribution licensees.',
+      },
+      {
+        q: 'How do I check or pay my KSEB bill online?',
+        a: 'Pay via the official KSEB Web Self Service portal at wss.kseb.in, or the KSEB Mobile App. For queries or outages, call the 24×7 helpline 1912 or 0471-2555544.',
+      },
+      {
+        q: "What's the difference between KSEB and KSEB Limited (KSEBL)?",
+        a: 'The original Kerala State Electricity Board (KSEB), formed in 1957, was converted into a company — Kerala State Electricity Board Limited (KSEBL) — incorporated in January 2011 and operational from 1 November 2013. "KSEB" is still the everyday name people use.',
+      },
     ],
+    billTraps: [
+      {
+        title: 'The 250-unit cliff is the single biggest trap',
+        body: (
+          <>
+            Below a 250 units/month average, KSEB charges telescopically. The
+            moment your average crosses 250, your{' '}
+            <strong>entire</strong> bi-monthly consumption is re-billed at a
+            single higher non-telescopic rate — not just the units above 250.
+            This calculator only models the telescopic range and is not
+            accurate above it.
+          </>
+        ),
+      },
+      {
+        title: 'Bi-monthly bill, monthly-average trigger',
+        body: (
+          <>
+            Because the 250-unit threshold is assessed on your monthly
+            average (bi-monthly total ÷ 2), a 501-unit bi-monthly bill
+            crosses the cliff even though &ldquo;501&rdquo; doesn&apos;t look
+            close to &ldquo;250&rdquo; at first glance.
+          </>
+        ),
+      },
+      {
+        title: 'Fixed charge depends on phase',
+        body: (
+          <>
+            KSEB&apos;s fixed charge is ₹80 for single-phase and ₹220 for
+            three-phase connections per bi-monthly cycle — a similar
+            structure to Tamil Nadu&apos;s, but at different amounts.
+          </>
+        ),
+      },
+    ],
+    aboutDiscom: [
+      <>
+        The Kerala State Electricity Board (KSEB) began functioning on 31
+        March 1957. Under the Electricity Act 2003, it was converted into a
+        company — Kerala State Electricity Board Limited (KSEBL) —
+        incorporated on 14 January 2011 and operating independently from 1
+        November 2013. &ldquo;KSEB&rdquo; remains the name most commonly used
+        for bills and customer service.
+      </>,
+      <>
+        KSEB distributes power across nearly all of Kerala, with a few
+        exceptions: the Thrissur Municipal Corporation area, the Munnar
+        (Kannan Devan Hills) area, and several small industrial-park zones
+        are served by separate, smaller licensees.
+      </>,
+    ],
+    coverageQA: {
+      q: 'Does KSEB supply electricity to Kochi and Thiruvananthapuram?',
+      a: (
+        <>
+          Yes — KSEB covers both Kochi and Thiruvananthapuram (Trivandrum)
+          along with the rest of Kerala. The notable exceptions are the
+          Thrissur Municipal Corporation area and Munnar (Kannan Devan
+          Hills), which have their own separate distribution licensees.
+        </>
+      ),
+    },
+    howToPay: {
+      portalUrl: 'https://wss.kseb.in/selfservices/quickpay',
+      portalLabel: 'wss.kseb.in (KSEB Web Self Service)',
+      helpline: '1912 / 0471-2555544 (24×7)',
+      steps: [
+        'Visit the KSEB Web Self Service portal or open the KSEB Mobile App',
+        'Enter your Consumer Number to fetch your current bill',
+        'Verify the amount and pay via UPI, card or net banking',
+        'Save the payment confirmation for your records',
+      ],
+    },
+    thresholdCallout: {
+      title: 'The 250-unit non-telescopic cliff',
+      leftLabel: '≤250 units/month avg',
+      leftValue: 'Telescopic (slab-wise)',
+      rightLabel: '>250 units/month avg',
+      rightValue: 'Flat rate on ALL units',
+      note: 'Cross a monthly average of 250 units and KSEB switches your entire bi-monthly consumption to a single higher non-telescopic rate — not just the units above 250. This is the single most misunderstood rule on a KSEB bill.',
+    },
   },
 
   // -------------------------------------------------------------- WBSEDCL
