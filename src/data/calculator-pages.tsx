@@ -1920,6 +1920,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Puducherry electricity bill (Puducherry Electricity Department (PED)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Puducherry shields the first slab from hikes and gives BPL homes 50 free units.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['TNEB', 'APSPDCL', 'KSEB'],
     intro: "Estimate your Puducherry Electricity Department (PED) electricity bill for Puducherry. Puducherry shields the first slab from hikes and gives BPL homes 50 free units. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Government-absorbed slab-1 hike", body: "Puducherry’s government absorbs rate increases on the first 0–100 unit slab, keeping it at ₹2.90/unit, and continues to give BPL families 50 free units a month. A 5% electricity duty applies." },
@@ -1929,7 +1930,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Puducherry electricity tariff telescopic?", a: "Yes. Puducherry charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Puducherry domestic connection?", a: "The fixed charge is ₹25 single-phase / ₹75 three-phase." },
       { q: "How accurate is this Puducherry bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official PED-PY bill." },
+      { q: "Does PED supply electricity to Karaikal, Yanam and Mahe, not just Puducherry town?", a: "Yes. PED is a deemed licensee under the Electricity Act 2003 for the whole Union Territory, and supplies all four regions — Puducherry, Karaikal, Yanam and Mahe — even though they are physically separate enclaves surrounded by Tamil Nadu, Andhra Pradesh and Kerala respectively." },
+      { q: "How do I check or pay my PED electricity bill online?", a: "Pay via the official portal at pedservices.py.gov.in using net banking, card, UPI or BBPS. For queries, call the 24×7 toll-free helpline 1800-425-1912, or the short code 1912." },
+      { q: "What is PED, and how did it form?", a: "The Electricity Department, Government of Puducherry (PED) is a deemed licensee under Section 14 of the Electricity Act 2003, operated directly by the UT government rather than as a separate corporation. All towns and villages in the Union Territory were electrified as early as 1972." },
     ],
+    billTraps: [
+      { title: "The 50 free units are BPL-only", body: "Puducherry's 50-free-units scheme applies only to BPL (Below Poverty Line) households, not to every domestic consumer — check your ration-card-linked eligibility rather than assuming it applies." },
+      { title: "Karaikal, Yanam and Mahe aren't separate DISCOMs", body: "Because these three regions are geographically detached from Puducherry town and sit inside other states, some assume they're billed by Tamil Nadu, Andhra Pradesh or Kerala utilities. All four regions are actually billed by PED under one UT-wide tariff." },
+      { title: "Fixed charge depends on phase, not category", body: "The ₹25 vs ₹75 fixed charge split is based on whether your connection is single-phase or three-phase, not on your consumption or connection category — check your meter type if your fixed charge looks unexpected." },
+    ],
+    aboutDiscom: [
+      "The Electricity Department, Government of Puducherry (PED) is a deemed licensee under Section 14 of the Electricity Act, 2003, for transmission, distribution and retail supply across the Union Territory. Unlike most Indian states, Puducherry has not corporatized its power utility into a separate company — PED operates directly as a government department.",
+      "PED supplies all four regions of the Union Territory — Puducherry, Karaikal, Yanam and Mahe — despite them being non-contiguous enclaves surrounded by Tamil Nadu, Andhra Pradesh and Kerala. All towns and villages in the UT were fully electrified as early as 1972.",
+    ],
+    coverageQA: {
+      q: "Does PED supply electricity to Karaikal, Yanam and Mahe as well as Puducherry town?",
+      a: "Yes. PED is the sole electricity supplier across all four regions of the Union Territory — Puducherry, Karaikal, Yanam and Mahe — even though Karaikal and Yanam sit inside Tamil Nadu and Andhra Pradesh respectively, and Mahe sits inside Kerala.",
+    },
+    howToPay: {
+      portalUrl: "https://pedservices.py.gov.in/",
+      portalLabel: "pedservices.py.gov.in (official PED portal)",
+      helpline: "1800-425-1912 / 1912 (24×7 toll-free)",
+      steps: [
+        "Visit the official PED services portal",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via net banking, card, UPI or BBPS",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "jammu-and-kashmir-electricity-bill-calculator",
@@ -1940,6 +1968,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Jammu & Kashmir electricity bill (Jammu Power Distribution Corporation Ltd (JPDCL, JERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. J&K charges a heavily subsidised ₹2.45/unit up to 200 units.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['HPSEBL', 'PSPCL', 'LPDD'],
     intro: "Estimate your Jammu Power Distribution Corporation Ltd (JPDCL, JERC) electricity bill for Jammu & Kashmir. J&K charges a heavily subsidised ₹2.45/unit up to 200 units. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Heavily subsidised low tariffs", body: "Jammu & Kashmir runs some of India’s most subsidised domestic tariffs — ₹2.45/unit up to 200 units — even though the UT buys power far dearer than it sells it. JPDCL (Jammu) and KPDCL (Kashmir) share the JERC schedule." },
@@ -1949,7 +1978,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Jammu & Kashmir electricity tariff telescopic?", a: "Yes. Jammu & Kashmir charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Jammu & Kashmir domestic connection?", a: "The fixed charge is ₹10 per kW of sanctioned load." },
       { q: "How accurate is this Jammu & Kashmir bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official JPDCL bill." },
+      { q: "Does JPDCL supply electricity to Srinagar and the Kashmir valley?", a: "No. JPDCL distributes power only in the 10 districts of Jammu division — Jammu, Samba, Kathua, Kishtwar, Doda, Reasi, Ramban, Poonch, Rajouri and Udhampur. Srinagar and the Kashmir valley are served by a separate company, KPDCL, though both are billed under the same JERC-approved domestic tariff." },
+      { q: "How do I check or pay my JPDCL bill online?", a: "Pay via the new JPDCL web self-service portal at wss.jpdcl.co.in, or the Bill Suvidha mobile app. For queries, call the 24×7 helpline 1800-180-7183 or 1912." },
+      { q: "What is JPDCL, and how did it form?", a: "JPDCL was incorporated on 30 October 2019, after J&K's State Administrative Council approved unbundling the Power Development Department into five companies — JKPCL, JKPTCL, JPDCL, KPDCL and a Ladakh entity — on 23 October 2019, ahead of J&K's reorganisation into a Union Territory." },
     ],
+    billTraps: [
+      { title: "This page models JPDCL (Jammu division), not KPDCL", body: "If your connection is in Srinagar or elsewhere in the Kashmir valley, your supplier is KPDCL, not JPDCL — check your bill's issuing company. Both are usually approved under the same JERC domestic tariff, but confirm your own slab rates rather than assuming." },
+      { title: "Fixed charge is load-based, not phase-based", body: "Unlike many neighbouring states that charge a flat single-phase/three-phase fixed amount, J&K charges ₹10 per kW of your sanctioned load — a higher-load connection carries a proportionally higher fixed charge." },
+      { title: "Deeply subsidised rates don't reflect the real cost of supply", body: "J&K's domestic tariff of ₹2.45–4.60/unit is well below the actual cost of power procurement, with the gap covered by UT subsidy — a useful fact if you're comparing J&K's low bill to a neighbouring state and wondering why the difference is so large." },
+    ],
+    aboutDiscom: [
+      "J&K's Power Development Department was unbundled into five companies — J&K Power Corporation Ltd (JKPCL), J&K Power Transmission Corporation Ltd (JKPTCL), Jammu Power Distribution Corporation Ltd (JPDCL), Kashmir Power Distribution Corporation Ltd (KPDCL) and a Ladakh power entity — following State Administrative Council approval on 23 October 2019. JPDCL itself was incorporated a week later, on 30 October 2019.",
+      "JPDCL distributes electricity across 10 districts of the Jammu division: Jammu, Samba, Kathua, Kishtwar, Doda, Reasi, Ramban, Poonch, Rajouri and Udhampur. The Kashmir valley is served separately by KPDCL, and Ladakh — split off as its own Union Territory in 2019 — is now served by the Ladakh Power Development Department (LPDD).",
+    ],
+    coverageQA: {
+      q: "Does JPDCL supply electricity to Srinagar or the Kashmir valley?",
+      a: "No. JPDCL covers only the 10 districts of Jammu division. Srinagar and the rest of the Kashmir valley are served by a separate distribution company, KPDCL — both operate under the same JERC-approved tariff framework but are billed by different entities.",
+    },
+    howToPay: {
+      portalUrl: "https://wss.jpdcl.co.in/",
+      portalLabel: "wss.jpdcl.co.in (official JPDCL web self-service portal)",
+      helpline: "1800-180-7183 / 1912 (24×7)",
+      steps: [
+        "Visit the JPDCL web self-service portal or open the Bill Suvidha app",
+        "Enter your Consumer Account Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "tripura-electricity-bill-calculator",
@@ -1960,6 +2016,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Tripura electricity bill (Tripura State Electricity Corporation Ltd (TSECL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Tripura makes the first 100 domestic units free.",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['APDCL', 'PED-MZ'],
     intro: "Estimate your Tripura State Electricity Corporation Ltd (TSECL) electricity bill for Tripura. Tripura makes the first 100 domestic units free. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "First 100 units free", body: "Tripura’s revised TSERC tariff makes the first 100 units completely free for domestic consumers, then charges ₹4.00 and ₹6.00/unit, with a low ₹16/kW fixed charge and a ₹0.20/unit fuel adjustment." },
@@ -1969,7 +2026,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Tripura electricity tariff telescopic?", a: "Yes. Tripura charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Tripura domestic connection?", a: "The fixed charge is ₹16 per kW of sanctioned load." },
       { q: "How accurate is this Tripura bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official TSECL bill." },
+      { q: "Does TSECL supply electricity across all of Tripura?", a: "Yes. TSECL is the sole distribution licensee for the entire state, serving around 9.33 lakh consumers — there is no regional split like in some neighbouring states." },
+      { q: "How do I check or pay my TSECL bill online?", a: "Pay via the official portal at tsecl.in or the Tripura Power mobile app. For queries, call the 24×7 toll-free helpline 1912, or the local number 0381-235-3502." },
+      { q: "What is TSECL, and how did it form?", a: "TSECL was incorporated on 9 June 2004 and began operations on 1 January 2005, taking over generation, transmission and distribution from Tripura's erstwhile state Power Department. Generation was later hived off into Tripura Power Generation Ltd (TPGL) in January 2015, and transmission into Tripura Power Transmission Ltd (TPTL) on 19 January 2023 — TSECL today focuses on distribution and retail supply." },
     ],
+    billTraps: [
+      { title: "The first 100 units are always free, not a one-time offer", body: "Every domestic bill gets the first 100 units at ₹0, regardless of how much you use above that — at 150 units, only the 50 units above 100 are charged, exactly as the telescopic structure works for any other slab." },
+      { title: "TSECL bills you, but no longer generates your power", body: "Since 2015 and 2023, generation and transmission have been run by separate sister companies (TPGL and TPTL). TSECL is now purely the retail distribution and billing entity, though your bill still says TSECL." },
+      { title: "The ₹0.20/unit fuel surcharge is easy to miss", body: "On top of the slab rates, a small fuel and variable-cost adjustment of ₹0.20/unit applies to your whole consumption — it's a modest amount but not shown in the headline slab rates." },
+    ],
+    aboutDiscom: [
+      "Tripura State Electricity Corporation Ltd (TSECL) was incorporated on 9 June 2004 and commenced operations on 1 January 2005, taking over the assets and network of Tripura's erstwhile state Power Department as the UT's deemed licensee for generation, transmission and distribution.",
+      "Generation was later split into a separate company, Tripura Power Generation Ltd (TPGL), in January 2015, and transmission into Tripura Power Transmission Ltd (TPTL) on 19 January 2023 — TSECL today handles distribution and retail billing for around 9.33 lakh consumers statewide.",
+    ],
+    coverageQA: {
+      q: "Does TSECL supply electricity across all of Tripura?",
+      a: "Yes. TSECL is the single, statewide distribution licensee for Tripura, serving roughly 9.33 lakh consumers with no regional or district-level split.",
+    },
+    howToPay: {
+      portalUrl: "https://tsecl.in/",
+      portalLabel: "tsecl.in (official TSECL portal)",
+      helpline: "1912 (24×7 toll-free) / 0381-235-3502 (local)",
+      steps: [
+        "Visit the official TSECL website or open the Tripura Power app",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "sikkim-electricity-bill-calculator",
@@ -1980,6 +2064,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Sikkim electricity bill (Energy & Power Department, Sikkim (SERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Sikkim has among India’s lowest domestic tariffs (from ₹1.10/unit).",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['WBSEDCL', 'APDCL'],
     intro: "Estimate your Energy & Power Department, Sikkim (SERC) electricity bill for Sikkim. Sikkim has among India’s lowest domestic tariffs (from ₹1.10/unit). Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Among the lowest tariffs in India", body: "Sikkim has some of the cheapest domestic power in the country — a ₹1.10/unit lifeline for the first 50 units, rising only to ₹4.10 above 200 — with a phase-based fixed charge of ₹50 (single) or ₹200 (three-phase)." },
@@ -1989,7 +2074,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Sikkim electricity tariff telescopic?", a: "Yes. Sikkim charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Sikkim domestic connection?", a: "The fixed charge is ₹50 single-phase / ₹200 three-phase." },
       { q: "How accurate is this Sikkim bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official EPD-SK bill." },
+      { q: "Does EPD supply electricity across all of Sikkim, including remote areas?", a: "Yes. EPD's transmission and distribution network reaches nearly every household across Sikkim's mountainous terrain, though remote hamlets were connected many decades after the Gangtok area." },
+      { q: "How do I check or pay my Sikkim EPD electricity bill online?", a: "Pay via the Consumer Self-Service portal at selfservice.powersikkim.in, or the bill payment portal at payment.powersikkim.in using your Contract Account Number. PhonePe and RTGS/NEFT are also supported." },
+      { q: "What is EPD, and how did Sikkim's power sector begin?", a: "Sikkim's power sector traces back to 27 May 1927, when a 50 kW micro-hydel plant was commissioned at Ranikhola near Gangtok. Growth accelerated after Sikkim joined the Indian Union on 16 May 1975 as its 22nd state. Electricity is supplied directly by the state government's Energy & Power Department (EPD), which — like Puducherry's PED — has not been corporatized into a separate company." },
     ],
+    billTraps: [
+      { title: "Each slab step adds roughly ₹1/unit", body: "Sikkim's rate climbs from ₹1.10 to ₹2.10 to ₹3.10 to ₹4.10/unit in fairly even ₹1 steps — cheap at low consumption, but your average rate rises quickly as you cross 50, 100 and 200 units, faster than the flat-looking headline rate suggests." },
+      { title: "EPD is a government department, not a corporation", body: "Like Puducherry, Sikkim has not corporatized its power utility — EPD operates as a direct state government department. Billing and support channels can differ from the corporatized DISCOM model used in most other states." },
+      { title: "Fixed charge is phase-based, not load-based", body: "Sikkim charges a flat ₹50 (single-phase) or ₹200 (three-phase) fixed charge regardless of your sanctioned load in kW — unlike neighbouring northeast states such as Tripura and Manipur, which charge per kW." },
+    ],
+    aboutDiscom: [
+      "Sikkim's power sector dates to 27 May 1927, when a 50 kW micro-hydel plant was commissioned at Ranikhola near Gangtok — one of the earliest hydro installations in the eastern Himalayas. A diesel power house followed in Gangtok in 1957.",
+      "After Sikkim joined the Indian Union on 16 May 1975 as its 22nd state, the power network expanded substantially to reach remote mountainous areas. Electricity is supplied directly by the state government's Energy & Power Department (EPD) — Sikkim has not corporatized its distribution business into a separate company.",
+    ],
+    coverageQA: {
+      q: "Does EPD supply electricity across all of Sikkim, including remote mountain areas?",
+      a: "Yes. EPD's transmission and distribution network extends across nearly the entire state, including remote and mountainous districts, though full connectivity to the most remote hamlets took decades longer than in and around Gangtok.",
+    },
+    howToPay: {
+      portalUrl: "https://selfservice.powersikkim.in/",
+      portalLabel: "selfservice.powersikkim.in (official EPD self-service portal)",
+      helpline: "+91 89185 99879 (payment status) / EPD Customer Care Centre, Gangtok",
+      steps: [
+        "Visit the EPD Consumer Self-Service or payment portal",
+        "Enter your Contract Account Number to fetch your current bill",
+        "Verify the amount and pay via PhonePe, RTGS/NEFT or the listed options",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "meghalaya-electricity-bill-calculator",
