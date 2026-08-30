@@ -1612,6 +1612,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Goa electricity bill (Goa Electricity Department (GED, JERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Goa’s first 100 units are cheap (₹2.10) but there is no free slab.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['MSEDCL', 'MGVCL', 'BESCOM'],
     intro: "Estimate your Goa Electricity Department (GED, JERC) electricity bill for Goa. Goa’s first 100 units are cheap (₹2.10) but there is no free slab. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Cheap first slab, but no free units", body: "Goa has one of the cheapest opening slabs in India (₹2.10 for the first 100 units) but, unlike Delhi or Punjab, offers no free-unit slab — you are billed from the very first unit. A five-tier telescopic structure applies." },
@@ -1621,7 +1622,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Goa electricity tariff telescopic?", a: "Yes. Goa charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Goa domestic connection?", a: "The fixed charge is ₹25 per kW of sanctioned load." },
       { q: "How accurate is this Goa bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. A ₹0.30/unit combined electricity + public-lighting duty is not modelled here. Always confirm against your official GED bill." },
+      { q: "Does GED supply electricity to all of Goa?", a: "Yes. The Goa Electricity Department is a direct government department and the sole licensee for generation, transmission and distribution across the entire state — including Panaji, Margao and Vasco — unlike most Indian states, which have corporatised or split their electricity boards." },
+      { q: "How do I check or pay my GED bill online?", a: "Pay via the official portal at goaelectricity.gov.in (Pay Online section), or through the Goa Online e-bill service. For queries, call the 24×7 helpline 1912." },
+      { q: "What is GED, and how long has it existed?", a: "The Goa Electricity Department (GED) was established in 1963 and has remained a government department ever since — it was never corporatised or privatised, making it one of the last true state \"electricity boards\" in India." },
     ],
+    billTraps: [
+      { title: "No free-unit slab, unlike Delhi or Punjab", body: "Goa's first 100 units are cheap at ₹2.10/unit, but there is no free-unit allowance — you're billed from the very first unit, unlike states that zero out a starting block." },
+      { title: "The combined duty isn't in this estimate", body: "A ₹0.30/unit combined electricity and public-lighting duty applies on top of the slab rates and is not modelled here, so your real GED bill will run a little higher." },
+      { title: "GED is a government department, not a company", body: "Unlike most states, Goa's electricity supply is run directly by a government department rather than a corporatised discom — billing processes and portals may look different from states you're used to." },
+    ],
+    aboutDiscom: [
+      "The Goa Electricity Department (GED) was established in 1963 and remains a direct department of the Government of Goa — it was never unbundled or corporatised into a separate distribution company, unlike almost every other Indian state.",
+      "GED is the sole licensee for generation, transmission and distribution across the entire state, covering Panaji, Margao, Vasco and all other areas of Goa.",
+    ],
+    coverageQA: {
+      q: "Does GED supply electricity to all of Goa?",
+      a: "Yes. GED is the single, statewide electricity provider for Goa, covering Panaji, Margao, Vasco and every other part of the state — there is no regional split or separate discom to check.",
+    },
+    howToPay: {
+      portalUrl: "https://www.goaelectricity.gov.in/pay-online/",
+      portalLabel: "goaelectricity.gov.in (official GED portal)",
+      helpline: "1912 (24×7)",
+      steps: [
+        "Visit the official GED website's Pay Online section",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "bihar-electricity-bill-calculator",
@@ -1632,6 +1660,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Bihar electricity bill (South Bihar Power Distribution Co. Ltd (SBPDCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Bihar charges a near-flat domestic rate (₹7.42–₹7.96/unit).",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['JBVNL', 'WBSEDCL', 'UPPCL'],
     intro: "Estimate your South Bihar Power Distribution Co. Ltd (SBPDCL) electricity bill for Bihar. Bihar charges a near-flat domestic rate (₹7.42–₹7.96/unit). Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A near-flat, non-telescopic rate", body: "Unlike most states, Bihar’s domestic tariff is essentially flat — ₹7.42/unit up to 50 units and ₹7.96/unit beyond, among the higher base rates in the country. NBPDCL and SBPDCL charge the same, and BPL homes fall under the separate Kutir Jyoti category." },
@@ -1641,7 +1670,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Bihar electricity tariff telescopic?", a: "Yes. Bihar charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Bihar domestic connection?", a: "The fixed charge is ₹40 per kW of sanctioned load." },
       { q: "How accurate is this Bihar bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official SBPDCL bill." },
+      { q: "Does SBPDCL supply electricity to Patna?", a: "Yes. Patna is one of SBPDCL's core circles, part of its 17-district south Bihar territory (also including Nalanda, Gaya, Bhagalpur, Bhojpur and Rohtas). North Bihar — including Muzaffarpur, Darbhanga and Purnia — is served by the separate North Bihar Power Distribution Company (NBPDCL), on the same tariff." },
+      { q: "How do I check or pay my SBPDCL bill online?", a: "Pay via the official portal at sbpdcl.co.in. For queries, call the 24×7 toll-free helpline 1912." },
+      { q: "What is SBPDCL, and how did it form?", a: "The Bihar State Electricity Board (BSEB) was unbundled on 1 November 2012, under Section 14 of the Electricity Act 2003, into five companies — including two regional distribution companies, South Bihar Power Distribution Company Ltd (SBPDCL) and North Bihar Power Distribution Company Ltd (NBPDCL)." },
     ],
+    billTraps: [
+      { title: "SBPDCL covers only south Bihar", body: "If your connection is in north Bihar (Muzaffarpur, Darbhanga, Purnia and similar), your actual discom is NBPDCL, not SBPDCL — both share the same tariff, but bill separately." },
+      { title: "The rate is nearly flat, not steeply telescopic", body: "Unlike states with dramatic slab jumps, Bihar's rate barely changes between the first 50 units (₹7.42) and everything above (₹7.96) — the main cost driver here is the high base rate itself, not which slab you're in." },
+      { title: "Kutir Jyoti is a separate, lower category", body: "BPL households fall under the Kutir Jyoti scheme with different (lower) rates — this calculator uses the standard domestic (DS-I) tariff, not Kutir Jyoti." },
+    ],
+    aboutDiscom: [
+      "The Bihar State Electricity Board (BSEB) was unbundled on 1 November 2012, under Section 14 of the Electricity Act, 2003, into five successor companies including two regional distribution companies split by geography.",
+      "South Bihar Power Distribution Company Ltd (SBPDCL) serves 17 southern districts including Patna, Nalanda, Gaya and Bhagalpur, covering over 50 lakh consumers. North Bihar Power Distribution Company Ltd (NBPDCL) covers the northern districts on the same BSEB-successor tariff.",
+    ],
+    coverageQA: {
+      q: "Does SBPDCL supply electricity to Patna?",
+      a: "Yes. Patna is part of SBPDCL's south Bihar territory. If your connection is in a northern district — such as Muzaffarpur, Darbhanga or Purnia — your discom is NBPDCL instead, on the same tariff shown here.",
+    },
+    howToPay: {
+      portalUrl: "https://sbpdcl.co.in/",
+      portalLabel: "sbpdcl.co.in (official SBPDCL portal)",
+      helpline: "1912 (24×7)",
+      steps: [
+        "Visit the official SBPDCL website",
+        "Enter your Consumer ID/Account number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "odisha-electricity-bill-calculator",
@@ -1652,6 +1708,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Odisha electricity bill (TP Central Odisha Distribution Ltd (TPCODL, OERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Odisha uses telescopic slabs with a low flat ₹25 fixed charge.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['WBSEDCL', 'CSPDCL', 'JBVNL'],
     intro: "Estimate your TP Central Odisha Distribution Ltd (TPCODL, OERC) electricity bill for Odisha. Odisha uses telescopic slabs with a low flat ₹25 fixed charge. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Low, flat fixed charge", body: "Odisha keeps the domestic fixed charge low and flat at about ₹25 a month regardless of load, with telescopic energy slabs. The four Tata Power distribution companies follow the same OERC schedule." },
@@ -1661,7 +1718,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Odisha electricity tariff telescopic?", a: "Yes. Odisha charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Odisha domestic connection?", a: "The fixed charge is a flat ₹25/month." },
       { q: "How accurate is this Odisha bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. A ₹0.06/unit electricity duty is not modelled here. Always confirm against your official TPCODL bill." },
+      { q: "Does TPCODL supply electricity to Bhubaneswar and Cuttack?", a: "Yes. TPCODL holds the OERC licence for the Bhubaneswar (Circles I & II), Cuttack, Paradeep and Dhenkanal distribution circles. The rest of Odisha is covered by three sister companies — TPWODL, TPSODL and TPNODL — all under the same tariff." },
+      { q: "How do I check or pay my TPCODL bill online?", a: "Pay via the official portal at tpcentralodisha.com. For queries, call the 24×7 helpline 1912 or 1800-345-7122." },
+      { q: "What is TPCODL, and how did it form?", a: "TPCODL was incorporated on 6 April 2020 as a subsidiary of the state-owned GRIDCO to run the former Central Electricity Supply Utility (CESU). Tata Power won a public-private partnership bid and acquired a 51% stake for ₹178.5 crore, with GRIDCO retaining 49% — making it one of India's few privatised state discoms." },
     ],
+    billTraps: [
+      { title: "TPCODL is one of four Odisha discoms", body: "TPCODL covers Bhubaneswar, Cuttack, Paradeep and Dhenkanal specifically. The rest of the state is split between TPWODL, TPSODL and TPNODL — all Tata Power-managed, all on the same OERC tariff, but billed separately." },
+      { title: "It's a public-private partnership, not a pure private company", body: "GRIDCO (the state government) still holds 49% of TPCODL, so it isn't a fully private utility — some processes and complaint-escalation paths may still route through GRIDCO or OERC." },
+      { title: "Electricity duty isn't in this estimate", body: "A ₹0.06/unit electricity duty applies on top of the slab charges and is not modelled here." },
+    ],
+    aboutDiscom: [
+      "TP Central Odisha Distribution Ltd (TPCODL) was incorporated on 6 April 2020 as a wholly owned subsidiary of the state-owned GRIDCO, taking over the former Central Electricity Supply Utility (CESU). Tata Power won a public-private partnership bid for all four Odisha discoms and acquired a 51% stake in TPCODL for ₹178.5 crore, with GRIDCO retaining the remaining 49%.",
+      "TPCODL holds the 25-year OERC distribution licence (effective 1 June 2020) for the Bhubaneswar (Circles I & II), Cuttack, Paradeep and Dhenkanal circles. The rest of Odisha is served by three sister Tata Power-managed companies: TPWODL (west), TPSODL (south) and TPNODL (north).",
+    ],
+    coverageQA: {
+      q: "Does TPCODL supply electricity to Bhubaneswar?",
+      a: "Yes. TPCODL holds the distribution licence for Bhubaneswar, Cuttack, Paradeep and Dhenkanal. Other parts of Odisha are covered by TPWODL, TPSODL or TPNODL — all Tata Power-managed and on the same OERC tariff, but billed separately.",
+    },
+    howToPay: {
+      portalUrl: "https://portal.tpcentralodisha.com:8079/ConsumerPortal/",
+      portalLabel: "tpcentralodisha.com (official TPCODL Consumer Portal)",
+      helpline: "1912 / 1800-345-7122 (24×7)",
+      steps: [
+        "Visit the official TPCODL Consumer Portal",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "assam-electricity-bill-calculator",
@@ -1672,6 +1756,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Assam electricity bill (Assam Power Distribution Company Ltd (APDCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Assam gives a ₹2.00/unit lifeline rate for the first 30 units.",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['WBSEDCL', 'MePDCL', 'TSECL'],
     intro: "Estimate your Assam Power Distribution Company Ltd (APDCL) electricity bill for Assam. Assam gives a ₹2.00/unit lifeline rate for the first 30 units. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "A subsidised lifeline first slab", body: "Assam charges just ₹2.00/unit for the first 30 units as a lifeline rate for low-income households, then rises through a telescopic structure to ₹7.60/unit, with a 5% electricity duty on the bill." },
@@ -1681,7 +1766,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Assam electricity tariff telescopic?", a: "Yes. Assam charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Assam domestic connection?", a: "The fixed charge is a flat ₹70/month." },
       { q: "How accurate is this Assam bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official APDCL bill." },
+      { q: "Does APDCL supply electricity to all of Assam?", a: "Yes. APDCL is the sole distribution licensee for the entire state, serving over 33 lakh consumers from Sadiya to Dhubri, including Guwahati — there is no regional split." },
+      { q: "How do I check or pay my APDCL bill online?", a: "Pay via the official portal at apdcl.org. For queries, call the 24×7 toll-free helpline 1912 (within Assam)." },
+      { q: "What is APDCL, and how did it form?", a: "The Assam State Electricity Board (ASEB) was unbundled in December 2004 into five companies — one generation, one transmission and three distribution entities. Assam Power Distribution Company Ltd (APDCL) was incorporated on 23 October 2009 to take over ASEB's distribution business statewide." },
     ],
+    billTraps: [
+      { title: "The lifeline rate only covers the first 30 units", body: "The subsidised ₹2.00/unit rate applies only to the first 30 units of the telescopic structure — consumption above that is billed at the higher standard slabs, up to ₹7.60/unit." },
+      { title: "5% electricity duty applies on top of slabs", body: "Assam's 5% electricity duty is charged on the energy bill in addition to the slab rates and fixed charge, and is easy to miss when estimating by hand." },
+      { title: "APDCL is statewide — no regional discom to check", body: "Unlike Bihar, Odisha or Rajasthan, Assam has a single distribution company for the whole state, so there's no risk of being billed by a different entity." },
+    ],
+    aboutDiscom: [
+      "The Assam State Electricity Board (ASEB) was unbundled in December 2004, as part of state power sector reforms, into one generation company, one transmission company and three distribution companies. Assam Power Distribution Company Ltd (APDCL) was incorporated on 23 October 2009 to consolidate and take over ASEB's distribution business.",
+      "APDCL is the sole distribution licensee for the entire state, serving over 33 lakh consumers from Sadiya in the east to Dhubri in the west, including Guwahati.",
+    ],
+    coverageQA: {
+      q: "Does APDCL supply electricity to Guwahati?",
+      a: "Yes. APDCL is Assam's single, statewide distribution company, covering Guwahati and every other part of the state — there is no regional split to check.",
+    },
+    howToPay: {
+      portalUrl: "https://www.apdcl.org/website/",
+      portalLabel: "apdcl.org (official APDCL portal)",
+      helpline: "1912 (24×7, within Assam)",
+      steps: [
+        "Visit the official APDCL portal",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "jharkhand-electricity-bill-calculator",
