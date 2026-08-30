@@ -1804,6 +1804,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Jharkhand electricity bill (Jharkhand Bijli Vitran Nigam Ltd (JBVNL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Jharkhand charges a flat urban rate but gives up to 200 free units a month.",
     exampleUnits: 150,
     exampleEligible: false,
+    neighboringDiscoms: ['WBSEDCL', 'CSPDCL', 'SBPDCL'],
     intro: "Estimate your Jharkhand Bijli Vitran Nigam Ltd (JBVNL) electricity bill for Jharkhand. Jharkhand charges a flat urban rate but gives up to 200 free units a month. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Flat rate, but 200 units free", body: "Jharkhand charges a flat ₹6.85/unit for urban domestic supply (₹6.70 rural), but around 40 lakh of its ~46 lakh domestic consumers pay nothing because the state provides up to 200 free units per household each month." },
@@ -1813,7 +1814,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Jharkhand electricity tariff telescopic?", a: "Jharkhand uses a flat domestic rate rather than telescopic slabs — every unit is billed at the same rate." },
       { q: "What is the fixed charge for a Jharkhand domestic connection?", a: "The fixed charge is ₹100 per kW of sanctioned load." },
       { q: "How accurate is this Jharkhand bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. Always confirm against your official JBVNL bill." },
+      { q: "Does JBVNL supply electricity to Ranchi and Jamshedpur?", a: "Yes. JBVNL operates seven electric supply areas — Ranchi, Dhanbad, Singhbhum (covering Jamshedpur), Hazaribagh, Giridih, Dumka and Medininagar — reaching essentially all residential and urban consumers across the state, alongside separate arrangements for some large industrial users." },
+      { q: "How do I check or pay my JBVNL bill online?", a: "Pay via the official portal at jbvnl.co.in using Quick Pay, or the JBVNL mobile app. For queries, call the helpline 1912 or 1800-345-6570." },
+      { q: "What is JBVNL, and how did it form?", a: "JBVNL was incorporated on 23 October 2013 and began operations on 6 January 2014, taking over the distribution business of the erstwhile Jharkhand State Electricity Board (JSEB), which had itself been formed when Jharkhand split from Bihar in 2000." },
     ],
+    billTraps: [
+      { title: "It's a flat rate, so slab position doesn't matter", body: "Unlike most states, every unit is billed at the same ₹6.85/unit (urban) regardless of how much you use — there's no telescopic discount for staying in a lower band, since there is no band." },
+      { title: "The 200-free-units benefit isn't universal", body: "Around 40 lakh of JBVNL's ~46 lakh domestic consumers get up to 200 free units a month, but this depends on scheme eligibility — check your account status rather than assuming it applies." },
+      { title: "Rural rates are cheaper and not modelled here", body: "This calculator uses the urban (DS-II) rate of ₹6.85/unit. Rural domestic (DS-I) connections are billed at a lower ₹6.70/unit with a different fixed charge, which isn't reflected in this estimate." },
+    ],
+    aboutDiscom: [
+      "Jharkhand Bijli Vitran Nigam Ltd (JBVNL) was incorporated on 23 October 2013 and commenced operations on 6 January 2014, taking over the distribution business of the erstwhile Jharkhand State Electricity Board (JSEB) — itself formed when Jharkhand was carved out of Bihar in 2000.",
+      "JBVNL operates through seven electric supply areas — Ranchi, Dhanbad, Singhbhum, Hazaribagh, Giridih, Dumka and Medininagar — covering cities including Ranchi, Jamshedpur, Bokaro, Deoghar and Palamu.",
+    ],
+    coverageQA: {
+      q: "Does JBVNL supply electricity to Ranchi and Jamshedpur?",
+      a: "Yes. Both cities are covered by JBVNL — Ranchi directly, and Jamshedpur under the Singhbhum supply area. JBVNL's seven supply areas cover essentially all residential and urban consumers in Jharkhand.",
+    },
+    howToPay: {
+      portalUrl: "https://jbvnl.co.in/",
+      portalLabel: "jbvnl.co.in (official JBVNL portal)",
+      helpline: "1912 / 1800-345-6570 (24×7)",
+      steps: [
+        "Visit the official JBVNL website and select Quick Pay",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "chhattisgarh-electricity-bill-calculator",
@@ -1824,6 +1852,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Chhattisgarh electricity bill (Chhattisgarh State Power Distribution Co. (CSPDCL)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Chhattisgarh halves the energy charge for homes using ≤400 units (Bijli Bill Half).",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['MPCZ', 'TSSPDCL', 'JBVNL'],
     intro: "Estimate your Chhattisgarh State Power Distribution Co. (CSPDCL) electricity bill for Chhattisgarh. Chhattisgarh halves the energy charge for homes using ≤400 units (Bijli Bill Half). Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Bijli Bill Half Yojana", body: "Chhattisgarh’s Bijli Bill Half scheme cuts the energy charge in half for domestic consumers using 400 units or less a month — a major saving. Bills also carry a ₹0.30/unit VCA surcharge and roughly 8% electricity duty." },
@@ -1833,7 +1862,34 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Chhattisgarh electricity tariff telescopic?", a: "Yes. Chhattisgarh charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Chhattisgarh domestic connection?", a: "The fixed charge is ₹20 per kW of sanctioned load." },
       { q: "How accurate is this Chhattisgarh bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. The Bijli Bill Half 50% concession is not applied automatically here. Always confirm against your official CSPDCL bill." },
+      { q: "Does CSPDCL supply electricity to all of Chhattisgarh?", a: "Yes. CSPDCL is the sole distribution licensee for all 33 districts of Chhattisgarh, including Raipur, Bilaspur, Durg-Bhilai, Korba and Jagdalpur — there is no regional split." },
+      { q: "How do I check or pay my CSPDCL bill online?", a: "Pay via the official portal at cspdcl.co.in. For queries, call the 24×7 toll-free helpline 1912 or 1800-233-1920." },
+      { q: "What is CSPDCL, and how did it form?", a: "When Chhattisgarh was carved out of Madhya Pradesh on 1 November 2000 under the MP Reorganisation Act, the erstwhile MP Electricity Board was split, and the Chhattisgarh State Electricity Board (CSEB) began operations on 1 December 2000. Following the Electricity Act 2003, CSEB was restructured into five companies, with Chhattisgarh State Power Distribution Co. Ltd (CSPDCL) established on 1 January 2009." },
     ],
+    billTraps: [
+      { title: "Bijli Bill Half isn't applied automatically", body: "The 50% energy-charge concession for households using 400 units or less is a genuine, large saving, but it requires scheme enrolment — this calculator does not apply it by default, so check your eligibility separately." },
+      { title: "The VCA surcharge moves and isn't included", body: "CSPDCL's ₹0.30/unit variable cost adjustment can change and is not reflected in this estimate, so your real bill may differ slightly." },
+      { title: "8% electricity duty is easy to overlook", body: "Chhattisgarh's roughly 8% electricity duty applies on top of the slab charges and fixed charge, and is one of the higher duty rates among neighbouring states." },
+    ],
+    aboutDiscom: [
+      "When Chhattisgarh was carved out of Madhya Pradesh on 1 November 2000, under the MP Reorganisation Act, 2000, the erstwhile MP Electricity Board (MPEB) was split between the two new states. The Chhattisgarh State Electricity Board (CSEB) began operations on 1 December 2000.",
+      "Following the Electricity Act 2003, CSEB was restructured into five companies. Chhattisgarh State Power Distribution Co. Ltd (CSPDCL) was established on 1 January 2009 and is the sole distribution licensee for all 33 districts of the state, including Raipur, Bilaspur, Durg-Bhilai and Korba.",
+    ],
+    coverageQA: {
+      q: "Does CSPDCL supply electricity to Raipur?",
+      a: "Yes. CSPDCL is the single, statewide distribution company for all 33 districts of Chhattisgarh, including Raipur, Bilaspur, Durg-Bhilai, Korba and Jagdalpur — there is no regional split to check.",
+    },
+    howToPay: {
+      portalUrl: "https://www.cspdcl.co.in/cseb/",
+      portalLabel: "cspdcl.co.in (official CSPDCL portal)",
+      helpline: "1912 / 1800-233-1920 (24×7)",
+      steps: [
+        "Visit the official CSPDCL bill payment portal",
+        "Enter your BP (Business Partner) number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
   },
   {
     slug: "chandigarh-electricity-bill-calculator",
