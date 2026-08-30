@@ -23,7 +23,7 @@ export default function ComingSoonPage() {
       <div className="mt-6 flex gap-3">
         <Link
           href="/electricity/tneb-bill-calculator"
-          className="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500"
+          className="rounded-lg bg-brass px-5 py-2.5 text-sm font-semibold text-white hover:bg-brass"
         >
           Try the TNEB calculator
         </Link>

@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { calculateSolarRoi } from '@/lib/calc/solar'
 import { formatINR } from '@/lib/format'
+import { CalculatorCard, CalculatorCta, CalculatorHeader, SliderField } from './CalculatorShell'
 
 export interface SolarDiscomOption {
   code: string
@@ -15,19 +16,17 @@ export default function SolarRoiCalculator({
   discoms: SolarDiscomOption[]
 }) {
   const [discomCode, setDiscomCode] = useState(discoms[0]?.code ?? '')
-  const [unitsStr, setUnitsStr] = useState('300')
-  const [kwStr, setKwStr] = useState('3')
+  const [units, setUnits] = useState(300)
+  const [kw, setKw] = useState(3)
 
   const { result, error } = useMemo(() => {
-    const monthlyUnits = Number(unitsStr)
-    const systemSizeKw = Number(kwStr)
-    if (!Number.isFinite(monthlyUnits) || monthlyUnits < 0)
-      return { result: null, error: 'Enter valid monthly units.' }
-    if (!Number.isFinite(systemSizeKw) || systemSizeKw <= 0)
-      return { result: null, error: 'Enter a valid system size in kW.' }
     try {
       return {
-        result: calculateSolarRoi({ discomCode, monthlyUnits, systemSizeKw }),
+        result: calculateSolarRoi({
+          discomCode,
+          monthlyUnits: units,
+          systemSizeKw: kw,
+        }),
         error: null as string | null,
       }
     } catch (e) {
@@ -36,24 +35,29 @@ export default function SolarRoiCalculator({
         error: e instanceof Error ? e.message : 'Calculation error',
       }
     }
-  }, [discomCode, unitsStr, kwStr])
-
-  const labelCls = 'mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200'
-  const inputCls =
-    'w-full rounded-lg border border-slate-300 px-3 py-2 tabular-nums outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100'
+  }, [discomCode, units, kw])
 
   return (
-    <div className="grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 dark:border-slate-700 dark:bg-slate-900">
+    <CalculatorCard>
+      <CalculatorHeader
+        icon="☀️"
+        title="Solar ROI Calculator"
+        subtitle="Payback period and savings from a rooftop system"
+      />
+
       <form className="grid gap-5" onSubmit={(e) => e.preventDefault()}>
         <div>
-          <label htmlFor="solar-discom" className={labelCls}>
+          <label
+            htmlFor="solar-discom"
+            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+          >
             Your DISCOM / state
           </label>
           <select
             id="solar-discom"
             value={discomCode}
             onChange={(e) => setDiscomCode(e.target.value)}
-            className={inputCls}
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
           >
             {discoms.map((d) => (
               <option key={d.code} value={d.code}>
@@ -63,40 +67,33 @@ export default function SolarRoiCalculator({
           </select>
         </div>
 
-        <div>
-          <label htmlFor="solar-units" className={labelCls}>
-            Average monthly consumption (units)
-          </label>
-          <input
-            id="solar-units"
-            type="number"
-            min={0}
-            value={unitsStr}
-            onChange={(e) => setUnitsStr(e.target.value)}
-            className={inputCls}
-          />
-        </div>
+        <SliderField
+          id="solar-units"
+          label="Average monthly consumption"
+          value={units}
+          onChange={setUnits}
+          min={0}
+          max={1500}
+          step={10}
+          unit="units"
+        />
 
-        <div>
-          <label htmlFor="solar-kw" className={labelCls}>
-            System size (kW)
-          </label>
-          <input
-            id="solar-kw"
-            type="number"
-            min={0}
-            step="0.5"
-            value={kwStr}
-            onChange={(e) => setKwStr(e.target.value)}
-            className={inputCls}
-          />
-          <p className="mt-1 text-xs text-slate-400">
-            Tip: ~1 kW per 100–150 monthly units is a common starting point.
-          </p>
-        </div>
+        <SliderField
+          id="solar-kw"
+          label="System size"
+          value={kw}
+          onChange={setKw}
+          min={0.5}
+          max={10}
+          step={0.5}
+          unit="kW"
+          hint="Tip: ~1 kW per 100–150 monthly units is a common starting point."
+        />
+
+        <CalculatorCta label="Calculate Solar Savings" />
       </form>
 
-      <div className="rounded-xl bg-slate-50 p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -105,49 +102,49 @@ export default function SolarRoiCalculator({
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 Payback period
               </p>
-              <p className="text-4xl font-bold tabular-nums text-slate-900 dark:text-white">
+              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
                 {result.paybackYears != null
                   ? `${result.paybackYears} yrs`
                   : '—'}
               </p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 then ~{formatINR(result.annualSavings)}/year saved
               </p>
             </div>
 
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-slate-500 dark:text-slate-400">System cost</dt>
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
+                System cost
+              </dt>
               <dd className="text-right tabular-nums">
                 {formatINR(result.systemCost)}
               </dd>
-              <dt className="text-emerald-700 dark:text-emerald-400">
-                PM Surya Ghar subsidy
-              </dt>
-              <dd className="text-right tabular-nums text-emerald-700 dark:text-emerald-400">
+              <dt className="text-spark-teal">PM Surya Ghar subsidy</dt>
+              <dd className="text-right tabular-nums text-spark-teal">
                 −{formatINR(result.subsidy)}
               </dd>
-              <dt className="font-medium text-slate-700 dark:text-slate-200">
+              <dt className="font-medium text-ash dark:text-gazette-cream/80">
                 Net cost
               </dt>
               <dd className="text-right font-medium tabular-nums">
                 {formatINR(result.netCost)}
               </dd>
-              <dt className="text-slate-500 dark:text-slate-400">
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
                 Annual generation
               </dt>
               <dd className="text-right tabular-nums">
                 {Math.round(result.annualGeneration)} units
               </dd>
-              <dt className="text-slate-500 dark:text-slate-400">
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
                 Monthly savings
               </dt>
               <dd className="text-right tabular-nums">
                 {formatINR(result.monthlySavings)}
               </dd>
-              <dt className="text-slate-500 dark:text-slate-400">
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
                 25-year net savings
               </dt>
               <dd className="text-right tabular-nums">
@@ -155,10 +152,12 @@ export default function SolarRoiCalculator({
               </dd>
             </dl>
 
-            <p className="text-xs text-slate-400">{result.notes[0]}</p>
+            <p className="text-xs text-ash/40 dark:text-gazette-cream/30">
+              {result.notes[0]}
+            </p>
           </div>
         )}
       </div>
-    </div>
+    </CalculatorCard>
   )
 }

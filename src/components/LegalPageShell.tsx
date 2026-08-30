@@ -17,7 +17,7 @@ export default function LegalPageShell({
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <Link href="/" className="hover:text-indigo-600">
+        <Link href="/" className="hover:text-brass">
           Home
         </Link>{' '}
         / <span className="text-slate-700 dark:text-slate-300">{title}</span>

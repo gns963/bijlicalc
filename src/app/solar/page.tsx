@@ -18,7 +18,7 @@ export default function SolarHubPage() {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href="/" className="hover:text-brass">
               Home
             </Link>
           </li>
@@ -44,7 +44,7 @@ export default function SolarHubPage() {
       <section className="mb-10 grid gap-6 sm:grid-cols-2">
         <Link
           href="/solar/roi-calculator"
-          className="flex flex-col rounded-2xl border border-amber-200 bg-amber-50 p-6 transition hover:border-amber-400 hover:shadow-sm dark:border-amber-900 dark:bg-amber-950/30"
+          className="flex flex-col rounded-2xl border border-brass/20 bg-brass/5 p-6 transition hover:border-brass/50 hover:shadow-sm dark:border-brass/20 dark:bg-brass/15/30"
         >
           <span className="text-2xl">☀️</span>
           <h2 className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
@@ -54,14 +54,14 @@ export default function SolarHubPage() {
             Payback period, net cost after subsidy, annual and 25-year savings —
             based on your real bill.
           </p>
-          <span className="mt-3 text-sm font-semibold text-amber-700 dark:text-amber-300">
+          <span className="mt-3 text-sm font-semibold text-brass dark:text-brass">
             Open calculator →
           </span>
         </Link>
 
         <Link
           href="/solar/subsidy-calculator"
-          className="flex flex-col rounded-2xl border border-emerald-200 bg-emerald-50 p-6 transition hover:border-emerald-400 hover:shadow-sm dark:border-emerald-900 dark:bg-emerald-950/30"
+          className="flex flex-col rounded-2xl border border-spark-teal/20 bg-spark-teal/5 p-6 transition hover:border-spark-teal/50 hover:shadow-sm dark:border-spark-teal/20 dark:bg-spark-teal/15/30"
         >
           <span className="text-2xl">💸</span>
           <h2 className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
@@ -71,7 +71,7 @@ export default function SolarHubPage() {
             Check your eligibility and exact central subsidy amount for your
             planned system size.
           </p>
-          <span className="mt-3 text-sm font-semibold text-emerald-700 dark:text-emerald-300">
+          <span className="mt-3 text-sm font-semibold text-spark-teal dark:text-spark-teal">
             Check subsidy →
           </span>
         </Link>

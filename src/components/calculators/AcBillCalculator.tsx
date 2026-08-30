@@ -3,14 +3,30 @@
 import { useMemo, useState } from 'react'
 import { calculateAcCost } from '@/lib/calc/ac'
 import { formatINR } from '@/lib/format'
+import {
+  CalculatorCard,
+  CalculatorCta,
+  CalculatorHeader,
+  OptionCardGroup,
+  SliderField,
+} from './CalculatorShell'
 
 export interface AcDiscomOption {
   code: string
   state: string
 }
 
-const TONNAGES = [0.8, 1.0, 1.5, 2.0]
-const STARS = [1, 2, 3, 4, 5]
+const TON_OPTIONS = [
+  { value: '0.8', label: '0.8 Ton', icon: '🧊' },
+  { value: '1', label: '1 Ton', icon: '❄️' },
+  { value: '1.5', label: '1.5 Ton', icon: '❄️' },
+  { value: '2', label: '2 Ton', icon: '🥶' },
+]
+const STAR_OPTIONS = [
+  { value: '3', label: '3 Star', icon: '⭐⭐⭐' },
+  { value: '4', label: '4 Star', icon: '⭐⭐⭐⭐' },
+  { value: '5', label: '5 Star', icon: '⭐⭐⭐⭐⭐' },
+]
 
 export default function AcBillCalculator({
   discoms,
@@ -18,8 +34,8 @@ export default function AcBillCalculator({
   discoms: AcDiscomOption[]
 }) {
   const [discomCode, setDiscomCode] = useState(discoms[0]?.code ?? '')
-  const [tonnage, setTonnage] = useState(1.5)
-  const [starRating, setStarRating] = useState(3)
+  const [tonnage, setTonnage] = useState('1.5')
+  const [starRating, setStarRating] = useState('3')
   const [hours, setHours] = useState(8)
 
   const { result, error } = useMemo(() => {
@@ -27,8 +43,8 @@ export default function AcBillCalculator({
       return {
         result: calculateAcCost({
           discomCode,
-          tonnage,
-          starRating,
+          tonnage: Number(tonnage),
+          starRating: Number(starRating),
           dailyHours: hours,
         }),
         error: null as string | null,
@@ -41,15 +57,23 @@ export default function AcBillCalculator({
     }
   }, [discomCode, tonnage, starRating, hours])
 
-  const labelCls = 'mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200'
   const fieldCls =
-    'w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100'
+    'w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100'
 
   return (
-    <div className="grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 dark:border-slate-700 dark:bg-slate-900">
+    <CalculatorCard>
+      <CalculatorHeader
+        icon="❄️"
+        title="AC Running Cost Calculator"
+        subtitle="Estimate your air conditioner's electricity cost"
+      />
+
       <form className="grid gap-5" onSubmit={(e) => e.preventDefault()}>
         <div>
-          <label htmlFor="ac-discom" className={labelCls}>
+          <label
+            htmlFor="ac-discom"
+            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+          >
             DISCOM / state
           </label>
           <select
@@ -66,60 +90,35 @@ export default function AcBillCalculator({
           </select>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label htmlFor="ac-ton" className={labelCls}>
-              Tonnage
-            </label>
-            <select
-              id="ac-ton"
-              value={tonnage}
-              onChange={(e) => setTonnage(Number(e.target.value))}
-              className={fieldCls}
-            >
-              {TONNAGES.map((t) => (
-                <option key={t} value={t}>
-                  {t} ton
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="ac-star" className={labelCls}>
-              Star rating
-            </label>
-            <select
-              id="ac-star"
-              value={starRating}
-              onChange={(e) => setStarRating(Number(e.target.value))}
-              className={fieldCls}
-            >
-              {STARS.map((s) => (
-                <option key={s} value={s}>
-                  {s} star
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
+        <OptionCardGroup
+          legend="Tonnage"
+          options={TON_OPTIONS}
+          value={tonnage}
+          onChange={setTonnage}
+        />
 
-        <div>
-          <label htmlFor="ac-hours" className={labelCls}>
-            Daily usage: {hours} hours
-          </label>
-          <input
-            id="ac-hours"
-            type="range"
-            min={1}
-            max={24}
-            value={hours}
-            onChange={(e) => setHours(Number(e.target.value))}
-            className="w-full accent-indigo-600"
-          />
-        </div>
+        <OptionCardGroup
+          legend="Star rating"
+          options={STAR_OPTIONS}
+          value={starRating}
+          onChange={setStarRating}
+          columns={3}
+        />
+
+        <SliderField
+          id="ac-hours"
+          label="Daily usage"
+          value={hours}
+          onChange={setHours}
+          min={1}
+          max={24}
+          unit="hrs/day"
+        />
+
+        <CalculatorCta label="Calculate Running Cost" />
       </form>
 
-      <div className="rounded-xl bg-slate-50 p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -128,37 +127,41 @@ export default function AcBillCalculator({
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 Estimated monthly running cost
               </p>
-              <p className="text-4xl font-bold tabular-nums text-slate-900 dark:text-white">
+              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
                 {formatINR(result.monthlyCost)}
               </p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 ≈ {formatINR(result.annualCost)}/year ·{' '}
                 {result.monthlyUnits} units/month
               </p>
             </div>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-slate-500 dark:text-slate-400">Input power</dt>
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
+                Input power
+              </dt>
               <dd className="text-right tabular-nums">{result.inputKw} kW</dd>
-              <dt className="text-slate-500 dark:text-slate-400">ISEER</dt>
+              <dt className="text-ash/60 dark:text-gazette-cream/50">ISEER</dt>
               <dd className="text-right tabular-nums">{result.iseer}</dd>
-              <dt className="text-slate-500 dark:text-slate-400">
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
                 Units per day
               </dt>
               <dd className="text-right tabular-nums">{result.dailyUnits}</dd>
-              <dt className="text-slate-500 dark:text-slate-400">
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
                 Billed at (top slab)
               </dt>
               <dd className="text-right tabular-nums">
                 {formatINR(result.effectiveRatePerUnit)}/unit
               </dd>
             </dl>
-            <p className="text-xs text-slate-400">{result.notes[0]}</p>
+            <p className="text-xs text-ash/40 dark:text-gazette-cream/30">
+              {result.notes[0]}
+            </p>
           </div>
         )}
       </div>
-    </div>
+    </CalculatorCard>
   )
 }

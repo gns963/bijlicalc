@@ -60,7 +60,7 @@ export default function CookiePolicyPage() {
           href="https://www.google.com/settings/ads"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-indigo-600 underline"
+          className="text-brass underline"
         >
           Ads Settings
         </a>
@@ -69,7 +69,7 @@ export default function CookiePolicyPage() {
           href="https://www.aboutads.info"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-indigo-600 underline"
+          className="text-brass underline"
         >
           aboutads.info
         </a>
@@ -83,7 +83,7 @@ export default function CookiePolicyPage() {
         You can block or delete cookies through your browser settings. Some
         features may not work as intended if you disable essential cookies. See
         our{' '}
-        <Link href="/privacy" className="text-indigo-600 underline">
+        <Link href="/privacy" className="text-brass underline">
           privacy policy
         </Link>{' '}
         for how we handle personal data.

@@ -18,8 +18,8 @@ const cards = [
     title: 'AC Running Cost Calculator',
     body: 'Monthly and yearly electricity cost by tonnage, star rating, hours and DISCOM.',
     cta: 'Calculate cost →',
-    cls: 'border-sky-200 bg-sky-50 hover:border-sky-400 dark:border-sky-900 dark:bg-sky-950/30',
-    ctaCls: 'text-sky-700 dark:text-sky-300',
+    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50 dark:border-spark-teal/20 dark:bg-spark-teal/15/30',
+    ctaCls: 'text-spark-teal dark:text-spark-teal',
   },
   {
     href: '/ac/tonnage-calculator',
@@ -27,8 +27,8 @@ const cards = [
     title: 'AC Tonnage Calculator',
     body: 'What size AC your room needs, adjusted for sun exposure and floor level.',
     cta: 'Find AC size →',
-    cls: 'border-indigo-200 bg-indigo-50 hover:border-indigo-400 dark:border-indigo-900 dark:bg-indigo-950/30',
-    ctaCls: 'text-indigo-700 dark:text-indigo-300',
+    cls: 'border-brass/20 bg-brass/5 hover:border-brass/50 dark:border-brass/20 dark:bg-brass/15/30',
+    ctaCls: 'text-brass dark:text-brass',
   },
   {
     href: '/ac/comparisons/3-star-vs-5-star-savings-guide',
@@ -36,8 +36,8 @@ const cards = [
     title: '3 Star vs 5 Star Savings',
     body: 'Interactive comparison of annual savings from a 5-star AC by usage and tariff.',
     cta: 'Compare now →',
-    cls: 'border-emerald-200 bg-emerald-50 hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/30',
-    ctaCls: 'text-emerald-700 dark:text-emerald-300',
+    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50 dark:border-spark-teal/20 dark:bg-spark-teal/15/30',
+    ctaCls: 'text-spark-teal dark:text-spark-teal',
   },
 ]
 
@@ -47,7 +47,7 @@ export default function AcHubPage() {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href="/" className="hover:text-brass">
               Home
             </Link>
           </li>

@@ -5,7 +5,7 @@ export default function SolarCrossSell({ state }: { state?: string }) {
   return (
     <section
       aria-labelledby="solar-crosssell"
-      className="mb-10 flex flex-col items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-6 sm:flex-row sm:items-center sm:justify-between dark:border-amber-900 dark:bg-amber-950/30"
+      className="mb-10 flex flex-col items-start gap-3 rounded-2xl border border-brass/20 bg-brass/5 p-6 sm:flex-row sm:items-center sm:justify-between dark:border-brass/20 dark:bg-brass/15/30"
     >
       <div>
         <h2
@@ -22,7 +22,7 @@ export default function SolarCrossSell({ state }: { state?: string }) {
       </div>
       <Link
         href="/solar/roi-calculator"
-        className="shrink-0 rounded-lg bg-amber-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-amber-500"
+        className="shrink-0 rounded-lg bg-brass px-5 py-2.5 text-sm font-semibold text-white hover:bg-brass"
       >
         Solar ROI calculator →
       </Link>

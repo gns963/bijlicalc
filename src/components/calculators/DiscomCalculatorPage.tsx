@@ -86,13 +86,13 @@ export default function DiscomCalculatorPage({
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href="/" className="hover:text-brass">
               Home
             </Link>
           </li>
           <li aria-hidden>/</li>
           <li>
-            <Link href="/electricity" className="hover:text-indigo-600">
+            <Link href="/electricity" className="hover:text-brass">
               Electricity
             </Link>
           </li>
@@ -116,11 +116,11 @@ export default function DiscomCalculatorPage({
       {/* Server-rendered worked example */}
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-indigo-100 bg-indigo-50 p-5 dark:border-indigo-900 dark:bg-indigo-950/40"
+        className="mb-8 rounded-xl border border-brass/10 bg-brass/5 p-5 dark:border-brass/20 dark:bg-brass/15/40"
       >
         <h2
           id="worked-example"
-          className="text-sm font-semibold uppercase tracking-wide text-indigo-700 dark:text-indigo-300"
+          className="text-sm font-semibold uppercase tracking-wide text-brass dark:text-brass"
         >
           Worked example
         </h2>
@@ -264,12 +264,12 @@ export default function DiscomCalculatorPage({
             href={tariff.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-indigo-600 underline hover:text-indigo-500"
+            className="text-brass underline hover:text-brass"
           >
             {tariff.discomName} tariff order
           </a>
         </p>
-        <p className="mt-1 text-xs text-amber-700 dark:text-amber-400">
+        <p className="mt-1 text-xs text-brass dark:text-brass">
           {tariff.verifiedBy}
         </p>
       </footer>

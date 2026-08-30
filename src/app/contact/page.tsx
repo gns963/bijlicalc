@@ -22,7 +22,7 @@ export default function ContactPage() {
         Found a wrong rate or an out-of-date tariff? Email{' '}
         <a
           href="mailto:corrections@bijlicalc.com"
-          className="text-indigo-600 underline"
+          className="text-brass underline"
         >
           corrections@bijlicalc.com
         </a>
@@ -34,7 +34,7 @@ export default function ContactPage() {
       </h2>
       <p>
         Want your state added next? Tell us which DISCOM at{' '}
-        <a href="mailto:hello@bijlicalc.com" className="text-indigo-600 underline">
+        <a href="mailto:hello@bijlicalc.com" className="text-brass underline">
           hello@bijlicalc.com
         </a>
         . We prioritise by demand.
@@ -45,7 +45,7 @@ export default function ContactPage() {
       </h2>
       <p>
         Solar installers, appliance brands and media enquiries:{' '}
-        <a href="mailto:hello@bijlicalc.com" className="text-indigo-600 underline">
+        <a href="mailto:hello@bijlicalc.com" className="text-brass underline">
           hello@bijlicalc.com
         </a>
         .

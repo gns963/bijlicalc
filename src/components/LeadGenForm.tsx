@@ -62,14 +62,14 @@ export default function LeadGenForm({
   if (submitted) {
     return (
       <div
-        className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center dark:border-emerald-900 dark:bg-emerald-950/40"
+        className="rounded-2xl border border-spark-teal/20 bg-spark-teal/5 p-6 text-center dark:border-spark-teal/20 dark:bg-spark-teal/15/40"
         role="status"
       >
         <p className="text-3xl">✅</p>
-        <p className="mt-2 text-lg font-semibold text-emerald-800 dark:text-emerald-200">
+        <p className="mt-2 text-lg font-semibold text-spark-teal dark:text-spark-teal/20">
           Thanks — we’ll connect you with 3 verified installers.
         </p>
-        <p className="mt-1 text-sm text-emerald-700 dark:text-emerald-300">
+        <p className="mt-1 text-sm text-spark-teal dark:text-spark-teal">
           Keep an eye on your phone; quotes typically arrive within 2 working
           days.
         </p>
@@ -78,15 +78,15 @@ export default function LeadGenForm({
   }
 
   const inputCls =
-    'w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-200 dark:bg-slate-800 dark:text-slate-100'
-  const okBorder = 'border-slate-300 focus:border-indigo-500 dark:border-slate-600'
+    'w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-brass/20 dark:bg-slate-800 dark:text-slate-100'
+  const okBorder = 'border-slate-300 focus:border-brass dark:border-slate-600'
   const errBorder = 'border-red-400 focus:border-red-500'
 
   return (
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-indigo-200 bg-indigo-50 p-6 dark:border-indigo-900 dark:bg-indigo-950/30"
+      className="rounded-2xl border border-brass/20 bg-brass/5 p-6 dark:border-brass/20 dark:bg-brass/15/30"
     >
       <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
         {heading}
@@ -176,7 +176,7 @@ export default function LeadGenForm({
 
       <button
         type="submit"
-        className="mt-5 w-full rounded-lg bg-indigo-600 px-4 py-2.5 font-semibold text-white hover:bg-indigo-500 sm:w-auto"
+        className="mt-5 w-full rounded-lg bg-brass px-4 py-2.5 font-semibold text-white hover:bg-brass sm:w-auto"
       >
         Get my free quotes →
       </button>

@@ -23,7 +23,7 @@ export default function TermsPage() {
         Our calculators are provided for general information only. They produce
         estimates, not official bills, tax computations or financial advice, and
         should not be your sole basis for a financial decision. See our{' '}
-        <Link href="/disclaimer" className="text-indigo-600 underline">
+        <Link href="/disclaimer" className="text-brass underline">
           disclaimer
         </Link>
         .
@@ -44,7 +44,7 @@ export default function TermsPage() {
       <p>
         The site may contain advertising and affiliate links. Purchases you make
         through third parties are governed by their terms, not ours. See our{' '}
-        <Link href="/affiliate-disclosure" className="text-indigo-600 underline">
+        <Link href="/affiliate-disclosure" className="text-brass underline">
           affiliate disclosure
         </Link>
         .

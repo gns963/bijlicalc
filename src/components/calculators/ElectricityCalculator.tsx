@@ -1,12 +1,19 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import type {
   ConnectionCategory,
   TariffFile,
 } from '@/data/tariffs/_schema'
 import { computeBill } from '@/lib/calc/electricity'
 import { cycleLabel, formatINR } from '@/lib/format'
+import {
+  CalculatorCard,
+  CalculatorCta,
+  CalculatorHeader,
+  OptionCardGroup,
+  SliderField,
+} from './CalculatorShell'
 
 export interface ElectricityCalculatorProps {
   /** Any DISCOM tariff file. Swap this prop to reuse the widget for another DISCOM. */
@@ -14,33 +21,35 @@ export interface ElectricityCalculatorProps {
   defaultUnits?: number
 }
 
-const CATEGORY_LABEL: Record<ConnectionCategory, string> = {
-  residential: 'Residential (Domestic)',
-  commercial: 'Commercial',
-  industrial: 'Industrial',
-  agriculture: 'Agriculture',
-}
+const CATEGORY_OPTIONS: { value: ConnectionCategory; label: string; icon: string }[] = [
+  { value: 'residential', label: 'Residential', icon: '🏠' },
+  { value: 'commercial', label: 'Commercial', icon: '🏢' },
+  { value: 'industrial', label: 'Industrial', icon: '🏭' },
+  { value: 'agriculture', label: 'Agriculture', icon: '🌾' },
+]
 
 export default function ElectricityCalculator({
   tariff,
   defaultUnits = 250,
 }: ElectricityCalculatorProps) {
   const categories = tariff.connectionTypes.map((c) => c.connectionType)
+  const options = CATEGORY_OPTIONS.filter((o) => categories.includes(o.value))
 
   const [connectionType, setConnectionType] = useState<ConnectionCategory>(
     categories[0],
   )
   const [unitsStr, setUnitsStr] = useState(String(defaultUnits))
   const [phase, setPhase] = useState<'single' | 'three'>('single')
-  const [loadStr, setLoadStr] = useState('2')
+  const [load, setLoad] = useState(3)
   const [eligible, setEligible] = useState(true)
+  const resultRef = useRef<HTMLDivElement>(null)
 
   const selected = tariff.connectionTypes.find(
     (c) => c.connectionType === connectionType,
   )
   const needsLoad = selected?.fixedCharge.basis === 'perLoad'
   const subsidyScheme = tariff.subsidySchemes[0]
-  const cycleWord = tariff.billingCycle // 'monthly' | 'bimonthly' | 'quarterly'
+  const cycleWord = tariff.billingCycle
   const isMultiMonth = cycleWord !== 'monthly'
 
   const { bill, error } = useMemo(() => {
@@ -53,7 +62,7 @@ export default function ElectricityCalculator({
         connectionType,
         unitsConsumed: units,
         phase,
-        sanctionedLoad: needsLoad ? Number(loadStr) || 0 : undefined,
+        sanctionedLoad: needsLoad ? load : undefined,
         eligibility: eligible ? subsidyScheme?.eligibility : undefined,
       })
       return { bill: b, error: null as string | null }
@@ -68,124 +77,131 @@ export default function ElectricityCalculator({
     connectionType,
     unitsStr,
     phase,
-    loadStr,
+    load,
     eligible,
     needsLoad,
     subsidyScheme,
   ])
 
   return (
-    <div className="grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 dark:border-slate-700 dark:bg-slate-900">
-      {/* ---- Inputs ---- */}
-      <form className="grid gap-5" onSubmit={(e) => e.preventDefault()}>
+    <CalculatorCard>
+      <CalculatorHeader
+        icon="⚡"
+        title="Electricity Bill Calculator"
+        subtitle={`Accurate estimates for ${tariff.state} · ${tariff.discomCode}`}
+      />
+
+      <form
+        className="grid gap-5"
+        onSubmit={(e) => {
+          e.preventDefault()
+          resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }}
+      >
+        <OptionCardGroup
+          legend="Connection type"
+          options={options}
+          value={connectionType}
+          onChange={setConnectionType}
+        />
+
+        {selected?.fixedCharge.basis === 'perPhase' && (
+          <fieldset>
+            <legend className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+              Phase
+            </legend>
+            <div className="flex gap-2">
+              {(['single', 'three'] as const).map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => setPhase(p)}
+                  aria-pressed={phase === p}
+                  className={`flex-1 rounded-lg border-2 px-3 py-2 text-sm capitalize transition ${
+                    phase === p
+                      ? 'border-brass bg-brass/10 font-semibold text-ink-navy dark:text-gazette-cream'
+                      : 'border-slate-200 text-ash/70 hover:border-slate-300 dark:border-slate-700 dark:text-gazette-cream/60'
+                  }`}
+                >
+                  {p}-phase
+                </button>
+              ))}
+            </div>
+          </fieldset>
+        )}
+
+        {needsLoad && (
+          <SliderField
+            id="load"
+            label="Sanctioned load"
+            value={load}
+            onChange={setLoad}
+            min={0.5}
+            max={20}
+            step={0.5}
+            unit="kW"
+          />
+        )}
+
         <div>
           <label
             htmlFor="units"
-            className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200"
+            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
           >
-            Units consumed{' '}
+            Units consumed (kWh)
             {isMultiMonth && (
-              <span className="text-slate-400">
-                (for the {cycleLabel(cycleWord)} cycle)
+              <span className="font-normal text-ash/50 dark:text-gazette-cream/40">
+                {' '}
+                — for the {cycleLabel(cycleWord)} cycle
               </span>
             )}
           </label>
-          <input
-            id="units"
-            type="number"
-            inputMode="numeric"
-            min={0}
-            value={unitsStr}
-            onChange={(e) => setUnitsStr(e.target.value)}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-lg tabular-nums outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="connectionType"
-            className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200"
-          >
-            Connection type
-          </label>
-          <select
-            id="connectionType"
-            value={connectionType}
-            onChange={(e) =>
-              setConnectionType(e.target.value as ConnectionCategory)
-            }
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
-          >
-            {categories.map((c) => (
-              <option key={c} value={c}>
-                {CATEGORY_LABEL[c]}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <fieldset>
-          <legend className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200">
-            Phase
-          </legend>
-          <div className="flex gap-2">
-            {(['single', 'three'] as const).map((p) => (
-              <button
-                key={p}
-                type="button"
-                onClick={() => setPhase(p)}
-                className={`flex-1 rounded-lg border px-3 py-2 text-sm capitalize transition ${
-                  phase === p
-                    ? 'border-indigo-500 bg-indigo-50 font-semibold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-200'
-                    : 'border-slate-300 text-slate-600 hover:border-slate-400 dark:border-slate-600 dark:text-slate-300'
-                }`}
-              >
-                {p}-phase
-              </button>
-            ))}
-          </div>
-        </fieldset>
-
-        {needsLoad && (
-          <div>
-            <label
-              htmlFor="load"
-              className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200"
-            >
-              Sanctioned load (kW)
-            </label>
+          <div className="relative">
             <input
-              id="load"
+              id="units"
               type="number"
+              inputMode="numeric"
               min={0}
-              step="0.5"
-              value={loadStr}
-              onChange={(e) => setLoadStr(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 tabular-nums outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+              placeholder="e.g. 250"
+              value={unitsStr}
+              onChange={(e) => setUnitsStr(e.target.value)}
+              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 pr-14 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
             />
+            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm text-ash/40 dark:text-gazette-cream/40">
+              kWh
+            </span>
           </div>
-        )}
+        </div>
+
+        <div className="flex items-center justify-between rounded-lg bg-gazette-cream px-3 py-2 text-xs text-ash/70 dark:bg-slate-800 dark:text-gazette-cream/60">
+          <span>Billing period</span>
+          <span className="font-semibold capitalize text-ink-navy dark:text-gazette-cream">
+            {cycleLabel(cycleWord)}
+          </span>
+        </div>
 
         {subsidyScheme && (
-          <label className="flex items-start gap-3 rounded-lg bg-slate-50 p-3 text-sm dark:bg-slate-800">
+          <label className="flex items-start gap-3 rounded-lg bg-gazette-cream p-3 text-sm dark:bg-slate-800">
             <input
               type="checkbox"
               checked={eligible}
               onChange={(e) => setEligible(e.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brass focus:ring-brass"
             />
-            <span className="text-slate-700 dark:text-slate-200">
+            <span className="text-ash dark:text-gazette-cream/80">
               Eligible for <strong>{subsidyScheme.schemeName}</strong>
-              <span className="block text-xs text-slate-500 dark:text-slate-400">
+              <span className="block text-xs text-ash/50 dark:text-gazette-cream/40">
                 {subsidyScheme.eligibility}
               </span>
             </span>
           </label>
         )}
+
+        <CalculatorCta label="Calculate My Bill" />
       </form>
 
       {/* ---- Result ---- */}
-      <div className="rounded-xl bg-slate-50 p-5 dark:bg-slate-800/60">
+      <div ref={resultRef} className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -195,14 +211,14 @@ export default function ElectricityCalculator({
         {bill && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 Estimated {cycleLabel(cycleWord)} bill
               </p>
-              <p className="text-4xl font-bold tabular-nums text-slate-900 dark:text-white">
+              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
                 {formatINR(bill.total)}
               </p>
               {bill.monthlyEquivalent && (
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                   ≈ {formatINR(bill.monthlyEquivalent.total)} / month (
                   {bill.monthlyEquivalent.units} units)
                 </p>
@@ -215,17 +231,17 @@ export default function ElectricityCalculator({
                   .filter((l) => l.unitsInSlab > 0)
                   .map((l, i) => (
                     <tr key={i}>
-                      <td className="py-1.5 text-slate-600 dark:text-slate-300">
+                      <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
                         {l.fromUnit + 1}–{l.toUnit ?? '∞'} @ ₹{l.ratePerUnit} ×{' '}
                         {l.unitsInSlab}
                       </td>
-                      <td className="py-1.5 text-right tabular-nums text-slate-800 dark:text-slate-100">
+                      <td className="py-1.5 text-right tabular-nums text-ash dark:text-gazette-cream/90">
                         {formatINR(l.charge)}
                       </td>
                     </tr>
                   ))}
                 <tr>
-                  <td className="py-1.5 font-medium text-slate-700 dark:text-slate-200">
+                  <td className="py-1.5 font-medium text-ash dark:text-gazette-cream/80">
                     Energy charge
                   </td>
                   <td className="py-1.5 text-right tabular-nums">
@@ -233,7 +249,7 @@ export default function ElectricityCalculator({
                   </td>
                 </tr>
                 {bill.subsidy.subsidyAmount > 0 && (
-                  <tr className="text-emerald-700 dark:text-emerald-400">
+                  <tr className="text-spark-teal">
                     <td className="py-1.5">Subsidy applied</td>
                     <td className="py-1.5 text-right tabular-nums">
                       −{formatINR(bill.subsidy.subsidyAmount)}
@@ -241,7 +257,7 @@ export default function ElectricityCalculator({
                   </tr>
                 )}
                 <tr>
-                  <td className="py-1.5 text-slate-600 dark:text-slate-300">
+                  <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
                     Fuel cost adjustment (₹{bill.fuelCostAdjustment.ratePerUnit}
                     /unit)
                   </td>
@@ -250,7 +266,7 @@ export default function ElectricityCalculator({
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-1.5 text-slate-600 dark:text-slate-300">
+                  <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
                     Fixed charge ({bill.fixedCharge.detail})
                   </td>
                   <td className="py-1.5 text-right tabular-nums">
@@ -259,7 +275,7 @@ export default function ElectricityCalculator({
                 </tr>
                 {bill.electricityDuty.amount > 0 && (
                   <tr>
-                    <td className="py-1.5 text-slate-600 dark:text-slate-300">
+                    <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
                       Electricity duty ({bill.electricityDuty.percent}%)
                     </td>
                     <td className="py-1.5 text-right tabular-nums">
@@ -269,7 +285,7 @@ export default function ElectricityCalculator({
                 )}
                 {bill.meterRent > 0 && (
                   <tr>
-                    <td className="py-1.5 text-slate-600 dark:text-slate-300">
+                    <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
                       Meter rent
                     </td>
                     <td className="py-1.5 text-right tabular-nums">
@@ -277,7 +293,7 @@ export default function ElectricityCalculator({
                     </td>
                   </tr>
                 )}
-                <tr className="text-base font-bold text-slate-900 dark:text-white">
+                <tr className="text-base font-bold text-ink-navy dark:text-white">
                   <td className="pt-2">Total</td>
                   <td className="pt-2 text-right tabular-nums">
                     {formatINR(bill.total)}
@@ -288,6 +304,6 @@ export default function ElectricityCalculator({
           </div>
         )}
       </div>
-    </div>
+    </CalculatorCard>
   )
 }

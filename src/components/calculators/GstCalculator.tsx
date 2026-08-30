@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { calculateGst } from '@/lib/calc/financial'
 import { formatINR } from '@/lib/format'
+import { CalculatorCard, CalculatorCta, CalculatorHeader } from './CalculatorShell'
 
 const RATES = [0, 3, 5, 12, 18, 28]
 
@@ -18,15 +19,19 @@ export default function GstCalculator() {
     return { result: calculateGst(amount, rate, mode), error: null as string | null }
   }, [amountStr, rate, mode])
 
-  const labelCls = 'mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200'
   const fieldCls =
-    'w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100'
+    'w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100'
 
   return (
-    <div className="grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 dark:border-slate-700 dark:bg-slate-900">
+    <CalculatorCard>
+      <CalculatorHeader icon="🧾" title="GST Calculator" subtitle="Add or remove GST from any amount" />
+
       <form className="grid gap-5" onSubmit={(e) => e.preventDefault()}>
         <div>
-          <label htmlFor="gst-amount" className={labelCls}>
+          <label
+            htmlFor="gst-amount"
+            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+          >
             Amount (₹)
           </label>
           <input
@@ -40,7 +45,10 @@ export default function GstCalculator() {
         </div>
 
         <div>
-          <label htmlFor="gst-rate" className={labelCls}>
+          <label
+            htmlFor="gst-rate"
+            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+          >
             GST rate
           </label>
           <select
@@ -58,7 +66,9 @@ export default function GstCalculator() {
         </div>
 
         <fieldset>
-          <legend className={labelCls}>Amount is</legend>
+          <legend className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+            Amount is
+          </legend>
           <div className="flex gap-2">
             {(
               [
@@ -70,10 +80,11 @@ export default function GstCalculator() {
                 key={val}
                 type="button"
                 onClick={() => setMode(val)}
-                className={`flex-1 rounded-lg border px-3 py-2 text-xs transition ${
+                aria-pressed={mode === val}
+                className={`flex-1 rounded-lg border-2 px-3 py-2 text-xs transition ${
                   mode === val
-                    ? 'border-indigo-500 bg-indigo-50 font-semibold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-200'
-                    : 'border-slate-300 text-slate-600 dark:border-slate-600 dark:text-slate-300'
+                    ? 'border-brass bg-brass/10 font-semibold text-ink-navy dark:text-gazette-cream'
+                    : 'border-slate-200 text-ash/70 dark:border-slate-700 dark:text-gazette-cream/60'
                 }`}
               >
                 {label}
@@ -81,9 +92,11 @@ export default function GstCalculator() {
             ))}
           </div>
         </fieldset>
+
+        <CalculatorCta label="Calculate GST" />
       </form>
 
-      <div className="rounded-xl bg-slate-50 p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -92,30 +105,32 @@ export default function GstCalculator() {
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 Total {mode === 'inclusive' ? '(incl. GST)' : 'payable'}
               </p>
-              <p className="text-4xl font-bold tabular-nums text-slate-900 dark:text-white">
+              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
                 {formatINR(result.total)}
               </p>
             </div>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-slate-500 dark:text-slate-400">Base amount</dt>
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
+                Base amount
+              </dt>
               <dd className="text-right tabular-nums">{formatINR(result.base)}</dd>
-              <dt className="text-slate-500 dark:text-slate-400">
+              <dt className="text-ash/60 dark:text-gazette-cream/50">
                 GST @ {result.ratePercent}%
               </dt>
               <dd className="text-right tabular-nums">
                 {formatINR(result.gstAmount)}
               </dd>
-              <dt className="text-slate-500 dark:text-slate-400">CGST</dt>
+              <dt className="text-ash/60 dark:text-gazette-cream/50">CGST</dt>
               <dd className="text-right tabular-nums">{formatINR(result.cgst)}</dd>
-              <dt className="text-slate-500 dark:text-slate-400">SGST</dt>
+              <dt className="text-ash/60 dark:text-gazette-cream/50">SGST</dt>
               <dd className="text-right tabular-nums">{formatINR(result.sgst)}</dd>
             </dl>
           </div>
         )}
       </div>
-    </div>
+    </CalculatorCard>
   )
 }

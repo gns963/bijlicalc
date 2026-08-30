@@ -48,7 +48,7 @@ export default function FinancialHubPage() {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href="/" className="hover:text-brass">
               Home
             </Link>
           </li>
@@ -75,7 +75,7 @@ export default function FinancialHubPage() {
           <Link
             key={c.href}
             href={c.href}
-            className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-indigo-300 hover:shadow-sm dark:border-slate-700 dark:bg-slate-900"
+            className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-brass/30 hover:shadow-sm dark:border-slate-700 dark:bg-slate-900"
           >
             <span className="text-2xl">{c.emoji}</span>
             <h2 className="mt-2 text-lg font-semibold text-slate-900 dark:text-white">
@@ -84,7 +84,7 @@ export default function FinancialHubPage() {
             <p className="mt-1 flex-1 text-sm text-slate-600 dark:text-slate-300">
               {c.body}
             </p>
-            <span className="mt-3 text-sm font-semibold text-indigo-600 dark:text-indigo-300">
+            <span className="mt-3 text-sm font-semibold text-brass dark:text-brass">
               {c.cta}
             </span>
           </Link>

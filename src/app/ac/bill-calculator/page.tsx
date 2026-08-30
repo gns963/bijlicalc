@@ -46,13 +46,13 @@ export default function AcBillCalculatorPage() {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href="/" className="hover:text-brass">
               Home
             </Link>
           </li>
           <li aria-hidden>/</li>
           <li>
-            <Link href="/ac" className="hover:text-indigo-600">
+            <Link href="/ac" className="hover:text-brass">
               AC
             </Link>
           </li>
@@ -77,11 +77,11 @@ export default function AcBillCalculatorPage() {
 
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-sky-100 bg-sky-50 p-5 dark:border-sky-900 dark:bg-sky-950/40"
+        className="mb-8 rounded-xl border border-spark-teal/10 bg-spark-teal/5 p-5 dark:border-spark-teal/20 dark:bg-spark-teal/15/40"
       >
         <h2
           id="worked-example"
-          className="text-sm font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300"
+          className="text-sm font-semibold uppercase tracking-wide text-spark-teal dark:text-spark-teal"
         >
           Worked example
         </h2>

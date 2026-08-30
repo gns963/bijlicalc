@@ -66,7 +66,7 @@ export default function AffiliateDisclosurePage() {
         If you have any questions about how we use affiliate links, contact us at{' '}
         <a
           href="mailto:hello@bijlicalc.com"
-          className="text-indigo-600 underline hover:text-indigo-500"
+          className="text-brass underline hover:text-brass"
         >
           hello@bijlicalc.com
         </a>

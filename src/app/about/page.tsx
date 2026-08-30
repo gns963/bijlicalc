@@ -69,7 +69,7 @@ export default function AboutPage() {
         Maharashtra&apos;s wheeling charge, or Kerala&apos;s non-telescopic slab
         above 250 units), we say so on the page rather than quietly under- or
         over-stating your bill. Read our{' '}
-        <Link href="/methodology" className="text-indigo-600 underline">
+        <Link href="/methodology" className="text-brass underline">
           methodology
         </Link>{' '}
         for the full mechanism.
@@ -80,12 +80,12 @@ export default function AboutPage() {
       </h2>
       <p>
         bijlicalc is maintained by the{' '}
-        <Link href="/author/editorial-team" className="text-indigo-600 underline">
+        <Link href="/author/editorial-team" className="text-brass underline">
           bijlicalc editorial team
         </Link>
         , who research tariff orders, build the calculation engine and review
         every number before it goes live. Spotted an error or want a state added?{' '}
-        <Link href="/contact" className="text-indigo-600 underline">
+        <Link href="/contact" className="text-brass underline">
           Contact us
         </Link>
         .

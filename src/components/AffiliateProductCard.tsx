@@ -16,7 +16,7 @@ function amazonSearchUrl(name: string): string {
 function Stars({ rating }: { rating: number }) {
   const full = Math.round(rating)
   return (
-    <span className="text-amber-500" aria-label={`${rating} out of 5 stars`}>
+    <span className="text-brass" aria-label={`${rating} out of 5 stars`}>
       {'★'.repeat(full)}
       <span className="text-slate-300 dark:text-slate-600">
         {'★'.repeat(5 - full)}
@@ -35,7 +35,7 @@ export default function AffiliateProductCard({
   return (
     <div className="flex flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
       {highlight && (
-        <span className="mb-2 inline-block w-fit rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-semibold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+        <span className="mb-2 inline-block w-fit rounded-full bg-brass/10 px-2 py-0.5 text-xs font-semibold text-brass dark:bg-brass/15 dark:text-brass">
           {highlight}
         </span>
       )}
@@ -58,7 +58,7 @@ export default function AffiliateProductCard({
         href={amazonSearchUrl(product.name)}
         target="_blank"
         rel="sponsored nofollow noopener noreferrer"
-        className="mt-3 rounded-lg bg-amber-500 px-4 py-2 text-center text-sm font-semibold text-slate-900 hover:bg-amber-400"
+        className="mt-3 rounded-lg bg-brass px-4 py-2 text-center text-sm font-semibold text-slate-900 hover:bg-brass/50"
       >
         View on Amazon
       </a>

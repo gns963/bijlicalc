@@ -27,7 +27,7 @@ export default function DisclaimerPage() {
         Bengal&apos;s monthly MVCA surcharge, and Kerala&apos;s non-telescopic
         rate above 250 units a month. These limits are noted on the relevant
         calculators; see our{' '}
-        <Link href="/methodology" className="text-indigo-600 underline">
+        <Link href="/methodology" className="text-brass underline">
           methodology
         </Link>
         .

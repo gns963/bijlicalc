@@ -47,15 +47,15 @@ export default async function AuthorPage({
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <Link href="/" className="hover:text-indigo-600">
+        <Link href="/" className="hover:text-brass">
           Home
         </Link>{' '}
-        / <Link href="/about" className="hover:text-indigo-600">About</Link> /{' '}
+        / <Link href="/about" className="hover:text-brass">About</Link> /{' '}
         <span className="text-slate-700 dark:text-slate-300">{author.name}</span>
       </nav>
 
       <header className="mb-8 flex items-center gap-4">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 text-2xl font-bold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brass/10 text-2xl font-bold text-brass dark:bg-brass/15 dark:text-brass">
           {author.name.slice(0, 1)}
         </div>
         <div>
@@ -85,7 +85,7 @@ export default async function AuthorPage({
         Contact:{' '}
         <a
           href={`mailto:${author.email}`}
-          className="text-indigo-600 underline hover:text-indigo-500"
+          className="text-brass underline hover:text-brass"
         >
           {author.email}
         </a>

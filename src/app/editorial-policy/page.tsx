@@ -32,7 +32,7 @@ export default function EditorialPolicyPage() {
       <p>
         A tariff is not published until it passes our schema validation and has a
         recorded source and verification status. See our{' '}
-        <Link href="/methodology" className="text-indigo-600 underline">
+        <Link href="/methodology" className="text-brass underline">
           methodology
         </Link>{' '}
         for the exact mechanism.
@@ -54,7 +54,7 @@ export default function EditorialPolicyPage() {
         If you find an error, email{' '}
         <a
           href="mailto:corrections@bijlicalc.com"
-          className="text-indigo-600 underline"
+          className="text-brass underline"
         >
           corrections@bijlicalc.com
         </a>
@@ -69,7 +69,7 @@ export default function EditorialPolicyPage() {
         Advertising and affiliate income never influence a calculation, a
         recommendation, or how a product is ranked. Commercial content is clearly
         labelled and kept separate from the tools. See our{' '}
-        <Link href="/affiliate-disclosure" className="text-indigo-600 underline">
+        <Link href="/affiliate-disclosure" className="text-brass underline">
           affiliate disclosure
         </Link>
         .

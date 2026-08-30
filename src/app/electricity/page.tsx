@@ -32,7 +32,7 @@ export default function ElectricityHubPage() {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href="/" className="hover:text-brass">
               Home
             </Link>
           </li>
@@ -65,12 +65,12 @@ export default function ElectricityHubPage() {
             <li key={d.slug}>
               <Link
                 href={`/electricity/${d.slug}`}
-                className="block rounded-xl border border-indigo-200 bg-indigo-50 p-4 transition hover:border-indigo-400 hover:shadow-sm dark:border-indigo-800 dark:bg-indigo-950/40"
+                className="block rounded-xl border border-brass/20 bg-brass/5 p-4 transition hover:border-brass/50 hover:shadow-sm dark:border-brass dark:bg-brass/15/40"
               >
                 <span className="font-semibold text-slate-900 dark:text-white">
                   {d.state}
                 </span>
-                <span className="mt-1 block text-xs text-indigo-700 dark:text-indigo-300">
+                <span className="mt-1 block text-xs text-brass dark:text-brass">
                   {d.discomCode} · {d.billingCycle} billing · Open →
                 </span>
               </Link>
@@ -85,11 +85,11 @@ export default function ElectricityHubPage() {
         </h2>
         <p className="text-slate-700 dark:text-slate-300">
           We&apos;re adding DISCOMs by demand. Want yours next?{' '}
-          <Link href="/contact" className="text-indigo-600 underline">
+          <Link href="/contact" className="text-brass underline">
             Request a state
           </Link>{' '}
           and see our{' '}
-          <Link href="/data-sources" className="text-indigo-600 underline">
+          <Link href="/data-sources" className="text-brass underline">
             data sources
           </Link>
           .

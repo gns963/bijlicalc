@@ -58,16 +58,16 @@ export default function PrivacyPage() {
           href="https://www.google.com/settings/ads"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-indigo-600 underline"
+          className="text-brass underline"
         >
           Ads Settings
         </a>
         . See our{' '}
-        <Link href="/cookie-policy" className="text-indigo-600 underline">
+        <Link href="/cookie-policy" className="text-brass underline">
           cookie policy
         </Link>{' '}
         and{' '}
-        <Link href="/affiliate-disclosure" className="text-indigo-600 underline">
+        <Link href="/affiliate-disclosure" className="text-brass underline">
           affiliate disclosure
         </Link>{' '}
         for details.
@@ -80,7 +80,7 @@ export default function PrivacyPage() {
         You can control cookies through your browser settings and opt out of
         personalised ads as above. To ask about any data you have sent us (for
         example via the lead form or email), contact{' '}
-        <a href="mailto:hello@bijlicalc.com" className="text-indigo-600 underline">
+        <a href="mailto:hello@bijlicalc.com" className="text-brass underline">
           hello@bijlicalc.com
         </a>
         .

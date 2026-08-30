@@ -56,7 +56,7 @@ export default function MethodologyPage() {
           href="https://zod.dev"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-indigo-600 underline"
+          className="text-brass underline"
         >
           Zod
         </a>{' '}
@@ -98,7 +98,7 @@ export default function MethodologyPage() {
         the DISCOM&apos;s data file and its <code>lastVerified</code> date, which
         automatically flows through to every page and worked example that uses
         it. See the{' '}
-        <Link href="/data-sources" className="text-indigo-600 underline">
+        <Link href="/data-sources" className="text-brass underline">
           data sources
         </Link>{' '}
         page for the current source order behind each DISCOM.

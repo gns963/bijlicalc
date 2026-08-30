@@ -44,13 +44,13 @@ export default function AcTonnagePage() {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href="/" className="hover:text-brass">
               Home
             </Link>
           </li>
           <li aria-hidden>/</li>
           <li>
-            <Link href="/ac" className="hover:text-indigo-600">
+            <Link href="/ac" className="hover:text-brass">
               AC
             </Link>
           </li>

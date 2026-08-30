@@ -44,7 +44,7 @@ export default function DataSourcesPage() {
                     href={t.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-indigo-600 underline hover:text-indigo-500"
+                    className="text-brass underline hover:text-brass"
                   >
                     View order
                   </a>

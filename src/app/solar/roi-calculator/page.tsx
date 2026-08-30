@@ -61,13 +61,13 @@ export default function SolarRoiPage() {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href="/" className="hover:text-brass">
               Home
             </Link>
           </li>
           <li aria-hidden>/</li>
           <li>
-            <Link href="/solar" className="hover:text-indigo-600">
+            <Link href="/solar" className="hover:text-brass">
               Solar
             </Link>
           </li>
@@ -92,11 +92,11 @@ export default function SolarRoiPage() {
 
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-amber-100 bg-amber-50 p-5 dark:border-amber-900 dark:bg-amber-950/40"
+        className="mb-8 rounded-xl border border-brass/10 bg-brass/5 p-5 dark:border-brass/20 dark:bg-brass/15/40"
       >
         <h2
           id="worked-example"
-          className="text-sm font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300"
+          className="text-sm font-semibold uppercase tracking-wide text-brass dark:text-brass"
         >
           Worked example
         </h2>
