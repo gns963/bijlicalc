@@ -446,6 +446,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       'Estimate your UPPCL electricity bill for urban Uttar Pradesh. Monthly LMV-1 slabs, ₹110/kW fixed charge, meter rent and 5% duty. Works for PuVVNL, MVVNL, PVVNL, DVVNL and KESCO.',
     exampleUnits: 250,
     exampleEligible: false,
+    neighboringDiscoms: ['UHBVN', 'MPCZ', 'JVVNL'],
     intro: (
       <>
         Estimate your UPPCL electricity bill for urban Uttar Pradesh. UP&apos;s
@@ -506,7 +507,91 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
         q: 'What extra charges appear on a UP bill?',
         a: 'Besides energy and the per-kW fixed charge, expect a ₹20 meter rent, a ₹0.15/unit regulatory true-up and 5% electricity duty.',
       },
+      {
+        q: 'Does UPPCL supply Kanpur directly?',
+        a: 'Not directly — Kanpur is served by the Kanpur Electricity Supply Company (KESCO), a UPPCL subsidiary dedicated to the Kanpur Municipal Corporation area, while the other four regions (Lucknow/Ayodhya, Meerut/Moradabad, Agra/Aligarh, Varanasi/Gorakhpur) are served by MVVNL, PVVNL, DVVNL and PuVVNL respectively — all under the same UPERC tariff.',
+      },
+      {
+        q: 'How do I check or pay my UPPCL bill online?',
+        a: 'Pay via the official UPPCL consumer portal at consumer.uppcl.org, or your local DISCOM app (e.g. KESCO for Kanpur). For queries, call the toll-free helpline 1800-180-8752 or 1912.',
+      },
+      {
+        q: 'What is UPPCL, and how did it form?',
+        a: 'UPPCL (Uttar Pradesh Power Corporation Ltd) was incorporated on 30 November 1999 and began operating on 15 January 2000, when the Uttar Pradesh State Electricity Board (UPSEB) was unbundled into UPPCL (transmission and distribution) and separate generation companies.',
+      },
     ],
+    billTraps: [
+      {
+        title: 'Your DISCOM depends on your city, not just "UPPCL"',
+        body: (
+          <>
+            Bills are issued by one of five UPPCL subsidiaries — PuVVNL,
+            MVVNL, PVVNL, DVVNL or KESCO — based on where you live. All five
+            follow the same UPERC tariff, but customer service, portals and
+            local offices differ by subsidiary.
+          </>
+        ),
+      },
+      {
+        title: 'The fixed charge scales with sanctioned load',
+        body: (
+          <>
+            At ₹110 per kW, a higher sanctioned load (useful for ACs, geysers
+            or motors) raises your fixed charge regardless of how many units
+            you actually consume that month.
+          </>
+        ),
+      },
+      {
+        title: 'Rural rates are different and not modelled here',
+        body: (
+          <>
+            This calculator uses the urban LMV-1 schedule. Rural domestic
+            connections follow a separate UPERC tariff not covered by this
+            calculator yet.
+          </>
+        ),
+      },
+    ],
+    aboutDiscom: [
+      <>
+        Uttar Pradesh Power Corporation Ltd (UPPCL) was incorporated on 30
+        November 1999 and commenced business on 15 January 2000, as part of
+        the unbundling of the Uttar Pradesh State Electricity Board (UPSEB)
+        into separate transmission/distribution and generation entities.
+      </>,
+      <>
+        UPPCL bills consumers through five regional subsidiaries: Purvanchal
+        Vidyut Vitran Nigam (PuVVNL), Madhyanchal Vidyut Vitran Nigam
+        (MVVNL), Paschimanchal Vidyut Vitran Nigam (PVVNL), Dakshinanchal
+        Vidyut Vitran Nigam (DVVNL), and Kanpur Electricity Supply Company
+        (KESCO) for the Kanpur Municipal Corporation area specifically. All
+        follow the same UPERC-approved tariff.
+      </>,
+    ],
+    coverageQA: {
+      q: 'Does UPPCL supply Lucknow and Kanpur?',
+      a: (
+        <>
+          Both cities are covered, but by different UPPCL subsidiaries.
+          Lucknow falls under Madhyanchal Vidyut Vitran Nigam (MVVNL), while
+          Kanpur is served by its own dedicated subsidiary, the Kanpur
+          Electricity Supply Company (KESCO) — both bill on the same UPERC
+          tariff shown on this page.
+        </>
+      ),
+    },
+    howToPay: {
+      portalUrl: 'https://consumer.uppcl.org/wss/pay_bill_home',
+      portalLabel: 'consumer.uppcl.org (official UPPCL consumer portal)',
+      helpline: '1800-180-8752 / 1912',
+      steps: [
+        'Visit the UPPCL consumer portal (or your local subsidiary’s app, e.g. KESCO for Kanpur)',
+        'Enter your Account/Consumer ID to fetch your current bill',
+        'Verify the amount and pay via UPI, card or net banking',
+        'Save the payment receipt for your records',
+      ],
+    },
   },
 
   // -------------------------------------------------------------- BESCOM
@@ -870,6 +955,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       'Estimate your WBSEDCL electricity bill for West Bengal. Quarterly billing, telescopic slabs, ₹30/kVA fixed charge and the MVCA surcharge explained.',
     exampleUnits: 300,
     exampleEligible: false,
+    neighboringDiscoms: ['JBVNL', 'TPCODL', 'APDCL'],
     intro: (
       <>
         Estimate your WBSEDCL electricity bill for West Bengal. WBSEDCL is
@@ -930,7 +1016,88 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
         q: 'What about prepaid smart meters?',
         a: 'For monthly-billed prepaid meters, the slab limits are one-third of the quarterly figures shown here, but the per-unit rates are the same.',
       },
+      {
+        q: 'Does WBSEDCL supply electricity to Kolkata?',
+        a: 'No. Kolkata, Howrah and parts of North/South 24 Parganas and Hooghly are served by CESC Limited, a separate private licensee with its own WBERC-approved tariff. WBSEDCL covers the rest of West Bengal outside the CESC licence area.',
+      },
+      {
+        q: 'How do I check or pay my WBSEDCL bill online?',
+        a: 'Pay via the official WBSEDCL portal at portal.wbsedcl.in, using the "Online Payment" → "Quick Pay" option. For queries, call the 24×7 helpline 19121.',
+      },
+      {
+        q: 'What is WBSEDCL, and when was it formed?',
+        a: 'WBSEDCL (West Bengal State Electricity Distribution Company Ltd) was formed on 1 April 2007, when the West Bengal State Electricity Board (WBSEB, itself dating to 1955) was unbundled into WBSEDCL (distribution) and WBSETCL (transmission) under the state\'s power reform scheme.',
+      },
     ],
+    billTraps: [
+      {
+        title: "Kolkata isn't WBSEDCL — it's CESC",
+        body: (
+          <>
+            If your bill is for a Kolkata, Howrah or nearby CESC-area address,
+            you&apos;re on a different licensee with its own tariff — this
+            calculator&apos;s WBSEDCL rates won&apos;t match your bill.
+          </>
+        ),
+      },
+      {
+        title: 'Quarterly billing catches people off guard',
+        body: (
+          <>
+            A &ldquo;small-looking&rdquo; 300-unit figure on this calculator is actually
+            three months of usage, not one — check whether your bill covers
+            one month or a full quarter before comparing numbers.
+          </>
+        ),
+      },
+      {
+        title: 'MVCA moves every month, this estimate does not include it',
+        body: (
+          <>
+            The Monthly Variable Cost Adjustment changes with fuel costs and
+            isn&apos;t fixed like the slab rates, so your real bill will
+            differ from this estimate by whatever MVCA applies that month.
+          </>
+        ),
+      },
+    ],
+    aboutDiscom: [
+      <>
+        The West Bengal State Electricity Board (WBSEB) was formed in 1955.
+        Under the state&apos;s 2007 Power Reform Scheme, it was unbundled on 1
+        April 2007 into West Bengal State Electricity Distribution Company
+        Ltd (WBSEDCL) for distribution and West Bengal State Electricity
+        Transmission Company Ltd (WBSETCL) for transmission.
+      </>,
+      <>
+        WBSEDCL distributes power across most of West Bengal, but not
+        Kolkata: the city, Howrah and parts of North/South 24 Parganas and
+        Hooghly are served by CESC Limited, a long-standing private
+        distribution licensee with its own separate tariff.
+      </>,
+    ],
+    coverageQA: {
+      q: 'Does WBSEDCL supply electricity to Kolkata?',
+      a: (
+        <>
+          No — Kolkata and its immediate surroundings (Howrah, and parts of
+          North and South 24 Parganas and Hooghly) are served by CESC
+          Limited, a separate private licensee. WBSEDCL covers the rest of
+          West Bengal outside that area.
+        </>
+      ),
+    },
+    howToPay: {
+      portalUrl: 'https://portal.wbsedcl.in/',
+      portalLabel: 'portal.wbsedcl.in (official WBSEDCL portal)',
+      helpline: '19121 (24×7)',
+      steps: [
+        'Visit the WBSEDCL portal and select "Online Payment" → "Quick Pay"',
+        'Enter your Consumer ID to fetch your current bill',
+        'Verify the amount and pay via UPI, card or net banking',
+        'Save the payment confirmation for your records',
+      ],
+    },
   },
   {
     slug: "gujarat-electricity-bill-calculator",
@@ -941,6 +1108,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Gujarat electricity bill (Madhya Gujarat Vij Company Ltd (MGVCL, GERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Gujarat bills monthly with different urban and rural (RGP-Rural) rates.",
     exampleUnits: 200,
     exampleEligible: false,
+    neighboringDiscoms: ['MSEDCL', 'JVVNL', 'MPCZ'],
     intro: "Estimate your Madhya Gujarat Vij Company Ltd (MGVCL, GERC) electricity bill for Gujarat. Gujarat bills monthly with different urban and rural (RGP-Rural) rates. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Urban vs rural rates (RGP vs RGP-Rural)", body: "Gujarat sets different domestic rates for urban (RGP) and rural (RGP-Rural, inside a Gram Panchayat) premises — rural homes pay lower per-unit rates and half the electricity duty. This calculator uses the urban RGP schedule." },
@@ -950,7 +1118,42 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Gujarat electricity tariff telescopic?", a: "Yes. Gujarat charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Gujarat domestic connection?", a: "The fixed charge is a flat ₹90/month." },
       { q: "How accurate is this Gujarat bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. FPPCA (monthly fuel surcharge) and electricity duty are not modelled here. Always confirm against your official MGVCL bill." },
+      { q: "Does MGVCL supply electricity to Ahmedabad?", a: "No. Ahmedabad falls under Uttar Gujarat Vij Company Ltd (UGVCL), not MGVCL. MGVCL covers Vadodara and 12 districts of central Gujarat (Anand, Kheda, Panchmahal, Dahod, Chhota Udaipur and others) — a different, adjacent territory." },
+      { q: "How do I check or pay my MGVCL bill online?", a: "Pay via the official MGVCL portal at mgvcl.com, using Quick Pay or by registering an account. For queries, call the toll-free helpline 1800-233-2670 or 19124." },
+      { q: "What is MGVCL, and how did it form?", a: "The Gujarat Electricity Board (GEB) was reorganised by the Gujarat government into a generation company, a transmission company, and four distribution companies. Madhya Gujarat Vij Company Ltd (MGVCL) was incorporated on 15 September 2003 and became functional on 1 April 2005, as a subsidiary of the holding company Gujarat Urja Vikas Nigam Ltd (GUVNL)." },
     ],
+    billTraps: [
+      { title: "MGVCL is not statewide — Ahmedabad is UGVCL", body: "Gujarat has four separate distribution companies (MGVCL, UGVCL, PGVCL, DGVCL) under GUVNL. MGVCL covers Vadodara and central Gujarat; Ahmedabad, Surat and other cities are billed by a different company entirely." },
+      { title: "Urban and rural rates genuinely differ", body: "Unlike most states, Gujarat sets a lower per-unit rate and half electricity duty for rural (RGP-Rural, inside a Gram Panchayat) premises versus urban (RGP) ones — the same consumption can cost less just for being in a rural area." },
+      { title: "FPPCA surcharge isn't included in this estimate", body: "MGVCL adds a monthly Fuel & Power Purchase Cost Adjustment (FPPCA) that varies and is not modelled here, so your real bill will differ by that amount." },
+    ],
+    aboutDiscom: [
+      "The Gujarat Electricity Board (GEB) was reorganised into a generation company (GSECL), a transmission company (GETCO), and four distribution companies under a holding company, Gujarat Urja Vikas Nigam Ltd (GUVNL). Madhya Gujarat Vij Company Ltd (MGVCL) was incorporated on 15 September 2003 and became operational on 1 April 2005.",
+      "MGVCL serves Vadodara and 12 districts of central Gujarat. The other three distribution companies — UGVCL (north Gujarat, including Ahmedabad), PGVCL (Saurashtra) and DGVCL (south Gujarat, including Surat) — cover the rest of the state.",
+    ],
+    coverageQA: {
+      q: "Does MGVCL supply electricity to Ahmedabad?",
+      a: "No. Ahmedabad is served by Uttar Gujarat Vij Company Ltd (UGVCL), a separate GUVNL subsidiary. MGVCL's territory is Vadodara and central Gujarat — check which company's name appears on your bill before using this calculator.",
+    },
+    howToPay: {
+      portalUrl: "https://www.mgvcl.com/Online_Payment_of_Bills",
+      portalLabel: "mgvcl.com (official MGVCL portal)",
+      helpline: "1800-233-2670 / 19124 (24×7)",
+      steps: [
+        "Visit the official MGVCL website and select Online Payment of Bills",
+        "Enter your Consumer Number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the payment receipt for your records",
+      ],
+    },
+    thresholdCallout: {
+      title: "Urban vs rural rates",
+      leftLabel: "Urban (RGP)",
+      leftValue: "₹3.05–5.20/unit",
+      rightLabel: "Rural (RGP-Rural)",
+      rightValue: "₹2.65–4.90/unit",
+      note: "Rural premises inside a Gram Panchayat pay lower per-unit rates across every slab, plus half the electricity duty of urban premises — the same consumption can cost meaningfully less depending on which side of the line your address falls.",
+    },
   },
   {
     slug: "rajasthan-electricity-bill-calculator",
@@ -1001,6 +1204,7 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
     metaDescription: "Calculate your Delhi electricity bill (BSES Rajdhani Power Ltd (BRPL, DERC)). Real domestic slab rates, fixed charge and subsidies, with a clear breakdown. Delhi gives up to 200 free units (opt-in) across BRPL, BYPL and TPDDL.",
     exampleUnits: 400,
     exampleEligible: false,
+    neighboringDiscoms: ['UHBVN', 'UPPCL', 'PSPCL'],
     intro: "Estimate your BSES Rajdhani Power Ltd (BRPL, DERC) electricity bill for Delhi. Delhi gives up to 200 free units (opt-in) across BRPL, BYPL and TPDDL. Enter your units below for an itemised, slab-by-slab estimate.",
     explainer: [
       { title: "Up to 200 free units, then a PPAC surcharge", body: "Delhi gives opted-in domestic consumers up to 200 free units a month and half-price power for 201–400 units. But bills also carry a Power Purchase Adjustment Cost (PPAC) surcharge of roughly 30% on energy charges. All three discoms — BRPL, BYPL and TPDDL — follow the same DERC schedule." },
@@ -1010,7 +1214,42 @@ export const CALCULATOR_PAGES: DiscomPageConfig[] = [
       { q: "Is the Delhi electricity tariff telescopic?", a: "Yes. Delhi charges telescopically: each slab is billed at its own rate, so moving up a slab does not re-price your cheaper units." },
       { q: "What is the fixed charge for a Delhi domestic connection?", a: "The fixed charge is ₹100 per kW of sanctioned load." },
       { q: "How accurate is this Delhi bill estimate?", a: "It uses the published domestic slab rates and is a close estimate, not a billing-grade figure. The PPAC surcharge (~30% of energy charge) is not modelled, so real Delhi bills above the free tier run higher. Always confirm against your official BRPL bill." },
+      { q: "Does BRPL supply all of Delhi?", a: "No. BRPL covers South and West Delhi only (around 30 lakh consumers across areas like Dwarka, Janakpuri, Saket, Vasant Kunj and Najafgarh). BSES Yamuna Power Ltd (BYPL) covers East and Central Delhi, and Tata Power Delhi Distribution Ltd (TPDDL) covers North and North-West Delhi." },
+      { q: "How do I check or pay my BRPL bill online?", a: "Pay via the official BSES Delhi portal at bsesdelhi.com (BRPL section), or the BSES app. For queries, call the 24×7 toll-free helpline 19123." },
+      { q: "What is BRPL, and how did it form?", a: "In 2002, the state-owned Delhi Vidyut Board (DVB) was unbundled and its distribution business privatised into three companies: BSES Rajdhani Power Ltd (BRPL) for South/West Delhi, BSES Yamuna Power Ltd (BYPL) for East/Central Delhi, and Tata Power Delhi Distribution Ltd (TPDDL, then NDPL) for North/North-West Delhi." },
     ],
+    billTraps: [
+      { title: "BRPL is not all of Delhi", body: "BRPL bills only South and West Delhi. If your area is East, Central, North or North-West Delhi, your actual discom is BYPL or TPDDL, which may have different tariffs and processes even under the same DERC schedule." },
+      { title: "The PPAC surcharge isn't in this estimate", body: "Delhi's Power Purchase Adjustment Cost (PPAC) surcharge adds roughly 30% on top of energy charges and is not modelled here, so your real bill — above the free-unit tier — will run meaningfully higher than this calculator shows." },
+      { title: "The free-unit benefit needs opting in", body: "The up-to-200-free-units scheme is not automatic — eligible consumers must be opted in on their account. Check your latest bill to confirm the subsidy is actually being applied." },
+    ],
+    aboutDiscom: [
+      "The Delhi Vidyut Board (DVB), a state-owned integrated utility, was unbundled in 2002 after years of heavy technical and commercial losses. Its distribution business was privatised into three companies: BSES Rajdhani Power Ltd (BRPL), BSES Yamuna Power Ltd (BYPL), and Tata Power Delhi Distribution Ltd (TPDDL, originally NDPL).",
+      "BRPL serves South and West Delhi — about 30 lakh consumers across areas including Dwarka, Janakpuri, Saket, Vasant Kunj, R.K. Puram and Najafgarh — while BYPL and TPDDL cover the rest of the capital.",
+    ],
+    coverageQA: {
+      q: "Does BRPL supply electricity to all of Delhi?",
+      a: "No. BRPL covers South and West Delhi only. East and Central Delhi are served by BSES Yamuna Power Ltd (BYPL), and North/North-West Delhi by Tata Power Delhi Distribution Ltd (TPDDL). All three follow the same DERC tariff shown on this page, but billing and customer service are separate.",
+    },
+    howToPay: {
+      portalUrl: "https://www.bsesdelhi.com/web/brpl",
+      portalLabel: "bsesdelhi.com (official BSES Rajdhani portal)",
+      helpline: "19123 (24×7)",
+      steps: [
+        "Visit the BSES Delhi portal and select the BRPL section",
+        "Enter your CA (Consumer Account) number to fetch your current bill",
+        "Verify the amount and pay via UPI, card or net banking",
+        "Save the digital receipt for your records",
+      ],
+    },
+    thresholdCallout: {
+      title: "The free-unit line (opt-in only)",
+      leftLabel: "0–200 units",
+      leftValue: "Free (if opted in)",
+      rightLabel: "201+ units",
+      rightValue: "From ₹4.50/unit",
+      note: "Delhi's free-unit and half-price bands only apply if your account is opted into the subsidy — it is not automatic. Units from 201–400 are billed at half the standard rate, and 401+ at the full slab rate.",
+    },
   },
   {
     slug: "telangana-electricity-bill-calculator",
