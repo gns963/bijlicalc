@@ -2564,3 +2564,11 @@ export function getCalculatorPage(slug: string): DiscomPageConfig | undefined {
 }
 
 export const allCalculatorSlugs = CALCULATOR_PAGES.map((p) => p.slug)
+
+/** Short discomCode-based slug (e.g. "tneb") for secondary route trees —
+ *  cleaner than reusing the full "-bill-calculator" DISCOM slug. */
+export function getCalculatorPageByDiscomSlug(discomSlug: string): DiscomPageConfig | undefined {
+  return CALCULATOR_PAGES.find((p) => p.discomCode.toLowerCase() === discomSlug)
+}
+
+export const allDiscomCodeSlugs = CALCULATOR_PAGES.map((p) => p.discomCode.toLowerCase())

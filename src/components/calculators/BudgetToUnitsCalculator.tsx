@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react'
 import type { ConnectionCategory, TariffFile } from '@/data/tariffs/_schema'
 import { findMaxUnitsForBudget } from '@/lib/calc/electricity'
 import { cycleLabel, formatINR } from '@/lib/format'
-import { CalculatorCard, CalculatorHeader, OptionCardGroup } from './CalculatorShell'
+import { CalculatorHeader, OptionCardGroup } from './CalculatorShell'
 
 const CATEGORY_OPTIONS: { value: ConnectionCategory; label: string; icon: string }[] = [
   { value: 'residential', label: 'Residential', icon: '🏠' },
@@ -48,7 +48,9 @@ export default function BudgetToUnitsCalculator({
   }, [tariff, budget, connectionType, phase, selected, eligible, subsidyScheme])
 
   return (
-    <CalculatorCard>
+    // A brass tint (not plain white) visually separates this reverse
+    // calculator as a distinct "tool" from the primary calculator above.
+    <div className="rounded-xl border border-brass/20 bg-brass/5 p-6 shadow-sm dark:border-brass/20 dark:bg-brass/10">
       <CalculatorHeader
         icon="🎯"
         title="Budget → Units Calculator"
@@ -78,7 +80,7 @@ export default function BudgetToUnitsCalculator({
                   className={`flex-1 rounded-lg border-2 px-3 py-2 text-sm capitalize transition ${
                     phase === p
                       ? 'border-brass bg-brass/10 font-semibold text-ink-navy dark:text-gazette-cream'
-                      : 'border-slate-200 text-ash/70 dark:border-slate-700 dark:text-gazette-cream/60'
+                      : 'border-hairline text-ash/70 dark:border-white/10 dark:text-gazette-cream/60'
                   }`}
                 >
                   {p}-phase
@@ -101,17 +103,17 @@ export default function BudgetToUnitsCalculator({
             min={0}
             value={budget}
             onChange={(e) => setBudget(Math.max(0, Number(e.target.value) || 0))}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+            className="w-full rounded-lg border border-hairline px-3 py-2.5 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
           />
         </div>
 
         {subsidyScheme && (
-          <label className="flex items-start gap-3 rounded-lg bg-gazette-cream p-3 text-sm dark:bg-slate-800">
+          <label className="flex items-start gap-3 rounded-lg border border-hairline bg-paper p-3 text-sm dark:border-white/10 dark:bg-slate-800">
             <input
               type="checkbox"
               checked={eligible}
               onChange={(e) => setEligible(e.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brass focus:ring-brass"
+              className="mt-0.5 h-4 w-4 rounded border-hairline text-brass focus:ring-brass"
             />
             <span className="text-ash dark:text-gazette-cream/80">
               Eligible for <strong>{subsidyScheme.schemeName}</strong>
@@ -120,7 +122,7 @@ export default function BudgetToUnitsCalculator({
         )}
       </div>
 
-      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
         {tooLow ? (
           <p className="text-sm text-ash/70 dark:text-gazette-cream/60">
             Even 0 units costs {formatINR(bill.total)} on this tariff (fixed
@@ -132,7 +134,7 @@ export default function BudgetToUnitsCalculator({
             <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
               You can use up to
             </p>
-            <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
+            <p className="font-display text-4xl font-bold tabular-nums text-brass">
               {maxUnits} units
             </p>
             <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
@@ -142,6 +144,6 @@ export default function BudgetToUnitsCalculator({
           </>
         )}
       </div>
-    </CalculatorCard>
+    </div>
   )
 }

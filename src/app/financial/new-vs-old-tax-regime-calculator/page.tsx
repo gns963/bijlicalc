@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import FinancialCrossSell from '@/components/FinancialCrossSell'
+import PageHero from '@/components/PageHero'
 import TaxRegimeCalculator from '@/components/calculators/TaxRegimeCalculator'
 import { compareRegimes } from '@/lib/calc/financial'
 import { formatINR } from '@/lib/format'
+import { breadcrumbLd } from '@/lib/seo'
 
 const SITE = 'https://bijlicalc.com'
 const PATH = '/financial/new-vs-old-tax-regime-calculator'
@@ -30,6 +32,26 @@ const faqs = [
     q: 'Which deductions still work in the new regime?',
     a: 'The standard deduction of ₹75,000 and the employer’s NPS contribution (80CCD(2)) are allowed. Most others — 80C, 80D, HRA, home loan interest on self-occupied property — are only available in the old regime.',
   },
+  {
+    q: 'Which deductions are only available under the old regime?',
+    a: 'Section 80C (up to ₹1.5L — PF, ELSS, life insurance, etc.), 80D (health insurance premiums), HRA exemption, home loan interest on a self-occupied property (Section 24), and most other Chapter VI-A deductions are only available if you opt for the old regime.',
+  },
+  {
+    q: 'Can I switch between regimes every year?',
+    a: 'Salaried individuals without business income can choose either regime each financial year when filing their return. Those with business/professional income have more restricted switching rules — check current CBDT guidance for your specific situation.',
+  },
+  {
+    q: 'What is the Section 87A rebate?',
+    a: 'It\'s a rebate that effectively zeroes out tax liability up to a specified income threshold, which is higher under the new regime — this is a major reason many salaried taxpayers under ~₹12.75L now owe no tax under the new regime once combined with the standard deduction.',
+  },
+  {
+    q: 'Does this calculator include cess?',
+    a: 'Yes — a 4% health and education cess is applied on top of the computed income tax (after rebate) under both regimes, matching the standard calculation method.',
+  },
+  {
+    q: 'Is this calculator accurate for freelancers or business income?',
+    a: 'It\'s built around salaried-income deductions and slabs. Business/professional income has additional rules (presumptive taxation options, different regime-switching restrictions) that this calculator doesn\'t model — consult a tax professional for business income specifically.',
+  },
 ]
 
 const faqLd = {
@@ -51,52 +73,54 @@ const webAppLd = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
   areaServed: 'India',
 }
+const breadcrumb = breadcrumbLd([
+  { name: 'Home', path: '' },
+  { name: 'Financial', path: '/financial' },
+  { name: 'New vs Old Tax Regime', path: PATH },
+])
 
 export default function TaxRegimePage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <ol className="flex flex-wrap items-center gap-1.5">
-          <li>
-            <Link href="/" className="hover:text-brass">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li>
-            <Link href="/financial" className="hover:text-brass">
-              Financial
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="font-medium text-slate-700 dark:text-slate-300">
-            New vs Old Tax Regime
-          </li>
-        </ol>
-      </nav>
+    <>
+      <PageHero
+        hub="financial"
+        breadcrumb={[
+          { label: 'Financial', href: '/financial' },
+          { label: 'New vs Old Tax Regime', href: '/financial/new-vs-old-tax-regime-calculator' },
+        ]}
+        badgeLabel={
+          <>
+            <span aria-hidden>📒</span> Financial hub
+          </>
+        }
+        h1="New vs Old Tax Regime Calculator (FY 2026-27)"
+        subtitle={
+          <>
+            Compare your income tax under the <strong>new</strong> and{' '}
+            <strong>old</strong> regimes for FY 2026-27 (AY 2027-28), including the
+            latest slabs, standard deduction, Section 87A rebate and 4% cess.
+          </>
+        }
+        stats={[
+          { icon: '🎯', big: '₹12.75L', small: 'Tax-free (new regime)', tone: 'hub' },
+          { icon: '📊', big: '7 slabs', small: 'New regime', tone: 'hub' },
+          { icon: '➕', big: '4%', small: 'Health & education cess', tone: 'hub' },
+          { icon: '📅', big: 'FY 2026-27', small: 'AY 2027-28', tone: 'hub' },
+        ]}
+      />
 
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
-          New vs Old Tax Regime Calculator (FY 2026-27)
-        </h1>
-        <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
-          Compare your income tax under the <strong>new</strong> and{' '}
-          <strong>old</strong> regimes for FY 2026-27 (AY 2027-28), including the
-          latest slabs, standard deduction, Section 87A rebate and 4% cess.
-        </p>
-      </header>
-
+      <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-brass/10 bg-brass/5 p-5 dark:border-brass/20 dark:bg-brass/15/40"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
       >
         <h2
           id="worked-example"
-          className="text-sm font-semibold uppercase tracking-wide text-brass dark:text-brass"
+          className="font-display text-sm font-semibold tracking-wide text-brass uppercase"
         >
           Worked example
         </h2>
-        <p className="mt-2 text-slate-700 dark:text-slate-200">
+        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
           On a <strong>₹15,00,000</strong> salary with ₹1,50,000 of old-regime
           deductions, the new regime tax is{' '}
           <strong>{formatINR(example.newRegime.totalTax)}</strong> vs{' '}
@@ -107,25 +131,25 @@ export default function TaxRegimePage() {
       </section>
 
       <section aria-labelledby="calculator" className="mb-10">
-        <h2 id="calculator" className="mb-4 text-2xl font-semibold">
+        <h2 id="calculator" className="font-display mb-4 text-2xl font-semibold">
           Compare your tax
         </h2>
         <TaxRegimeCalculator />
       </section>
 
       <section aria-labelledby="slabs" className="mb-10">
-        <h2 id="slabs" className="mb-4 text-2xl font-semibold">
+        <h2 id="slabs" className="font-display mb-4 text-2xl font-semibold">
           New regime slabs — FY 2026-27
         </h2>
-        <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
+        <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
           <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 dark:bg-slate-800">
+            <thead className="bg-mist dark:bg-slate-800">
               <tr>
                 <th className="px-4 py-2 font-semibold">Income slab</th>
                 <th className="px-4 py-2 text-right font-semibold">Rate</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+            <tbody className="divide-y divide-hairline dark:divide-white/10">
               {[
                 ['Up to ₹4,00,000', 'Nil'],
                 ['₹4,00,001 – ₹8,00,000', '5%'],
@@ -146,25 +170,27 @@ export default function TaxRegimePage() {
       </section>
 
       <section aria-labelledby="faq" className="mb-10">
-        <h2 id="faq" className="mb-4 text-2xl font-semibold">
+        <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-slate-200 dark:divide-slate-700">
+        <div className="divide-y divide-hairline dark:divide-white/10">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-slate-800 marker:hidden dark:text-slate-100">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
                 {f.q}
               </summary>
-              <p className="mt-2 text-slate-600 dark:text-slate-300">{f.a}</p>
+              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
             </details>
           ))}
         </div>
-        <p className="mt-4 text-xs text-slate-400">
+        <p className="mt-4 text-xs text-ash/40">
           For general guidance only, not tax advice. Surcharge (income &gt; ₹50L)
           and marginal relief are not modelled; consult a professional for
           filing.
         </p>
       </section>
+
+      <FinancialCrossSell current="new-vs-old-tax-regime-calculator" />
 
       <script
         type="application/ld+json"
@@ -174,6 +200,11 @@ export default function TaxRegimePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
     </main>
+    </>
   )
 }

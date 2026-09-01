@@ -70,7 +70,7 @@ export default function AcTonnageCalculator() {
         <CalculatorCta label="Find My AC Size" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl bg-mist p-5 dark:bg-slate-800/60">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -81,7 +81,7 @@ export default function AcTonnageCalculator() {
             <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
               Recommended AC size
             </p>
-            <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
+            <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
               {result.recommendedTon} ton
             </p>
             <p className="text-sm text-ash/60 dark:text-gazette-cream/50">

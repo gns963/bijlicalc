@@ -15,8 +15,9 @@ export default function CookiePolicyPage() {
       title="Cookie Policy"
       intro="This policy explains how bijlicalc and our partners use cookies and similar technologies, and how you can control them."
       stub={false}
+      path="/cookie-policy"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         What cookies are
       </h2>
       <p>
@@ -25,7 +26,7 @@ export default function CookiePolicyPage() {
         is used.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Types we use
       </h2>
       <ul className="list-disc space-y-1 pl-5">
@@ -48,7 +49,7 @@ export default function CookiePolicyPage() {
         </li>
       </ul>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Google AdSense
       </h2>
       <p>
@@ -76,7 +77,7 @@ export default function CookiePolicyPage() {
         .
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Managing cookies
       </h2>
       <p>

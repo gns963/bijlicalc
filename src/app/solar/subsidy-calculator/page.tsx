@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import LeadGenForm from '@/components/LeadGenForm'
+import PageHero from '@/components/PageHero'
 import SolarSubsidyCalculator from '@/components/calculators/SolarSubsidyCalculator'
+import HowToApplyPMSuryaGhar, { PM_SURYA_GHAR_STEPS } from '@/components/solar/HowToApplyPMSuryaGhar'
+import SubsidyTierCards from '@/components/solar/SubsidyTierCards'
 
 const SITE = 'https://bijlicalc.com'
 const PATH = '/solar/subsidy-calculator'
@@ -31,6 +34,30 @@ const faqs: { q: string; a: string }[] = [
     q: 'Is the subsidy paid to me or the installer?',
     a: 'The subsidy is credited to your bank account after installation and inspection through the national PM Surya Ghar portal.',
   },
+  {
+    q: 'How long does the subsidy application process take?',
+    a: 'From registration to subsidy disbursal typically takes about 2-3 months total, spanning portal registration, vendor selection and feasibility approval, installation and net-meter application, and finally DISCOM inspection before the subsidy is credited — see the step-by-step timeline below.',
+  },
+  {
+    q: 'What happens if my subsidy application is rejected?',
+    a: 'Rejections are usually due to incomplete documentation, an ineligible connection type, or exceeding the sanctioned load limit for your system size. The portal typically shows the rejection reason, and you can usually correct the issue and reapply.',
+  },
+  {
+    q: 'Can I get a state subsidy in addition to PM Surya Ghar?',
+    a: 'Some states offer an additional subsidy on top of the central PM Surya Ghar amount — this varies by state and isn\'t modelled in this calculator, which shows only the fixed central subsidy. Check with your state renewable energy department or DISCOM for any additional scheme.',
+  },
+  {
+    q: 'Do I need to use an MNRE-empanelled installer?',
+    a: 'Yes — to qualify for the subsidy, installation must go through a vendor empanelled with your DISCOM under the PM Surya Ghar programme, using Made-in-India (DCR) panels and MNRE-approved components.',
+  },
+  {
+    q: 'What documents do I need to apply?',
+    a: 'Typically your electricity bill/consumer number, proof of roof ownership or the owner\'s consent, and a valid bank account for the subsidy transfer — the exact document checklist is confirmed during portal registration.',
+  },
+  {
+    q: 'Can renters apply for PM Surya Ghar?',
+    a: 'The subsidy is tied to the roof and connection, so you generally need to own the property or have the property owner\'s explicit consent to install and claim it — a tenant without that consent isn\'t eligible.',
+  },
 ]
 
 const faqLd = {
@@ -56,67 +83,133 @@ const breadcrumbLd = {
     },
   ],
 }
+const webAppLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'PM Surya Ghar Subsidy Calculator',
+  url: `${SITE}${PATH}`,
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+  areaServed: 'India',
+}
+const howToLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to apply for the PM Surya Ghar subsidy',
+  step: PM_SURYA_GHAR_STEPS.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.title,
+    text: s.body,
+  })),
+}
 
 export default function SolarSubsidyPage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <ol className="flex flex-wrap items-center gap-1.5">
-          <li>
-            <Link href="/" className="hover:text-brass">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li>
-            <Link href="/solar" className="hover:text-brass">
-              Solar
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="font-medium text-slate-700 dark:text-slate-300">
-            PM Surya Ghar Subsidy Calculator
-          </li>
-        </ol>
-      </nav>
+    <>
+      <PageHero
+        hub="solar"
+        breadcrumb={[
+          { label: 'Solar', href: '/solar' },
+          { label: 'PM Surya Ghar Subsidy Calculator', href: '/solar/subsidy-calculator' },
+        ]}
+        badgeLabel={
+          <>
+            <span aria-hidden>☀️</span> Solar hub
+          </>
+        }
+        h1="PM Surya Ghar Subsidy Calculator"
+        subtitle={
+          <>
+            Check your rooftop solar subsidy under{' '}
+            <strong>PM Surya Ghar: Muft Bijli Yojana</strong> and confirm whether
+            you meet the eligibility conditions. The central subsidy is capped at{' '}
+            <strong>₹78,000</strong> for systems of 3 kW and above.
+          </>
+        }
+        stats={[
+          { icon: '💰', big: '₹30,000/kW', small: 'First 2 kW', tone: 'hub' },
+          { icon: '💰', big: '₹18,000', small: '3rd kW', tone: 'hub' },
+          { icon: '🧢', big: '₹78,000', small: 'Max cap', tone: 'hub' },
+          { icon: '📊', big: '3 kW+', small: 'Cap threshold', tone: 'hub' },
+        ]}
+      />
 
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
-          PM Surya Ghar Subsidy Calculator
-        </h1>
-        <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
-          Check your rooftop solar subsidy under{' '}
-          <strong>PM Surya Ghar: Muft Bijli Yojana</strong> and confirm whether
-          you meet the eligibility conditions. The central subsidy is capped at{' '}
-          <strong>₹78,000</strong> for systems of 3 kW and above.
-        </p>
-      </header>
-
+      <main className="mx-auto max-w-4xl px-4 py-8">
       <section aria-labelledby="calculator" className="mb-10">
-        <h2 id="calculator" className="mb-4 text-2xl font-semibold">
+        <h2 id="calculator" className="font-display mb-4 text-2xl font-semibold">
           Check your subsidy
         </h2>
         <SolarSubsidyCalculator />
       </section>
 
+      <SubsidyTierCards discomCode="TNEB" />
+
+      <HowToApplyPMSuryaGhar />
+
       <section aria-labelledby="faq" className="mb-10">
-        <h2 id="faq" className="mb-4 text-2xl font-semibold">
+        <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           PM Surya Ghar FAQ
         </h2>
-        <div className="divide-y divide-slate-200 dark:divide-slate-700">
+        <div className="divide-y divide-hairline dark:divide-white/10">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-slate-800 marker:hidden dark:text-slate-100">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
                 {f.q}
               </summary>
-              <p className="mt-2 text-slate-600 dark:text-slate-300">{f.a}</p>
+              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
             </details>
           ))}
         </div>
       </section>
 
+      <section aria-labelledby="related" className="mb-10">
+        <h2 id="related" className="font-display mb-4 text-2xl font-semibold">
+          Related calculators
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <Link
+            href="/solar/roi-calculator"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+          >
+            <span className="text-xl" aria-hidden>☀️</span>
+            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              Solar ROI calculator
+            </p>
+            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              See your net cost after this subsidy, and the exact payback period.
+            </p>
+          </Link>
+          <Link
+            href="/solar/panel-size-calculator"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+          >
+            <span className="text-xl" aria-hidden>📐</span>
+            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              Panel size calculator
+            </p>
+            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              Not sure what size system to apply for? Start here.
+            </p>
+          </Link>
+          <Link
+            href="/solar/net-metering-calculator"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+          >
+            <span className="text-xl" aria-hidden>🔄</span>
+            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              Net metering earnings
+            </p>
+            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              What your exported units are worth after installation.
+            </p>
+          </Link>
+        </div>
+      </section>
+
       <section aria-labelledby="leadgen" className="mb-6">
-        <h2 id="leadgen" className="mb-4 text-2xl font-semibold">
+        <h2 id="leadgen" className="font-display mb-4 text-2xl font-semibold">
           Get matched with installers
         </h2>
         <LeadGenForm source="solar-subsidy-calculator" />
@@ -130,6 +223,15 @@ export default function SolarSubsidyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
+      />
     </main>
+    </>
   )
 }

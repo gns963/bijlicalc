@@ -2,7 +2,9 @@ import { describe, expect, it } from 'vitest'
 import {
   acDailyUnits,
   calculateAcCost,
+  calculateAcPowerConsumption,
   marginalRatePerUnit,
+  recommendAcCircuit,
   recommendTonnage,
 } from './ac'
 
@@ -64,5 +66,37 @@ describe('recommendTonnage', () => {
     const r = recommendTonnage({ areaSqFt: 400, sunExposure: 'high', floor: 'top' })
     expect(r.recommendedTon).toBe(2.0)
     expect(r.notes.join(' ')).toMatch(/large/i)
+  })
+})
+
+describe('calculateAcPowerConsumption', () => {
+  it('scales linearly with rated current and hours', () => {
+    const a = calculateAcPowerConsumption({ ratedCurrentAmps: 5, hoursPerDay: 8 })
+    const b = calculateAcPowerConsumption({ ratedCurrentAmps: 10, hoursPerDay: 8 })
+    expect(b.dailyUnits).toBeCloseTo(a.dailyUnits * 2, 1)
+  })
+
+  it('rejects invalid inputs', () => {
+    expect(() =>
+      calculateAcPowerConsumption({ ratedCurrentAmps: 0, hoursPerDay: 8 }),
+    ).toThrow()
+  })
+})
+
+describe('recommendAcCircuit', () => {
+  it('recommends a bigger MCB and wire for a higher rated current', () => {
+    const small = recommendAcCircuit({ ratedCurrentAmps: 4 })
+    const big = recommendAcCircuit({ ratedCurrentAmps: 20 })
+    expect(big.recommendedMcbAmps).toBeGreaterThan(small.recommendedMcbAmps)
+    expect(big.recommendedWireSqmm).toBeGreaterThanOrEqual(small.recommendedWireSqmm)
+  })
+
+  it('MCB rating always covers the design current with headroom', () => {
+    const r = recommendAcCircuit({ ratedCurrentAmps: 8 })
+    expect(r.recommendedMcbAmps).toBeGreaterThanOrEqual(r.designCurrentAmps)
+  })
+
+  it('rejects invalid inputs', () => {
+    expect(() => recommendAcCircuit({ ratedCurrentAmps: 0 })).toThrow()
   })
 })

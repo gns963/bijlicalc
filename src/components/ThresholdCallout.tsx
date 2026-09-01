@@ -19,7 +19,7 @@ export default function ThresholdCallout({
   note: string
 }) {
   return (
-    <div className="rounded-2xl border border-brass/30 bg-brass/5 p-5 dark:border-brass/20 dark:bg-brass/10">
+    <div className="rounded-xl border border-caution-amber/30 bg-caution-amber/5 p-5 dark:border-caution-amber/20 dark:bg-caution-amber/10">
       <h3 className="font-display text-lg font-bold text-ink-navy dark:text-gazette-cream">
         {title}
       </h3>
@@ -32,11 +32,11 @@ export default function ThresholdCallout({
             {leftValue}
           </p>
         </div>
-        <div className="rounded-xl bg-brass/15 p-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-wide text-brass">
+        <div className="rounded-xl bg-caution-amber/15 p-4 text-center">
+          <p className="text-xs font-semibold uppercase tracking-wide text-caution-amber">
             {rightLabel}
           </p>
-          <p className="mt-1 font-display text-2xl font-bold text-brass">
+          <p className="mt-1 font-display text-2xl font-bold text-caution-amber">
             {rightValue}
           </p>
         </div>

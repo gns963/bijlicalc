@@ -8,7 +8,7 @@ const LANGS = [
   { code: 'TA', label: 'தமிழ்', ready: false },
 ]
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ transparent = false }: { transparent?: boolean }) {
   const [open, setOpen] = useState(false)
   const [note, setNote] = useState('')
 
@@ -19,14 +19,18 @@ export default function LanguageSwitcher() {
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-ash hover:border-brass dark:border-slate-700 dark:text-gazette-cream"
+        className={`flex items-center gap-1 rounded-full border px-2.5 py-1.5 text-xs font-semibold ${
+          transparent
+            ? 'border-white/30 text-white hover:border-white/60'
+            : 'border-hairline text-ash hover:border-brass dark:border-white/10 dark:text-gazette-cream'
+        }`}
       >
         🌐 EN <span className="text-[10px]">▾</span>
       </button>
       {open && (
         <div
           role="menu"
-          className="absolute right-0 z-20 mt-1 w-40 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900"
+          className="absolute right-0 z-20 mt-1 w-40 overflow-hidden rounded-lg border border-hairline bg-paper shadow-lg dark:border-white/10 dark:bg-slate-900"
         >
           {LANGS.map((l) => (
             <button
@@ -41,10 +45,10 @@ export default function LanguageSwitcher() {
                   setNote(`${l.label} coming soon`)
                 }
               }}
-              className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-gazette-cream dark:hover:bg-slate-800 ${
+              className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-mist dark:hover:bg-slate-800 ${
                 l.ready
                   ? 'font-semibold text-ash dark:text-gazette-cream'
-                  : 'text-slate-400'
+                  : 'text-ash/40'
               }`}
             >
               {l.label}
@@ -56,7 +60,7 @@ export default function LanguageSwitcher() {
             </button>
           ))}
           {note && (
-            <p className="border-t border-slate-100 px-3 py-2 text-xs text-slate-500 dark:border-slate-800">
+            <p className="border-t border-hairline px-3 py-2 text-xs text-ash/60 dark:border-white/10">
               {note}
             </p>
           )}

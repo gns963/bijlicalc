@@ -57,8 +57,28 @@ export default function AcBillCalculator({
     }
   }, [discomCode, tonnage, starRating, hours])
 
+  // 5-star comparison for the savings-delta line — only meaningful when the
+  // selected rating isn't already 5-star.
+  const fiveStarResult = useMemo(() => {
+    if (Number(starRating) >= 5) return null
+    try {
+      return calculateAcCost({
+        discomCode,
+        tonnage: Number(tonnage),
+        starRating: 5,
+        dailyHours: hours,
+      })
+    } catch {
+      return null
+    }
+  }, [discomCode, tonnage, starRating, hours])
+  const fiveStarAnnualSavings =
+    result && fiveStarResult
+      ? result.annualCost - fiveStarResult.annualCost
+      : null
+
   const fieldCls =
-    'w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
 
   return (
     <CalculatorCard>
@@ -118,7 +138,7 @@ export default function AcBillCalculator({
         <CalculatorCta label="Calculate Running Cost" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl border border-hub-ac/15 bg-hub-ac/5 p-5 dark:border-hub-ac/20 dark:bg-hub-ac/10">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -130,13 +150,20 @@ export default function AcBillCalculator({
               <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 Estimated monthly running cost
               </p>
-              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
+              <p className="font-display text-4xl font-bold tabular-nums text-hub-ac">
                 {formatINR(result.monthlyCost)}
               </p>
               <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 ≈ {formatINR(result.annualCost)}/year ·{' '}
                 {result.monthlyUnits} units/month
               </p>
+              {fiveStarAnnualSavings != null && fiveStarAnnualSavings > 0 && (
+                <p className="mt-1 text-sm">
+                  <span className="font-semibold text-spark-teal">
+                    Switching to 5-star saves {formatINR(fiveStarAnnualSavings)}/year
+                  </span>
+                </p>
+              )}
             </div>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
               <dt className="text-ash/60 dark:text-gazette-cream/50">

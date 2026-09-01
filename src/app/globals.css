@@ -1,37 +1,58 @@
 @import "tailwindcss";
 
-/* "Meter & Gazette" palette — grounded in the analog kWh meter (brass, glass,
-   dark housing) and the SERC tariff gazette (cream paper, red seal, black type). */
+/* Palette v3 — the user's teal/green reference (C1F6ED / 02353C / 449342 /
+   2EAF7D / 3FD0C9). Same one-meaning-per-token discipline as before; only the
+   hex values moved, not the names, so every component that already
+   references e.g. `text-brass` picks up the new color automatically. */
 @theme {
-  --color-ink-navy: #14213d;
-  --color-brass: #c98a3e;
-  --color-spark-teal: #2f9e8f;
-  --color-gazette-cream: #f6f1e7;
-  --color-seal-red: #b23a2e;
-  --color-ash: #2b2b28;
+  /* Base neutrals */
+  --color-ink-navy: #02353c; /* dark teal-navy — hero/footer/dark sections */
+  --color-gazette-cream: #ffffff; /* page background — white, everywhere */
+  --color-mist: #eaf7f3; /* subtle internal contrast ONLY — table headers, hover states,
+                             slider tracks — never a page or section background */
+  --color-ash: #0d2b28;
+  --color-paper: #ffffff;
+  --color-hairline: #cdeee6;
+
+  /* Semantic — one meaning each */
+  --color-brass: #2eaf7d; /* primary actions & primary numbers — THE brand color */
+  --color-spark-teal: #3fd0c9; /* money-positive / savings figures ONLY */
+  --color-seal-red: #dc2626; /* verification/freshness/trust marks ONLY, plus genuine errors */
+  --color-caution-amber: #d97706; /* bill-trap / threshold-warning callouts ONLY */
+
+  /* Hub accents — used ONLY in each hub's hero + icon system */
+  --color-hub-electricity: #2eaf7d;
+  --color-hub-solar: #449342;
+  --color-hub-ac: #2563eb;
+  --color-hub-financial: #6366f1;
+  --color-hub-appliance: #db2777;
+  --color-hub-fuel: #0891b2;
+  --color-hub-water: #0ea5e9;
+  --color-hub-gas: #ea580c;
 }
 
 @theme inline {
-  --font-display: var(--font-zilla), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-poppins), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #2b2b28;
+  --foreground: #0d2b28;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f1420;
-    --foreground: #e7e2d6;
+    --background: #02181c;
+    --foreground: #e3faf5;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Signature: analog-meter aluminium disc + rolling digit drums */
@@ -41,11 +62,66 @@ body {
   }
 }
 
+/* Homepage hero ticker — a continuous scroll of real computed facts */
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker-scroll 28s linear infinite;
+}
+
+/* Homepage hero stage — deep green gradient, brass/spark-teal glow */
+.hero-gradient {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(63, 208, 201, 0.28), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 90%, rgba(46, 175, 125, 0.35), transparent 60%),
+    linear-gradient(160deg, #0a2f1f 0%, #04241b 55%, #021814 100%);
+}
+
+.hero-grid-overlay {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.05;
+}
+
+/* Scattered hero stat chips — each carries its own --tilt custom property so
+   the same keyframe gives every chip a different resting rotation. */
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-8px) rotate(var(--tilt, 0deg));
+  }
+}
+
+.hero-float-chip {
+  transform: rotate(var(--tilt, 0deg));
+  animation-name: hero-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .meter-disc {
     animation: none !important;
   }
   .drum-strip {
     transition: none !important;
+  }
+  .ticker-track {
+    animation: none !important;
+  }
+  .hero-float-chip {
+    animation: none !important;
   }
 }

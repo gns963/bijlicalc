@@ -18,8 +18,9 @@ export default function AboutPage() {
       title="About bijlicalc"
       intro="bijlicalc is an independent Indian calculator platform. We turn dense regulatory documents — state electricity tariff orders, the PM Surya Ghar scheme, income-tax slabs — into fast, accurate tools that a normal household can use in seconds."
       stub={false}
+      path="/about"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Why we exist
       </h2>
       <p>
@@ -32,23 +33,39 @@ export default function AboutPage() {
         source order on every page.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         What we cover today
       </h2>
       <ul className="list-disc space-y-1 pl-5">
         <li>
-          <strong>Electricity bills</strong> for {discomCount} DISCOMs — TANGEDCO
-          (Tamil Nadu), MSEDCL (Maharashtra), UPPCL (Uttar Pradesh), BESCOM
-          (Karnataka), KSEB (Kerala) and WBSEDCL (West Bengal) — with more states
-          in progress.
+          <strong>Electricity bills</strong> for all {discomCount} DISCOMs
+          across every Indian state and union territory — telescopic slabs,
+          fixed charges, fuel cost adjustment, electricity duty and
+          subsidies, each sourced to its own SERC tariff order.
         </li>
         <li>
-          <strong>Rooftop solar</strong> ROI and the PM Surya Ghar subsidy,
-          priced against your real DISCOM tariff.
+          <strong>Rooftop solar</strong> — ROI/payback, panel sizing, battery
+          backup, net metering earnings and the PM Surya Ghar subsidy, priced
+          against your real DISCOM tariff.
         </li>
         <li>
-          <strong>Air conditioners</strong> — running cost, room sizing and
+          <strong>Air conditioners</strong> — running cost, room sizing, power
+          consumption, circuit safety guidance, brand-specific calculators and
           3-star vs 5-star savings.
+        </li>
+        <li>
+          <strong>Home appliances</strong> — ceiling fan and fridge running
+          cost, inverter/UPS sizing and backup time, room cooling time and
+          water tank fill time.
+        </li>
+        <li>
+          <strong>Fuel costs</strong> — petrol/diesel per km, LPG cylinder
+          usage and generator running cost.
+        </li>
+        <li>
+          <strong>Water and gas bills</strong> — honest calculators that use
+          your own consumption and rate, since municipal and city-gas tariffs
+          aren&apos;t centrally published in a way we can verify.
         </li>
         <li>
           <strong>Personal finance</strong> — GST, SIP, the new vs old tax regime
@@ -56,7 +73,7 @@ export default function AboutPage() {
         </li>
       </ul>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         How we&apos;re different
       </h2>
       <p>
@@ -75,7 +92,7 @@ export default function AboutPage() {
         for the full mechanism.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Who runs it
       </h2>
       <p>

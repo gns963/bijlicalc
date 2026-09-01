@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
+import { Drum } from '@/components/DigitDrum'
 import { computeBill, getTariff } from '@/lib/calc/electricity'
 import { cycleLabel, formatINR } from '@/lib/format'
 
@@ -10,35 +11,6 @@ export interface MeterState {
   available: boolean
   discomCode?: string
   href?: string
-}
-
-/** One odometer drum: a 0–9 strip that rolls to `digit`. */
-function Drum({ digit }: { digit: string }) {
-  const n = Number(digit)
-  const numeric = digit >= '0' && digit <= '9'
-  return (
-    <div className="relative h-11 w-7 overflow-hidden rounded-sm bg-gazette-cream shadow-inner ring-1 ring-black/20">
-      {numeric ? (
-        <div
-          className="drum-strip absolute inset-x-0 top-0 flex flex-col transition-transform duration-700 ease-out"
-          style={{ height: '1000%', transform: `translateY(-${n * 10}%)` }}
-        >
-          {Array.from({ length: 10 }, (_, i) => (
-            <span
-              key={i}
-              className="flex h-[10%] items-center justify-center font-display text-xl font-bold tabular-nums text-ash"
-            >
-              {i}
-            </span>
-          ))}
-        </div>
-      ) : (
-        <span className="flex h-full items-center justify-center font-display text-xl font-bold text-ash">
-          {digit}
-        </span>
-      )}
-    </div>
-  )
 }
 
 export default function MeterDial({ states }: { states: MeterState[] }) {

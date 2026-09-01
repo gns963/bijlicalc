@@ -39,7 +39,7 @@ export default function TariffSidebar({
   return (
     <aside className="grid gap-4 lg:sticky lg:top-20 lg:self-start">
       {/* Tariff snapshot — visual slab bars */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
+      <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
         <div className="flex items-center justify-between">
           <h3 className="font-display text-sm font-bold uppercase tracking-wide text-ink-navy dark:text-gazette-cream">
             Tariff Snapshot
@@ -62,7 +62,7 @@ export default function TariffSidebar({
                     ₹{s.ratePerUnit.toFixed(2)}
                   </span>
                 </div>
-                <div className="mt-1 h-1.5 rounded-full bg-slate-100 dark:bg-slate-800">
+                <div className="mt-1 h-1.5 rounded-full bg-mist dark:bg-slate-800">
                   <div
                     className="h-1.5 rounded-full bg-brass"
                     style={{ width: `${pct}%`, opacity: 0.4 + (pct / 100) * 0.6 }}
@@ -73,7 +73,7 @@ export default function TariffSidebar({
           })}
         </div>
 
-        <dl className="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-xs dark:border-slate-800">
+        <dl className="mt-4 space-y-1.5 border-t border-hairline pt-3 text-xs dark:border-white/10">
           <Fact label="Fixed charge" value={fixedChargeLabel(ct.fixedCharge)} />
           {tariff.fuelCostAdjustment > 0 && (
             <Fact label="FCA" value={`₹${tariff.fuelCostAdjustment}/unit`} />
@@ -85,7 +85,7 @@ export default function TariffSidebar({
       </div>
 
       {/* Key facts */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
+      <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
         <h3 className="font-display text-sm font-bold uppercase tracking-wide text-ink-navy dark:text-gazette-cream">
           Key Facts
         </h3>
@@ -100,10 +100,12 @@ export default function TariffSidebar({
         </div>
       </div>
 
-      {/* Solar mini cross-sell */}
+      {/* Solar mini cross-sell — opaque card (not a translucent tint) so it
+          stays readable regardless of what page background sits behind the
+          sidebar; spark-teal signals savings, brass signals the action link */}
       <Link
         href="/solar/roi-calculator"
-        className="block rounded-2xl border border-brass/30 bg-gradient-to-br from-brass/10 to-spark-teal/10 p-5 transition hover:border-brass/60 hover:shadow-sm"
+        className="block rounded-xl border border-spark-teal/25 bg-paper p-5 transition hover:border-spark-teal/50 hover:shadow-sm dark:bg-slate-900"
       >
         <span className="text-xl" aria-hidden>
           ☀️

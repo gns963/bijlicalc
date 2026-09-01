@@ -12,7 +12,7 @@
 import { computeBill, getTariff } from './electricity'
 
 // Tunable national assumptions (indicative, not guarantees).
-const DAILY_GEN_PER_KW = 4 // units generated per kW per day (India avg ~4–4.5)
+export const DAILY_GEN_PER_KW = 4 // units generated per kW per day (India avg ~4–4.5)
 const DAYS_PER_MONTH = 30
 const SYSTEM_LIFE_YEARS = 25
 
@@ -145,5 +145,262 @@ export function calculateSolarRoi(input: SolarInput): SolarResult {
     lifetimeSavings: round2(lifetimeSavings),
     currency: 'INR',
     notes,
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Panel / system size recommendation
+// ---------------------------------------------------------------------------
+
+/** Commonly cited planning figure for shadow-free roof space per kW installed. */
+export const ROOF_SQFT_PER_KW = 100
+
+export interface SystemSizeInput {
+  monthlyUnits: number
+  /** How much of the monthly bill to offset, 1–150% (>100% for a surplus-export system). */
+  offsetPercent: number
+}
+
+export interface SystemSizeResult {
+  recommendedKw: number
+  monthlyGeneration: number
+  roofAreaSqFt: number
+  notes: string[]
+}
+
+export function recommendSystemSize(input: SystemSizeInput): SystemSizeResult {
+  const { monthlyUnits, offsetPercent } = input
+  if (monthlyUnits <= 0) throw new Error('monthlyUnits must be > 0')
+  if (offsetPercent <= 0 || offsetPercent > 150) {
+    throw new Error('offsetPercent must be between 0 and 150')
+  }
+
+  const targetMonthlyGeneration = monthlyUnits * (offsetPercent / 100)
+  const rawKw = targetMonthlyGeneration / (DAILY_GEN_PER_KW * DAYS_PER_MONTH)
+  const recommendedKw = Math.round(rawKw * 2) / 2
+  const monthlyGeneration = recommendedKw * DAILY_GEN_PER_KW * DAYS_PER_MONTH
+  const roofAreaSqFt = recommendedKw * ROOF_SQFT_PER_KW
+
+  return {
+    recommendedKw,
+    monthlyGeneration: round2(monthlyGeneration),
+    roofAreaSqFt: Math.round(roofAreaSqFt),
+    notes: [
+      `Assumes ~${DAILY_GEN_PER_KW} units/kW/day generation and ~${ROOF_SQFT_PER_KW} sq ft of shadow-free roof per kW — actual space needed varies by panel efficiency, spacing and roof layout.`,
+    ],
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Solar battery backup sizing
+// ---------------------------------------------------------------------------
+
+export type BatteryChemistry = 'lead-acid' | 'lithium'
+
+const DOD_BY_CHEMISTRY: Record<BatteryChemistry, number> = {
+  'lead-acid': 0.5,
+  lithium: 0.9,
+}
+const SOLAR_BATTERY_EFFICIENCY = 0.9
+
+export interface SolarBatterySizingInput {
+  dailyLoadKwh: number
+  daysOfAutonomy: number
+  chemistry: BatteryChemistry
+}
+
+export interface SolarBatterySizingResult {
+  recommendedCapacityKwh: number
+  dod: number
+  notes: string[]
+}
+
+export function sizeSolarBattery(input: SolarBatterySizingInput): SolarBatterySizingResult {
+  const { dailyLoadKwh, daysOfAutonomy, chemistry } = input
+  if (dailyLoadKwh <= 0) throw new Error('dailyLoadKwh must be > 0')
+  if (daysOfAutonomy <= 0) throw new Error('daysOfAutonomy must be > 0')
+
+  const dod = DOD_BY_CHEMISTRY[chemistry]
+  const rawKwh = (dailyLoadKwh * daysOfAutonomy) / (dod * SOLAR_BATTERY_EFFICIENCY)
+  const recommendedCapacityKwh = Math.ceil(rawKwh * 2) / 2
+
+  return {
+    recommendedCapacityKwh,
+    dod,
+    notes: [
+      `Assumes a ${Math.round(dod * 100)}% usable depth of discharge for ${chemistry === 'lead-acid' ? 'lead-acid' : 'lithium'} batteries and ${Math.round(SOLAR_BATTERY_EFFICIENCY * 100)}% round-trip efficiency.`,
+    ],
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Net metering export earnings
+// ---------------------------------------------------------------------------
+
+export interface NetMeteringInput {
+  monthlyGenerationUnits: number
+  monthlyConsumptionUnits: number
+  /** Your DISCOM's export credit rate, ₹/unit — this varies by state net-metering policy. */
+  exportRatePerUnit: number
+}
+
+export interface NetMeteringResult {
+  exportedUnits: number
+  importedUnits: number
+  monthlyExportCredit: number
+  annualExportCredit: number
+}
+
+export function estimateNetMeteringEarnings(input: NetMeteringInput): NetMeteringResult {
+  const { monthlyGenerationUnits, monthlyConsumptionUnits, exportRatePerUnit } = input
+  if (monthlyGenerationUnits < 0) throw new Error('monthlyGenerationUnits must be >= 0')
+  if (monthlyConsumptionUnits < 0) throw new Error('monthlyConsumptionUnits must be >= 0')
+  if (exportRatePerUnit < 0) throw new Error('exportRatePerUnit must be >= 0')
+
+  const exportedUnits = Math.max(0, monthlyGenerationUnits - monthlyConsumptionUnits)
+  const importedUnits = Math.max(0, monthlyConsumptionUnits - monthlyGenerationUnits)
+  const monthlyExportCredit = exportedUnits * exportRatePerUnit
+
+  return {
+    exportedUnits: round2(exportedUnits),
+    importedUnits: round2(importedUnits),
+    monthlyExportCredit: round2(monthlyExportCredit),
+    annualExportCredit: round2(monthlyExportCredit * 12),
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 25-year cost comparison with tariff escalation
+// ---------------------------------------------------------------------------
+
+export type TariffEscalationScenario = 'conservative' | 'base' | 'optimistic'
+
+/** Annual electricity-tariff escalation assumption by scenario — indicative,
+ *  not a forecast. Real tariff revisions are set by each state's SERC and
+ *  don't move on a fixed schedule. */
+export const ESCALATION_RATE_BY_SCENARIO: Record<TariffEscalationScenario, number> = {
+  conservative: 0.04,
+  base: 0.06,
+  optimistic: 0.09,
+}
+
+export interface CostComparisonYear {
+  year: number
+  gridCostThatYear: number
+  cumulativeGridCost: number
+  cumulativeSolarCost: number
+  cumulativeSavings: number
+}
+
+export interface CostComparisonInput {
+  discomCode: string
+  monthlyUnits: number
+  systemSizeKw: number
+  scenario: TariffEscalationScenario
+  years?: number
+}
+
+export interface CostComparisonResult {
+  scenario: TariffEscalationScenario
+  escalationRate: number
+  netCost: number
+  rows: CostComparisonYear[]
+  notes: string[]
+}
+
+/**
+ * Projects cumulative grid-only cost vs. cumulative solar cost (net upfront
+ * cost + residual grid bill) year by year, escalating the tariff at the
+ * chosen scenario's rate. Generation is held flat — real panels degrade
+ * gradually (~0.5%/year), which would modestly reduce real-world savings
+ * versus this projection.
+ */
+export function projectSolarCostComparison(
+  input: CostComparisonInput,
+): CostComparisonResult {
+  const { discomCode, monthlyUnits, systemSizeKw, scenario, years = SYSTEM_LIFE_YEARS } = input
+  if (monthlyUnits < 0) throw new Error('monthlyUnits must be >= 0')
+  if (systemSizeKw <= 0) throw new Error('systemSizeKw must be > 0')
+  if (years <= 0) throw new Error('years must be > 0')
+
+  const escalationRate = ESCALATION_RATE_BY_SCENARIO[scenario]
+  const tariff = getTariff(discomCode)
+  const PERIOD_MONTHS: Record<string, number> = { monthly: 1, bimonthly: 2, quarterly: 3 }
+  const periodMonths = PERIOD_MONTHS[tariff.billingCycle] ?? 1
+  const periodsPerYear = 12 / periodMonths
+  const unitsBeforePeriod = monthlyUnits * periodMonths
+
+  const billBeforePeriod = computeBill(tariff, {
+    connectionType: 'residential',
+    phase: 'single',
+    sanctionedLoad: 3,
+    unitsConsumed: unitsBeforePeriod,
+  }).total
+  const year1GridCost = billBeforePeriod * periodsPerYear
+
+  const roi = calculateSolarRoi({ discomCode, monthlyUnits, systemSizeKw })
+  const year1ResidualCost = Math.max(0, year1GridCost - roi.annualSavings)
+
+  const rows: CostComparisonYear[] = []
+  let cumulativeGridCost = 0
+  let cumulativeSolarCost = roi.netCost
+  for (let y = 1; y <= years; y++) {
+    const escalationFactor = Math.pow(1 + escalationRate, y - 1)
+    const gridCostThatYear = year1GridCost * escalationFactor
+    const solarResidualThatYear = year1ResidualCost * escalationFactor
+    cumulativeGridCost += gridCostThatYear
+    cumulativeSolarCost += solarResidualThatYear
+    rows.push({
+      year: y,
+      gridCostThatYear: round2(gridCostThatYear),
+      cumulativeGridCost: round2(cumulativeGridCost),
+      cumulativeSolarCost: round2(cumulativeSolarCost),
+      cumulativeSavings: round2(cumulativeGridCost - cumulativeSolarCost),
+    })
+  }
+
+  return {
+    scenario,
+    escalationRate,
+    netCost: roi.netCost,
+    rows,
+    notes: [
+      `Assumes your electricity tariff rises ${Math.round(escalationRate * 100)}%/year (${scenario} scenario) and solar generation stays constant. Real panels degrade gradually (commonly cited at ~0.5%/year), which would modestly reduce real-world savings versus this projection.`,
+    ],
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Environmental impact
+// ---------------------------------------------------------------------------
+
+/** India's indicative national grid emission factor (CEA CO2 Baseline Database; varies by report year). */
+const GRID_EMISSION_FACTOR_KG_PER_KWH = 0.82
+/** Commonly cited average CO2 absorbed by one mature tree per year, kg. */
+const CO2_KG_PER_TREE_PER_YEAR = 21
+
+export interface CarbonOffsetInput {
+  annualGenerationKwh: number
+}
+
+export interface CarbonOffsetResult {
+  annualCo2OffsetKg: number
+  treeEquivalent: number
+  notes: string[]
+}
+
+export function estimateCarbonOffset(input: CarbonOffsetInput): CarbonOffsetResult {
+  const { annualGenerationKwh } = input
+  if (annualGenerationKwh <= 0) throw new Error('annualGenerationKwh must be > 0')
+
+  const annualCo2OffsetKg = annualGenerationKwh * GRID_EMISSION_FACTOR_KG_PER_KWH
+  const treeEquivalent = Math.round(annualCo2OffsetKg / CO2_KG_PER_TREE_PER_YEAR)
+
+  return {
+    annualCo2OffsetKg: round2(annualCo2OffsetKg),
+    treeEquivalent,
+    notes: [
+      `Based on India's indicative national grid emission factor (~${GRID_EMISSION_FACTOR_KG_PER_KWH} kg CO2/kWh, CEA CO2 Baseline Database) and a commonly cited average of ~${CO2_KG_PER_TREE_PER_YEAR} kg CO2 absorbed per mature tree per year. Actual figures vary by report year, grid mix and tree species.`,
+    ],
   }
 }

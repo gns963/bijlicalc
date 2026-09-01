@@ -34,3 +34,12 @@ export function formatIsoDate(iso: string): string {
   if (!y || !m || !d) return iso
   return `${d} ${months[m - 1]} ${y}`
 }
+
+/** Kebab-case slug from a plain name, e.g. "Andaman & Nicobar Islands" → "andaman-nicobar-islands". */
+export function slugify(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/&/g, ' ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}

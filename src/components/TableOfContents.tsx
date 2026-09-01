@@ -6,7 +6,7 @@ export default function TableOfContents({
 }) {
   return (
     <nav aria-label="Table of contents" className="mb-8">
-      <details className="group rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900">
+      <details className="group rounded-xl border border-hairline bg-paper p-4 dark:border-white/10 dark:bg-slate-900">
         <summary className="flex cursor-pointer list-none items-center justify-between font-display font-bold text-ink-navy dark:text-gazette-cream">
           Table of contents
           <span className="text-brass transition group-open:rotate-45">+</span>

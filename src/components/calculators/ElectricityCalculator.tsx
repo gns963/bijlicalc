@@ -130,7 +130,7 @@ export default function ElectricityCalculator({
                   className={`flex-1 rounded-lg border-2 px-3 py-2 text-sm capitalize transition ${
                     phase === p
                       ? 'border-brass bg-brass/10 font-semibold text-ink-navy dark:text-gazette-cream'
-                      : 'border-slate-200 text-ash/70 hover:border-slate-300 dark:border-slate-700 dark:text-gazette-cream/60'
+                      : 'border-hairline text-ash/70 hover:border-hairline dark:border-white/10 dark:text-gazette-cream/60'
                   }`}
                 >
                   {p}-phase
@@ -167,7 +167,7 @@ export default function ElectricityCalculator({
                 </span>
               )}
             </label>
-            <div className="flex overflow-hidden rounded-lg border border-slate-200 text-xs dark:border-slate-700">
+            <div className="flex overflow-hidden rounded-lg border border-hairline text-xs dark:border-white/10">
               {(
                 [
                   ['units', 'Direct units'],
@@ -182,7 +182,7 @@ export default function ElectricityCalculator({
                   className={`px-2.5 py-1 font-medium transition ${
                     inputMode === val
                       ? 'bg-brass text-ink-navy'
-                      : 'bg-white text-ash/60 dark:bg-slate-800 dark:text-gazette-cream/50'
+                      : 'bg-paper text-ash/60 dark:bg-slate-800 dark:text-gazette-cream/50'
                   }`}
                 >
                   {label}
@@ -201,7 +201,7 @@ export default function ElectricityCalculator({
                 placeholder="e.g. 250"
                 value={unitsStr}
                 onChange={(e) => setUnitsStr(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2.5 pr-14 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                className="w-full rounded-lg border border-hairline px-3 py-2.5 pr-14 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
               />
               <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm text-ash/40 dark:text-gazette-cream/40">
                 kWh
@@ -225,7 +225,7 @@ export default function ElectricityCalculator({
                     placeholder="e.g. 4320"
                     value={prevReading}
                     onChange={(e) => setPrevReading(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                    className="w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
                   />
                 </div>
                 <div>
@@ -243,7 +243,7 @@ export default function ElectricityCalculator({
                     placeholder="e.g. 4570"
                     value={currReading}
                     onChange={(e) => setCurrReading(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                    className="w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
                   />
                 </div>
               </div>
@@ -254,7 +254,7 @@ export default function ElectricityCalculator({
           )}
         </div>
 
-        <div className="flex items-center justify-between rounded-lg bg-gazette-cream px-3 py-2 text-xs text-ash/70 dark:bg-slate-800 dark:text-gazette-cream/60">
+        <div className="flex items-center justify-between rounded-lg bg-mist px-3 py-2 text-xs text-ash/70 dark:bg-slate-800 dark:text-gazette-cream/60">
           <span>Billing period</span>
           <span className="font-semibold capitalize text-ink-navy dark:text-gazette-cream">
             {cycleLabel(cycleWord)}
@@ -262,12 +262,12 @@ export default function ElectricityCalculator({
         </div>
 
         {subsidyScheme && (
-          <label className="flex items-start gap-3 rounded-lg bg-gazette-cream p-3 text-sm dark:bg-slate-800">
+          <label className="flex items-start gap-3 rounded-lg bg-mist p-3 text-sm dark:bg-slate-800">
             <input
               type="checkbox"
               checked={eligible}
               onChange={(e) => setEligible(e.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brass focus:ring-brass"
+              className="mt-0.5 h-4 w-4 rounded border-hairline text-brass focus:ring-brass"
             />
             <span className="text-ash dark:text-gazette-cream/80">
               Eligible for <strong>{subsidyScheme.schemeName}</strong>
@@ -282,7 +282,7 @@ export default function ElectricityCalculator({
       </form>
 
       {/* ---- Result ---- */}
-      <div ref={resultRef} className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div ref={resultRef} className="mt-6 rounded-xl bg-mist p-5 dark:bg-slate-800/60">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -295,7 +295,7 @@ export default function ElectricityCalculator({
               <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 Estimated {cycleLabel(cycleWord)} bill
               </p>
-              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
+              <p className="font-display text-4xl font-bold tabular-nums text-brass">
                 {formatINR(bill.total)}
               </p>
               {bill.monthlyEquivalent && (
@@ -307,7 +307,7 @@ export default function ElectricityCalculator({
             </div>
 
             <table className="w-full text-sm">
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              <tbody className="divide-y divide-hairline dark:divide-white/10">
                 {bill.slab.lines
                   .filter((l) => l.unitsInSlab > 0)
                   .map((l, i) => (
@@ -374,7 +374,7 @@ export default function ElectricityCalculator({
                     </td>
                   </tr>
                 )}
-                <tr className="text-base font-bold text-ink-navy dark:text-white">
+                <tr className="text-base font-bold text-brass">
                   <td className="pt-2">Total</td>
                   <td className="pt-2 text-right tabular-nums">
                     {formatINR(bill.total)}

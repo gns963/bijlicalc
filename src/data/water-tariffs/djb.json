@@ -1,0 +1,24 @@
+{
+  "boardCode": "DJB",
+  "boardName": "Delhi Jal Board",
+  "citiesServed": ["Delhi", "New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi"],
+  "billingCycle": "bimonthly",
+  "slabs": [
+    { "minKL": 0, "maxKL": 20, "ratePerKL": 4.5 },
+    { "minKL": 21, "maxKL": 30, "ratePerKL": 7.5 },
+    { "minKL": 31, "maxKL": 40, "ratePerKL": 11.5 },
+    { "minKL": 41, "maxKL": null, "ratePerKL": 16.5 }
+  ],
+  "freeAllowance": { "kl": 20, "type": "allOrNothing" },
+  "sewerageChargePercent": 60,
+  "fixedChargeByMeterSize": {
+    "15mm": 20,
+    "20mm": 40,
+    "25mm": 100
+  },
+  "additionalFees": [],
+  "effectiveFrom": "2026-01-01",
+  "sourceUrl": "https://delhijalboard.delhi.gov.in",
+  "lastVerified": "2026-08-31",
+  "verifiedBy": "UNVERIFIED — placeholder figures based on DJB's generally known domestic tariff structure (20 KL/month all-or-nothing free scheme, telescopic slabs above it, sewerage cess as a percentage of the water charge); pending cross-check against DJB's current official tariff notification before being treated as billing-grade"
+}

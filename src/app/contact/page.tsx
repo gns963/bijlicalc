@@ -14,8 +14,9 @@ export default function ContactPage() {
       title="Contact"
       intro="We read every message. Here is the fastest way to reach the right inbox."
       stub={false}
+      path="/contact"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Report a correction
       </h2>
       <p>
@@ -29,7 +30,7 @@ export default function ContactPage() {
         . A link to the official order helps us verify and fix it quickly.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Request a state or DISCOM
       </h2>
       <p>
@@ -40,7 +41,7 @@ export default function ContactPage() {
         . We prioritise by demand.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Partnerships
       </h2>
       <p>
@@ -51,7 +52,7 @@ export default function ContactPage() {
         .
       </p>
 
-      <p className="text-sm text-slate-500 dark:text-slate-400">
+      <p className="text-sm text-ash/60 dark:text-ash/40">
         We aim to respond within 2 working days.
       </p>
     </LegalPageShell>

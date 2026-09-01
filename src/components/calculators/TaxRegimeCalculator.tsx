@@ -15,7 +15,7 @@ export default function TaxRegimeCalculator() {
   )
 
   const fieldCls =
-    'w-full rounded-lg border border-slate-300 px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
 
   return (
     <CalculatorCard>
@@ -63,15 +63,15 @@ export default function TaxRegimeCalculator() {
           </p>
         </div>
 
-        <CalculatorCta label="Compare Tax Regimes" />
+        <CalculatorCta label="Compare Tax Regimes" tone="financial" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
         <div className="grid gap-4">
           <div
             className={`rounded-lg px-3 py-2 text-sm font-semibold ${
               result.recommended === 'either'
-                ? 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200'
+                ? 'bg-hairline text-ash/80 dark:bg-slate-700 dark:text-gazette-cream/90'
                 : 'bg-spark-teal/15 text-spark-teal'
             }`}
           >
@@ -88,7 +88,7 @@ export default function TaxRegimeCalculator() {
                 <th className="py-1 text-right font-medium">Old</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+            <tbody className="divide-y divide-hairline dark:divide-white/10">
               <tr>
                 <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
                   Taxable income
@@ -111,7 +111,7 @@ export default function TaxRegimeCalculator() {
                   {formatINR(result.oldRegime.rebate87A)}
                 </td>
               </tr>
-              <tr className="text-base font-bold text-ink-navy dark:text-white">
+              <tr className="text-base font-bold text-ink-navy dark:text-gazette-cream">
                 <td className="py-2">Total tax</td>
                 <td className="py-2 text-right tabular-nums">
                   {formatINR(result.newRegime.totalTax)}

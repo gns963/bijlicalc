@@ -15,8 +15,9 @@ export default function PrivacyPage() {
       title="Privacy Policy"
       intro="This policy explains what data bijlicalc collects, why, and your choices. We keep collection to the minimum needed to run the site."
       stub={false}
+      path="/privacy"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Calculators run in your browser
       </h2>
       <p>
@@ -25,7 +26,7 @@ export default function PrivacyPage() {
         not transmitted to or stored on our servers.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Information you submit
       </h2>
       <p>
@@ -36,7 +37,7 @@ export default function PrivacyPage() {
         form does not transmit or store data.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Analytics
       </h2>
       <p>
@@ -45,7 +46,7 @@ export default function PrivacyPage() {
         improve the site. This does not identify you personally.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Advertising and affiliate partners
       </h2>
       <p>
@@ -73,7 +74,7 @@ export default function PrivacyPage() {
         for details.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Your choices
       </h2>
       <p>
@@ -86,7 +87,7 @@ export default function PrivacyPage() {
         .
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Children
       </h2>
       <p>

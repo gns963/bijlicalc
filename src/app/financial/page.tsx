@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import CrossHubLinks from '@/components/CrossHubLinks'
+import PageHero from '@/components/PageHero'
+import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
 const SITE = 'https://bijlicalc.com'
 
@@ -42,46 +45,70 @@ const cards = [
   },
 ]
 
+const breadcrumb = breadcrumbLd([
+  { name: 'Home', path: '' },
+  { name: 'Financial', path: '/financial' },
+])
+const itemList = itemListLd(cards.map((c) => ({ name: c.title, path: c.href })))
+
+const faqs = [
+  {
+    q: 'Are these calculators updated for FY 2026-27?',
+    a: 'Yes — the tax regime calculator uses the current FY 2026-27 (AY 2027-28) slabs, standard deduction and 87A rebate. GST, SIP and gratuity are formula-based against current law (e.g. the ₹20,00,000 gratuity ceiling) and aren\'t tied to a specific financial year.',
+  },
+  {
+    q: 'Is this tax or investment advice?',
+    a: 'No. These tools are for general guidance and illustration only. For SIP, actual market returns are not guaranteed; for tax, consult a professional before filing.',
+  },
+  {
+    q: 'Do you store the numbers I enter?',
+    a: 'No — there is no login and no server-side storage. Calculations run in your browser from the inputs you provide.',
+  },
+]
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
+
 export default function FinancialHubPage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <ol className="flex flex-wrap items-center gap-1.5">
-          <li>
-            <Link href="/" className="hover:text-brass">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="font-medium text-slate-700 dark:text-slate-300">
-            Financial
-          </li>
-        </ol>
-      </nav>
+    <>
+      <PageHero
+        hub="financial"
+        breadcrumb={[{ label: 'Financial', href: '/financial' }]}
+        badgeLabel={
+          <>
+            <span aria-hidden>🧮</span> Financial hub
+          </>
+        }
+        h1="Financial Calculators"
+        subtitle="Fast, accurate personal-finance tools for India — GST, mutual fund SIPs, income tax regime comparison and gratuity. Free and updated for the current financial year."
+        stats={[
+          { icon: '🧮', big: '4', small: 'Calculators', tone: 'hub' },
+          { icon: '📅', big: 'FY 2026-27', small: 'Current year', tone: 'hub' },
+          { icon: '🔓', big: 'Free', small: 'No login', tone: 'hub' },
+          { icon: '🇮🇳', big: 'India', small: 'Coverage', tone: 'hub' },
+        ]}
+      />
 
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
-          Financial Calculators
-        </h1>
-        <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
-          Fast, accurate personal-finance tools for India — GST, mutual fund
-          SIPs, income tax regime comparison and gratuity. Free and updated for
-          the current financial year.
-        </p>
-      </header>
-
+      <main className="mx-auto max-w-4xl px-4 py-8">
       <section className="mb-10 grid gap-6 sm:grid-cols-2">
         {cards.map((c) => (
           <Link
             key={c.href}
             href={c.href}
-            className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-brass/30 hover:shadow-sm dark:border-slate-700 dark:bg-slate-900"
+            className="flex flex-col rounded-2xl border border-hairline bg-paper p-6 transition hover:border-brass/30 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
           >
             <span className="text-2xl">{c.emoji}</span>
-            <h2 className="mt-2 text-lg font-semibold text-slate-900 dark:text-white">
+            <h2 className="font-display mt-2 text-lg font-semibold text-ink-navy dark:text-gazette-cream">
               {c.title}
             </h2>
-            <p className="mt-1 flex-1 text-sm text-slate-600 dark:text-slate-300">
+            <p className="mt-1 flex-1 text-sm text-ash/70 dark:text-gazette-cream/70">
               {c.body}
             </p>
             <span className="mt-3 text-sm font-semibold text-brass dark:text-brass">
@@ -92,10 +119,10 @@ export default function FinancialHubPage() {
       </section>
 
       <section aria-labelledby="why" className="mb-10">
-        <h2 id="why" className="mb-4 text-2xl font-semibold">
+        <h2 id="why" className="font-display mb-4 text-2xl font-semibold">
           One platform for bills and money
         </h2>
-        <p className="text-slate-700 dark:text-slate-300">
+        <p className="text-ash/80 dark:text-gazette-cream/70">
           bijlicalc started with electricity bills and now covers the everyday
           numbers Indian households search for most — from what you owe in GST to
           how much a SIP could grow, which tax regime saves you more, and the
@@ -103,6 +130,59 @@ export default function FinancialHubPage() {
           place.
         </p>
       </section>
+
+      <section aria-labelledby="methodology" className="mb-10">
+        <h2 id="methodology" className="font-display mb-2 text-xl font-bold text-ink-navy dark:text-gazette-cream">
+          Our methodology
+        </h2>
+        <p className="text-ash/80 dark:text-gazette-cream/70">
+          Figures here are checked against the relevant official sources
+          where applicable — GST slabs against GST Council/CBIC
+          notifications, income tax slabs against the Finance Act/CBDT, and
+          gratuity against the Payment of Gratuity Act. Tax law and rates
+          change periodically; for anything with real financial
+          consequences (filing, invoicing, a major investment decision),
+          verify against the current official notification or a
+          professional rather than relying solely on any calculator. See
+          our{' '}
+          <Link href="/methodology" className="text-brass underline">
+            sitewide methodology page
+          </Link>{' '}
+          for how we source and verify data generally.
+        </p>
+      </section>
+
+      <section aria-labelledby="faq" className="mb-10">
+        <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
+          Frequently asked questions
+        </h2>
+        <div className="divide-y divide-hairline dark:divide-white/10">
+          {faqs.map((f, i) => (
+            <details key={i} className="group py-3">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                {f.q}
+              </summary>
+              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <CrossHubLinks current="financial" />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
     </main>
+    </>
   )
 }

@@ -5,6 +5,7 @@ import Calculator from '@/components/calculators/ElectricityCalculator'
 import BudgetToUnitsCalculator from '@/components/calculators/BudgetToUnitsCalculator'
 import DiscomComparisonTable from '@/components/calculators/DiscomComparisonTable'
 import TariffSidebar from '@/components/calculators/TariffSidebar'
+import WorkedExampleTotal from '@/components/calculators/WorkedExampleTotal'
 import SolarCrossSell from '@/components/SolarCrossSell'
 import TableOfContents from '@/components/TableOfContents'
 import ThresholdCallout from '@/components/ThresholdCallout'
@@ -64,6 +65,37 @@ export default function DiscomCalculatorPage({
       ? tariff.subsidySchemes[0]?.eligibility
       : undefined,
   })
+
+  // Real cost breakdown of the hero's worked example, as a proportional bar
+  // — fills the card with the same numbers already in the caption below it,
+  // instead of leaving empty space around the digit roll.
+  const breakdownParts = [
+    {
+      label: 'Energy',
+      amount: example.energyChargeGross - example.subsidy.subsidyAmount,
+      barClass: 'bg-brass',
+    },
+    {
+      label: 'Fixed charge',
+      amount: example.fixedCharge.amount,
+      barClass: 'bg-hub-ac',
+    },
+    {
+      label: 'FCA',
+      amount: example.fuelCostAdjustment.amount,
+      barClass: 'bg-caution-amber',
+    },
+    {
+      label: 'Duty',
+      amount: example.electricityDuty.amount,
+      barClass: 'bg-spark-teal',
+    },
+  ].filter((p) => p.amount > 0)
+  const breakdownTotal = breakdownParts.reduce((sum, p) => sum + p.amount, 0)
+  const breakdownSegments = breakdownParts.map((p) => ({
+    ...p,
+    pct: breakdownTotal > 0 ? (p.amount / breakdownTotal) * 100 : 0,
+  }))
 
   const neighbors = (config.neighboringDiscoms ?? [])
     .map((code) => CALCULATOR_PAGES.find((p) => p.discomCode === code))
@@ -168,88 +200,189 @@ export default function DiscomCalculatorPage({
   }
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8">
-      {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <ol className="flex flex-wrap items-center gap-1.5">
-          <li>
-            <Link href="/" className="hover:text-brass">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li>
-            <Link href="/electricity" className="hover:text-brass">
-              Electricity
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="font-medium text-slate-700 dark:text-slate-300">
-            {config.breadcrumbLabel}
-          </li>
-        </ol>
-      </nav>
+    <>
+      {/* Hero — full-bleed dark band, split left/right like our own homepage
+          hero (not a centered single-column stack). Right side carries our
+          own signature — the rolling-digit worked example — instead of a
+          generic stat card, so this reads as bijlicalc, not a template. */}
+      <section className="relative overflow-hidden py-14 hero-gradient sm:py-16">
+        <div className="hero-grid-overlay pointer-events-none absolute inset-0" aria-hidden />
+        <div className="relative mx-auto max-w-6xl px-4">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-8 text-sm text-white/50">
+            <ol className="flex flex-wrap items-center gap-1.5">
+              <li>
+                <Link href="/" className="hover:text-brass">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden>/</li>
+              <li>
+                <Link href="/electricity" className="hover:text-brass">
+                  Electricity
+                </Link>
+              </li>
+              <li aria-hidden>/</li>
+              <li className="font-medium text-white/80">
+                {config.breadcrumbLabel}
+              </li>
+            </ol>
+          </nav>
+
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+            {/* Left: pitch + CTAs */}
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-brass/30 bg-brass/10 px-3 py-1 text-xs font-semibold text-brass">
+                <span className="h-1.5 w-1.5 rounded-full bg-brass" aria-hidden />
+                {tariff.state} · {tariff.discomCode} · {cycleLabel(tariff.billingCycle)} slab logic
+              </span>
+
+              <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                {config.h1}
+              </h1>
+              <p className="mt-2 font-display text-xl font-extrabold tracking-tight text-brass sm:text-2xl">
+                Estimate your {tariff.state} electricity bill
+              </p>
+
+              <p className="mt-4 max-w-xl text-lg text-white/70">
+                {config.intro}
+              </p>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <a
+                  href="#calculator"
+                  className="flex items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brass/90"
+                >
+                  <span aria-hidden>⚡</span> Calculate My {tariff.discomCode} Bill
+                </a>
+                <Link
+                  href="/electricity"
+                  className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/50"
+                >
+                  All state calculators →
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: our own signature — the live worked-example, not a
+                static stat card copied from a competitor layout. Stat strip
+                sits directly under it, in the same column, instead of
+                spanning full width with empty space above and below. */}
+            <div className="flex flex-col gap-4">
+              <div className="rounded-2xl border border-white/15 bg-white/[0.07] p-6 backdrop-blur-md">
+                <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-white/50 uppercase">
+                  <span aria-hidden>⚡</span> Worked example
+                </p>
+                <p className="mt-2 text-sm text-white/70">
+                  A {config.exampleUnits}-unit {cycleLabel(tariff.billingCycle)} bill
+                  works out to
+                </p>
+                <div className="mt-1">
+                  <WorkedExampleTotal amount={example.total} />
+                </div>
+
+                <div className="mt-5 flex h-2 overflow-hidden rounded-full bg-white/10">
+                  {breakdownSegments.map((seg) => (
+                    <div
+                      key={seg.label}
+                      className={`h-full ${seg.barClass}`}
+                      style={{ width: `${seg.pct}%` }}
+                    />
+                  ))}
+                </div>
+                <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
+                  {breakdownSegments.map((seg) => (
+                    <div key={seg.label} className="flex items-center justify-between gap-2">
+                      <dt className="flex items-center gap-1.5 text-white/50">
+                        <span className={`h-2 w-2 rounded-full ${seg.barClass}`} aria-hidden />
+                        {seg.label}
+                      </dt>
+                      <dd className="font-medium text-white/80">{formatINR(seg.amount)}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+
+              {/* Stat strip — one color per stat; seal-red stays reserved
+                  for the Verified chip only. */}
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  ['⚡', `₹${topRate.toFixed(2)}`, 'Top slab rate', 'brass'],
+                  ['📅', cycleLabel(tariff.billingCycle), 'Billing', 'hub-ac'],
+                  ['⛽', fcaIncluded ? `₹${tariff.fuelCostAdjustment}` : 'None', 'FCA / unit', 'caution-amber'],
+                  freeUnitsScheme
+                    ? ['🎁', `${freeUnitsScheme.discountValue}u`, 'Free subsidy', 'spark-teal']
+                    : ['✓', formatIsoDate(tariff.lastVerified), 'Verified', 'seal-red'],
+                ].map(([icon, big, small, tone]) => (
+                  <div
+                    key={small as string}
+                    className="rounded-xl border border-white/15 bg-white/[0.07] px-3 py-3 text-center backdrop-blur-md"
+                  >
+                    <span className="text-lg" aria-hidden>
+                      {icon}
+                    </span>
+                    <p
+                      className={`mt-1 font-display text-lg font-bold tabular-nums ${
+                        tone === 'brass'
+                          ? 'text-brass'
+                          : tone === 'hub-ac'
+                            ? 'text-hub-ac'
+                            : tone === 'caution-amber'
+                              ? 'text-caution-amber'
+                              : tone === 'spark-teal'
+                                ? 'text-spark-teal'
+                                : 'text-seal-red'
+                      }`}
+                    >
+                      {big}
+                    </p>
+                    <p className="text-[11px] tracking-wide text-white/50 uppercase">
+                      {small}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main className="mx-auto max-w-6xl px-4 py-8">
+        {/* Interactive calculator + sidebar — the very first thing after the
+            hero, so the tool is never more than one scroll away. */}
+        <section aria-labelledby="calculator" className="mb-10 scroll-mt-20">
+          <h2
+            id="calculator"
+            className="mb-4 font-display text-2xl font-bold text-ink-navy dark:text-gazette-cream"
+          >
+            Calculate your bill
+          </h2>
+          <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+            <Calculator tariff={tariff} defaultUnits={config.exampleUnits} />
+            <TariffSidebar tariff={tariff} />
+          </div>
+        </section>
 
       <div className="mx-auto max-w-4xl">
-        {/* H1 + intro */}
-        <header className="mb-6">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-brass/30 bg-brass/10 px-3 py-1 text-xs font-semibold text-brass">
-            {tariff.discomCode} · {cycleLabel(tariff.billingCycle)} slab logic ·
-            FCA {fcaIncluded ? 'included' : 'none'}
-          </span>
-          <h1 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink-navy sm:text-4xl dark:text-gazette-cream">
-            {config.h1}
-          </h1>
-          <p className="mt-3 text-lg text-ash/80 dark:text-gazette-cream/70">
-            {config.intro}
-          </p>
-        </header>
-
-        {/* Stat chips */}
-        <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {[
-            ['⚡', `₹${topRate.toFixed(2)}`, 'Top slab rate'],
-            ['📅', cycleLabel(tariff.billingCycle), 'Billing'],
-            ['⛽', fcaIncluded ? `₹${tariff.fuelCostAdjustment}` : 'None', 'FCA / unit'],
-            freeUnitsScheme
-              ? ['🎁', `${freeUnitsScheme.discountValue}u`, 'Free subsidy']
-              : ['🔎', formatIsoDate(tariff.lastVerified), 'Verified'],
-          ].map(([icon, big, small]) => (
-            <div
-              key={small}
-              className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-center dark:border-slate-700 dark:bg-slate-900"
-            >
-              <span className="text-lg" aria-hidden>
-                {icon}
-              </span>
-              <p className="mt-1 font-display text-lg font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
-                {big}
-              </p>
-              <p className="text-[11px] uppercase tracking-wide text-ash/50 dark:text-gazette-cream/40">
-                {small}
-              </p>
-            </div>
-          ))}
-        </div>
-
         <TableOfContents items={tocItems} />
 
-        {/* Server-rendered worked example (primary) */}
+        {/* Server-rendered worked example (primary) — a citable pull-quote,
+            not a warning box: paper bg, brass left-border accent only. */}
         <section
           aria-labelledby="worked-example"
-          className="mb-8 rounded-xl border border-brass/10 bg-brass/5 p-5 dark:border-brass/20 dark:bg-brass/15/40"
+          className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
         >
           <h2
             id="worked-example"
-            className="text-sm font-semibold uppercase tracking-wide text-brass"
+            className="flex items-center gap-1.5 text-sm font-semibold tracking-wide text-brass uppercase"
           >
-            Worked example
+            <span aria-hidden>⚡</span> Worked example
           </h2>
-          <p className="mt-2 text-slate-700 dark:text-slate-200">
+          <p className="mt-3 text-lg text-ash/90 dark:text-gazette-cream/90">
             A <strong>{config.exampleUnits}-unit</strong>{' '}
             {cycleLabel(tariff.billingCycle)} {tariff.state} residential bill
             (single-phase) works out to{' '}
-            <strong>{formatINR(example.total)}</strong>
+            <WorkedExampleTotal amount={example.total} />
             {example.monthlyEquivalent && (
               <>
                 {' '}
@@ -271,24 +404,14 @@ export default function DiscomCalculatorPage({
             )}
             .
           </p>
+          <a
+            href="#worked-examples"
+            className="mt-3 inline-block text-sm font-semibold text-brass hover:underline"
+          >
+            See the full breakdown ↓
+          </a>
         </section>
-      </div>
 
-      {/* Interactive calculator + sidebar */}
-      <section aria-labelledby="calculator" className="mb-10 scroll-mt-20">
-        <h2
-          id="calculator"
-          className="mb-4 font-display text-2xl font-bold text-ink-navy dark:text-gazette-cream"
-        >
-          Calculate your bill
-        </h2>
-        <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-          <Calculator tariff={tariff} defaultUnits={config.exampleUnits} />
-          <TariffSidebar tariff={tariff} />
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-4xl">
         {/* Reverse calculator: budget -> units */}
         <section aria-labelledby="budget-tool" className="mb-10 scroll-mt-20">
           <h2
@@ -364,9 +487,9 @@ export default function DiscomCalculatorPage({
           >
             {tariff.state} residential tariff slabs
           </h2>
-          <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
+          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 dark:bg-slate-800">
+              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Slab (units)</th>
                   <th className="px-4 py-2 text-right font-semibold">
@@ -374,7 +497,7 @@ export default function DiscomCalculatorPage({
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+              <tbody className="divide-y divide-hairline dark:divide-white/10">
                 {residential.slabs.map((s, i) => (
                   <tr key={i}>
                     <td className="px-4 py-2">
@@ -386,7 +509,7 @@ export default function DiscomCalculatorPage({
                   </tr>
                 ))}
               </tbody>
-              <tfoot className="bg-slate-50 text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+              <tfoot className="bg-mist text-ash/70 dark:bg-slate-800 dark:text-gazette-cream/70">
                 <tr>
                   <td className="px-4 py-2">Fixed charge</td>
                   <td className="px-4 py-2 text-right tabular-nums">
@@ -435,11 +558,11 @@ export default function DiscomCalculatorPage({
             Two worked examples
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
-              <p className="text-xs font-semibold uppercase tracking-wide text-spark-teal">
+            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+              <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
                 Lower usage
               </p>
-              <p className="mt-1 font-display text-2xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+              <p className="mt-1 font-display text-2xl font-bold tabular-nums text-brass">
                 {formatINR(example.total)}
               </p>
               <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
@@ -452,11 +575,11 @@ export default function DiscomCalculatorPage({
                   ` + ${formatINR(example.fuelCostAdjustment.amount)} FCA`}
               </p>
             </div>
-            <div className="rounded-xl border border-brass/30 bg-brass/5 p-5 dark:border-brass/20">
-              <p className="text-xs font-semibold uppercase tracking-wide text-brass">
+            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+              <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
                 Higher usage
               </p>
-              <p className="mt-1 font-display text-2xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+              <p className="mt-1 font-display text-2xl font-bold tabular-nums text-brass">
                 {formatINR(example2.total)}
               </p>
               <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
@@ -474,7 +597,8 @@ export default function DiscomCalculatorPage({
           </div>
         </section>
 
-        {/* Common bill traps — only where authored */}
+        {/* Common bill traps — only where authored. Caution-amber signals a
+            warning worth knowing about, without the alarm of red. */}
         {config.billTraps && (
           <section aria-labelledby="bill-traps" className="mb-10 scroll-mt-20">
             <h2
@@ -487,7 +611,7 @@ export default function DiscomCalculatorPage({
               {config.billTraps.map((trap, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900"
+                  className="rounded-xl border border-hairline border-l-4 border-l-caution-amber bg-paper p-5 dark:border-white/10 dark:border-l-caution-amber dark:bg-slate-900"
                 >
                   <h3 className="font-semibold text-ink-navy dark:text-gazette-cream">
                     {trap.title}
@@ -509,10 +633,10 @@ export default function DiscomCalculatorPage({
           >
             How the {config.discomCode} bill is calculated
           </h2>
-          <div className="space-y-4 text-slate-700 dark:text-slate-300">
+          <div className="space-y-4 text-ash/80 dark:text-gazette-cream/70">
             {config.explainer.map((block, i) => (
               <div key={i}>
-                <h3 className="font-semibold text-slate-800 dark:text-slate-100">
+                <h3 className="font-semibold text-ash dark:text-gazette-cream">
                   {block.title}
                 </h3>
                 <p className="mt-1">{block.body}</p>
@@ -544,9 +668,9 @@ export default function DiscomCalculatorPage({
           >
             What&apos;s included in your bill
           </h2>
-          <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
+          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 dark:bg-slate-800">
+              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Component</th>
                   <th className="px-4 py-2 font-semibold">What it is</th>
@@ -555,7 +679,7 @@ export default function DiscomCalculatorPage({
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+              <tbody className="divide-y divide-hairline dark:divide-white/10">
                 <tr>
                   <td className="px-4 py-2 font-medium">Energy charge</td>
                   <td className="px-4 py-2 text-ash/70 dark:text-gazette-cream/60">
@@ -636,7 +760,7 @@ export default function DiscomCalculatorPage({
 
         {/* Solar cross-sell */}
         <div id="solar" className="scroll-mt-20">
-          <SolarCrossSell state={tariff.state} />
+          <SolarCrossSell state={tariff.state} discomCode={tariff.discomCode} />
         </div>
 
         {/* Appliance upgrade cross-sell */}
@@ -665,6 +789,10 @@ export default function DiscomCalculatorPage({
             <DiscomComparisonTable
               currentDiscomCode={tariff.discomCode}
               compareDiscomCodes={neighbors.map((n) => n.discomCode)}
+              discomHrefs={Object.fromEntries([
+                [tariff.discomCode, path],
+                ...neighbors.map((n) => [n.discomCode, `/electricity/${n.slug}`]),
+              ])}
             />
             <p className="mt-3 text-sm text-ash/70 dark:text-gazette-cream/60">
               {tariff.discomCode}&apos;s top domestic slab rate is ₹
@@ -790,25 +918,49 @@ export default function DiscomCalculatorPage({
             <ol className="space-y-2">
               {config.howToPay.steps.map((s, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brass font-display text-xs font-bold text-ink-navy">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brass font-display text-xs font-bold text-white">
                     {i + 1}
                   </span>
                   <span className="text-ash/80 dark:text-gazette-cream/70">{s}</span>
                 </li>
               ))}
             </ol>
-            <p className="mt-3 text-sm text-ash/70 dark:text-gazette-cream/60">
-              Official portal:{' '}
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <a
                 href={config.howToPay.portalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-brass underline"
+                className="group flex items-center gap-3 rounded-xl border border-brass/20 bg-brass/5 p-4 transition hover:border-brass/50 hover:shadow-sm dark:border-brass/20 dark:bg-brass/10"
               >
-                {config.howToPay.portalLabel}
-              </a>{' '}
-              · Helpline: {config.howToPay.helpline}
-            </p>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-xl" aria-hidden>
+                  🌐
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] font-semibold tracking-wide text-brass uppercase">
+                    Official portal
+                  </p>
+                  <p className="truncate font-semibold text-ink-navy dark:text-gazette-cream">
+                    {config.howToPay.portalLabel}
+                  </p>
+                </div>
+                <span className="shrink-0 text-brass opacity-0 transition group-hover:opacity-100" aria-hidden>
+                  →
+                </span>
+              </a>
+              <div className="flex items-center gap-3 rounded-xl border border-spark-teal/20 bg-spark-teal/5 p-4 dark:border-spark-teal/20 dark:bg-spark-teal/10">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-spark-teal/15 text-xl" aria-hidden>
+                  📞
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[11px] font-semibold tracking-wide text-spark-teal uppercase">
+                    Helpline
+                  </p>
+                  <p className="font-semibold text-ink-navy dark:text-gazette-cream">
+                    {config.howToPay.helpline}
+                  </p>
+                </div>
+              </div>
+            </div>
           </section>
         )}
 
@@ -820,13 +972,13 @@ export default function DiscomCalculatorPage({
           >
             Frequently asked questions
           </h2>
-          <div className="divide-y divide-slate-200 dark:divide-slate-700">
+          <div className="divide-y divide-hairline dark:divide-white/10">
             {config.faqs.map((f, i) => (
               <details key={i} className="group py-3">
-                <summary className="cursor-pointer list-none font-medium text-slate-800 marker:hidden dark:text-slate-100">
+                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
                   {f.q}
                 </summary>
-                <p className="mt-2 text-slate-600 dark:text-slate-300">{f.a}</p>
+                <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
               </details>
             ))}
           </div>
@@ -840,47 +992,95 @@ export default function DiscomCalculatorPage({
           >
             Related calculators
           </h2>
-          <ul className="grid gap-2 text-sm sm:grid-cols-2">
-            {neighbors.map((n) => (
-              <li key={n.slug}>
-                <Link
-                  href={`/electricity/${n.slug}`}
-                  className="text-brass hover:underline"
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ...neighbors.map((n) => ({
+                href: `/electricity/${n.slug}`,
+                icon: '⚡',
+                chip: 'bg-hub-electricity/15',
+                accent: 'text-hub-electricity',
+                border: 'hover:border-hub-electricity/50',
+                label: getTariff(n.discomCode).state,
+                sub: `${n.discomCode} bill calculator`,
+              })),
+              {
+                href: '/electricity',
+                icon: '🗺️',
+                chip: 'bg-hub-electricity/15',
+                accent: 'text-hub-electricity',
+                border: 'hover:border-hub-electricity/50',
+                label: 'All states & UTs',
+                sub: 'Every DISCOM calculator',
+              },
+              {
+                href: '/solar/roi-calculator',
+                icon: '☀️',
+                chip: 'bg-hub-solar/15',
+                accent: 'text-hub-solar',
+                border: 'hover:border-hub-solar/50',
+                label: 'Solar ROI',
+                sub: 'Payback on this tariff',
+              },
+              {
+                href: '/ac/bill-calculator',
+                icon: '❄️',
+                chip: 'bg-hub-ac/15',
+                accent: 'text-hub-ac',
+                border: 'hover:border-hub-ac/50',
+                label: 'AC running cost',
+                sub: 'Priced at your top slab',
+              },
+              {
+                href: '/financial',
+                icon: '🧮',
+                chip: 'bg-hub-financial/15',
+                accent: 'text-hub-financial',
+                border: 'hover:border-hub-financial/50',
+                label: 'Financial calculators',
+                sub: 'GST, SIP, gratuity, tax',
+              },
+            ].map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`group flex items-center gap-3 rounded-xl border border-hairline bg-paper p-4 transition hover:shadow-sm dark:border-white/10 dark:bg-slate-900 ${l.border}`}
+              >
+                <span
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-xl ${l.chip}`}
+                  aria-hidden
                 >
-                  {getTariff(n.discomCode).state} ({n.discomCode}) bill calculator
-                </Link>
-              </li>
+                  {l.icon}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate font-semibold text-ink-navy dark:text-gazette-cream">
+                    {l.label}
+                  </p>
+                  <p className="truncate text-xs text-ash/50 dark:text-gazette-cream/40">
+                    {l.sub}
+                  </p>
+                </div>
+                <span
+                  className={`shrink-0 opacity-0 transition group-hover:opacity-100 ${l.accent}`}
+                  aria-hidden
+                >
+                  →
+                </span>
+              </Link>
             ))}
-            <li>
-              <Link href="/electricity" className="text-brass hover:underline">
-                All state electricity calculators
-              </Link>
-            </li>
-            <li>
-              <Link href="/solar/roi-calculator" className="text-brass hover:underline">
-                Solar ROI calculator
-              </Link>
-            </li>
-            <li>
-              <Link href="/ac/bill-calculator" className="text-brass hover:underline">
-                AC running cost calculator
-              </Link>
-            </li>
-            <li>
-              <Link href="/financial" className="text-brass hover:underline">
-                Financial calculators
-              </Link>
-            </li>
-          </ul>
+          </div>
         </section>
 
         {/* Verification metadata + disclaimer */}
-        <footer className="rounded-lg bg-slate-50 p-4 text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-          <p>
-            Tariff last verified: {formatIsoDate(tariff.lastVerified)} ·
-            Effective from {formatIsoDate(tariff.effectiveFrom)}
-          </p>
-          <p className="mt-1">
+        <footer className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="flex items-center gap-1.5 rounded-full border border-seal-red/30 bg-seal-red/5 px-2.5 py-1 text-xs font-semibold text-seal-red">
+              <span aria-hidden>⦿</span> Verified {formatIsoDate(tariff.lastVerified)}
+            </span>
+            <span className="text-xs text-ash/50 dark:text-gazette-cream/40">
+              Effective from {formatIsoDate(tariff.effectiveFrom)}
+            </span>
+          </div>
+          <p className="mt-3 text-sm text-ash/70 dark:text-gazette-cream/60">
             Source:{' '}
             <a
               href={tariff.sourceUrl}
@@ -891,8 +1091,8 @@ export default function DiscomCalculatorPage({
               {tariff.discomName} tariff order
             </a>
           </p>
-          <p className="mt-1 text-xs text-brass">{tariff.verifiedBy}</p>
-          <p className="mt-2 text-xs">
+          <p className="mt-1 text-xs text-ash/50 dark:text-gazette-cream/40">{tariff.verifiedBy}</p>
+          <p className="mt-3 border-t border-hairline pt-3 text-xs text-ash/50 dark:border-white/10 dark:text-gazette-cream/40">
             Estimates only.{' '}
             <Link href="/methodology" className="text-brass underline">
               How we source &amp; verify data
@@ -929,6 +1129,7 @@ export default function DiscomCalculatorPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
       />
-    </main>
+      </main>
+    </>
   )
 }

@@ -53,7 +53,7 @@ export function OptionCardGroup<T extends string>({
             {only.icon}
           </span>
           <span className="text-sm font-semibold">{only.label}</span>
-          <span className="text-[10px] font-medium uppercase tracking-wide text-brass">
+          <span className="text-[10px] font-medium tracking-wide text-brass uppercase">
             only option
           </span>
         </div>
@@ -85,7 +85,7 @@ export function OptionCardGroup<T extends string>({
               className={`flex flex-col items-center gap-1.5 rounded-xl border-2 px-2 py-3 text-center transition ${
                 active
                   ? 'border-brass bg-brass/10 text-ink-navy dark:text-gazette-cream'
-                  : 'border-slate-200 text-ash/70 hover:border-slate-300 dark:border-slate-700 dark:text-gazette-cream/60'
+                  : 'border-hairline text-ash/70 hover:border-brass/40 dark:border-white/10 dark:text-gazette-cream/60'
               }`}
             >
               <span aria-hidden className="text-2xl">
@@ -141,7 +141,7 @@ export function SliderField({
           onChange={(e) => onChange(Number(e.target.value))}
           className="w-full accent-brass"
         />
-        <div className="flex shrink-0 items-center gap-1 rounded-lg border border-slate-300 bg-gazette-cream px-2.5 py-1.5 dark:border-slate-600 dark:bg-slate-800">
+        <div className="flex shrink-0 items-center gap-1 rounded-lg border border-hairline bg-mist px-2.5 py-1.5 dark:border-white/10 dark:bg-slate-800">
           <span className="w-10 text-right font-display text-sm font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
             {value}
           </span>
@@ -159,22 +159,46 @@ export function SliderField({
   )
 }
 
-/** Prominent submit-style CTA + disclaimer, matching the "Calculate My Bill" pattern. */
+/**
+ * Prominent submit-style CTA + disclaimer, matching the "Calculate My Bill"
+ * pattern. This is the primary button tier — brass fill — used sitewide for
+ * the one main action on a calculator card. The financial hub is deliberately
+ * the quietest hub, so it swaps the fill for ledger-indigo instead of brass.
+ */
+const CTA_TONE_CLASS: Record<string, string> = {
+  brass: 'bg-brass hover:bg-brass/90',
+  financial: 'bg-hub-financial hover:bg-hub-financial/90',
+  appliance: 'bg-hub-appliance hover:bg-hub-appliance/90',
+  fuel: 'bg-hub-fuel hover:bg-hub-fuel/90',
+  water: 'bg-hub-water hover:bg-hub-water/90',
+  gas: 'bg-hub-gas hover:bg-hub-gas/90',
+}
+const CTA_TONE_ICON: Record<string, string> = {
+  brass: '⚡',
+  financial: '📒',
+  appliance: '🔌',
+  fuel: '⛽',
+  water: '💧',
+  gas: '🔥',
+}
+
 export function CalculatorCta({
   label,
   onClick,
+  tone = 'brass',
 }: {
   label: string
   onClick?: () => void
+  tone?: 'brass' | 'financial' | 'appliance' | 'fuel' | 'water' | 'gas'
 }) {
   return (
     <div className="mt-1">
       <button
         type={onClick ? 'button' : 'submit'}
         onClick={onClick}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-ink-navy px-5 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-ink-navy/90"
+        className={`flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-base font-semibold text-white shadow-sm transition ${CTA_TONE_CLASS[tone]}`}
       >
-        <span aria-hidden>⚡</span>
+        <span aria-hidden>{CTA_TONE_ICON[tone]}</span>
         {label}
       </button>
       <p className="mt-2 text-center text-xs text-ash/50 dark:text-gazette-cream/40">
@@ -186,7 +210,7 @@ export function CalculatorCta({
 
 export function CalculatorCard({ children }: { children: ReactNode }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <div className="rounded-xl border border-hairline bg-paper p-6 shadow-sm dark:border-white/10 dark:bg-slate-900">
       {children}
     </div>
   )

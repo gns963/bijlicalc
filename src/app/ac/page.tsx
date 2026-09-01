@@ -1,7 +1,19 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import CrossHubLinks from '@/components/CrossHubLinks'
+import SplitHero from '@/components/SplitHero'
+import { calculateAcCost } from '@/lib/calc/ac'
+import { formatINR } from '@/lib/format'
+import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
 const SITE = 'https://bijlicalc.com'
+
+const heroExample = calculateAcCost({
+  discomCode: 'TNEB',
+  tonnage: 1.5,
+  starRating: 3,
+  dailyHours: 8,
+})
 
 export const metadata: Metadata = {
   title: 'AC Calculators — Running Cost, Tonnage & Star Rating (India)',
@@ -39,35 +51,129 @@ const cards = [
     cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50 dark:border-spark-teal/20 dark:bg-spark-teal/15/30',
     ctaCls: 'text-spark-teal dark:text-spark-teal',
   },
+  {
+    href: '/ac/comparison-tool',
+    emoji: '🆚',
+    title: 'AC Comparison Tool',
+    body: 'Compare any two AC configurations side by side — tonnage, star rating, or both.',
+    cta: 'Compare ACs →',
+    cls: 'border-brass/20 bg-brass/5 hover:border-brass/50 dark:border-brass/20 dark:bg-brass/15/30',
+    ctaCls: 'text-brass dark:text-brass',
+  },
+  {
+    href: '/ac/power-consumption-calculator',
+    emoji: '🔢',
+    title: 'Power Consumption Calculator',
+    body: "From your AC's nameplate rated current — no tonnage lookup needed.",
+    cta: 'Calculate draw →',
+    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50 dark:border-spark-teal/20 dark:bg-spark-teal/15/30',
+    ctaCls: 'text-spark-teal dark:text-spark-teal',
+  },
+  {
+    href: '/ac/circuit-safety-calculator',
+    emoji: '🛡️',
+    title: 'Circuit Safety Calculator',
+    body: 'General MCB rating and wire gauge guidance for an AC circuit.',
+    cta: 'Get guidance →',
+    cls: 'border-caution-amber/20 bg-caution-amber/5 hover:border-caution-amber/50 dark:border-caution-amber/20 dark:bg-caution-amber/15/30',
+    ctaCls: 'text-caution-amber dark:text-caution-amber',
+  },
 ]
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Home', path: '' },
+  { name: 'AC', path: '/ac' },
+])
+const itemList = itemListLd(cards.map((c) => ({ name: c.title, path: c.href })))
+
+const faqs = [
+  {
+    q: 'Why does an AC cost so much more than other appliances?',
+    a: 'Two reasons: the compressor draws continuous, relatively high power while it runs, and because it adds to your existing usage, its units land on your DISCOM\'s highest tariff slab — not a blended average rate.',
+  },
+  {
+    q: 'What\'s the difference between the running cost calculator and the tonnage calculator?',
+    a: 'The running cost calculator prices a specific AC you already have (or are considering) — tonnage, star rating and hours. The tonnage calculator answers a different question: what size AC does your room actually need, before you buy one.',
+  },
+  {
+    q: 'Should I buy a 3-star or 5-star AC?',
+    a: 'It depends on your daily usage hours and your DISCOM\'s tariff — use our 3-star vs 5-star savings guide to see the exact annual difference and payback period for your situation.',
+  },
+  {
+    q: 'Do these calculators use my actual electricity tariff?',
+    a: 'Yes — pick your DISCOM in each calculator and the units are priced at that state\'s real, source-cited tariff, not a national average.',
+  },
+  {
+    q: 'What\'s the difference between ISEER and SEER?',
+    a: 'ISEER is BEE\'s India-specific efficiency standard, tested against Indian climate and usage conditions. SEER is the equivalent US standard, tested differently — an ISEER-based estimate is the one that reflects real running cost in India.',
+  },
+  {
+    q: 'Can I check if my AC circuit is wired safely?',
+    a: 'Use our circuit safety calculator for general MCB and wire gauge planning guidance from your AC\'s rated current — it\'s a starting point for a conversation with a licensed electrician, not a substitute for one.',
+  },
+  {
+    q: 'How do I compare AC running cost against solar savings?',
+    a: 'AC is usually the biggest single driver of a summer bill, and it runs mostly during daylight — exactly when rooftop solar generates. See our solar ROI calculator to check whether panels sized around your AC usage would pay back.',
+  },
+  {
+    q: 'Why does the same AC cost differently to run in two different states?',
+    a: 'Because DISCOM tariffs differ — different top-slab rates, fuel cost adjustments and electricity duty. See the multi-state slab comparison on our running cost calculator for a real, computed example.',
+  },
+  {
+    q: 'I don\'t know my AC\'s tonnage or star rating — can I still get an estimate?',
+    a: 'Yes — use the power consumption calculator instead, which works from your AC\'s nameplate rated current (in Amps) rather than tonnage and star rating.',
+  },
+]
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
 
 export default function AcHubPage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <ol className="flex flex-wrap items-center gap-1.5">
-          <li>
-            <Link href="/" className="hover:text-brass">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="font-medium text-slate-700 dark:text-slate-300">AC</li>
-        </ol>
-      </nav>
+    <>
+      <SplitHero
+        hub="ac"
+        breadcrumb={[{ label: 'AC', href: '/ac' }]}
+        badgeLabel="6 calculators · ISEER + real tariffs"
+        h1="Air Conditioner Calculators"
+        subtitle="Work out what an AC costs to run, what size you need, and whether a 5-star model is worth it — all priced against your state's real electricity tariff."
+        primaryCta={{ label: 'Calculate My AC Cost', href: '#tools', emoji: '❄️' }}
+        secondaryCta={{ label: 'Running cost calculator →', href: '/ac/bill-calculator' }}
+        statChips={[
+          { icon: '❄️', big: '6', small: 'Calculators', tone: 'hub' },
+          { icon: '⚙️', big: 'ISEER', small: 'Efficiency basis', tone: 'hub' },
+          { icon: '🗺️', big: '36 states', small: 'DISCOM coverage', tone: 'hub' },
+          { icon: '🔓', big: 'Free', small: 'No login', tone: 'hub' },
+        ]}
+        resultCard={
+          <div className="rounded-2xl border border-white/15 bg-white/[0.07] p-6 backdrop-blur-md">
+            <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-white/50 uppercase">
+              <span aria-hidden>❄️</span> Worked example
+            </p>
+            <p className="mt-2 text-sm text-white/70">
+              A 1.5 ton, 3-star AC running 8 hours/day in Tamil Nadu
+            </p>
+            <p className="mt-1 font-display text-3xl font-bold tabular-nums text-white">
+              {formatINR(heroExample.monthlyCost)}
+              <span className="ml-1 text-sm font-normal text-white/50">/month</span>
+            </p>
+            <p className="mt-2 text-xs text-white/50">
+              {formatINR(heroExample.annualCost)}/year at{' '}
+              {formatINR(heroExample.effectiveRatePerUnit)}/unit — priced at
+              TNEB&apos;s real top slab, not a flat average.
+            </p>
+          </div>
+        }
+      />
 
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
-          Air Conditioner Calculators
-        </h1>
-        <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
-          Work out what an AC costs to run, what size you need, and whether a
-          5-star model is worth it — all priced against{' '}
-          <strong>your state&apos;s real electricity tariff</strong>.
-        </p>
-      </header>
-
-      <section className="mb-10 grid gap-6 sm:grid-cols-3">
+      <main className="mx-auto max-w-4xl px-4 py-8">
+      <section id="tools" className="mb-10 grid scroll-mt-20 gap-6 sm:grid-cols-3">
         {cards.map((c) => (
           <Link
             key={c.href}
@@ -75,10 +181,10 @@ export default function AcHubPage() {
             className={`flex flex-col rounded-2xl border p-6 transition hover:shadow-sm ${c.cls}`}
           >
             <span className="text-2xl">{c.emoji}</span>
-            <h2 className="mt-2 text-lg font-semibold text-slate-900 dark:text-white">
+            <h2 className="font-display mt-2 text-lg font-semibold text-ink-navy dark:text-gazette-cream">
               {c.title}
             </h2>
-            <p className="mt-1 flex-1 text-sm text-slate-600 dark:text-slate-300">
+            <p className="mt-1 flex-1 text-sm text-ash/70 dark:text-gazette-cream/70">
               {c.body}
             </p>
             <span className={`mt-3 text-sm font-semibold ${c.ctaCls}`}>
@@ -89,10 +195,10 @@ export default function AcHubPage() {
       </section>
 
       <section aria-labelledby="why" className="mb-10">
-        <h2 id="why" className="mb-4 text-2xl font-semibold">
+        <h2 id="why" className="font-display mb-4 text-2xl font-semibold">
           Why AC cost depends on more than the price tag
         </h2>
-        <div className="space-y-3 text-slate-700 dark:text-slate-300">
+        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
           <p>
             An air conditioner is often the single biggest line on a summer
             electricity bill. Two things drive the cost: how efficiently the unit
@@ -107,6 +213,38 @@ export default function AcHubPage() {
           </p>
         </div>
       </section>
-    </main>
+
+      <section aria-labelledby="faq" className="mb-10">
+        <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
+          Frequently asked questions
+        </h2>
+        <div className="divide-y divide-hairline dark:divide-white/10">
+          {faqs.map((f, i) => (
+            <details key={i} className="group py-3">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                {f.q}
+              </summary>
+              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <CrossHubLinks current="ac" />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
+      </main>
+    </>
   )
 }

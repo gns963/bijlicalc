@@ -15,8 +15,9 @@ export default function TermsPage() {
       title="Terms of Use"
       intro="By using bijlicalc you agree to these terms. Please read them alongside our privacy policy and disclaimer."
       stub={false}
+      path="/terms"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Estimates, not advice
       </h2>
       <p>
@@ -29,7 +30,7 @@ export default function TermsPage() {
         .
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Accuracy and availability
       </h2>
       <p>
@@ -38,7 +39,7 @@ export default function TermsPage() {
         uninterrupted. We may change or remove tools at any time.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Advertising and affiliate links
       </h2>
       <p>
@@ -50,7 +51,7 @@ export default function TermsPage() {
         .
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Intellectual property
       </h2>
       <p>
@@ -59,7 +60,7 @@ export default function TermsPage() {
         you may not scrape, republish or resell them without written consent.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Limitation of liability
       </h2>
       <p>
@@ -68,7 +69,7 @@ export default function TermsPage() {
         of the site is at your own risk.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Governing law
       </h2>
       <p>

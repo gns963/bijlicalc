@@ -14,8 +14,9 @@ export default function AffiliateDisclosurePage() {
       title="Affiliate Disclosure"
       intro="bijlicalc is reader-supported. Some links on this site are affiliate links, which means we may earn a commission — at no additional cost to you — if you buy through them."
       stub={false}
+      path="/affiliate-disclosure"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Amazon Associates Programme
       </h2>
       <p>
@@ -29,7 +30,7 @@ export default function AffiliateDisclosurePage() {
         make a purchase, Amazon may pay us a small percentage of the sale.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         No extra cost to you
       </h2>
       <p>
@@ -38,7 +39,7 @@ export default function AffiliateDisclosurePage() {
         help us keep the calculators on bijlicalc free to use.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Editorial independence
       </h2>
       <p>
@@ -49,7 +50,7 @@ export default function AffiliateDisclosurePage() {
         payment to alter a calculator&apos;s output or to rank a product higher.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Pricing and availability
       </h2>
       <p>
@@ -59,7 +60,7 @@ export default function AffiliateDisclosurePage() {
         and warranty on the retailer&apos;s page before buying.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Questions
       </h2>
       <p>

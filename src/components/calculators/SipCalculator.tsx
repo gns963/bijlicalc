@@ -36,7 +36,7 @@ export default function SipCalculator() {
             min={0}
             value={monthly}
             onChange={(e) => setMonthly(Number(e.target.value) || 0)}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+            className="w-full rounded-lg border border-hairline px-3 py-2.5 text-lg tabular-nums outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
           />
         </div>
 
@@ -60,16 +60,16 @@ export default function SipCalculator() {
           unit="yrs"
         />
 
-        <CalculatorCta label="Calculate SIP Returns" />
+        <CalculatorCta label="Calculate SIP Returns" tone="financial" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
         <div className="grid gap-4">
           <div>
             <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
               Maturity value
             </p>
-            <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
+            <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
               {formatINR(result.maturityValue)}
             </p>
             <p className="text-sm text-ash/60 dark:text-gazette-cream/50">

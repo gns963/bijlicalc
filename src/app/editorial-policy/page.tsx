@@ -15,8 +15,9 @@ export default function EditorialPolicyPage() {
       title="Editorial Policy"
       intro="These are the standards every calculator and page on bijlicalc is held to. They exist so you can trust the numbers — and check them yourself."
       stub={false}
+      path="/editorial-policy"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Primary sources first
       </h2>
       <p>
@@ -26,7 +27,7 @@ export default function EditorialPolicyPage() {
         the figure as pending primary cross-check and prioritise verifying it.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Verify before publish
       </h2>
       <p>
@@ -38,7 +39,7 @@ export default function EditorialPolicyPage() {
         for the exact mechanism.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Label uncertainty honestly
       </h2>
       <p>
@@ -47,7 +48,7 @@ export default function EditorialPolicyPage() {
         precise-looking figure that is wrong.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Corrections
       </h2>
       <p>
@@ -62,7 +63,7 @@ export default function EditorialPolicyPage() {
         affected calculator&apos;s last-verified date so the change is visible.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Independence from revenue
       </h2>
       <p>

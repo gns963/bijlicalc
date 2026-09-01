@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "note": "Maps major Indian cities/regions to the CGD(s) that serve piped natural gas (PNG) there. hasTariffFile is true only where a real, schema-validated tariff JSON exists in src/data/gas-tariffs/ — every other city still uses the honest self-rate-input calculator. Mirrors the discoms.json pattern used for electricity's progressive rollout."
+  },
+  "regions": [
+    {
+      "region": "Delhi / NCR",
+      "cgds": [{ "slug": "igl", "code": "IGL", "name": "Indraprastha Gas Limited", "hasTariffFile": true }]
+    },
+    {
+      "region": "Pune / Nashik",
+      "cgds": [{ "slug": "mngl", "code": "MNGL", "name": "Maharashtra Natural Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Mumbai",
+      "cgds": [{ "slug": "mahanagar-gas", "code": "MGL", "name": "Mahanagar Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Gujarat / parts of Punjab, Rajasthan, Haryana",
+      "cgds": [{ "slug": "gujarat-gas", "code": "GGL", "name": "Gujarat Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Bengaluru / Meerut / Gwalior",
+      "cgds": [{ "slug": "gail", "code": "GAIL", "name": "GAIL Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Hyderabad / Vijayawada / Kakinada",
+      "cgds": [{ "slug": "bgl", "code": "BGL", "name": "Bhagyanagar Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Chandigarh / Kerala / parts of UP",
+      "cgds": [{ "slug": "indianoil-adani-gas", "code": "IOAGPL", "name": "IndianOil-Adani Gas Private Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Tripura",
+      "cgds": [{ "slug": "thgcl", "code": "TNGCL", "name": "Tripura Natural Gas Company Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Vadodara",
+      "cgds": [{ "slug": "vadodara-gas", "code": "VGL", "name": "Vadodara Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Kanpur / parts of UP",
+      "cgds": [{ "slug": "cugl", "code": "CUGL", "name": "Central UP Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Ahmedabad / Sabarmati belt",
+      "cgds": [{ "slug": "green-gas", "code": "GGCL", "name": "Green Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Haryana (select towns)",
+      "cgds": [{ "slug": "haryana-city-gas", "code": "HCGDL", "name": "Haryana City Gas Distribution Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Various — Adani Total Gas footprint",
+      "cgds": [{ "slug": "adani-gas", "code": "ATGL", "name": "Adani Total Gas Limited", "hasTariffFile": false }]
+    },
+    {
+      "region": "Various — Torrent Gas footprint",
+      "cgds": [{ "slug": "torrent-gas", "code": "TGL", "name": "Torrent Gas", "hasTariffFile": false }]
+    },
+    {
+      "region": "Various — Think Gas footprint",
+      "cgds": [{ "slug": "think-gas", "code": "THINKGAS", "name": "Think Gas", "hasTariffFile": false }]
+    }
+  ]
+}

@@ -3,11 +3,18 @@ import { formatINR } from '@/lib/format'
 
 type Tag = 'reducible' | 'fixed' | 'discom-set' | 'check' | 'statutory'
 
+/**
+ * Exactly one badge system, two colors: brass means "you can influence this,"
+ * ash/grey means "fixed, can't change" — nothing else. Reducible spend and
+ * things worth double-checking are both actionable, so both read brass;
+ * DISCOM-set, statutorily fixed and flat charges are all equally out of your
+ * control, so all three read neutral ash.
+ */
 const TAG_STYLE: Record<Tag, { label: string; cls: string }> = {
-  reducible: { label: 'Reducible', cls: 'bg-spark-teal/15 text-spark-teal' },
+  reducible: { label: 'Reducible', cls: 'bg-brass/15 text-brass' },
   fixed: { label: 'Fixed', cls: 'bg-ash/10 text-ash dark:text-gazette-cream/70' },
-  'discom-set': { label: 'Set by DISCOM', cls: 'bg-brass/15 text-brass' },
-  check: { label: 'Worth checking', cls: 'bg-spark-teal/15 text-spark-teal' },
+  'discom-set': { label: 'Set by DISCOM', cls: 'bg-ash/10 text-ash dark:text-gazette-cream/70' },
+  check: { label: 'Worth checking', cls: 'bg-brass/15 text-brass' },
   statutory: { label: 'Statutory', cls: 'bg-ash/10 text-ash dark:text-gazette-cream/70' },
 }
 
@@ -71,7 +78,7 @@ export default function BillComponentAudit({ bill }: { bill: BillBreakdown }) {
   }
 
   return (
-    <div className="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white dark:divide-slate-700 dark:border-slate-700 dark:bg-slate-900">
+    <div className="divide-y divide-hairline rounded-xl border border-hairline bg-paper dark:divide-white/10 dark:border-white/10 dark:bg-slate-900">
       {items.map((item) => (
         <details key={item.title} className="group p-4">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-3">

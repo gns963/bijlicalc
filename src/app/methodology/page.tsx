@@ -15,8 +15,9 @@ export default function MethodologyPage() {
       title="Methodology"
       intro="This page explains exactly how our calculators work — where the numbers come from, how they are verified, and where the known limits are. Nothing here is hand-waving; each mechanism is how the site is actually built."
       stub={false}
+      path="/methodology"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         1. One data file per DISCOM
       </h2>
       <p>
@@ -47,7 +48,7 @@ export default function MethodologyPage() {
         </li>
       </ul>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         2. Every file is schema-validated
       </h2>
       <p>
@@ -66,7 +67,7 @@ export default function MethodologyPage() {
         malformed or half-finished tariff simply cannot reach a calculator.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         3. A single, tested calculation engine
       </h2>
       <p>
@@ -78,7 +79,7 @@ export default function MethodologyPage() {
         consistent everywhere.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         4. We disclose what we don&apos;t model
       </h2>
       <p>
@@ -90,7 +91,7 @@ export default function MethodologyPage() {
         Estimates are close, not billing-grade, and we say so.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         5. Update cadence
       </h2>
       <p>

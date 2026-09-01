@@ -56,7 +56,7 @@ export default function SolarSubsidyCalculator() {
                 onChange={(e) =>
                   setChecks((prev) => ({ ...prev, [c.key]: e.target.checked }))
                 }
-                className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brass focus:ring-brass"
+                className="mt-0.5 h-4 w-4 rounded border-hairline text-brass focus:ring-brass"
               />
               <span className="text-ash dark:text-gazette-cream/80">
                 {c.label}
@@ -68,11 +68,11 @@ export default function SolarSubsidyCalculator() {
         <CalculatorCta label="Check My Subsidy" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl bg-mist p-5 dark:bg-slate-800/60">
         <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
           Estimated PM Surya Ghar subsidy
         </p>
-        <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
+        <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
           {formatINR(subsidy)}
         </p>
 

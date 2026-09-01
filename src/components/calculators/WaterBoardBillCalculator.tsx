@@ -1,0 +1,120 @@
+'use client'
+
+import { useMemo, useState } from 'react'
+import { calculateFullWaterBill, getWaterTariff } from '@/lib/calc/water'
+import { formatINR } from '@/lib/format'
+import { CalculatorCard, CalculatorCta, CalculatorHeader, SliderField } from './CalculatorShell'
+
+/** Real-tariff water bill calculator for a board with a populated tariff
+ *  file — no rate input needed, since the tariff itself is real and dated. */
+export default function WaterBoardBillCalculator({
+  boardCode,
+  boardName,
+}: {
+  boardCode: string
+  boardName: string
+}) {
+  const tariff = getWaterTariff(boardCode)
+  const meterSizes = Object.keys(tariff.fixedChargeByMeterSize)
+  const [kl, setKl] = useState(15)
+  const [meterSize, setMeterSize] = useState(meterSizes[0])
+
+  const { result, error } = useMemo(() => {
+    try {
+      return {
+        result: calculateFullWaterBill({ boardCode, consumptionKl: kl, meterSize }),
+        error: null as string | null,
+      }
+    } catch (e) {
+      return { result: null, error: e instanceof Error ? e.message : 'Calculation error' }
+    }
+  }, [boardCode, kl, meterSize])
+
+  return (
+    <CalculatorCard>
+      <CalculatorHeader
+        icon="💧"
+        title={`${boardName} Bill Calculator`}
+        subtitle={`Priced at ${boardCode}'s real domestic tariff`}
+      />
+
+      <form className="grid gap-5" onSubmit={(e) => e.preventDefault()}>
+        <SliderField
+          id="water-board-consumption"
+          label={`Consumption per ${result?.billingCycle === 'bimonthly' ? 'billing cycle (~60 days)' : 'month'}`}
+          value={kl}
+          onChange={setKl}
+          min={1}
+          max={60}
+          unit="KL"
+          hint="1 KL = 1,000 litres. Check your meter or last bill."
+        />
+
+        {meterSizes.length > 1 && (
+          <div>
+            <span className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+              Meter size
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {meterSizes.map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => setMeterSize(m)}
+                  aria-pressed={m === meterSize}
+                  className={`rounded-lg border-2 px-3 py-1.5 text-sm font-semibold transition ${
+                    m === meterSize
+                      ? 'border-hub-water bg-hub-water/10 text-ink-navy dark:text-gazette-cream'
+                      : 'border-hairline text-ash/70 hover:border-hub-water/40 dark:border-white/10 dark:text-gazette-cream/60'
+                  }`}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <CalculatorCta label="Calculate Water Bill" tone="water" />
+      </form>
+
+      <div className="mt-6 rounded-xl border border-hub-water/15 bg-hub-water/5 p-5 dark:border-hub-water/20 dark:bg-hub-water/10">
+        {error && (
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+            {error}
+          </p>
+        )}
+        {result && (
+          <div className="grid gap-4">
+            <div>
+              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+                Estimated bill
+              </p>
+              <p className="font-display text-4xl font-bold tabular-nums text-hub-water">
+                {formatINR(result.total)}
+              </p>
+              {result.monthlyEquivalent && (
+                <p className="mt-1 text-xs text-ash/50 dark:text-gazette-cream/40">
+                  ≈ {formatINR(result.monthlyEquivalent.total)}/month equivalent
+                </p>
+              )}
+              {result.freeAllowanceApplied && (
+                <p className="mt-2 rounded-lg bg-spark-teal/10 px-2.5 py-1.5 text-xs font-semibold text-spark-teal">
+                  ✓ Within the free allowance — water charge waived
+                </p>
+              )}
+            </div>
+            <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+              <dt className="text-ash/60 dark:text-gazette-cream/50">Water charge</dt>
+              <dd className="text-right tabular-nums">{formatINR(result.waterCharge)}</dd>
+              <dt className="text-ash/60 dark:text-gazette-cream/50">Sewerage charge</dt>
+              <dd className="text-right tabular-nums">{formatINR(result.sewerageCharge)}</dd>
+              <dt className="text-ash/60 dark:text-gazette-cream/50">Fixed charge</dt>
+              <dd className="text-right tabular-nums">{formatINR(result.fixedCharge)}</dd>
+            </dl>
+          </div>
+        )}
+      </div>
+    </CalculatorCard>
+  )
+}

@@ -45,43 +45,49 @@ export default async function AuthorPage({
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-12">
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <Link href="/" className="hover:text-brass">
-          Home
-        </Link>{' '}
-        / <Link href="/about" className="hover:text-brass">About</Link> /{' '}
-        <span className="text-slate-700 dark:text-slate-300">{author.name}</span>
-      </nav>
+    <>
+      <section className="relative overflow-hidden py-14 hero-gradient sm:py-16">
+        <div className="hero-grid-overlay pointer-events-none absolute inset-0" aria-hidden />
+        <div className="relative mx-auto max-w-3xl px-4">
+          <nav aria-label="Breadcrumb" className="mb-6 text-sm text-white/50">
+            <Link href="/" className="hover:text-brass">
+              Home
+            </Link>{' '}
+            / <Link href="/about" className="hover:text-brass">About</Link> /{' '}
+            <span className="text-white/80">{author.name}</span>
+          </nav>
 
-      <header className="mb-8 flex items-center gap-4">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brass/10 text-2xl font-bold text-brass dark:bg-brass/15 dark:text-brass">
-          {author.name.slice(0, 1)}
+          <div className="flex items-center gap-4">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 text-2xl font-bold text-brass">
+              {author.name.slice(0, 1)}
+            </div>
+            <div>
+              <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                {author.name}
+              </h1>
+              <p className="text-white/60">{author.role}</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-            {author.name}
-          </h1>
-          <p className="text-slate-500 dark:text-slate-400">{author.role}</p>
-        </div>
-      </header>
+      </section>
 
-      <div className="space-y-4 text-slate-700 dark:text-slate-300">
+      <main className="mx-auto max-w-3xl px-4 py-12">
+      <div className="space-y-4 text-ash/80 dark:text-gazette-cream/70">
         {author.bio.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
       </div>
 
-      <h2 className="mt-8 text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display mt-8 text-xl font-semibold text-ash dark:text-gazette-cream">
         Areas of focus
       </h2>
-      <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700 dark:text-slate-300">
+      <ul className="mt-2 list-disc space-y-1 pl-5 text-ash/80 dark:text-gazette-cream/70">
         {author.expertise.map((e) => (
           <li key={e}>{e}</li>
         ))}
       </ul>
 
-      <p className="mt-8 text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-8 text-sm text-ash/60 dark:text-ash/40">
         Contact:{' '}
         <a
           href={`mailto:${author.email}`}
@@ -95,6 +101,7 @@ export default async function AuthorPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
-    </main>
+      </main>
+    </>
   )
 }

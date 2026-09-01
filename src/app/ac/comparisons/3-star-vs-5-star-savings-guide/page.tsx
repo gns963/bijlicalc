@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import AffiliateProductCard from '@/components/AffiliateProductCard'
+import PageHero from '@/components/PageHero'
 import StarComparisonTool from '@/components/calculators/StarComparisonTool'
 import { AC_PRODUCTS } from '@/data/ac-products'
 import discomsJson from '@/data/discoms.json'
-import { acDailyUnits, marginalRatePerUnit } from '@/lib/calc/ac'
+import { ISEER_BY_STAR, acDailyUnits, marginalRatePerUnit } from '@/lib/calc/ac'
 import { formatINR } from '@/lib/format'
+import { breadcrumbLd } from '@/lib/seo'
 
 const SITE = 'https://bijlicalc.com'
 const PATH = '/ac/comparisons/3-star-vs-5-star-savings-guide'
@@ -22,6 +24,20 @@ const saving = Math.round(
 
 const three = AC_PRODUCTS.find((p) => p.starRating === 3 && p.tonnage === 1.5)!
 const five = AC_PRODUCTS.find((p) => p.starRating === 5 && p.tonnage === 1.5)!
+const priceDiff = five.price - three.price
+
+// Payback by usage pattern — 1.5T, TNEB, computed live for a spread of daily
+// hours so the "does usage intensity matter" question has a real answer.
+const USAGE_SCENARIOS = [4, 6, 8, 10, 12].map((hours) => {
+  const annualSaving = Math.round(
+    (acDailyUnits(1.5, 3, hours) - acDailyUnits(1.5, 5, hours)) * 365 * rate,
+  )
+  return {
+    hours,
+    annualSaving,
+    paybackYears: annualSaving > 0 ? priceDiff / annualSaving : null,
+  }
+})
 
 export const metadata: Metadata = {
   title: '3 Star vs 5 Star AC — Savings Guide 2026 (Is 5 Star Worth It?)',
@@ -44,6 +60,30 @@ const faqs = [
     q: 'Does the star rating change between years?',
     a: 'Yes. BEE revises the ISEER thresholds periodically, so a model rated 5-star a few years ago may be rated lower today. Always check the current BEE label.',
   },
+  {
+    q: 'What does the BEE star rating actually measure?',
+    a: `It's based on ISEER (Indian Seasonal Energy Efficiency Ratio) — the ratio of total cooling delivered over a season to total electrical energy consumed. BEE sets the ISEER band for each star level: a 3-star unit sits around ISEER ${ISEER_BY_STAR[3]}, a 5-star around ISEER ${ISEER_BY_STAR[5]}. Higher ISEER means more cooling per unit of electricity.`,
+  },
+  {
+    q: 'Is "inverter" the same thing as "5-star"?',
+    a: 'No — inverter refers to the compressor technology (variable-speed rather than on/off fixed-speed), while star rating is purely about measured ISEER efficiency. In practice almost every 5-star split AC sold today happens to be an inverter model, because inverter compressors are what make that efficiency band achievable, but the two labels measure different things.',
+  },
+  {
+    q: 'Does a 5-star AC cool the room faster than a 3-star one?',
+    a: 'Not necessarily — cooling speed depends mainly on tonnage matching the room size, not star rating. A correctly-sized 3-star and 5-star unit of the same tonnage cool at a similar rate; the 5-star just does it using less electricity.',
+  },
+  {
+    q: 'Does usage pattern change whether 5-star is worth it?',
+    a: `Yes, significantly — see the usage-based payback table above. At light usage (4h/day) the payback stretches well past a typical ownership horizon; at heavy usage (12h/day) it can be under 2 years.`,
+  },
+  {
+    q: 'Should I compare star rating separately from tonnage?',
+    a: "No — always compare star rating at the same tonnage. A smaller 5-star unit and a bigger 3-star unit can end up costing similarly to run despite the star-rating gap, because tonnage has its own large effect on consumption. Use our AC comparison tool if you want to vary both independently.",
+  },
+  {
+    q: 'Is a 5-star AC worth it in a low-tariff state?',
+    a: "The percentage electricity savings stay the same regardless of tariff, but the ₹ savings — and therefore the payback period — shrink in a low-tariff state. Use the slider above with your own DISCOM to see your real break-even rather than assuming the Tamil Nadu example applies to you.",
+  },
 ]
 
 const faqLd = {
@@ -55,45 +95,57 @@ const faqLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 }
+const webAppLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '3 Star vs 5 Star AC Savings Comparison Tool',
+  url: `${SITE}${PATH}`,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+  areaServed: 'India',
+}
+const breadcrumb = breadcrumbLd([
+  { name: 'Home', path: '' },
+  { name: 'AC', path: '/ac' },
+  { name: '3 Star vs 5 Star', path: PATH },
+])
 
 export default function StarComparisonPage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <ol className="flex flex-wrap items-center gap-1.5">
-          <li>
-            <Link href="/" className="hover:text-brass">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li>
-            <Link href="/ac" className="hover:text-brass">
-              AC
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="font-medium text-slate-700 dark:text-slate-300">
-            3 Star vs 5 Star
-          </li>
-        </ol>
-      </nav>
+    <>
+      <PageHero
+        hub="ac"
+        breadcrumb={[
+          { label: 'AC', href: '/ac' },
+          { label: '3 Star vs 5 Star', href: '/ac/comparisons/3-star-vs-5-star-savings-guide' },
+        ]}
+        badgeLabel={
+          <>
+            <span aria-hidden>❄️</span> AC hub
+          </>
+        }
+        h1="3 Star vs 5 Star AC: Savings Guide"
+        subtitle={
+          <>
+            A 5-star AC costs more upfront but uses less electricity. Use the
+            slider below to see the exact annual difference for your usage and{' '}
+            <strong>your DISCOM&apos;s tariff</strong>. For a 1.5 ton unit at 8
+            hours/day in Tamil Nadu, a 5-star saves about{' '}
+            <strong>{formatINR(saving)}/year</strong>.
+          </>
+        }
+        stats={[
+          { icon: '⚡', big: '~20–25%', small: 'Less electricity', tone: 'spark-teal' },
+          { icon: '📆', big: '3–4 seasons', small: 'Typical payback', tone: 'hub' },
+          { icon: '💰', big: formatINR(saving), small: 'TNEB, 1.5T, 8h/day', tone: 'hub' },
+          { icon: '📊', big: 'Any DISCOM', small: 'Priced on yours', tone: 'hub' },
+        ]}
+      />
 
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
-          3 Star vs 5 Star AC: Savings Guide
-        </h1>
-        <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
-          A 5-star AC costs more upfront but uses less electricity. Use the
-          slider below to see the exact annual difference for your usage and{' '}
-          <strong>your DISCOM&apos;s tariff</strong>. For a 1.5 ton unit at 8
-          hours/day in Tamil Nadu, a 5-star saves about{' '}
-          <strong>{formatINR(saving)}/year</strong>.
-        </p>
-      </header>
-
+      <main className="mx-auto max-w-4xl px-4 py-8">
       <section aria-labelledby="tool" className="mb-10">
-        <h2 id="tool" className="mb-4 text-2xl font-semibold">
+        <h2 id="tool" className="font-display mb-4 text-2xl font-semibold">
           Compare by usage &amp; DISCOM
         </h2>
         <StarComparisonTool discoms={liveDiscoms} />
@@ -101,14 +153,14 @@ export default function StarComparisonPage() {
 
       {/* Contextual affiliate: the two units being compared */}
       <section aria-labelledby="the-two" className="mb-10">
-        <h2 id="the-two" className="mb-4 text-2xl font-semibold">
+        <h2 id="the-two" className="font-display mb-4 text-2xl font-semibold">
           The two units, side by side
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <AffiliateProductCard product={three} highlight="Lower upfront price" />
           <AffiliateProductCard product={five} highlight="Lower running cost" />
         </div>
-        <p className="mt-2 text-xs text-slate-400">
+        <p className="mt-2 text-xs text-ash/40">
           Sample models with indicative pricing — see our{' '}
           <Link href="/affiliate-disclosure" className="underline">
             affiliate disclosure
@@ -117,11 +169,83 @@ export default function StarComparisonPage() {
         </p>
       </section>
 
+      <section aria-labelledby="criteria" className="mb-10">
+        <h2 id="criteria" className="font-display mb-4 text-2xl font-semibold">
+          How BEE actually decides the star rating
+        </h2>
+        <p className="mb-4 text-ash/80 dark:text-gazette-cream/70">
+          The Bureau of Energy Efficiency (BEE) tests each AC model and rates
+          it by ISEER (Indian Seasonal Energy Efficiency Ratio) — a
+          season-long ratio of total cooling output to total electrical
+          input, not a snapshot single-load test. A higher ISEER means the
+          same room gets cooled using less electricity over a full season:
+        </p>
+        <div className="grid grid-cols-5 gap-2 text-center">
+          {Object.entries(ISEER_BY_STAR)
+            .sort(([a], [b]) => Number(a) - Number(b))
+            .map(([star, iseer]) => (
+              <div
+                key={star}
+                className="rounded-lg border border-hairline bg-mist px-2 py-2 dark:border-white/10 dark:bg-slate-800"
+              >
+                <p className="font-display text-sm font-bold text-hub-ac">{star}★</p>
+                <p className="text-xs text-ash/60 dark:text-gazette-cream/50">
+                  ISEER {iseer}
+                </p>
+              </div>
+            ))}
+        </div>
+        <p className="mt-3 text-xs text-ash/50 dark:text-gazette-cream/40">
+          BEE revises these thresholds periodically — the bands above are
+          what our calculator engine currently uses. Always check the year
+          printed on a specific model&apos;s BEE label.
+        </p>
+      </section>
+
+      <section aria-labelledby="usage-payback" className="mb-10">
+        <h2 id="usage-payback" className="font-display mb-2 text-2xl font-semibold">
+          Does the price premium pay back? By usage pattern
+        </h2>
+        <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+          Same 1.5 ton unit, same {formatINR(priceDiff)} indicative price gap
+          between the two models above, priced in Tamil Nadu — payback shrinks
+          fast as daily hours rise:
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <table className="w-full text-left text-sm">
+            <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <tr>
+                <th className="px-4 py-2 font-semibold">Daily usage</th>
+                <th className="px-4 py-2 text-right font-semibold">Annual saving</th>
+                <th className="px-4 py-2 text-right font-semibold">Payback period</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-hairline dark:divide-white/10">
+              {USAGE_SCENARIOS.map((s) => (
+                <tr key={s.hours}>
+                  <td className="px-4 py-2 font-medium">{s.hours} h/day</td>
+                  <td className="px-4 py-2 text-right tabular-nums text-spark-teal">
+                    {formatINR(s.annualSaving)}
+                  </td>
+                  <td className="px-4 py-2 text-right font-semibold tabular-nums text-hub-ac">
+                    {s.paybackYears ? `${s.paybackYears.toFixed(1)} yrs` : '—'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          A typical AC lasts 10-15 years, so any payback under 4-5 years
+          leaves years of genuinely free savings afterward.
+        </p>
+      </section>
+
       <section aria-labelledby="verdict" className="mb-10">
-        <h2 id="verdict" className="mb-4 text-2xl font-semibold">
+        <h2 id="verdict" className="font-display mb-4 text-2xl font-semibold">
           So, is 5-star worth it?
         </h2>
-        <div className="space-y-3 text-slate-700 dark:text-slate-300">
+        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
           <p>
             The more hours you run the AC and the higher your electricity tariff,
             the faster a 5-star pays back its price premium. Light users (2–3
@@ -135,17 +259,73 @@ export default function StarComparisonPage() {
         </div>
       </section>
 
+      <section aria-labelledby="related" className="mb-10">
+        <h2 id="related" className="font-display mb-4 text-2xl font-semibold">
+          Related calculators
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Link
+            href="/ac/bill-calculator"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+          >
+            <span className="text-xl" aria-hidden>💡</span>
+            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              AC running cost
+            </p>
+            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              Get the full monthly and yearly cost for a specific AC.
+            </p>
+          </Link>
+          <Link
+            href="/ac/tonnage-calculator"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+          >
+            <span className="text-xl" aria-hidden>📐</span>
+            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              AC tonnage calculator
+            </p>
+            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              Make sure you&apos;re comparing the right size AC for your room.
+            </p>
+          </Link>
+          <Link
+            href="/electricity"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+          >
+            <span className="text-xl" aria-hidden>🔌</span>
+            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              Electricity bill calculators
+            </p>
+            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              Check your DISCOM&apos;s actual tariff slabs.
+            </p>
+          </Link>
+          <Link
+            href="/solar/roi-calculator"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+          >
+            <span className="text-xl" aria-hidden>☀️</span>
+            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              Offset it with solar
+            </p>
+            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              See the payback on a rooftop system sized for AC-heavy usage.
+            </p>
+          </Link>
+        </div>
+      </section>
+
       <section aria-labelledby="faq" className="mb-10">
-        <h2 id="faq" className="mb-4 text-2xl font-semibold">
+        <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-slate-200 dark:divide-slate-700">
+        <div className="divide-y divide-hairline dark:divide-white/10">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-slate-800 marker:hidden dark:text-slate-100">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
                 {f.q}
               </summary>
-              <p className="mt-2 text-slate-600 dark:text-slate-300">{f.a}</p>
+              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
             </details>
           ))}
         </div>
@@ -155,6 +335,15 @@ export default function StarComparisonPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
     </main>
+    </>
   )
 }

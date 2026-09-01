@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import CrossHubLinks from '@/components/CrossHubLinks'
+import PageHero from '@/components/PageHero'
 import { CALCULATOR_PAGES } from '@/data/calculator-pages'
 import discomsJson from '@/data/discoms.json'
 import { getTariff } from '@/lib/calc/electricity'
+import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
 const SITE = 'https://bijlicalc.com'
 
@@ -26,39 +29,111 @@ const live = CALCULATOR_PAGES.map((p) => {
 
 const totalStatesUts = discomsJson.states.length
 
+const breadcrumb = breadcrumbLd([
+  { name: 'Home', path: '' },
+  { name: 'Electricity', path: '/electricity' },
+])
+const EXTRA_TOOLS = [
+  {
+    href: '/electricity/ev-charging-cost-calculator',
+    emoji: '🔌',
+    title: 'EV Charging Cost Calculator',
+    body: 'What a full home charge costs, and your cost per km.',
+  },
+  {
+    href: '/electricity/appliance-cost-calculator',
+    emoji: '🔋',
+    title: 'Appliance Cost Calculator',
+    body: 'Any appliance, from its wattage and daily usage hours.',
+  },
+]
+const itemList = itemListLd([
+  ...live.map((d) => ({ name: `${d.state} Bill Calculator`, path: `/electricity/${d.slug}` })),
+  ...EXTRA_TOOLS.map((t) => ({ name: t.title, path: t.href })),
+])
+
+const faqs = [
+  {
+    q: 'How many DISCOMs does bijlicalc cover?',
+    a: `${live.length} bill calculators across all ${totalStatesUts} Indian states and union territories, each using that DISCOM's actual published tariff order rather than a national average.`,
+  },
+  {
+    q: 'Are the tariffs kept up to date?',
+    a: 'Each tariff file is dated and source-cited against the relevant SERC order, with a "last verified" date shown on every calculator page.',
+  },
+  {
+    q: 'Is bijlicalc official or affiliated with any DISCOM?',
+    a: 'No. bijlicalc is an independent calculator, not run by or affiliated with any electricity board. Always confirm the final figure against your official bill.',
+  },
+]
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
+
 export default function ElectricityHubPage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-        <ol className="flex flex-wrap items-center gap-1.5">
-          <li>
-            <Link href="/" className="hover:text-brass">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="font-medium text-slate-700 dark:text-slate-300">
-            Electricity
-          </li>
-        </ol>
-      </nav>
+    <>
+      <PageHero
+        hub="electricity"
+        breadcrumb={[{ label: 'Electricity', href: '/electricity' }]}
+        badgeLabel={
+          <>
+            <span aria-hidden>⚡</span> Electricity hub
+          </>
+        }
+        h1="Electricity Bill Calculators by State"
+        subtitle={
+          <>
+            Estimate your electricity bill using your DISCOM&apos;s real,
+            source-cited tariff — telescopic slabs, fixed charge, fuel cost
+            adjustment, electricity duty and subsidies. All {totalStatesUts}{' '}
+            states and union territories are live.
+          </>
+        }
+        stats={[
+          { icon: '🗺️', big: `${live.length}/${totalStatesUts}`, small: 'States & UTs live', tone: 'hub' },
+          { icon: '✓', big: 'SERC', small: 'Source-verified', tone: 'seal-red' },
+          { icon: '🔓', big: 'Free', small: 'No login', tone: 'hub' },
+          { icon: '📶', big: 'Telescopic', small: 'Slab logic', tone: 'hub' },
+        ]}
+      />
 
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
-          Electricity Bill Calculators by State
-        </h1>
-        <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
-          Estimate your electricity bill using your DISCOM&apos;s real,
-          source-cited tariff — telescopic slabs, fixed charge, fuel cost
-          adjustment, electricity duty and subsidies. {live.length} DISCOMs are
-          live now, out of {totalStatesUts} states and union territories we&apos;re
-          building towards.
-        </p>
-      </header>
+      <main className="mx-auto max-w-4xl px-4 py-8">
+      <section aria-labelledby="more-tools" className="mb-10">
+        <h2 id="more-tools" className="font-display mb-4 text-2xl font-semibold">
+          More electricity tools
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {EXTRA_TOOLS.map((t) => (
+            <Link
+              key={t.href}
+              href={t.href}
+              className="flex flex-col rounded-2xl border border-hub-electricity/20 bg-hub-electricity/5 p-6 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-hub-electricity/20 dark:bg-hub-electricity/10"
+            >
+              <span className="text-2xl">{t.emoji}</span>
+              <h3 className="font-display mt-2 text-lg font-semibold text-ink-navy dark:text-gazette-cream">
+                {t.title}
+              </h3>
+              <p className="mt-1 flex-1 text-sm text-ash/70 dark:text-gazette-cream/70">
+                {t.body}
+              </p>
+              <span className="mt-3 text-sm font-semibold text-hub-electricity">
+                Open calculator →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section aria-labelledby="live" className="mb-10">
-        <h2 id="live" className="mb-4 text-2xl font-semibold">
-          Available calculators
+        <h2 id="live" className="font-display mb-4 text-2xl font-semibold">
+          All state bill calculators
         </h2>
         <ul className="grid gap-3 sm:grid-cols-2">
           {live.map((d) => (
@@ -67,7 +142,7 @@ export default function ElectricityHubPage() {
                 href={`/electricity/${d.slug}`}
                 className="block rounded-xl border border-brass/20 bg-brass/5 p-4 transition hover:border-brass/50 hover:shadow-sm dark:border-brass dark:bg-brass/15/40"
               >
-                <span className="font-semibold text-slate-900 dark:text-white">
+                <span className="font-semibold text-ink-navy dark:text-gazette-cream">
                   {d.state}
                 </span>
                 <span className="mt-1 block text-xs text-brass dark:text-brass">
@@ -80,13 +155,14 @@ export default function ElectricityHubPage() {
       </section>
 
       <section aria-labelledby="more" className="mb-10">
-        <h2 id="more" className="mb-2 text-2xl font-semibold">
-          More states coming
+        <h2 id="more" className="font-display mb-2 text-2xl font-semibold">
+          Found an error, or represent a DISCOM?
         </h2>
-        <p className="text-slate-700 dark:text-slate-300">
-          We&apos;re adding DISCOMs by demand. Want yours next?{' '}
+        <p className="text-ash/80 dark:text-gazette-cream/70">
+          Every tariff here is being progressively cross-checked against
+          primary SERC orders.{' '}
           <Link href="/contact" className="text-brass underline">
-            Request a state
+            Flag a correction
           </Link>{' '}
           and see our{' '}
           <Link href="/data-sources" className="text-brass underline">
@@ -95,6 +171,38 @@ export default function ElectricityHubPage() {
           .
         </p>
       </section>
+
+      <section aria-labelledby="faq" className="mb-10">
+        <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
+          Frequently asked questions
+        </h2>
+        <div className="divide-y divide-hairline dark:divide-white/10">
+          {faqs.map((f, i) => (
+            <details key={i} className="group py-3">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                {f.q}
+              </summary>
+              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <CrossHubLinks current="electricity" />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
     </main>
+    </>
   )
 }

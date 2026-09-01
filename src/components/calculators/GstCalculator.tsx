@@ -5,7 +5,13 @@ import { calculateGst } from '@/lib/calc/financial'
 import { formatINR } from '@/lib/format'
 import { CalculatorCard, CalculatorCta, CalculatorHeader } from './CalculatorShell'
 
-const RATES = [0, 3, 5, 12, 18, 28]
+// Includes the simplified 5% / 18% / 40% structure from the September 2025
+// "GST 2.0" rate rationalization, alongside the pre-reform slabs some goods
+// and older invoices may still reference — always confirm the exact current
+// rate for your specific goods/service against the official GST Council/CBIC
+// notification, since item-to-slab mapping details are intricate and can
+// change further.
+const RATES = [0, 3, 5, 12, 18, 28, 40]
 
 export default function GstCalculator() {
   const [amountStr, setAmountStr] = useState('1000')
@@ -20,7 +26,7 @@ export default function GstCalculator() {
   }, [amountStr, rate, mode])
 
   const fieldCls =
-    'w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
 
   return (
     <CalculatorCard>
@@ -84,7 +90,7 @@ export default function GstCalculator() {
                 className={`flex-1 rounded-lg border-2 px-3 py-2 text-xs transition ${
                   mode === val
                     ? 'border-brass bg-brass/10 font-semibold text-ink-navy dark:text-gazette-cream'
-                    : 'border-slate-200 text-ash/70 dark:border-slate-700 dark:text-gazette-cream/60'
+                    : 'border-hairline text-ash/70 dark:border-white/10 dark:text-gazette-cream/60'
                 }`}
               >
                 {label}
@@ -93,10 +99,10 @@ export default function GstCalculator() {
           </div>
         </fieldset>
 
-        <CalculatorCta label="Calculate GST" />
+        <CalculatorCta label="Calculate GST" tone="financial" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -108,7 +114,7 @@ export default function GstCalculator() {
               <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 Total {mode === 'inclusive' ? '(incl. GST)' : 'payable'}
               </p>
-              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
+              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
                 {formatINR(result.total)}
               </p>
             </div>

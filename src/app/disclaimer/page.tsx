@@ -15,8 +15,9 @@ export default function DisclaimerPage() {
       title="Disclaimer"
       intro="Our calculators give close estimates for planning and comparison. Always confirm important figures against your official bill or a qualified professional."
       stub={false}
+      path="/disclaimer"
     >
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Electricity bills
       </h2>
       <p>
@@ -33,7 +34,7 @@ export default function DisclaimerPage() {
         .
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Solar and AC
       </h2>
       <p>
@@ -43,7 +44,7 @@ export default function DisclaimerPage() {
         factor and ISEER bands. Treat both as planning estimates.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         Financial calculators
       </h2>
       <p>
@@ -55,7 +56,7 @@ export default function DisclaimerPage() {
         acting.
       </p>
 
-      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
+      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
         No affiliation
       </h2>
       <p>

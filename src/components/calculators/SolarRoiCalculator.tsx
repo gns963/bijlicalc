@@ -12,10 +12,12 @@ export interface SolarDiscomOption {
 
 export default function SolarRoiCalculator({
   discoms,
+  defaultDiscomCode,
 }: {
   discoms: SolarDiscomOption[]
+  defaultDiscomCode?: string
 }) {
-  const [discomCode, setDiscomCode] = useState(discoms[0]?.code ?? '')
+  const [discomCode, setDiscomCode] = useState(defaultDiscomCode ?? discoms[0]?.code ?? '')
   const [units, setUnits] = useState(300)
   const [kw, setKw] = useState(3)
 
@@ -57,7 +59,7 @@ export default function SolarRoiCalculator({
             id="solar-discom"
             value={discomCode}
             onChange={(e) => setDiscomCode(e.target.value)}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+            className="w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
           >
             {discoms.map((d) => (
               <option key={d.code} value={d.code}>
@@ -93,7 +95,7 @@ export default function SolarRoiCalculator({
         <CalculatorCta label="Calculate Solar Savings" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-gazette-cream p-5 dark:bg-slate-800/60">
+      <div className="mt-6 rounded-xl bg-gradient-to-br from-hub-solar/15 via-hub-solar/5 to-transparent p-5 dark:from-hub-solar/20 dark:via-hub-solar/5">
         {error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
             {error}
@@ -105,15 +107,38 @@ export default function SolarRoiCalculator({
               <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
                 Payback period
               </p>
-              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-white">
+              <p className="font-display text-4xl font-bold tabular-nums text-spark-teal">
                 {result.paybackYears != null
                   ? `${result.paybackYears} yrs`
                   : '—'}
               </p>
               <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
-                then ~{formatINR(result.annualSavings)}/year saved
+                then ~
+                <span className="font-medium text-spark-teal">
+                  {formatINR(result.annualSavings)}/year
+                </span>{' '}
+                saved
               </p>
             </div>
+
+            {result.netCost > 0 && (
+              <div>
+                <div className="flex items-baseline justify-between text-xs text-ash/60 dark:text-gazette-cream/50">
+                  <span>System cost recovered, year 1</span>
+                  <span className="font-semibold tabular-nums text-hub-solar">
+                    {Math.min(100, Math.round((result.annualSavings / result.netCost) * 100))}%
+                  </span>
+                </div>
+                <div className="mt-1 h-2 rounded-full bg-white/60 dark:bg-slate-800">
+                  <div
+                    className="h-2 rounded-full bg-hub-solar transition-[width] duration-700"
+                    style={{
+                      width: `${Math.min(100, (result.annualSavings / result.netCost) * 100)}%`,
+                    }}
+                  />
+                </div>
+              </div>
+            )}
 
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
               <dt className="text-ash/60 dark:text-gazette-cream/50">
