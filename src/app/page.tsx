@@ -341,17 +341,17 @@ const posts = [
   {
     title: 'How telescopic electricity slabs actually work',
     tag: 'Explainer',
-    href: '/coming-soon',
+    href: '/blog/how-telescopic-electricity-slabs-work',
   },
   {
     title: 'Is rooftop solar worth it in India in 2026?',
     tag: 'Solar',
-    href: '/coming-soon',
+    href: '/blog/is-rooftop-solar-worth-it-in-india-2026',
   },
   {
     title: 'New vs old tax regime: who actually saves?',
     tag: 'Finance',
-    href: '/coming-soon',
+    href: '/blog/new-vs-old-tax-regime-who-actually-saves',
   },
 ]
 
@@ -769,7 +769,12 @@ export default function Home() {
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink-navy dark:text-gazette-cream">
               From the blog
             </h2>
-            <span className="text-sm text-ash/40 dark:text-gazette-cream/30">Coming soon</span>
+            <Link
+              href="/blog"
+              className="text-sm font-semibold text-brass hover:underline"
+            >
+              View all →
+            </Link>
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {posts.map((p) => (
