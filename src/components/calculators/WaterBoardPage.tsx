@@ -1,11 +1,21 @@
 import Link from 'next/link'
 import WaterBoardBillCalculator from '@/components/calculators/WaterBoardBillCalculator'
 import SplitHero from '@/components/SplitHero'
-import { computeWaterBill, getWaterTariff } from '@/lib/calc/water'
+import PipedVsTankerComparison from '@/components/water/PipedVsTankerComparison'
+import WaterBoardComparisonTable from '@/components/water/WaterBoardComparisonTable'
+import WaterConsumptionReferenceTable from '@/components/water/WaterConsumptionReferenceTable'
+import WaterFormulaBlock from '@/components/water/WaterFormulaBlock'
+import WaterNeighborDiagnostic from '@/components/water/WaterNeighborDiagnostic'
+import waterBoardsJson from '@/data/water-boards.json'
+import { computeWaterBill, getWaterTariff, waterTariffRegistry } from '@/lib/calc/water'
 import { formatINR, formatIsoDate } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
 const SITE = 'https://desimetrics.com'
+
+/** Every board with a real tariff file — used for the honest multi-board
+ *  comparison. Only DJB/CMWSSB exist today; more join as we verify them. */
+const REAL_TARIFF_BOARD_CODES = Object.keys(waterTariffRegistry)
 
 export default function WaterBoardPage({ boardCode, slug }: { boardCode: string; slug: string }) {
   const tariff = getWaterTariff(boardCode)
@@ -18,6 +28,19 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
   const overExample = freeKl != null ? computeWaterBill(tariff, { consumptionKl: freeKl + 1 }) : null
   const heroExample = underExample ?? computeWaterBill(tariff, { consumptionKl: 15 })
 
+  const otherBoards = waterBoardsJson.boards.filter((b) => b.slug !== slug).slice(0, 3)
+  const hasMultiBoardComparison = REAL_TARIFF_BOARD_CODES.length > 1
+  const comparisonKl = 15
+
+  // Real entry-slab rate spread and sewerage-charge spread across every
+  // board we've sourced — used in the "why calculators are wrong" section
+  // instead of an invented claim.
+  const allTariffs = REAL_TARIFF_BOARD_CODES.map((code) => getWaterTariff(code))
+  const cheapestEntry = [...allTariffs].sort((a, b) => a.slabs[0].ratePerKL - b.slabs[0].ratePerKL)[0]
+  const priciestEntry = [...allTariffs].sort((a, b) => b.slabs[0].ratePerKL - a.slabs[0].ratePerKL)[0]
+  const hasRateSpread = cheapestEntry && priciestEntry && cheapestEntry.boardCode !== priciestEntry.boardCode
+  const cyclesDiffer = allTariffs.some((t) => t.billingCycle !== tariff.billingCycle)
+
   const faqs = [
     {
       q: `How is my ${tariff.boardCode} water bill calculated?`,
@@ -27,10 +50,15 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
       ? [
           {
             q: `What happens if I use even 1 litre more than ${freeKl},000 litres?`,
-            a: `${tariff.boardCode}'s free allowance is all-or-nothing, not a true exemption: stay at or under ${freeKl} KL and your water charge is ₹0. Cross it by even 1 litre and your ENTIRE consumption — not just the amount above ${freeKl} KL — becomes billable at slab rates. See the two worked examples below for exactly how large that jump is.`,
+            a: `${tariff.boardCode}'s free allowance is all-or-nothing, not a true exemption: stay at or under ${freeKl} KL and your water charge is ₹0. Cross it by even 1 litre and your ENTIRE consumption — not just the amount above ${freeKl} KL — becomes billable at slab rates. See the worked examples above for exactly how large that jump is.`,
           },
         ]
-      : []),
+      : [
+          {
+            q: `Does ${tariff.boardCode} offer any free consumption threshold?`,
+            a: `Not currently, as far as we've verified — ${tariff.boardCode} bills from the first KL at slab rates, with a flat minimum charge per connection. Some other Indian boards (like Delhi) do offer a free-consumption scheme; always check your own board's specific rules.`,
+          },
+        ]),
     {
       q: 'What is the sewerage charge on my water bill?',
       a: `It's a charge for wastewater treatment and disposal, billed as a percentage of your water (volumetric) charge — currently ${tariff.sewerageChargePercent}% for ${tariff.boardCode}. If your water charge is waived, the sewerage charge is too, since it's calculated off that base.`,
@@ -40,20 +68,14 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
       a: `Yes — ${tariff.boardCode} charges a different flat fixed charge depending on your connection's meter size (${Object.keys(tariff.fixedChargeByMeterSize).join(', ')}), regardless of how much water you use.`,
     },
     {
-      q: `Is ${tariff.boardCode}'s free water scheme different from other cities?`,
-      a: freeKl != null
-        ? `Yes — not every Indian city offers a free consumption threshold, and among those that do, the "all-or-nothing" cliff-edge design (as opposed to a true allowance that only exempts the first block) isn't universal. Always check your own board's specific rules rather than assuming another city's scheme applies.`
-        : `Free-water schemes vary significantly by city and board — check your own board's current rules rather than assuming another city's scheme applies here.`,
-    },
-    {
       q: 'How can I reduce my water bill?',
       a: freeKl != null
         ? `The single biggest lever here is staying at or under the ${freeKl} KL free threshold if you're close to it — crossing it costs far more than the extra litres alone would suggest, because the whole bill becomes payable. Beyond that: fix dripping taps and running cisterns promptly, and consider low-flow fixtures.`
-        : 'Fix dripping taps and running cisterns promptly (a slow drip can waste hundreds of litres a month), and consider low-flow fixtures for showers and taps.',
+        : 'Fix dripping taps and running cisterns promptly (a slow drip can waste hundreds of litres a month), and consider low-flow fixtures for showers and taps — since billing is fully volumetric here, every KL saved lowers your bill directly.',
     },
     {
       q: 'Is piped water cheaper than tanker or jar delivery?',
-      a: 'Almost always yes, by a wide margin, when piped supply is reliable — tanker and jar water carry a large delivery/packaging premium per litre. See the comparison below for typical ranges; tanker and jar prices vary a lot by city, so check local rates for an exact comparison.',
+      a: 'Almost always yes, by a wide margin, when piped supply is reliable — use the piped-vs-tanker-vs-jar comparison above with your own local tanker and jar prices for an exact, computed answer rather than a generic claim.',
     },
     {
       q: 'What is a KL and how do I read my meter?',
@@ -64,8 +86,12 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
       a: `${tariff.boardName} provides an online customer portal for checking consumption history, viewing bills and paying online — check their official website for the current portal link, since these occasionally change.`,
     },
     {
-      q: 'How often is this tariff data verified?',
-      a: `We date every tariff figure with an effective-from and last-verified date (shown below) and cite the source. ${tariff.verifiedBy}`,
+      q: 'Paani ka bill kitna aata hai mahine mein?',
+      a: `For a typical household using around 15 KL a month, expect roughly ${formatINR(computeWaterBill(tariff, { consumptionKl: 15 * (tariff.billingCycle === 'bimonthly' ? 2 : 1) }).monthlyEquivalent?.total ?? computeWaterBill(tariff, { consumptionKl: 15 }).total)} on ${tariff.boardCode}'s real tariff — your actual bill depends on household size and your board's own rate. Use the calculator above for your specific number.`,
+    },
+    {
+      q: 'Paani ka meter reading kaise padhein?',
+      a: 'Your water meter shows a running total in KL (or cubic metres, the same unit) on a small digital or odometer-style display — note the current reading, subtract your previous bill\'s reading, and the difference is your billing period\'s consumption in KL.',
     },
   ]
 
@@ -92,12 +118,23 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
     '@context': 'https://schema.org',
     '@type': 'Dataset',
     name: `${tariff.boardName} domestic water tariff`,
-    description: `Municipal water tariff for ${tariff.boardName}, effective ${tariff.effectiveFrom}.`,
+    description: `Municipal water tariff for ${tariff.boardName}, effective ${tariff.effectiveFrom} — also underlies the per-board comparison and consumption reference tables on this page.`,
     url: `${SITE}${path}#tariff-table`,
     dateModified: tariff.lastVerified,
     license: tariff.sourceUrl,
     distribution: [
       { '@type': 'DataDownload', encodingFormat: 'text/html', contentUrl: tariff.sourceUrl },
+    ],
+  }
+  const howToLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `How to calculate your ${tariff.boardCode} water bill`,
+    step: [
+      { '@type': 'HowToStep', position: 1, text: `Find your KL consumption from your meter or last bill.` },
+      { '@type': 'HowToStep', position: 2, text: 'Note your connection\'s meter size, if you know it.' },
+      { '@type': 'HowToStep', position: 3, text: 'Enter both into the calculator above.' },
+      { '@type': 'HowToStep', position: 4, text: 'Get your itemised bill — water charge, sewerage and fixed charge.' },
     ],
   }
   const breadcrumb = breadcrumbLd([
@@ -158,6 +195,34 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <WaterBoardBillCalculator boardCode={tariff.boardCode} boardName={tariff.boardName} />
         </section>
 
+        <section aria-labelledby="how-to" className="mb-10 scroll-mt-20">
+          <h2 id="how-to" className="font-display mb-4 text-2xl font-semibold">
+            How to calculate your {tariff.boardCode} water bill
+          </h2>
+          <ol className="space-y-3">
+            {[
+              'Find your KL consumption from your meter or last bill.',
+              'Note your connection\'s meter size, if you know it.',
+              'Enter both into the calculator above.',
+              'Get your itemised bill — water charge, sewerage and fixed charge.',
+            ].map((s, i) => (
+              <li key={i} className="flex gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hub-water font-display text-xs font-bold text-white">
+                  {i + 1}
+                </span>
+                <span className="text-ash/80 dark:text-gazette-cream/70">{s}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section aria-labelledby="reference" className="mb-10 scroll-mt-20">
+          <h2 id="reference" className="font-display mb-2 text-2xl font-semibold">
+            Water consumption — quick reference table
+          </h2>
+          <WaterConsumptionReferenceTable />
+        </section>
+
         {freeKl != null && (
           <section
             aria-labelledby="free-rule"
@@ -178,6 +243,70 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
             </p>
           </section>
         )}
+
+        <section aria-labelledby="wrong" className="mb-10 scroll-mt-20">
+          <h2 id="wrong" className="font-display mb-4 text-2xl font-semibold">
+            Why most water bill calculators are wrong
+          </h2>
+          <div className="space-y-4">
+            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+                They use a flat, generic rate
+              </p>
+              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+                Most water calculators ask you to type in your own per-KL
+                rate, or apply one assumed national figure. Real municipal
+                water tariffs vary a lot by board
+                {hasRateSpread ? (
+                  <>
+                    {' '}
+                    — as of today, {cheapestEntry.boardCode}&apos;s entry
+                    slab is {formatINR(cheapestEntry.slabs[0].ratePerKL)}/KL
+                    while {priciestEntry.boardCode}&apos;s is{' '}
+                    {formatINR(priciestEntry.slabs[0].ratePerKL)}/KL,
+                    computed live from our own tariff files, not invented for
+                    this page.
+                  </>
+                ) : (
+                  '.'
+                )}
+              </p>
+            </div>
+            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+                They skip the sewerage charge
+              </p>
+              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+                Many quick calculators price only the volumetric water
+                charge and drop the sewerage charge entirely — and because
+                it&apos;s a percentage of the water charge (as high as{' '}
+                {Math.max(...allTariffs.map((t) => t.sewerageChargePercent))}%
+                on some boards we&apos;ve verified), skipping it can
+                understate the real bill substantially, not just by a small
+                flat amount.
+              </p>
+            </div>
+            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+                They ignore billing-cycle differences
+              </p>
+              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+                {cyclesDiffer
+                  ? 'Some boards bill monthly and others bi-monthly — a generic calculator that assumes one cycle for every city will misstate your real bill by up to 2×.'
+                  : `${tariff.boardCode} bills ${tariff.billingCycle}, and generic calculators often assume a single cycle for every city.`}{' '}
+                We always show the monthly-equivalent figure alongside the
+                real cycle total, so you can compare fairly across boards.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="formula" className="mb-10 scroll-mt-20">
+          <h2 id="formula" className="font-display mb-4 text-2xl font-semibold">
+            The correct water billing formula
+          </h2>
+          <WaterFormulaBlock boardCode={tariff.boardCode} />
+        </section>
 
         <section aria-labelledby="tariff-table" className="mb-10 scroll-mt-20">
           <h2 id="tariff-table" className="font-display mb-4 text-2xl font-semibold">
@@ -265,6 +394,29 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           </section>
         )}
 
+        {hasMultiBoardComparison && (
+          <section aria-labelledby="board-comparison" className="mb-10 scroll-mt-20">
+            <h2 id="board-comparison" className="font-display mb-2 text-2xl font-semibold">
+              How per-board billing changes your water bill
+            </h2>
+            <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+              The exact same <strong>{comparisonKl} KL</strong> — priced at
+              each board&apos;s real tariff, computed live by this
+              calculator&apos;s own engine. We only compare boards with a
+              source-verified tariff on file, so this list grows as we add
+              more:
+            </p>
+            <WaterBoardComparisonTable consumptionKl={comparisonKl} boardCodes={REAL_TARIFF_BOARD_CODES} />
+          </section>
+        )}
+
+        <section aria-labelledby="neighbor" className="mb-10 scroll-mt-20">
+          <h2 id="neighbor" className="font-display mb-4 text-2xl font-semibold">
+            Why your water bill might be higher than your neighbor&apos;s
+          </h2>
+          <WaterNeighborDiagnostic />
+        </section>
+
         <section aria-labelledby="charges-explained" className="mb-10 scroll-mt-20">
           <h2 id="charges-explained" className="font-display mb-2 text-2xl font-semibold">
             Sewerage &amp; fixed charges explained
@@ -290,37 +442,40 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <h2 id="tanker" className="font-display mb-2 text-2xl font-semibold">
             Piped water vs tanker/jar delivery
           </h2>
+          <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+            A real numeric comparison, not a guess — priced at{' '}
+            {tariff.boardCode}&apos;s actual tariff against your own local
+            tanker and jar prices.
+          </p>
+          <PipedVsTankerComparison boardCode={tariff.boardCode} />
+        </section>
+
+        <section aria-labelledby="landscape" className="mb-10 scroll-mt-20">
+          <h2 id="landscape" className="font-display mb-2 text-2xl font-semibold">
+            How municipal water tariffs are actually set
+          </h2>
           <p className="text-ash/80 dark:text-gazette-cream/70">
-            Piped municipal supply is almost always dramatically cheaper per
-            litre than tanker or 20L jar delivery, when it&apos;s reliably
-            available. As a rough sense of scale: a private water tanker
-            (typically 5,000-10,000 litres) commonly costs somewhere in the{' '}
-            <strong>₹500-1,500</strong> range in many Indian cities, and a
-            20L branded jar commonly runs <strong>₹40-80</strong> — both
-            figures vary a lot by city and season, so check local rates for
-            an exact comparison. Either way, that works out to many times
-            more per litre than metered piped water, even after sewerage
-            and fixed charges.
+            Unlike electricity (state electricity regulatory commissions) or
+            gas (the PNGRB), there&apos;s no single central regulator that
+            sets municipal water tariffs in India — each municipal
+            corporation or water board sets and revises its own domestic
+            tariff independently, sometimes with state urban-development
+            department oversight. That&apos;s exactly why {tariff.boardCode}
+            &apos;s structure can look completely different from another
+            city&apos;s — different slab counts, different free-allowance
+            rules, different billing cycles — and why finding a verifiable,
+            consistently-published rate for every board is genuinely harder
+            than it is for electricity or gas. We only publish a board here
+            once we can cite a specific, dated source for it; see the
+            citation on the tariff table above.
           </p>
         </section>
 
-        <section aria-labelledby="related" className="mb-10 scroll-mt-20">
-          <h2 id="related" className="font-display mb-4 text-2xl font-semibold">
-            Related calculators
+        <section aria-labelledby="ecosystem" className="mb-10 scroll-mt-20">
+          <h2 id="ecosystem" className="font-display mb-4 text-2xl font-semibold">
+            Your utility ecosystem
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Link
-              href="/water"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
-            >
-              <span className="text-xl" aria-hidden>🗺️</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
-                All water calculators
-              </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
-                Browse every state we cover.
-              </p>
-            </Link>
             <Link
               href="/appliances/water-tank-filling-time-calculator"
               className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
@@ -331,18 +486,6 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
               </p>
               <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
                 How long your tank takes to fill.
-              </p>
-            </Link>
-            <Link
-              href="/gas/igl"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
-            >
-              <span className="text-xl" aria-hidden>🔥</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
-                Gas bill calculator
-              </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
-                Same real-tariff approach for PNG.
               </p>
             </Link>
             <Link
@@ -357,7 +500,113 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
                 Real DISCOM tariffs for all 36 states.
               </p>
             </Link>
+            <Link
+              href="/gas"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>🔥</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                Gas bill calculator
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                Same real-tariff approach for PNG.
+              </p>
+            </Link>
+            <Link
+              href="/appliances/household-bill-builder"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>🔌</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                Household bill builder
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                Add every appliance, see your combined electricity bill.
+              </p>
+            </Link>
+            <Link
+              href="/ac"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>❄️</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                AC running cost
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                What your AC adds to your electricity bill.
+              </p>
+            </Link>
+            <Link
+              href="/fuel-cost"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>⛽</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                Fuel cost calculators
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                Petrol/diesel, LPG cylinder and generator cost.
+              </p>
+            </Link>
+            <Link
+              href="/financial"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>🧮</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                Financial calculators
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                GST, SIP, gratuity and tax-regime maths.
+              </p>
+            </Link>
+            {otherBoards.map((b) => (
+              <Link
+                key={b.slug}
+                href={`/water/${b.slug}`}
+                className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              >
+                <span className="text-xl" aria-hidden>🗺️</span>
+                <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                  {b.name}
+                </p>
+                <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                  {b.hasTariffFile ? `Water bill calculator for ${b.name}.` : 'Coming soon.'}
+                </p>
+              </Link>
+            ))}
           </div>
+        </section>
+
+        <section aria-labelledby="guides" className="mb-10 scroll-mt-20">
+          <h2 id="guides" className="font-display mb-4 text-2xl font-semibold">
+            Related guides: understand your water bill
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <a
+              href="#reference"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+            >
+              How KL billing units work →
+            </a>
+            <a
+              href="#charges-explained"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+            >
+              Sewerage &amp; fixed charges explained →
+            </a>
+            <Link
+              href="/water"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+            >
+              Browse all water calculators →
+            </Link>
+          </div>
+          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+            Standalone deep-dive guides on connection process and metering
+            are on our roadmap — for now, each of these jumps to the
+            relevant section on this page.
+          </p>
         </section>
 
         <section aria-labelledby="faq" className="mb-10 scroll-mt-20">
@@ -410,6 +659,10 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
         />
         <script
           type="application/ld+json"

@@ -47,6 +47,7 @@ export function calculateWaterBill(input: WaterBillInput): WaterBillResult {
 import type { WaterSlab, WaterTariffFile } from '../../data/water-tariffs/_schema'
 import { parseWaterTariffFile } from '../../data/water-tariffs/_schema'
 import djbJson from '../../data/water-tariffs/djb.json'
+import cmwssbJson from '../../data/water-tariffs/cmwssb.json'
 
 export interface WaterSlabLine {
   fromKL: number
@@ -199,6 +200,7 @@ export function computeWaterBill(
 /** Bundled real-tariff boards, validated at load time. Add new boards here. */
 export const waterTariffRegistry: Record<string, WaterTariffFile> = {
   DJB: parseWaterTariffFile(djbJson),
+  CMWSSB: parseWaterTariffFile(cmwssbJson),
 }
 
 export function getWaterTariff(boardCode: string): WaterTariffFile {

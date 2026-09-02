@@ -1,0 +1,21 @@
+{
+  "boardCode": "CMWSSB",
+  "boardName": "Chennai Metropolitan Water Supply and Sewerage Board",
+  "citiesServed": ["Chennai"],
+  "billingCycle": "monthly",
+  "slabs": [
+    { "minKL": 0, "maxKL": 10, "ratePerKL": 8 },
+    { "minKL": 11, "maxKL": 15, "ratePerKL": 20 },
+    { "minKL": 16, "maxKL": 25, "ratePerKL": 32 },
+    { "minKL": 26, "maxKL": null, "ratePerKL": 51 }
+  ],
+  "sewerageChargePercent": 25,
+  "fixedChargeByMeterSize": {
+    "15mm": 111
+  },
+  "additionalFees": [],
+  "effectiveFrom": "2026-04-01",
+  "sourceUrl": "https://cmwssb.tn.gov.in/tariff",
+  "lastVerified": "2026-09-02",
+  "verifiedBy": "SOURCED — taken directly from CMWSSB's own official tariff pages (cmwssb.tn.gov.in/tariff and /general-tariff), which independently converge on identical slab rates (₹8/₹20/₹32/₹51 per KL) and a 25% sewerage charge. Unlike DJB, CMWSSB does not tier its fixed/minimum charge by meter size — it publishes one flat minimum-monthly-charge per dwelling unit (the two official pages show ₹100 and ₹111 respectively; the higher, more specifically-dated figure is used here). That minimum is described officially as already including sewerage for near-zero consumption, so this model — which adds the 25% sewerage charge on top of the fixed charge for every consumption level, same as every other board here — may slightly overstate very-low-usage CMWSSB bills. CMWSSB is also mid-rollout on smart metering, so unmetered domestic connections may still be billed differently in practice."
+}
