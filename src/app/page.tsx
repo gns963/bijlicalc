@@ -493,7 +493,7 @@ export default function Home() {
         </section>
 
         {/* ------------------------------------------------------------- Tool grid */}
-        <section id="tools" aria-labelledby="tools-h" className="bg-gazette-cream dark:bg-[#02181c]">
+        <section id="tools" aria-labelledby="tools-h" className="bg-gazette-cream">
           <div className="mx-auto max-w-6xl px-4 py-16">
             <div className="text-center">
               <span className="text-xs font-semibold tracking-[0.2em] text-brass uppercase">
@@ -501,7 +501,7 @@ export default function Home() {
               </span>
               <h2
                 id="tools-h"
-                className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink-navy dark:text-gazette-cream"
+                className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink-navy"
               >
                 Every rupee you spend on power &amp; more
               </h2>
@@ -510,7 +510,7 @@ export default function Home() {
               {hubs.map((h) => (
                 <div
                   key={h.title}
-                  className={`relative flex flex-col rounded-2xl border border-hairline bg-paper p-6 text-center transition hover:shadow-lg dark:border-white/10 dark:bg-slate-900 ${h.cardBorder}`}
+                  className={`relative flex flex-col rounded-2xl border border-hairline bg-paper p-6 text-center transition hover:shadow-lg ${h.cardBorder}`}
                 >
                   {h.badge && (
                     <span
@@ -524,13 +524,13 @@ export default function Home() {
                   >
                     {h.emoji}
                   </span>
-                  <h3 className="mt-3 font-display text-lg font-bold text-ink-navy dark:text-gazette-cream">
+                  <h3 className="mt-3 font-display text-lg font-bold text-ink-navy">
                     {h.title}
                   </h3>
                   <p className={`mt-0.5 font-display text-sm font-bold ${h.accent}`}>
                     {h.count > 0 ? `${h.count} ${h.countLabel}` : h.countLabel}
                   </p>
-                  <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                  <p className="mt-1 text-xs text-ash/60">
                     {h.description}
                   </p>
                   <ul className="mt-4 flex-1 space-y-2 text-left text-sm">
@@ -538,7 +538,7 @@ export default function Home() {
                       <li key={t.label}>
                         <Link
                           href={t.href}
-                          className="flex items-center justify-between rounded-lg px-2 py-1.5 text-ash hover:bg-mist dark:text-gazette-cream/80 dark:hover:bg-slate-800"
+                          className="flex items-center justify-between rounded-lg px-2 py-1.5 text-ash hover:bg-mist"
                         >
                           {t.label}
                           <span className={h.accent}>→</span>
