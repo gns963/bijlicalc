@@ -4,12 +4,12 @@ import { DropletIcon } from '@/components/HubMotifIcon'
 import SplitHero from '@/components/SplitHero'
 import { slugify } from '@/lib/format'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export default function WaterStatePage({ state }: { state: string }) {
   const faqs = [
     {
-      q: `Does bijlicalc know my exact water board's tariff in ${state}?`,
+      q: `Does DesiMetrics know my exact water board's tariff in ${state}?`,
       a: `No — unlike electricity DISCOMs, municipal water tariffs in India aren't centrally published in a form we can verify and keep current, and billing basis varies by city (flat rate, metered volumetric, or tied to property tax). Enter your own rate from your last water bill or your board's published tariff for an accurate result.`,
     },
     {

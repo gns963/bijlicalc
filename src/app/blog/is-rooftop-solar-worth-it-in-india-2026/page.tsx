@@ -3,7 +3,7 @@ import Link from 'next/link'
 import PageHero from '@/components/PageHero'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/blog/is-rooftop-solar-worth-it-in-india-2026'
 const TITLE = 'Is Rooftop Solar Worth It in India in 2026?'
 const DESCRIPTION =
@@ -29,10 +29,10 @@ const articleLd = {
   description: DESCRIPTION,
   author: {
     '@type': 'Organization',
-    name: 'bijlicalc Editorial Team',
+    name: 'DesiMetrics Editorial Team',
     url: `${SITE}/author/editorial-team`,
   },
-  publisher: { '@type': 'Organization', name: 'bijlicalc', url: SITE },
+  publisher: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
   datePublished: '2026-09-02',
   dateModified: '2026-09-02',
   mainEntityOfPage: `${SITE}${PATH}`,
@@ -111,7 +111,7 @@ export default function SolarWorthItArticlePage() {
         <p className="text-sm text-ash/50 dark:text-gazette-cream/40">
           By{' '}
           <Link href="/author/editorial-team" className="text-brass hover:underline">
-            bijlicalc Editorial Team
+            DesiMetrics Editorial Team
           </Link>{' '}
           · Updated 2 September 2026
         </p>

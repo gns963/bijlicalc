@@ -6,7 +6,7 @@ import { calculateSip } from '@/lib/calc/financial'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/financial/sip-calculator'
 
 const example = calculateSip(10000, 12, 10)

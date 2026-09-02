@@ -4,7 +4,7 @@ import PageHero from '@/components/PageHero'
 import { AC_BRANDS } from '@/data/ac-brands'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/ac/brands'
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ const faqs = [
     a: 'Not directly — the Bureau of Energy Efficiency (BEE) sets the ISEER efficiency standard uniformly across all brands sold in India, so a 3-star AC from any manufacturer meets the same minimum efficiency band. Tonnage, star rating and usage hours drive cost, not the brand name itself.',
   },
   {
-    q: 'Why does bijlicalc have a separate page per brand?',
+    q: 'Why does DesiMetrics have a separate page per brand?',
     a: 'Each brand page uses the exact same real calculation engine, just with directly relevant copy so you can quickly get to a calculator for your specific AC without extra navigation.',
   },
   {

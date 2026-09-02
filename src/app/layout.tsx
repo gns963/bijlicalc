@@ -11,8 +11,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bijlicalc.com'),
-  title: 'bijlicalc — Free Indian Utility & Bill Calculators',
+  metadataBase: new URL('https://desimetrics.com'),
+  title: 'DesiMetrics — Free Indian Utility & Bill Calculators',
   description:
     'Free, accurate calculators for Indian electricity bills, rooftop solar, AC running cost and personal finance — built on real DISCOM tariffs.',
 }

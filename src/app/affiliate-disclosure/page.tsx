@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import LegalPageShell from '@/components/LegalPageShell'
 
 export const metadata: Metadata = {
-  title: 'Affiliate Disclosure — bijlicalc',
+  title: 'Affiliate Disclosure — DesiMetrics',
   description:
-    'How bijlicalc uses affiliate links, including the Amazon Associates Programme, and our commitment to editorial independence.',
-  alternates: { canonical: 'https://bijlicalc.com/affiliate-disclosure' },
+    'How DesiMetrics uses affiliate links, including the Amazon Associates Programme, and our commitment to editorial independence.',
+  alternates: { canonical: 'https://desimetrics.com/affiliate-disclosure' },
 }
 
 export default function AffiliateDisclosurePage() {
   return (
     <LegalPageShell
       title="Affiliate Disclosure"
-      intro="bijlicalc is reader-supported. Some links on this site are affiliate links, which means we may earn a commission — at no additional cost to you — if you buy through them."
+      intro="DesiMetrics is reader-supported. Some links on this site are affiliate links, which means we may earn a commission — at no additional cost to you — if you buy through them."
       stub={false}
       path="/affiliate-disclosure"
     >
@@ -20,7 +20,7 @@ export default function AffiliateDisclosurePage() {
         Amazon Associates Programme
       </h2>
       <p>
-        bijlicalc is a participant in the Amazon Associates Programme, an
+        DesiMetrics is a participant in the Amazon Associates Programme, an
         affiliate advertising programme designed to provide a means for sites to
         earn advertising fees by advertising and linking to Amazon.in.{' '}
         <strong>
@@ -36,7 +36,7 @@ export default function AffiliateDisclosurePage() {
       <p>
         Affiliate commissions never change the price you pay. The price on Amazon
         is exactly the same whether or not you use our link. Commissions simply
-        help us keep the calculators on bijlicalc free to use.
+        help us keep the calculators on DesiMetrics free to use.
       </p>
 
       <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
@@ -66,10 +66,10 @@ export default function AffiliateDisclosurePage() {
       <p>
         If you have any questions about how we use affiliate links, contact us at{' '}
         <a
-          href="mailto:hello@bijlicalc.com"
+          href="mailto:hello@desimetrics.com"
           className="text-brass underline hover:text-brass"
         >
-          hello@bijlicalc.com
+          hello@desimetrics.com
         </a>
         .
       </p>

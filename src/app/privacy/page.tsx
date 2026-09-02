@@ -3,17 +3,17 @@ import Link from 'next/link'
 import LegalPageShell from '@/components/LegalPageShell'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — bijlicalc',
+  title: 'Privacy Policy — DesiMetrics',
   description:
-    'How bijlicalc collects, uses and protects your data — including calculators that run in your browser, our installer lead form, analytics, advertising and affiliate partners.',
-  alternates: { canonical: 'https://bijlicalc.com/privacy' },
+    'How DesiMetrics collects, uses and protects your data — including calculators that run in your browser, our installer lead form, analytics, advertising and affiliate partners.',
+  alternates: { canonical: 'https://desimetrics.com/privacy' },
 }
 
 export default function PrivacyPage() {
   return (
     <LegalPageShell
       title="Privacy Policy"
-      intro="This policy explains what data bijlicalc collects, why, and your choices. We keep collection to the minimum needed to run the site."
+      intro="This policy explains what data DesiMetrics collects, why, and your choices. We keep collection to the minimum needed to run the site."
       stub={false}
       path="/privacy"
     >
@@ -81,8 +81,8 @@ export default function PrivacyPage() {
         You can control cookies through your browser settings and opt out of
         personalised ads as above. To ask about any data you have sent us (for
         example via the lead form or email), contact{' '}
-        <a href="mailto:hello@bijlicalc.com" className="text-brass underline">
-          hello@bijlicalc.com
+        <a href="mailto:hello@desimetrics.com" className="text-brass underline">
+          hello@desimetrics.com
         </a>
         .
       </p>
@@ -91,7 +91,7 @@ export default function PrivacyPage() {
         Children
       </h2>
       <p>
-        bijlicalc is a general-audience information site and is not directed at
+        DesiMetrics is a general-audience information site and is not directed at
         children under 13, from whom we do not knowingly collect personal data.
       </p>
     </LegalPageShell>

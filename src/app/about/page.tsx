@@ -4,10 +4,10 @@ import LegalPageShell from '@/components/LegalPageShell'
 import { tariffRegistry } from '@/lib/calc/electricity'
 
 export const metadata: Metadata = {
-  title: 'About bijlicalc — Indian Utility & Finance Calculators',
+  title: 'About DesiMetrics — Indian Utility & Finance Calculators',
   description:
-    'bijlicalc builds accurate, source-cited calculators for Indian electricity bills, rooftop solar, AC running cost and personal finance. Learn who we are and how we work.',
-  alternates: { canonical: 'https://bijlicalc.com/about' },
+    'DesiMetrics builds accurate, source-cited calculators for Indian electricity bills, rooftop solar, AC running cost and personal finance. Learn who we are and how we work.',
+  alternates: { canonical: 'https://desimetrics.com/about' },
 }
 
 const discomCount = Object.keys(tariffRegistry).length
@@ -15,8 +15,8 @@ const discomCount = Object.keys(tariffRegistry).length
 export default function AboutPage() {
   return (
     <LegalPageShell
-      title="About bijlicalc"
-      intro="bijlicalc is an independent Indian calculator platform. We turn dense regulatory documents — state electricity tariff orders, the PM Surya Ghar scheme, income-tax slabs — into fast, accurate tools that a normal household can use in seconds."
+      title="About DesiMetrics"
+      intro="DesiMetrics is an independent Indian calculator platform. We turn dense regulatory documents — state electricity tariff orders, the PM Surya Ghar scheme, income-tax slabs — into fast, accurate tools that a normal household can use in seconds."
       stub={false}
       path="/about"
     >
@@ -28,7 +28,7 @@ export default function AboutPage() {
         bi-monthly or quarterly billing, fuel cost adjustments, electricity duty
         and state-specific subsidies all interact. Most online &quot;bill
         calculators&quot; hide their assumptions or use a single flat rate that is
-        simply wrong. We started bijlicalc to do the opposite — encode each
+        simply wrong. We started DesiMetrics to do the opposite — encode each
         DISCOM&apos;s actual published tariff, show our working, and cite the
         source order on every page.
       </p>
@@ -77,7 +77,7 @@ export default function AboutPage() {
         How we&apos;re different
       </h2>
       <p>
-        Every electricity tariff on bijlicalc lives in a structured data file with
+        Every electricity tariff on DesiMetrics lives in a structured data file with
         a <code>sourceUrl</code> pointing to the State Electricity Regulatory
         Commission order it came from, a <code>lastVerified</code> date and a{' '}
         <code>verifiedBy</code> status. We show these on each calculator, and we
@@ -96,9 +96,9 @@ export default function AboutPage() {
         Who runs it
       </h2>
       <p>
-        bijlicalc is maintained by the{' '}
+        DesiMetrics is maintained by the{' '}
         <Link href="/author/editorial-team" className="text-brass underline">
-          bijlicalc editorial team
+          DesiMetrics editorial team
         </Link>
         , who research tariff orders, build the calculation engine and review
         every number before it goes live. Spotted an error or want a state added?{' '}

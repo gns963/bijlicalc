@@ -10,7 +10,7 @@ import { allGasCompanySlugs } from '@/data/gas-companies'
 import { getTariff } from '@/lib/calc/electricity'
 import { slugify } from '@/lib/format'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const LAST_UPDATED = '2026-08-29'
 
 export default function sitemap(): MetadataRoute.Sitemap {

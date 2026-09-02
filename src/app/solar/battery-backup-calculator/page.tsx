@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 import { sizeSolarBattery } from '@/lib/calc/solar'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/solar/battery-backup-calculator'
 
 const example = sizeSolarBattery({ dailyLoadKwh: 3, daysOfAutonomy: 1, chemistry: 'lead-acid' })

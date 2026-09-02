@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import LegalPageShell from '@/components/LegalPageShell'
 
 export const metadata: Metadata = {
-  title: 'Contact bijlicalc — Corrections, Requests & Partnerships',
+  title: 'Contact DesiMetrics — Corrections, Requests & Partnerships',
   description:
-    'Get in touch with bijlicalc — report a tariff error, request a state or DISCOM, or discuss a partnership. We especially welcome corrections backed by an official order.',
-  alternates: { canonical: 'https://bijlicalc.com/contact' },
+    'Get in touch with DesiMetrics — report a tariff error, request a state or DISCOM, or discuss a partnership. We especially welcome corrections backed by an official order.',
+  alternates: { canonical: 'https://desimetrics.com/contact' },
 }
 
 export default function ContactPage() {
@@ -22,10 +22,10 @@ export default function ContactPage() {
       <p>
         Found a wrong rate or an out-of-date tariff? Email{' '}
         <a
-          href="mailto:corrections@bijlicalc.com"
+          href="mailto:corrections@desimetrics.com"
           className="text-brass underline"
         >
-          corrections@bijlicalc.com
+          corrections@desimetrics.com
         </a>
         . A link to the official order helps us verify and fix it quickly.
       </p>
@@ -35,8 +35,8 @@ export default function ContactPage() {
       </h2>
       <p>
         Want your state added next? Tell us which DISCOM at{' '}
-        <a href="mailto:hello@bijlicalc.com" className="text-brass underline">
-          hello@bijlicalc.com
+        <a href="mailto:hello@desimetrics.com" className="text-brass underline">
+          hello@desimetrics.com
         </a>
         . We prioritise by demand.
       </p>
@@ -46,8 +46,8 @@ export default function ContactPage() {
       </h2>
       <p>
         Solar installers, appliance brands and media enquiries:{' '}
-        <a href="mailto:hello@bijlicalc.com" className="text-brass underline">
-          hello@bijlicalc.com
+        <a href="mailto:hello@desimetrics.com" className="text-brass underline">
+          hello@desimetrics.com
         </a>
         .
       </p>

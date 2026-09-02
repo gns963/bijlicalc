@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Coming soon — bijlicalc',
+  title: 'Coming soon — DesiMetrics',
   description: 'This calculator is under construction and launching soon.',
-  alternates: { canonical: 'https://bijlicalc.com/coming-soon' },
+  alternates: { canonical: 'https://desimetrics.com/coming-soon' },
   robots: { index: false },
 }
 

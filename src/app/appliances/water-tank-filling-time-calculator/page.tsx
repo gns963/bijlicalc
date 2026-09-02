@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 import { estimateTankFillTime } from '@/lib/calc/watertank'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/appliances/water-tank-filling-time-calculator'
 
 const example = estimateTankFillTime({ capacityLiters: 1000, flowRateLpm: 50 })

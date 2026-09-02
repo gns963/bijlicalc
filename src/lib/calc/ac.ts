@@ -1,5 +1,5 @@
 /**
- * bijlicalc — air-conditioner running-cost & sizing engine.
+ * DesiMetrics — air-conditioner running-cost & sizing engine.
  *
  * PURE, framework-agnostic TypeScript. Reuses the DISCOM tariff data so AC
  * running cost is priced at the household's marginal (top-slab) electricity

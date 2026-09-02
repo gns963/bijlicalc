@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/blog'
 
 export const metadata: Metadata = {
-  title: 'Blog — Explainers on Electricity, Solar & Finance | bijlicalc',
+  title: 'Blog — Explainers on Electricity, Solar & Finance | DesiMetrics',
   description:
-    'Plain-English explainers on Indian electricity billing, rooftop solar and personal finance — from the team behind bijlicalc’s calculators.',
+    'Plain-English explainers on Indian electricity billing, rooftop solar and personal finance — from the team behind our calculators.',
   alternates: { canonical: `${SITE}${PATH}` },
   openGraph: { url: `${SITE}${PATH}`, type: 'website' },
 }

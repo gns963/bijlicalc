@@ -1,5 +1,5 @@
 /**
- * bijlicalc — home UPS / inverter sizing & battery backup-time engine.
+ * DesiMetrics — home UPS / inverter sizing & battery backup-time engine.
  *
  * Standard electrical formulas, no fabricated stats:
  *   VA = Watts / power factor, with a headroom margin

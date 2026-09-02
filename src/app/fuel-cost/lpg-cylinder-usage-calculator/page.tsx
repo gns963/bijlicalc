@@ -6,7 +6,7 @@ import { estimateLpgUsage } from '@/lib/calc/fuel'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/fuel-cost/lpg-cylinder-usage-calculator'
 
 const example = estimateLpgUsage({ cylinderKg: 14.2, cylinderPrice: 900, dailyBurnerHours: 1.5 })

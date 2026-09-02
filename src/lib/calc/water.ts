@@ -1,5 +1,5 @@
 /**
- * bijlicalc — water bill engine.
+ * DesiMetrics — water bill engine.
  *
  * Unlike electricity DISCOMs, India's municipal/board water tariffs are not
  * centrally published in a form we can verify and cite per board — billing

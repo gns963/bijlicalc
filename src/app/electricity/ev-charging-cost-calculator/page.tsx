@@ -8,7 +8,7 @@ import { calculateEvChargingCost } from '@/lib/calc/ev'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/electricity/ev-charging-cost-calculator'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>

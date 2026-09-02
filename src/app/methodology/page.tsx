@@ -3,10 +3,10 @@ import Link from 'next/link'
 import LegalPageShell from '@/components/LegalPageShell'
 
 export const metadata: Metadata = {
-  title: 'Methodology — How bijlicalc Sources & Verifies Data',
+  title: 'Methodology — How DesiMetrics Sources & Verifies Data',
   description:
-    'Exactly how bijlicalc sources tariff data from SERC orders, validates it, and calculates bills — including the sourceUrl, lastVerified and verifiedBy fields behind every calculator.',
-  alternates: { canonical: 'https://bijlicalc.com/methodology' },
+    'Exactly how DesiMetrics sources tariff data from SERC orders, validates it, and calculates bills — including the sourceUrl, lastVerified and verifiedBy fields behind every calculator.',
+  alternates: { canonical: 'https://desimetrics.com/methodology' },
 }
 
 export default function MethodologyPage() {

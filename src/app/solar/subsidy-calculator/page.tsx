@@ -6,7 +6,7 @@ import SolarSubsidyCalculator from '@/components/calculators/SolarSubsidyCalcula
 import HowToApplyPMSuryaGhar, { PM_SURYA_GHAR_STEPS } from '@/components/solar/HowToApplyPMSuryaGhar'
 import SubsidyTierCards from '@/components/solar/SubsidyTierCards'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/solar/subsidy-calculator'
 
 export const metadata: Metadata = {

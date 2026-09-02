@@ -6,7 +6,7 @@ import PageHero from '@/components/PageHero'
 import { recommendAcCircuit } from '@/lib/calc/ac'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/ac/circuit-safety-calculator'
 
 const example = recommendAcCircuit({ ratedCurrentAmps: 6 })

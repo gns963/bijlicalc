@@ -6,7 +6,7 @@ import { allGasCompanySlugs, getGasCompany } from '@/data/gas-companies'
 import { getGasCgdBySlug } from '@/data/gas-cgds'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export function generateStaticParams() {
   return allGasCompanySlugs.map((slug) => ({ slug }))
@@ -26,7 +26,7 @@ export async function generateMetadata({
   const cgd = getGasCgdBySlug(slug)
   if (cgd?.hasTariffFile) {
     return {
-      title: `${company.name} PNG Bill Calculator 2026 — Real Tariff | bijlicalc`,
+      title: `${company.name} PNG Bill Calculator 2026 — Real Tariff | DesiMetrics`,
       description: `Estimate your ${company.name} piped natural gas (PNG) bill using their real, dated domestic tariff — not a guessed rate.`,
       alternates: { canonical: `${SITE}${path}` },
       openGraph: { url: `${SITE}${path}`, type: 'website' },
@@ -34,7 +34,7 @@ export async function generateMetadata({
   }
   const titleSuffix = /\bgas\b/i.test(company.name) ? 'Bill Calculator' : 'Gas Bill Calculator'
   return {
-    title: `${company.name} ${titleSuffix} 2026 | bijlicalc`,
+    title: `${company.name} ${titleSuffix} 2026 | DesiMetrics`,
     description: `Estimate your ${company.name} piped natural gas (PNG) bill from your own consumption and rate.`,
     alternates: { canonical: `${SITE}${path}` },
     openGraph: { url: `${SITE}${path}`, type: 'website' },

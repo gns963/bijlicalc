@@ -4,7 +4,7 @@ import CrossHubLinks from '@/components/CrossHubLinks'
 import PageHero from '@/components/PageHero'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export const metadata: Metadata = {
   title: 'Financial Calculators — GST, SIP, Income Tax & Gratuity (India)',
@@ -123,7 +123,7 @@ export default function FinancialHubPage() {
           One platform for bills and money
         </h2>
         <p className="text-ash/80 dark:text-gazette-cream/70">
-          bijlicalc started with electricity bills and now covers the everyday
+          DesiMetrics started with electricity bills and now covers the everyday
           numbers Indian households search for most — from what you owe in GST to
           how much a SIP could grow, which tax regime saves you more, and the
           gratuity you&apos;ve earned. Same clean, no-login tools, all in one

@@ -8,7 +8,7 @@ import { getTariff } from '@/lib/calc/electricity'
 import { slugify } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 const states = CALCULATOR_PAGES.map((p) => getTariff(p.discomCode).state)
   .filter((state, i, arr) => arr.indexOf(state) === i)
@@ -36,14 +36,14 @@ export async function generateMetadata({
   const board = getWaterBoardBySlug(slug)
   if (board?.hasTariffFile) {
     return {
-      title: `${board.name} Water Bill Calculator 2026 — Real Tariff | bijlicalc`,
+      title: `${board.name} Water Bill Calculator 2026 — Real Tariff | DesiMetrics`,
       description: `Estimate your ${board.name} water bill using their real, dated domestic tariff — not a guessed rate.`,
       alternates: { canonical: `${SITE}${path}` },
       openGraph: { url: `${SITE}${path}`, type: 'website' },
     }
   }
   return {
-    title: `${entry.state} Water Bill Calculator 2026 | bijlicalc`,
+    title: `${entry.state} Water Bill Calculator 2026 | DesiMetrics`,
     description: `Estimate your water bill in ${entry.state} from your own consumption and board's rate.`,
     alternates: { canonical: `${SITE}${path}` },
     openGraph: { url: `${SITE}${path}`, type: 'website' },

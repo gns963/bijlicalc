@@ -15,7 +15,7 @@ import { getTariff } from '@/lib/calc/electricity'
 import { calculateSolarRoi, projectSolarCostComparison } from '@/lib/calc/solar'
 import { formatINR } from '@/lib/format'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/solar/roi-calculator'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>
@@ -81,7 +81,7 @@ const datasetLd = {
   name: '25-Year Solar vs Grid Cost Comparison (Base Scenario)',
   description:
     'Year-by-year cumulative grid cost, solar cost and savings for a 3kW rooftop system in Tamil Nadu at 300 units/month, assuming 6%/year tariff escalation.',
-  creator: { '@type': 'Organization', name: 'bijlicalc' },
+  creator: { '@type': 'Organization', name: 'DesiMetrics' },
   variableMeasured: [
     'Cumulative grid cost (INR)',
     'Cumulative solar cost (INR)',

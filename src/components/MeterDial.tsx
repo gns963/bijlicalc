@@ -45,7 +45,7 @@ export default function MeterDial({ states }: { states: MeterState[] }) {
     <div className="rounded-3xl border-4 border-brass/50 bg-ink-navy p-5 shadow-2xl">
       {/* housing header */}
       <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-widest text-brass/80">
-        <span>bijli meter</span>
+        <span>live meter</span>
         <span className="flex items-center gap-1.5 text-spark-teal">
           <span className="h-2 w-2 rounded-full bg-spark-teal" /> live
         </span>

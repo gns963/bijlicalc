@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 /**
- * Tariff data model for bijlicalc.
+ * Tariff data model for DesiMetrics.
  *
  * One JSON file per DISCOM lives alongside this schema in `src/data/tariffs/`.
  * Every file is validated against `TariffFileSchema` at load/build time so a

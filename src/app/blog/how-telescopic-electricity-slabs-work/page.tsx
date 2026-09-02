@@ -3,7 +3,7 @@ import Link from 'next/link'
 import PageHero from '@/components/PageHero'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/blog/how-telescopic-electricity-slabs-work'
 const TITLE = 'How Telescopic Electricity Slabs Actually Work'
 const DESCRIPTION =
@@ -29,10 +29,10 @@ const articleLd = {
   description: DESCRIPTION,
   author: {
     '@type': 'Organization',
-    name: 'bijlicalc Editorial Team',
+    name: 'DesiMetrics Editorial Team',
     url: `${SITE}/author/editorial-team`,
   },
-  publisher: { '@type': 'Organization', name: 'bijlicalc', url: SITE },
+  publisher: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
   datePublished: '2026-09-01',
   dateModified: '2026-09-01',
   mainEntityOfPage: `${SITE}${PATH}`,
@@ -107,7 +107,7 @@ export default function TelescopicSlabsArticlePage() {
         <p className="text-sm text-ash/50 dark:text-gazette-cream/40">
           By{' '}
           <Link href="/author/editorial-team" className="text-brass hover:underline">
-            bijlicalc Editorial Team
+            DesiMetrics Editorial Team
           </Link>{' '}
           · Updated 1 September 2026
         </p>

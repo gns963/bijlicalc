@@ -6,7 +6,7 @@ import { calculateAcCost } from '@/lib/calc/ac'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 const heroExample = calculateAcCost({
   discomCode: 'TNEB',

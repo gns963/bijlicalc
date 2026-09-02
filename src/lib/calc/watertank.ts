@@ -1,5 +1,5 @@
 /**
- * bijlicalc — water tank filling time engine.
+ * DesiMetrics — water tank filling time engine.
  *
  * Pure flow-rate arithmetic: time = volume ÷ flow rate. The only real-world
  * caveat (stated in the result, not silently ignored) is that a pump's

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { allAuthorSlugs, getAuthor } from '@/data/authors'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export function generateStaticParams() {
   return allAuthorSlugs.map((slug) => ({ slug }))
@@ -20,7 +20,7 @@ export async function generateMetadata({
   const author = getAuthor(slug)
   if (!author) return {}
   return {
-    title: `${author.name} — ${author.role} | bijlicalc`,
+    title: `${author.name} — ${author.role} | DesiMetrics`,
     description: author.bio[0]?.slice(0, 155),
     alternates: { canonical: `${SITE}/author/${slug}` },
   }

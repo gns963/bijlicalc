@@ -78,18 +78,8 @@ export default function Header() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
         <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
-          <span
-            aria-hidden
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-navy text-brass"
-          >
-            ⚡
-          </span>
-          <span
-            className={`font-display text-xl font-bold tracking-tight ${
-              transparent ? 'text-white' : 'text-ink-navy dark:text-gazette-cream'
-            }`}
-          >
-            bijli<span className="text-brass">calc</span>
+          <span className="font-display text-xl font-bold tracking-tight text-brass">
+            DesiMetrics
           </span>
         </Link>
 

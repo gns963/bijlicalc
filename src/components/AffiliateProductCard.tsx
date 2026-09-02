@@ -6,7 +6,7 @@ import { formatINR } from '@/lib/format'
  * Amazon Associates affiliate tag — PLACEHOLDER.
  * Replace with the real tag once the Associates account is approved.
  */
-const AFFILIATE_TAG = 'bijlicalc-21' // TODO(affiliate): real Amazon Associates tag
+const AFFILIATE_TAG = 'desimetrics-21' // TODO(affiliate): real Amazon Associates tag
 
 function amazonSearchUrl(name: string): string {
   // Search links (not /dp/<asin>) so placeholder products never 404.

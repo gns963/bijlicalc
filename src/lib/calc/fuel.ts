@@ -1,5 +1,5 @@
 /**
- * bijlicalc — fuel cost engines: vehicle running cost, LPG cylinder usage,
+ * DesiMetrics — fuel cost engines: vehicle running cost, LPG cylinder usage,
  * generator running cost.
  *
  * Pure arithmetic on user-supplied real numbers wherever possible (fuel

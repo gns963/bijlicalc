@@ -6,7 +6,7 @@ import { marginalRatePerUnit } from '@/lib/calc/ac'
 import { getTariff } from '@/lib/calc/electricity'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/electricity/unit-price'
 
 const rows = CALCULATOR_PAGES.map((p) => {
@@ -20,7 +20,7 @@ const rows = CALCULATOR_PAGES.map((p) => {
 }).sort((a, b) => a.state.localeCompare(b.state))
 
 export const metadata: Metadata = {
-  title: '1 Unit Electricity Price by State (India) 2026 | bijlicalc',
+  title: '1 Unit Electricity Price by State (India) 2026 | DesiMetrics',
   description:
     'What 1 unit of electricity costs in every Indian state and union territory — real, source-cited DISCOM tariffs, including fuel cost adjustment and duty.',
   alternates: { canonical: `${SITE}${PATH}` },

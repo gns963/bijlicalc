@@ -7,7 +7,7 @@ import { vehicleCostPerKm } from '@/lib/calc/fuel'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/fuel-cost/petrol-diesel-cost-per-km-calculator'
 
 const example = vehicleCostPerKm({ fuelPricePerLitre: 100, mileageKmPerLitre: 18, monthlyKm: 1000 })
@@ -54,7 +54,7 @@ const faqs = [
     a: 'The retail price is base fuel cost plus central excise duty, dealer commission, and state VAT — and state VAT rates differ significantly, which is why the same fuel can cost noticeably more in one state than a neighbouring one. Prices are revised daily based on international crude rates and the exchange rate, per PPAC/Ministry of Petroleum & Natural Gas methodology.',
   },
   {
-    q: 'Why doesn\'t bijlicalc show a live fuel price?',
+    q: 'Why doesn\'t DesiMetrics show a live fuel price?',
     a: 'Prices are revised daily by city and change with crude oil movements and state tax changes — showing a number that\'s already stale by the next morning would be less accurate than asking for today\'s real price at your pump, so we ask for your own current number.',
   },
   {

@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 import { calculateAcPowerConsumption } from '@/lib/calc/ac'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/ac/power-consumption-calculator'
 
 const example = calculateAcPowerConsumption({ ratedCurrentAmps: 6, hoursPerDay: 8 })

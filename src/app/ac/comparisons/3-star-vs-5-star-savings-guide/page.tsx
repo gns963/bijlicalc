@@ -9,7 +9,7 @@ import { ISEER_BY_STAR, acDailyUnits, marginalRatePerUnit } from '@/lib/calc/ac'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/ac/comparisons/3-star-vs-5-star-savings-guide'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>

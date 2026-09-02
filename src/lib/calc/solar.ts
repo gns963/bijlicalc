@@ -1,5 +1,5 @@
 /**
- * bijlicalc — rooftop solar ROI engine.
+ * DesiMetrics — rooftop solar ROI engine.
  *
  * PURE, framework-agnostic TypeScript. Reuses the electricity engine to value
  * the "before solar" bill against the DISCOM's real telescopic tariff, so

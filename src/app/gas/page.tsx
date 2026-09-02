@@ -7,10 +7,10 @@ import SplitHero from '@/components/SplitHero'
 import { GAS_COMPANIES } from '@/data/gas-companies'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export const metadata: Metadata = {
-  title: 'Gas Bill Calculator (PNG, India) 2026 | bijlicalc',
+  title: 'Gas Bill Calculator (PNG, India) 2026 | DesiMetrics',
   description:
     'Estimate your piped natural gas (PNG) bill from your own consumption and provider\'s rate — honest calculator covering every major Indian city gas company.',
   alternates: { canonical: `${SITE}/gas` },
@@ -37,7 +37,7 @@ const webAppLd = {
 
 const faqs = [
   {
-    q: 'Why doesn\'t bijlicalc show my exact gas provider\'s tariff?',
+    q: 'Why doesn\'t DesiMetrics show my exact gas provider\'s tariff?',
     a: 'City gas distribution (PNG) tariffs are set independently by each provider and change periodically — they aren\'t centrally published in a form we can verify and keep current. Rather than guess, we ask for your own rate from your bill, the same honest approach we use for generator fuel and net-metering rates.',
   },
   {

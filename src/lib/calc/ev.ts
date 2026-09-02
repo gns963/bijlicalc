@@ -1,5 +1,5 @@
 /**
- * bijlicalc — EV home-charging cost engine.
+ * DesiMetrics — EV home-charging cost engine.
  *
  * Same marginal-rate pricing as AC and other appliances: charging an EV at
  * home is incremental load, priced at the DISCOM's top tariff slab via

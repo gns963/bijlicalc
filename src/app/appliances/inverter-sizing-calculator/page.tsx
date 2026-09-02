@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 import { sizeInverter } from '@/lib/calc/inverter'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/appliances/inverter-sizing-calculator'
 
 const example = sizeInverter({ totalLoadWatts: 600, backupHours: 4, batteryVoltage: 12 })

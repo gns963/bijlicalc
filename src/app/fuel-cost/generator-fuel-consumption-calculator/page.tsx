@@ -7,7 +7,7 @@ import { estimateGeneratorCost, estimateGeneratorCostPerUnit } from '@/lib/calc/
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/fuel-cost/generator-fuel-consumption-calculator'
 
 const example = estimateGeneratorCost({ consumptionRateLph: 2, fuelPricePerLitre: 95, hoursRun: 4 })

@@ -6,7 +6,7 @@ import { compareRegimes } from '@/lib/calc/financial'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/financial/new-vs-old-tax-regime-calculator'
 
 const example = compareRegimes(1500000, 150000)

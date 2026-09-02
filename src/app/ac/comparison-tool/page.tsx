@@ -7,7 +7,7 @@ import { calculateAcCost } from '@/lib/calc/ac'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/ac/comparison-tool'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>

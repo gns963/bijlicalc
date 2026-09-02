@@ -1,5 +1,5 @@
 /**
- * bijlicalc — personal-finance calculators (GST, SIP, income tax, gratuity).
+ * DesiMetrics — personal-finance calculators (GST, SIP, income tax, gratuity).
  *
  * PURE, framework-agnostic TypeScript. All money in ₹ (INR).
  *

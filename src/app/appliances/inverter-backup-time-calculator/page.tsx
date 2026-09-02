@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 import { estimateBackupTime } from '@/lib/calc/inverter'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/appliances/inverter-backup-time-calculator'
 
 const example = estimateBackupTime({ batteryAh: 150, batteryVoltage: 12, loadWatts: 400 })

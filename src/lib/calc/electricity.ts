@@ -1,5 +1,5 @@
 /**
- * bijlicalc — electricity bill calculation engine.
+ * DesiMetrics — electricity bill calculation engine.
  *
  * PURE, framework-agnostic TypeScript. No React, no Next.js, no DOM, no I/O in
  * the core functions. Intended to be lifted verbatim into a React Native app or

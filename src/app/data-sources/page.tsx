@@ -6,8 +6,8 @@ import { formatIsoDate } from '@/lib/format'
 export const metadata: Metadata = {
   title: 'Data Sources — Official Tariff Orders Behind Every Calculator',
   description:
-    'The official SERC tariff order and last-verified date behind every DISCOM bijlicalc covers, plus the source for solar subsidy and income-tax data.',
-  alternates: { canonical: 'https://bijlicalc.com/data-sources' },
+    'The official SERC tariff order and last-verified date behind every DISCOM DesiMetrics covers, plus the source for solar subsidy and income-tax data.',
+  alternates: { canonical: 'https://desimetrics.com/data-sources' },
 }
 
 const tariffs = Object.values(tariffRegistry).sort((a, b) =>
@@ -18,7 +18,7 @@ export default function DataSourcesPage() {
   return (
     <LegalPageShell
       title="Data Sources"
-      intro="Every tariff on bijlicalc traces to a primary regulatory document. Below is the exact source order and last-verified date for each DISCOM we currently cover — the same sourceUrl and lastVerified values stored in our tariff data files."
+      intro="Every tariff on DesiMetrics traces to a primary regulatory document. Below is the exact source order and last-verified date for each DISCOM we currently cover — the same sourceUrl and lastVerified values stored in our tariff data files."
       stub={false}
       path="/data-sources"
     >

@@ -3,17 +3,17 @@ import Link from 'next/link'
 import LegalPageShell from '@/components/LegalPageShell'
 
 export const metadata: Metadata = {
-  title: 'Terms of Use — bijlicalc',
+  title: 'Terms of Use — DesiMetrics',
   description:
-    'The terms governing your use of bijlicalc, including that our calculators provide estimates, not professional advice, and our limitation of liability.',
-  alternates: { canonical: 'https://bijlicalc.com/terms' },
+    'The terms governing your use of DesiMetrics, including that our calculators provide estimates, not professional advice, and our limitation of liability.',
+  alternates: { canonical: 'https://desimetrics.com/terms' },
 }
 
 export default function TermsPage() {
   return (
     <LegalPageShell
       title="Terms of Use"
-      intro="By using bijlicalc you agree to these terms. Please read them alongside our privacy policy and disclaimer."
+      intro="By using DesiMetrics you agree to these terms. Please read them alongside our privacy policy and disclaimer."
       stub={false}
       path="/terms"
     >
@@ -55,7 +55,7 @@ export default function TermsPage() {
         Intellectual property
       </h2>
       <p>
-        The bijlicalc name, content and calculators are our property or used with
+        The DesiMetrics name, content and calculators are our property or used with
         permission. You may use the tools for personal, non-commercial purposes;
         you may not scrape, republish or resell them without written consent.
       </p>
@@ -64,7 +64,7 @@ export default function TermsPage() {
         Limitation of liability
       </h2>
       <p>
-        To the extent permitted by law, bijlicalc is not liable for any loss
+        To the extent permitted by law, DesiMetrics is not liable for any loss
         arising from reliance on the estimates or information provided. Your use
         of the site is at your own risk.
       </p>

@@ -1,5 +1,5 @@
 /**
- * bijlicalc — room air pull-down time engine.
+ * DesiMetrics — room air pull-down time engine.
  *
  * Real thermodynamics, explicitly scoped: this computes how long an AC
  * would take to remove the heat already held in the room's AIR ONLY,

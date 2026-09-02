@@ -4,7 +4,7 @@ import PngVsLpgSelfRateComparison from '@/components/calculators/PngVsLpgSelfRat
 import { FlameIcon } from '@/components/HubMotifIcon'
 import SplitHero from '@/components/SplitHero'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export default function GasCompanyPage({
   companyName,
@@ -19,7 +19,7 @@ export default function GasCompanyPage({
     : `${companyName} Gas Bill Calculator`
   const faqs = [
     {
-      q: `Does bijlicalc know ${companyName}'s exact current PNG rate?`,
+      q: `Does DesiMetrics know ${companyName}'s exact current PNG rate?`,
       a: `No — city gas distribution tariffs change periodically and aren't centrally published in a form we can verify and keep current. Enter your own rate from your last ${companyName} bill for an accurate result.`,
     },
     {

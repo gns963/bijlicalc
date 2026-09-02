@@ -5,7 +5,7 @@ import { calculateAcCost } from '@/lib/calc/ac'
 import { formatINR } from '@/lib/format'
 import AcBillCalculator from './AcBillCalculator'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>
   s.discoms.filter((d) => d.hasTariffFile).map((d) => ({ code: d.code, state: s.state })),

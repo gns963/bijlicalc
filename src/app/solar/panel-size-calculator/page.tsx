@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 import { ROOF_SQFT_PER_KW, recommendSystemSize } from '@/lib/calc/solar'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/solar/panel-size-calculator'
 
 const example = recommendSystemSize({ monthlyUnits: 300, offsetPercent: 100 })

@@ -7,7 +7,7 @@ import { simpleApplianceCost } from '@/lib/calc/appliance'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/appliances/air-cooler-cost-calculator'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>

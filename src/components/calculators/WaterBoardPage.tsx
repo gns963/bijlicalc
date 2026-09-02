@@ -5,7 +5,7 @@ import { computeWaterBill, getWaterTariff } from '@/lib/calc/water'
 import { formatINR, formatIsoDate } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export default function WaterBoardPage({ boardCode, slug }: { boardCode: string; slug: string }) {
   const tariff = getWaterTariff(boardCode)

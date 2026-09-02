@@ -1,4 +1,4 @@
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export function breadcrumbLd(items: { name: string; path?: string }[]) {
   return {

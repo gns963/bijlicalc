@@ -3,7 +3,7 @@ import Link from 'next/link'
 import PageHero from '@/components/PageHero'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/blog/new-vs-old-tax-regime-who-actually-saves'
 const TITLE = 'New vs Old Tax Regime: Who Actually Saves?'
 const DESCRIPTION =
@@ -29,10 +29,10 @@ const articleLd = {
   description: DESCRIPTION,
   author: {
     '@type': 'Organization',
-    name: 'bijlicalc Editorial Team',
+    name: 'DesiMetrics Editorial Team',
     url: `${SITE}/author/editorial-team`,
   },
-  publisher: { '@type': 'Organization', name: 'bijlicalc', url: SITE },
+  publisher: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
   datePublished: '2026-09-03',
   dateModified: '2026-09-03',
   mainEntityOfPage: `${SITE}${PATH}`,
@@ -124,7 +124,7 @@ export default function TaxRegimeArticlePage() {
         <p className="text-sm text-ash/50 dark:text-gazette-cream/40">
           By{' '}
           <Link href="/author/editorial-team" className="text-brass hover:underline">
-            bijlicalc Editorial Team
+            DesiMetrics Editorial Team
           </Link>{' '}
           · Updated 3 September 2026
         </p>

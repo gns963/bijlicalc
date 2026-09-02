@@ -5,7 +5,7 @@ import LeadGenForm from '@/components/LeadGenForm'
 import SplitHero from '@/components/SplitHero'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 const breadcrumb = breadcrumbLd([
   { name: 'Home', path: '' },
@@ -52,7 +52,7 @@ const itemList = itemListLd(CARDS.map((c) => ({ name: c.title, path: c.href })))
 
 const faqs = [
   {
-    q: 'How is solar savings calculated on bijlicalc?',
+    q: 'How is solar savings calculated on DesiMetrics?',
     a: 'We value the units your system offsets against your own DISCOM’s real telescopic tariff, so savings reflect your actual marginal rate rather than a flat national average.',
   },
   {

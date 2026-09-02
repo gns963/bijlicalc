@@ -59,8 +59,8 @@ export default function Footer() {
 
         <div className="mt-10 grid gap-10 md:grid-cols-[1.1fr_1fr_1fr_1fr_1fr]">
           <div>
-            <p className="font-display text-xl font-extrabold text-white">
-              bijli<span className="text-brass">calc</span>
+            <p className="font-display text-xl font-extrabold text-brass">
+              DesiMetrics
             </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-gazette-cream/60">
               Free calculators for Indian electricity bills, rooftop solar, AC
@@ -120,7 +120,7 @@ export default function Footer() {
       </div>
 
       <div className="relative border-t border-gazette-cream/10 px-4 py-4 text-center text-xs text-gazette-cream/40">
-        © 2026 bijlicalc · Estimates only — always confirm against your
+        © 2026 DesiMetrics · Estimates only — always confirm against your
         official utility bill.
       </div>
     </footer>

@@ -7,10 +7,10 @@ import discomsJson from '@/data/discoms.json'
 import { getTariff } from '@/lib/calc/electricity'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export const metadata: Metadata = {
-  title: 'Electricity Bill Calculators by State & DISCOM (India) | bijlicalc',
+  title: 'Electricity Bill Calculators by State & DISCOM (India) | DesiMetrics',
   description:
     'Free, accurate electricity bill calculators for Indian DISCOMs — real telescopic slab tariffs, subsidies and fuel cost adjustment. TNEB, MSEDCL, UPPCL, BESCOM, KSEB and WBSEDCL, with more states coming.',
   alternates: { canonical: `${SITE}/electricity` },
@@ -54,7 +54,7 @@ const itemList = itemListLd([
 
 const faqs = [
   {
-    q: 'How many DISCOMs does bijlicalc cover?',
+    q: 'How many DISCOMs does DesiMetrics cover?',
     a: `${live.length} bill calculators across all ${totalStatesUts} Indian states and union territories, each using that DISCOM's actual published tariff order rather than a national average.`,
   },
   {
@@ -62,8 +62,8 @@ const faqs = [
     a: 'Each tariff file is dated and source-cited against the relevant SERC order, with a "last verified" date shown on every calculator page.',
   },
   {
-    q: 'Is bijlicalc official or affiliated with any DISCOM?',
-    a: 'No. bijlicalc is an independent calculator, not run by or affiliated with any electricity board. Always confirm the final figure against your official bill.',
+    q: 'Is DesiMetrics official or affiliated with any DISCOM?',
+    a: 'No. DesiMetrics is an independent calculator, not run by or affiliated with any electricity board. Always confirm the final figure against your official bill.',
   },
 ]
 const faqLd = {

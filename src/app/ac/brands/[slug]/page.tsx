@@ -4,7 +4,7 @@ import AcBrandPage from '@/components/calculators/AcBrandPage'
 import { allAcBrandSlugs, getAcBrand } from '@/data/ac-brands'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export function generateStaticParams() {
   return allAcBrandSlugs.map((slug) => ({ slug }))

@@ -18,10 +18,10 @@ export interface Author {
 export const AUTHORS: Author[] = [
   {
     slug: 'editorial-team',
-    name: 'bijlicalc Editorial Team',
+    name: 'DesiMetrics Editorial Team',
     role: 'Research & Calculation',
     bio: [
-      'The bijlicalc editorial team researches and maintains every calculator on this site. Our work starts with primary sources — State Electricity Regulatory Commission (SERC) tariff orders, the PM Surya Ghar scheme guidelines, and the Finance Act income-tax slabs — which we encode into structured, version-controlled data files.',
+      'The DesiMetrics editorial team researches and maintains every calculator on this site. Our work starts with primary sources — State Electricity Regulatory Commission (SERC) tariff orders, the PM Surya Ghar scheme guidelines, and the Finance Act income-tax slabs — which we encode into structured, version-controlled data files.',
       'We build the calculation logic as pure, unit-tested functions so the maths is reproducible and auditable, and we document the assumptions and limitations of each tool directly on its page. When a tariff has a component we do not yet model, we disclose it rather than approximate silently.',
     ],
     expertise: [
@@ -29,7 +29,7 @@ export const AUTHORS: Author[] = [
       'Rooftop solar economics and the PM Surya Ghar subsidy',
       'Personal finance: GST, SIP, income tax, gratuity',
     ],
-    email: 'hello@bijlicalc.com',
+    email: 'hello@desimetrics.com',
   },
 ]
 

@@ -9,7 +9,7 @@ import { getTariff } from '@/lib/calc/electricity'
 import { slugify } from '@/lib/format'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 const states = CALCULATOR_PAGES.map((p) => getTariff(p.discomCode).state)
   .filter((state, i, arr) => arr.indexOf(state) === i)
@@ -17,7 +17,7 @@ const states = CALCULATOR_PAGES.map((p) => getTariff(p.discomCode).state)
   .map((state) => ({ state, slug: slugify(state) }))
 
 export const metadata: Metadata = {
-  title: 'Water Bill Calculator (India) 2026 | bijlicalc',
+  title: 'Water Bill Calculator (India) 2026 | DesiMetrics',
   description:
     'Estimate your municipal water bill from your own consumption and board\'s rate — honest calculator, no guessed tariffs, for every Indian state.',
   alternates: { canonical: `${SITE}/water` },
@@ -42,7 +42,7 @@ const webAppLd = {
 
 const faqs = [
   {
-    q: 'Why doesn\'t bijlicalc show my exact water board\'s tariff?',
+    q: 'Why doesn\'t DesiMetrics show my exact water board\'s tariff?',
     a: 'Unlike electricity DISCOMs, India\'s municipal water tariffs aren\'t centrally published in a form we can verify and keep current — billing basis varies by city (flat rate, metered, or tied to property tax). Rather than guess, we ask for your own rate from your bill, the same honest approach we use for generator fuel and net-metering rates.',
   },
   {

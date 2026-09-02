@@ -14,7 +14,7 @@ import type { FixedCharge } from '@/data/tariffs/_schema'
 import { computeBill, getTariff } from '@/lib/calc/electricity'
 import { cycleLabel, formatINR, formatIsoDate } from '@/lib/format'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 function fixedChargeLabel(fc: FixedCharge): string {
   switch (fc.basis) {
@@ -204,7 +204,7 @@ export default function DiscomCalculatorPage({
       {/* Hero — full-bleed dark band, split left/right like our own homepage
           hero (not a centered single-column stack). Right side carries our
           own signature — the rolling-digit worked example — instead of a
-          generic stat card, so this reads as bijlicalc, not a template. */}
+          generic stat card, so this reads as DesiMetrics, not a template. */}
       <section className="relative overflow-hidden py-14 hero-gradient sm:py-16">
         <div className="hero-grid-overlay pointer-events-none absolute inset-0" aria-hidden />
         <div className="relative mx-auto max-w-6xl px-4">

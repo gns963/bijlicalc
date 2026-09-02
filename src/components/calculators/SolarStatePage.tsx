@@ -5,7 +5,7 @@ import discomsJson from '@/data/discoms.json'
 import { calculateSolarRoi } from '@/lib/calc/solar'
 import { formatINR } from '@/lib/format'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>
   s.discoms.filter((d) => d.hasTariffFile).map((d) => ({ code: d.code, state: s.state })),

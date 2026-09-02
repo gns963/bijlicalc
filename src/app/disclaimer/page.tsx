@@ -3,10 +3,10 @@ import Link from 'next/link'
 import LegalPageShell from '@/components/LegalPageShell'
 
 export const metadata: Metadata = {
-  title: 'Disclaimer — bijlicalc',
+  title: 'Disclaimer — DesiMetrics',
   description:
-    'Important limitations of bijlicalc estimates: what tariff components we do not model, and why results are indicative, not professional, tax or investment advice.',
-  alternates: { canonical: 'https://bijlicalc.com/disclaimer' },
+    'Important limitations of DesiMetrics estimates: what tariff components we do not model, and why results are indicative, not professional, tax or investment advice.',
+  alternates: { canonical: 'https://desimetrics.com/disclaimer' },
 }
 
 export default function DisclaimerPage() {
@@ -60,7 +60,7 @@ export default function DisclaimerPage() {
         No affiliation
       </h2>
       <p>
-        bijlicalc is independent and not affiliated with any DISCOM, regulatory
+        DesiMetrics is independent and not affiliated with any DISCOM, regulatory
         commission or government body, and is not liable for decisions made on the
         basis of these estimates.
       </p>

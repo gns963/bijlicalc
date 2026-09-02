@@ -12,7 +12,7 @@ import { calculateSolarRoi } from '@/lib/calc/solar'
 import { formatINR, formatIsoDate } from '@/lib/format'
 import { itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 const tariff = parseTariffFile(tnebJson)
 
@@ -358,7 +358,7 @@ const posts = [
 const faqs: { q: string; a: string }[] = [
   {
     q: 'Are these calculators free to use?',
-    a: 'Yes. Every calculator on bijlicalc is free, needs no login, and works on any device. We plan to keep the core calculators free permanently.',
+    a: 'Yes. Every calculator on DesiMetrics is free, needs no login, and works on any device. We plan to keep the core calculators free permanently.',
   },
   {
     q: 'Which states and DISCOMs are supported?',
@@ -377,7 +377,7 @@ const faqs: { q: string; a: string }[] = [
     a: 'No. Every calculator runs entirely in your browser — nothing you enter is saved, logged in against an account, or sold. The optional installer-quote form is the only place we collect contact details, and only if you submit it yourself.',
   },
   {
-    q: 'How is bijlicalc different from other bill calculators?',
+    q: 'How is DesiMetrics different from other bill calculators?',
     a: 'Most bill-calculator sites use one generic slab table for every state. Ours is one schema-validated tariff file per DISCOM, so telescopic slabs, fixed charges, FCA and subsidies are modelled exactly as that DISCOM bills them — not approximated.',
   },
 ]
@@ -677,7 +677,7 @@ export default function Home() {
           <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 lg:grid-cols-2">
             <div className="text-white">
               <span className="text-xs font-semibold tracking-[0.2em] text-spark-teal uppercase">
-                Only on bijlicalc
+                Only on DesiMetrics
               </span>
               <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
                 See what solar could save you

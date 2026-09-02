@@ -5,7 +5,7 @@ import { FuelGaugeIcon } from '@/components/HubMotifIcon'
 import PageHero from '@/components/PageHero'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export const metadata: Metadata = {
   title: 'Fuel Cost Calculators — Vehicle, LPG & Generator (India)',

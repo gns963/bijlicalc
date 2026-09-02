@@ -5,7 +5,7 @@ import { CALCULATOR_PAGES } from '@/data/calculator-pages'
 import { getTariff } from '@/lib/calc/electricity'
 import { breadcrumbLd, itemListLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/solar/bill-calculator'
 
 const rows = CALCULATOR_PAGES.map((p) => {
@@ -14,7 +14,7 @@ const rows = CALCULATOR_PAGES.map((p) => {
 }).sort((a, b) => a.state.localeCompare(b.state))
 
 export const metadata: Metadata = {
-  title: 'Solar Bill Calculator by State (India) 2026 | bijlicalc',
+  title: 'Solar Bill Calculator by State (India) 2026 | DesiMetrics',
   description:
     'Estimate rooftop solar payback and savings for every Indian state and union territory, using each DISCOM\'s real tariff and the PM Surya Ghar subsidy.',
   alternates: { canonical: `${SITE}${PATH}` },

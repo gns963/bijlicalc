@@ -1,5 +1,5 @@
 /**
- * bijlicalc — piped natural gas (PNG) bill calculation engine.
+ * DesiMetrics — piped natural gas (PNG) bill calculation engine.
  *
  * PURE, framework-agnostic TypeScript, mirroring the structure of
  * src/lib/calc/electricity.ts. Volume is SCM (Standard Cubic Metre) —

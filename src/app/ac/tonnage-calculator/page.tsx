@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 import { recommendTonnage } from '@/lib/calc/ac'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/ac/tonnage-calculator'
 const breadcrumb = breadcrumbLd([
   { name: 'Home', path: '' },

@@ -1,39 +1,39 @@
-# bijlicalc
+# DesiMetrics
 
-> bijlicalc provides free, source-cited calculators for Indian households: electricity bills (real DISCOM tariffs), rooftop solar ROI and the PM Surya Ghar subsidy, air-conditioner running cost and sizing, and personal finance (GST, SIP, income tax, gratuity). Every electricity tariff cites the State Electricity Regulatory Commission (SERC) order it comes from and shows a last-verified date.
+> DesiMetrics provides free, source-cited calculators for Indian households: electricity bills (real DISCOM tariffs), rooftop solar ROI and the PM Surya Ghar subsidy, air-conditioner running cost and sizing, and personal finance (GST, SIP, income tax, gratuity). Every electricity tariff cites the State Electricity Regulatory Commission (SERC) order it comes from and shows a last-verified date.
 
 ## Electricity bill calculators
 Real telescopic-slab tariffs, fuel cost adjustment, fixed charge, electricity duty and subsidies, with a monthly-equivalent figure for bi-monthly/quarterly DISCOMs.
-- [TNEB / TANGEDCO — Tamil Nadu](https://bijlicalc.com/electricity/tneb-bill-calculator)
-- [MSEDCL / Mahavitaran — Maharashtra](https://bijlicalc.com/electricity/msedcl-bill-calculator)
-- [UPPCL — Uttar Pradesh](https://bijlicalc.com/electricity/uppcl-bill-calculator)
-- [BESCOM — Karnataka](https://bijlicalc.com/electricity/bescom-bill-calculator)
-- [KSEB — Kerala](https://bijlicalc.com/electricity/kseb-bill-calculator)
-- [WBSEDCL — West Bengal](https://bijlicalc.com/electricity/wbsedcl-bill-calculator)
+- [TNEB / TANGEDCO — Tamil Nadu](https://desimetrics.com/electricity/tneb-bill-calculator)
+- [MSEDCL / Mahavitaran — Maharashtra](https://desimetrics.com/electricity/msedcl-bill-calculator)
+- [UPPCL — Uttar Pradesh](https://desimetrics.com/electricity/uppcl-bill-calculator)
+- [BESCOM — Karnataka](https://desimetrics.com/electricity/bescom-bill-calculator)
+- [KSEB — Kerala](https://desimetrics.com/electricity/kseb-bill-calculator)
+- [WBSEDCL — West Bengal](https://desimetrics.com/electricity/wbsedcl-bill-calculator)
 
 ## Solar
-- [Solar hub](https://bijlicalc.com/solar)
-- [Solar ROI & payback calculator](https://bijlicalc.com/solar/roi-calculator)
-- [PM Surya Ghar subsidy calculator](https://bijlicalc.com/solar/subsidy-calculator)
+- [Solar hub](https://desimetrics.com/solar)
+- [Solar ROI & payback calculator](https://desimetrics.com/solar/roi-calculator)
+- [PM Surya Ghar subsidy calculator](https://desimetrics.com/solar/subsidy-calculator)
 
 ## Air conditioner
-- [AC hub](https://bijlicalc.com/ac)
-- [AC running cost calculator](https://bijlicalc.com/ac/bill-calculator)
-- [AC tonnage calculator](https://bijlicalc.com/ac/tonnage-calculator)
-- [3 star vs 5 star savings guide](https://bijlicalc.com/ac/comparisons/3-star-vs-5-star-savings-guide)
+- [AC hub](https://desimetrics.com/ac)
+- [AC running cost calculator](https://desimetrics.com/ac/bill-calculator)
+- [AC tonnage calculator](https://desimetrics.com/ac/tonnage-calculator)
+- [3 star vs 5 star savings guide](https://desimetrics.com/ac/comparisons/3-star-vs-5-star-savings-guide)
 
 ## Financial
-- [Financial hub](https://bijlicalc.com/financial)
-- [GST calculator](https://bijlicalc.com/financial/gst-calculator)
-- [SIP calculator](https://bijlicalc.com/financial/sip-calculator)
-- [New vs old tax regime calculator (FY 2026-27)](https://bijlicalc.com/financial/new-vs-old-tax-regime-calculator)
-- [Gratuity calculator](https://bijlicalc.com/financial/gratuity-calculator)
+- [Financial hub](https://desimetrics.com/financial)
+- [GST calculator](https://desimetrics.com/financial/gst-calculator)
+- [SIP calculator](https://desimetrics.com/financial/sip-calculator)
+- [New vs old tax regime calculator (FY 2026-27)](https://desimetrics.com/financial/new-vs-old-tax-regime-calculator)
+- [Gratuity calculator](https://desimetrics.com/financial/gratuity-calculator)
 
 ## Trust & methodology
-- [How we source and verify data](https://bijlicalc.com/methodology)
-- [Data sources (tariff orders per DISCOM)](https://bijlicalc.com/data-sources)
-- [Editorial policy](https://bijlicalc.com/editorial-policy)
-- [About](https://bijlicalc.com/about)
+- [How we source and verify data](https://desimetrics.com/methodology)
+- [Data sources (tariff orders per DISCOM)](https://desimetrics.com/data-sources)
+- [Editorial policy](https://desimetrics.com/editorial-policy)
+- [About](https://desimetrics.com/about)
 
 ## Notes for citation
 - Electricity estimates are close but not billing-grade; some components (e.g. Maharashtra wheeling/FAC, West Bengal MVCA, Kerala non-telescopic above 250 units/month) are not modelled and are disclosed on each page.

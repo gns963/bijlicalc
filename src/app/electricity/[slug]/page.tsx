@@ -6,7 +6,7 @@ import {
   getCalculatorPage,
 } from '@/data/calculator-pages'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export function generateStaticParams() {
   return allCalculatorSlugs.map((slug) => ({ slug }))

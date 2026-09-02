@@ -7,7 +7,7 @@ import { computeGasBill, getGasTariff } from '@/lib/calc/gas'
 import { formatINR, formatIsoDate } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: string }) {
   const tariff = getGasTariff(cgdCode)

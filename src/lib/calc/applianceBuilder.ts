@@ -1,5 +1,5 @@
 /**
- * bijlicalc — multi-appliance household bill builder.
+ * DesiMetrics — multi-appliance household bill builder.
  *
  * The differentiator: appliances are summed and priced through the real
  * per-DISCOM PROGRESSIVE slab tariff (src/lib/calc/electricity.ts), not a

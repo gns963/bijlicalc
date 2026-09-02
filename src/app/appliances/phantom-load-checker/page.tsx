@@ -7,7 +7,7 @@ import { marginalRatePerUnit } from '@/lib/calc/ac'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/appliances/phantom-load-checker'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>

@@ -3,17 +3,17 @@ import Link from 'next/link'
 import LegalPageShell from '@/components/LegalPageShell'
 
 export const metadata: Metadata = {
-  title: 'Editorial Policy — Accuracy, Sourcing & Corrections | bijlicalc',
+  title: 'Editorial Policy — Accuracy, Sourcing & Corrections | DesiMetrics',
   description:
     'Our editorial standards: how we source and verify data, label unverified figures, correct mistakes, and keep calculators independent of advertising and affiliate income.',
-  alternates: { canonical: 'https://bijlicalc.com/editorial-policy' },
+  alternates: { canonical: 'https://desimetrics.com/editorial-policy' },
 }
 
 export default function EditorialPolicyPage() {
   return (
     <LegalPageShell
       title="Editorial Policy"
-      intro="These are the standards every calculator and page on bijlicalc is held to. They exist so you can trust the numbers — and check them yourself."
+      intro="These are the standards every calculator and page on DesiMetrics is held to. They exist so you can trust the numbers — and check them yourself."
       stub={false}
       path="/editorial-policy"
     >
@@ -54,10 +54,10 @@ export default function EditorialPolicyPage() {
       <p>
         If you find an error, email{' '}
         <a
-          href="mailto:corrections@bijlicalc.com"
+          href="mailto:corrections@desimetrics.com"
           className="text-brass underline"
         >
-          corrections@bijlicalc.com
+          corrections@desimetrics.com
         </a>
         . We review reports promptly, fix confirmed errors, and update the
         affected calculator&apos;s last-verified date so the change is visible.

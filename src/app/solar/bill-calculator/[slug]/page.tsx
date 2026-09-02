@@ -5,7 +5,7 @@ import { allDiscomCodeSlugs, getCalculatorPageByDiscomSlug } from '@/data/calcul
 import { getTariff } from '@/lib/calc/electricity'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 
 export function generateStaticParams() {
   return allDiscomCodeSlugs.map((slug) => ({ slug }))

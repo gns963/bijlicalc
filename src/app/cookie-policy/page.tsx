@@ -3,17 +3,17 @@ import Link from 'next/link'
 import LegalPageShell from '@/components/LegalPageShell'
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy — bijlicalc',
+  title: 'Cookie Policy — DesiMetrics',
   description:
-    'What cookies bijlicalc uses — essential, analytics and advertising (including Google AdSense and DoubleClick) — and how to control or opt out of them.',
-  alternates: { canonical: 'https://bijlicalc.com/cookie-policy' },
+    'What cookies DesiMetrics uses — essential, analytics and advertising (including Google AdSense and DoubleClick) — and how to control or opt out of them.',
+  alternates: { canonical: 'https://desimetrics.com/cookie-policy' },
 }
 
 export default function CookiePolicyPage() {
   return (
     <LegalPageShell
       title="Cookie Policy"
-      intro="This policy explains how bijlicalc and our partners use cookies and similar technologies, and how you can control them."
+      intro="This policy explains how DesiMetrics and our partners use cookies and similar technologies, and how you can control them."
       stub={false}
       path="/cookie-policy"
     >

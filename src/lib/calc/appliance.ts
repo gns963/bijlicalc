@@ -1,5 +1,5 @@
 /**
- * bijlicalc — generic appliance running-cost engine.
+ * DesiMetrics — generic appliance running-cost engine.
  *
  * Same marginal-rate pricing logic as AC: an appliance's units are extra
  * load on top of base household usage, so they're priced at the DISCOM's

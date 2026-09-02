@@ -15,7 +15,7 @@ import { calculateAcCost } from '@/lib/calc/ac'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/ac/bill-calculator'
 
 const liveDiscoms = discomsJson.states.flatMap((s) =>
@@ -62,7 +62,7 @@ const datasetLd = {
   description:
     'Monthly and annual running cost for a fixed AC configuration, computed across multiple Indian DISCOM tariffs at their real top electricity slab.',
   variableMeasured: ['Monthly cost (INR)', 'Annual cost (INR)', 'Effective rate per unit (INR/kWh)'],
-  creator: { '@type': 'Organization', name: 'bijlicalc', url: SITE },
+  creator: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
 }
 const breadcrumb = breadcrumbLd([
   { name: 'Home', path: '' },

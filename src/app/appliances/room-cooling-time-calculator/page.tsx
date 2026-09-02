@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 import { estimateCoolingTime } from '@/lib/calc/cooling'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/appliances/room-cooling-time-calculator'
 
 const example = estimateCoolingTime({ areaSqFt: 150, ceilingHeightFt: 9, dropTempC: 6, acTon: 1.5 })

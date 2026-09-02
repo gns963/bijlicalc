@@ -6,7 +6,7 @@ import { estimateNetMeteringEarnings } from '@/lib/calc/solar'
 import { formatINR } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
-const SITE = 'https://bijlicalc.com'
+const SITE = 'https://desimetrics.com'
 const PATH = '/solar/net-metering-calculator'
 
 const example = estimateNetMeteringEarnings({
