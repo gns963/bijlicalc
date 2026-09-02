@@ -8,7 +8,9 @@
 
 import type { GasSlab, GasTariffFile } from '../../data/gas-tariffs/_schema'
 import { parseGasTariffFile } from '../../data/gas-tariffs/_schema'
+import gglJson from '../../data/gas-tariffs/ggl.json'
 import iglJson from '../../data/gas-tariffs/igl.json'
+import mnglJson from '../../data/gas-tariffs/mngl.json'
 
 // ---------------------------------------------------------------------------
 // Result types
@@ -180,6 +182,8 @@ export function calculateGasBill(input: SelfRateGasBillInput): SelfRateGasBillRe
 /** Bundled real-tariff CGDs, validated at load time. Add new CGDs here. */
 export const gasTariffRegistry: Record<string, GasTariffFile> = {
   IGL: parseGasTariffFile(iglJson),
+  MNGL: parseGasTariffFile(mnglJson),
+  GGL: parseGasTariffFile(gglJson),
 }
 
 export function getGasTariff(cgdCode: string): GasTariffFile {

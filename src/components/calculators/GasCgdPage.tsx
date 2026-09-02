@@ -1,13 +1,21 @@
 import Link from 'next/link'
 import GasCgdBillCalculator from '@/components/calculators/GasCgdBillCalculator'
 import PngVsLpgComparison from '@/components/calculators/PngVsLpgComparison'
+import GasCgdComparisonTable from '@/components/gas/GasCgdComparisonTable'
+import GasConsumptionReferenceTable from '@/components/gas/GasConsumptionReferenceTable'
+import GasFormulaBlock from '@/components/gas/GasFormulaBlock'
+import GasNeighborDiagnostic from '@/components/gas/GasNeighborDiagnostic'
 import SplitHero from '@/components/SplitHero'
 import { GAS_COMPANIES } from '@/data/gas-companies'
-import { computeGasBill, getGasTariff } from '@/lib/calc/gas'
+import { computeGasBill, getGasTariff, gasTariffRegistry } from '@/lib/calc/gas'
 import { formatINR, formatIsoDate } from '@/lib/format'
 import { breadcrumbLd } from '@/lib/seo'
 
 const SITE = 'https://desimetrics.com'
+
+/** Every CGD with a real tariff file — used for the honest multi-provider
+ *  comparison. Only IGL/MNGL/GGL exist today; more join as we verify them. */
+const REAL_TARIFF_CGD_CODES = Object.keys(gasTariffRegistry)
 
 export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: string }) {
   const tariff = getGasTariff(cgdCode)
@@ -19,16 +27,31 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
   const heroExample = lowExample
 
   const otherCgds = GAS_COMPANIES.filter((c) => c.slug !== slug).slice(0, 3)
+  const hasMultiCgdComparison = REAL_TARIFF_CGD_CODES.length > 1
 
   const tocLabel = tariff.billingCycle === 'bimonthly' ? '~60 days' : '~30 days'
+
+  // Real rate spread across every CGD we've sourced — used in the "why most
+  // calculators are wrong" section instead of an invented claim.
+  const allRates = REAL_TARIFF_CGD_CODES.map((code) => getGasTariff(code))
+  const cheapestTariff = [...allRates].sort((a, b) => a.slabs[0].ratePerSCM - b.slabs[0].ratePerSCM)[0]
+  const priciestTariff = [...allRates].sort((a, b) => b.slabs[0].ratePerSCM - a.slabs[0].ratePerSCM)[0]
+  const rateSpreadPercent =
+    cheapestTariff && priciestTariff && cheapestTariff.cgdCode !== priciestTariff.cgdCode
+      ? Math.round(
+          ((priciestTariff.slabs[0].ratePerSCM - cheapestTariff.slabs[0].ratePerSCM) /
+            cheapestTariff.slabs[0].ratePerSCM) *
+            100,
+        )
+      : null
 
   const faqs = [
     {
       q: `How is my ${tariff.cgdName} bill calculated?`,
-      a: `Your SCM (standard cubic metre) consumption is multiplied by ${tariff.cgdName}'s current per-SCM rate, plus a flat fixed/meter charge for the billing cycle. ${tariff.cgdCode} does not use telescopic slabs for domestic PNG — every SCM is billed at the same rate.`,
+      a: `Your SCM (standard cubic metre) consumption is multiplied by ${tariff.cgdName}'s current per-SCM rate, plus a flat fixed/meter charge for the billing cycle. ${tariff.cgdCode} does not use telescopic slabs for domestic PNG — every SCM is billed at the same rate. See the full formula breakdown above.`,
     },
     {
-      q: 'What is an SCM, and how much cooking does it represent?',
+      q: 'What is an SCM and how much cooking does it represent?',
       a: 'A Standard Cubic Metre (SCM) is the billing unit for piped natural gas, roughly equivalent to one day of standard cooking (two meals) for an average family on a typical domestic burner — a useful mental benchmark, not an exact figure since actual usage varies by household size and cooking habits.',
     },
     {
@@ -37,19 +60,19 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
     },
     {
       q: 'Is PNG cheaper than LPG cylinders?',
-      a: 'It depends on your consumption and local LPG price — use the PNG vs LPG comparison below with your own numbers rather than assuming either is always cheaper. PNG generally has lower per-unit-energy cost but no cylinder-delivery hassle either way, while LPG doesn\'t require a fixed pipeline connection.',
+      a: 'It depends on your consumption and local LPG price — use the PNG vs LPG comparison below with your own numbers rather than assuming either is always cheaper. PNG generally has a lower per-unit-energy cost but no cylinder-delivery hassle either way, while LPG doesn\'t require a fixed pipeline connection.',
     },
     {
       q: 'Why does my gas bill increase in winter?',
       a: 'Colder months bring more stovetop cooking time and, in homes that have one, more use of a gas geyser for hot water — both add SCM consumption. A 10-15% seasonal bump over your summer baseline is common and not a sign of a leak or meter fault by itself.',
     },
     {
-      q: `How do I submit my ${tariff.cgdCode} meter reading if the reader can't access my meter?`,
-      a: `Most CGDs, including ${tariff.cgdCode}, let you photograph the meter's black digit display and submit it via their customer app or website self-reading option when the meter reader can't access your property — check your provider's app for a "submit reading" or "self meter reading" feature.`,
+      q: 'Gas ka bill kitna aata hai ek normal ghar mein?',
+      a: `For an average household cooking two meals a day, expect somewhere around 40-60 SCM per bi-monthly cycle — on ${tariff.cgdCode}'s real rate that works out to roughly ${formatINR(computeGasBill(tariff, { scmConsumed: 50 }).total)} for the cycle (about ${formatINR(computeGasBill(tariff, { scmConsumed: 50 }).monthlyEquivalent?.total ?? computeGasBill(tariff, { scmConsumed: 50 }).total)}/month). Your actual bill depends on household size and cooking habits — use the calculator above for your own numbers.`,
     },
     {
-      q: 'Is PNG safer than LPG cylinders?',
-      a: 'Both are safe when installed and maintained correctly. Piped natural gas is lighter than air and disperses upward in a leak, while LPG is heavier than air and can pool near the floor — a factual difference in leak behavior, not a claim that one is broadly unsafe. Follow standard safety practice either way: regular leak checks, proper ventilation, and prompt professional attention to any gas smell.',
+      q: 'PNG aur LPG mein kya farak hai?',
+      a: 'PNG (piped natural gas) arrives continuously through an underground pipeline connection and is billed by metered SCM consumption, with no cylinder to book or store. LPG (liquefied petroleum gas) comes in a physical cylinder you book, collect or have delivered, and pay for upfront per cylinder — see our PNG vs LPG comparison below for the actual cost difference at your usage.',
     },
     {
       q: 'What is the fixed charge on my PNG bill for?',
@@ -60,8 +83,8 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
       a: `${tariff.cgdName} provides an online customer portal and mobile app for checking consumption history, viewing bills and paying online — check their official website for the current portal link, since these occasionally change.`,
     },
     {
-      q: 'How often are PNG tariff rates updated, and how do you keep this calculator accurate?',
-      a: `CGD tariffs change periodically following PNGRB and provider notifications. We date every tariff figure with an effective-from and last-verified date (shown below) and cite the source — check that date against your own recent bill, since a rate change between our last verification and today would not yet be reflected here.`,
+      q: "How often is this calculator's tariff data verified?",
+      a: `We date every tariff figure with an effective-from and last-verified date, shown in the tariff table above and the footer of this page, and cite the source. ${tariff.cgdCode}'s rate was last verified ${formatIsoDate(tariff.lastVerified)} — check that date against your own recent bill, since a rate change between our last verification and today wouldn't yet be reflected here.`,
     },
   ]
 
@@ -88,12 +111,23 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
     '@context': 'https://schema.org',
     '@type': 'Dataset',
     name: `${tariff.cgdName} domestic PNG tariff`,
-    description: `Piped natural gas (PNG) domestic tariff for ${tariff.cgdName}, effective ${tariff.effectiveFrom}.`,
+    description: `Piped natural gas (PNG) domestic tariff for ${tariff.cgdName}, effective ${tariff.effectiveFrom} — also underlies the per-CGD comparison and consumption reference tables on this page.`,
     url: `${SITE}${path}#tariff-table`,
     dateModified: tariff.lastVerified,
     license: tariff.sourceUrl,
     distribution: [
       { '@type': 'DataDownload', encodingFormat: 'text/html', contentUrl: tariff.sourceUrl },
+    ],
+  }
+  const howToLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `How to calculate your ${tariff.cgdCode} PNG gas bill`,
+    step: [
+      { '@type': 'HowToStep', position: 1, text: `Select ${tariff.cgdCode} as your CGD/provider.` },
+      { '@type': 'HowToStep', position: 2, text: 'Enter your SCM consumption from your meter or last bill.' },
+      { '@type': 'HowToStep', position: 3, text: 'Choose your connection type, if applicable.' },
+      { '@type': 'HowToStep', position: 4, text: 'Get your itemised bill — gas charge, fixed charge and total.' },
     ],
   }
   const breadcrumb = breadcrumbLd([
@@ -111,14 +145,14 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           { label: tariff.cgdCode, href: path },
         ]}
         badgeLabel={`${tariff.citiesServed[0]} · ${tariff.cgdCode} · ${tariff.billingCycle} billing`}
-        h1={`${tariff.cgdName} (${tariff.cgdCode}) Bill Calculator`}
-        subtitle={`Estimate your ${tariff.cgdCode} piped natural gas (PNG) bill using their real domestic tariff — not a self-entered rate. Covers ${tariff.citiesServed.slice(0, 3).join(', ')}${tariff.citiesServed.length > 3 ? ' and more' : ''}.`}
+        h1={`${tariff.cgdName} (${tariff.cgdCode}) PNG Gas Bill Calculator`}
+        subtitle={`Estimate your monthly ${tariff.cgdCode} piped natural gas (PNG) bill using their real domestic tariff — not a self-entered rate. Covers ${tariff.citiesServed.slice(0, 3).join(', ')}${tariff.citiesServed.length > 3 ? ' and more' : ''}, billed ${tariff.billingCycle}.`}
         primaryCta={{ label: `Calculate My ${tariff.cgdCode} Bill`, href: '#calculator', emoji: '🔥' }}
         secondaryCta={{ label: 'All gas providers →', href: '/gas' }}
         statChips={[
-          { icon: '🔥', big: `₹${topRate.toFixed(2)}`, small: 'Rate per SCM', tone: 'hub' },
+          { icon: '🔥', big: `${formatINR(topRate)}`, small: 'Rate per SCM', tone: 'hub' },
           { icon: '📅', big: tariff.billingCycle === 'bimonthly' ? 'Bi-monthly' : 'Monthly', small: 'Billing', tone: 'hub' },
-          { icon: '➕', big: formatINR(tariff.fixedCharge), small: 'Fixed charge', tone: 'hub' },
+          { icon: '➕', big: 'Free', small: 'No login', tone: 'hub' },
           { icon: '✓', big: formatIsoDate(tariff.lastVerified), small: 'Verified', tone: 'seal-red' },
         ]}
         resultCard={
@@ -152,6 +186,34 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <GasCgdBillCalculator cgdCode={tariff.cgdCode} cgdName={tariff.cgdName} />
         </section>
 
+        <section aria-labelledby="how-to" className="mb-10 scroll-mt-20">
+          <h2 id="how-to" className="font-display mb-4 text-2xl font-semibold">
+            How to calculate your {tariff.cgdCode} PNG gas bill
+          </h2>
+          <ol className="space-y-3">
+            {[
+              `Select ${tariff.cgdCode} as your CGD/provider.`,
+              'Enter your SCM consumption from your meter or last bill.',
+              'Choose your connection type, if applicable.',
+              'Get your itemised bill — gas charge, fixed charge and total.',
+            ].map((s, i) => (
+              <li key={i} className="flex gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hub-gas font-display text-xs font-bold text-white">
+                  {i + 1}
+                </span>
+                <span className="text-ash/80 dark:text-gazette-cream/70">{s}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section aria-labelledby="reference" className="mb-10 scroll-mt-20">
+          <h2 id="reference" className="font-display mb-2 text-2xl font-semibold">
+            PNG consumption — quick reference table
+          </h2>
+          <GasConsumptionReferenceTable />
+        </section>
+
         <section aria-labelledby="scm" className="mb-10 scroll-mt-20">
           <h2 id="scm" className="font-display mb-2 text-2xl font-semibold">
             Understanding SCM units
@@ -178,6 +240,69 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
             monthly-equivalent figure the calculator shows above for a fair,
             like-for-like comparison.
           </p>
+        </section>
+
+        <section aria-labelledby="wrong" className="mb-10 scroll-mt-20">
+          <h2 id="wrong" className="font-display mb-4 text-2xl font-semibold">
+            Why most gas bill calculators are wrong in 2026
+          </h2>
+          <div className="space-y-4">
+            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+                They use a flat, generic rate
+              </p>
+              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+                Most gas calculators ask you to type in your own per-SCM rate,
+                or quietly apply one national-average figure. Real PNG tariffs
+                vary a lot by CGD
+                {rateSpreadPercent !== null && cheapestTariff && priciestTariff ? (
+                  <>
+                    {' '}
+                    — as of today, {cheapestTariff.cgdCode} charges{' '}
+                    {formatINR(cheapestTariff.slabs[0].ratePerSCM)}/SCM while{' '}
+                    {priciestTariff.cgdCode} charges{' '}
+                    {formatINR(priciestTariff.slabs[0].ratePerSCM)}/SCM — a{' '}
+                    {rateSpreadPercent}% difference for the exact same
+                    consumption, computed live from our own tariff files, not
+                    invented for this page.
+                  </>
+                ) : (
+                  '.'
+                )}
+              </p>
+            </div>
+            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+                They ignore bi-monthly billing confusion
+              </p>
+              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+                Most PNG connections bill every two months, but generic
+                calculators present the total as if it were a monthly figure —
+                leaving users thinking their gas bill just doubled when
+                actually it&apos;s covering twice the period. We always show
+                the monthly-equivalent figure alongside the real cycle total.
+              </p>
+            </div>
+            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+                They skip the fixed/meter charge
+              </p>
+              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+                Many quick calculators price only the SCM consumption and
+                quietly drop the separate fixed/meter charge every CGD
+                applies — understating the real bill by exactly that amount
+                every single cycle. Our formula includes it; see the
+                breakdown below.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="formula" className="mb-10 scroll-mt-20">
+          <h2 id="formula" className="font-display mb-4 text-2xl font-semibold">
+            The correct PNG billing formula
+          </h2>
+          <GasFormulaBlock cgdCode={tariff.cgdCode} />
         </section>
 
         <section aria-labelledby="tariff-table" className="mb-10 scroll-mt-20">
@@ -255,6 +380,28 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           </div>
         </section>
 
+        {hasMultiCgdComparison && (
+          <section aria-labelledby="cgd-comparison" className="mb-10 scroll-mt-20">
+            <h2 id="cgd-comparison" className="font-display mb-2 text-2xl font-semibold">
+              How per-CGD billing changes your gas bill
+            </h2>
+            <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+              The exact same <strong>20 SCM</strong> — priced at each
+              provider&apos;s real tariff, computed live by this
+              calculator&apos;s own engine. We only compare CGDs with a
+              source-verified tariff on file, so this list grows as we add more:
+            </p>
+            <GasCgdComparisonTable scmConsumed={20} cgdCodes={REAL_TARIFF_CGD_CODES} />
+          </section>
+        )}
+
+        <section aria-labelledby="neighbor" className="mb-10 scroll-mt-20">
+          <h2 id="neighbor" className="font-display mb-4 text-2xl font-semibold">
+            Why your gas bill might be higher than your neighbor&apos;s
+          </h2>
+          <GasNeighborDiagnostic />
+        </section>
+
         <section aria-labelledby="png-vs-lpg" className="mb-10 scroll-mt-20">
           <h2 id="png-vs-lpg" className="font-display mb-2 text-2xl font-semibold">
             PNG vs LPG cylinder — which costs less for you?
@@ -307,6 +454,25 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           </p>
         </section>
 
+        <section aria-labelledby="pngrb" className="mb-10 scroll-mt-20">
+          <h2 id="pngrb" className="font-display mb-2 text-2xl font-semibold">
+            The PNGRB tariff landscape: how the math changes
+          </h2>
+          <p className="text-ash/80 dark:text-gazette-cream/70">
+            The <strong>Petroleum and Natural Gas Regulatory Board (PNGRB)</strong>{' '}
+            oversees India&apos;s city gas distribution framework, but unlike
+            electricity, individual CGD tariffs aren&apos;t set by a single
+            state regulator — each CGD revises its own domestic PNG price
+            periodically, largely tracking input gas costs, so rates can move
+            up or down several times a year and don&apos;t move in lockstep
+            across providers. That&apos;s exactly why we price every
+            calculator against a specific, dated CGD tariff rather than one
+            assumed national rate — see the effective-from and last-verified
+            dates on the tariff table above, and always check them against
+            your own current bill.
+          </p>
+        </section>
+
         <section aria-labelledby="meter-reading" className="mb-10 scroll-mt-20">
           <h2 id="meter-reading" className="font-display mb-2 text-2xl font-semibold">
             How to submit your meter reading
@@ -322,9 +488,9 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           </p>
         </section>
 
-        <section aria-labelledby="related" className="mb-10 scroll-mt-20">
-          <h2 id="related" className="font-display mb-4 text-2xl font-semibold">
-            Related calculators
+        <section aria-labelledby="ecosystem" className="mb-10 scroll-mt-20">
+          <h2 id="ecosystem" className="font-display mb-4 text-2xl font-semibold">
+            Your gas energy ecosystem
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
@@ -337,6 +503,54 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
               </p>
               <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
                 Size your own LPG cylinder usage and cost per day.
+              </p>
+            </Link>
+            <Link
+              href="/electricity"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>⚡</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                Electricity bill calculators
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                Real DISCOM tariffs for all 36 states.
+              </p>
+            </Link>
+            <Link
+              href="/ac"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>❄️</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                AC running cost
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                What your AC adds to the same electricity bill.
+              </p>
+            </Link>
+            <Link
+              href="/appliances"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>🔌</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                Appliance calculators
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                Fan, fridge, inverter sizing and more.
+              </p>
+            </Link>
+            <Link
+              href="/financial"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            >
+              <span className="text-xl" aria-hidden>🧮</span>
+              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                Financial calculators
+              </p>
+              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                GST, SIP, gratuity and tax-regime maths.
               </p>
             </Link>
             {otherCgds.map((c) => (
@@ -354,19 +568,38 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
                 </p>
               </Link>
             ))}
-            <Link
-              href="/electricity"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
-            >
-              <span className="text-xl" aria-hidden>⚡</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
-                Electricity bill calculators
-              </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
-                Real DISCOM tariffs for all 36 states.
-              </p>
-            </Link>
           </div>
+        </section>
+
+        <section aria-labelledby="guides" className="mb-10 scroll-mt-20">
+          <h2 id="guides" className="font-display mb-4 text-2xl font-semibold">
+            Related guides: understand your gas bill
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <a
+              href="#scm"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+            >
+              How PNG billing units (SCM) work →
+            </a>
+            <a
+              href="#meter-reading"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+            >
+              How to read/submit your gas meter →
+            </a>
+            <a
+              href="#png-safety"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+            >
+              PNG safety basics →
+            </a>
+          </div>
+          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+            Standalone deep-dive guides on connection process and installation
+            are on our roadmap — for now, each of these jumps to the relevant
+            section on this page.
+          </p>
         </section>
 
         <section aria-labelledby="faq" className="mb-10 scroll-mt-20">
@@ -419,6 +652,10 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
         />
         <script
           type="application/ld+json"

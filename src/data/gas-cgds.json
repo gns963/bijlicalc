@@ -9,7 +9,7 @@
     },
     {
       "region": "Pune / Nashik",
-      "cgds": [{ "slug": "mngl", "code": "MNGL", "name": "Maharashtra Natural Gas Limited", "hasTariffFile": false }]
+      "cgds": [{ "slug": "mngl", "code": "MNGL", "name": "Maharashtra Natural Gas Limited", "hasTariffFile": true }]
     },
     {
       "region": "Mumbai",
@@ -17,7 +17,7 @@
     },
     {
       "region": "Gujarat / parts of Punjab, Rajasthan, Haryana",
-      "cgds": [{ "slug": "gujarat-gas", "code": "GGL", "name": "Gujarat Gas Limited", "hasTariffFile": false }]
+      "cgds": [{ "slug": "gujarat-gas", "code": "GGL", "name": "Gujarat Gas Limited", "hasTariffFile": true }]
     },
     {
       "region": "Bengaluru / Meerut / Gwalior",

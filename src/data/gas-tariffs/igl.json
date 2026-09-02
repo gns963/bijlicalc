@@ -4,11 +4,11 @@
   "citiesServed": ["Delhi", "Noida", "Ghaziabad", "Greater Noida", "Gurugram", "Rewari", "Kanpur", "Fatehpur", "Muzaffarnagar", "Shamli", "Karnal", "Panipat"],
   "billingCycle": "bimonthly",
   "slabs": [
-    { "minSCM": 0, "maxSCM": null, "ratePerSCM": 53.59 }
+    { "minSCM": 0, "maxSCM": null, "ratePerSCM": 49.59 }
   ],
   "fixedCharge": 45,
-  "effectiveFrom": "2026-01-01",
-  "sourceUrl": "https://www.iglonline.net",
-  "lastVerified": "2026-08-31",
-  "verifiedBy": "UNVERIFIED — placeholder figure based on IGL's general historical domestic PNG tariff structure (flat ₹/SCM, no telescopic slabs); pending cross-check against IGL's current official PNGRB-approved tariff notification before being treated as billing-grade"
+  "effectiveFrom": "2026-04-08",
+  "sourceUrl": "https://www.businesstoday.in/india/story/lpg-cng-png-prices-today-september-2-check-latest-rates-in-delhi-mumbai-kolkata-other-cities-552712-2026-09-02",
+  "lastVerified": "2026-09-02",
+  "verifiedBy": "SOURCED (secondary) — Delhi domestic PNG rate (₹49.59/SCM) cross-confirmed across two independent news reports dated 2026-04-08 and 2026-09-02, consistent with IGL's own Jan-2026 rate-cut announcement (₹47.89/SCM) plus this April revision (+₹1.70/SCM); still current as of last-verified date. The ₹45 fixed/meter charge is NOT independently re-verified in this pass — pending cross-check against an official IGL tariff notification or a real customer bill."
 }

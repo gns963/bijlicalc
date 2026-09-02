@@ -1,0 +1,14 @@
+{
+  "cgdCode": "MNGL",
+  "cgdName": "Maharashtra Natural Gas Limited",
+  "citiesServed": ["Pune", "Pimpri-Chinchwad", "Hinjewadi", "Chakan", "Nashik"],
+  "billingCycle": "bimonthly",
+  "slabs": [
+    { "minSCM": 0, "maxSCM": null, "ratePerSCM": 51.50 }
+  ],
+  "fixedCharge": 0,
+  "effectiveFrom": "2026-06-16",
+  "sourceUrl": "https://mngl.in/domestic-png/png-rate-card",
+  "lastVerified": "2026-09-02",
+  "verifiedBy": "SOURCED — rate (₹51.50/SCM) taken directly from MNGL's own official rate card (PMC + PCMC area, effective midnight 16 Jun 2026). MNGL applies a 4-SCM-per-cycle minimum-consumption rule (billed as if you used 4 SCM even if actual usage is lower), which this calculator does NOT model — real bills for very low usage (under 4 SCM/cycle) will be higher than this estimate. No separate flat fixed/meter charge beyond that minimum-consumption rule was found on the official rate card; one-time registration (₹500), late-payment (₹100) and reconnection (₹1,500) charges are excluded since they aren't part of a regular bill."
+}

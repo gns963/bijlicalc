@@ -1,0 +1,14 @@
+{
+  "cgdCode": "GGL",
+  "cgdName": "Gujarat Gas Limited",
+  "citiesServed": ["Ahmedabad", "Surat", "Gandhinagar", "Anand"],
+  "billingCycle": "bimonthly",
+  "slabs": [
+    { "minSCM": 0, "maxSCM": null, "ratePerSCM": 55.27 }
+  ],
+  "fixedCharge": 0,
+  "effectiveFrom": "2026-09-02",
+  "sourceUrl": "https://www.goodreturns.in/png-price-in-gujarat-s12.html",
+  "lastVerified": "2026-09-02",
+  "verifiedBy": "SOURCED (secondary) — rate (₹55.27/SCM) is Ahmedabad's domestic PNG price as reported 2 Sep 2026; pending cross-check against GGL's own official tariff notification (GGL publishes a PDF tariff card that could not be machine-read in this pass). GGL's price varies significantly by zone — on the same date, reported rates ranged from ₹46.82/SCM (Anand) to ₹55.79/SCM (Banas Kantha), so Ahmedabad's rate is used here as the flagship-city reference, NOT a single uniform Gujarat-wide rate; other GGL-served towns may differ meaningfully. GGL confirms a bi-monthly billing cycle and a ₹100 minimum bill for zero-consumption cycles, but no specific fixed/meter charge amount was confirmed from public sources — real bills may run modestly higher than this estimate."
+}
