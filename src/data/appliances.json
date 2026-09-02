@@ -27,7 +27,8 @@
         { "name": "Induction Cooktop", "watts": 2000, "typicalHoursPerDay": 1 },
         { "name": "Electric Kettle", "watts": 1500, "typicalHoursPerDay": 0.3 },
         { "name": "Mixer/Grinder", "watts": 600, "typicalHoursPerDay": 0.3 },
-        { "name": "Toaster", "watts": 800, "typicalHoursPerDay": 0.2 }
+        { "name": "Toaster", "watts": 800, "typicalHoursPerDay": 0.2 },
+        { "name": "Water Purifier / RO", "watts": 60, "typicalHoursPerDay": 2 }
       ]
     },
     {
@@ -71,6 +72,12 @@
       "appliances": [
         { "name": "Room Heater (halogen)", "watts": 1000, "typicalHoursPerDay": 4 },
         { "name": "Oil-Filled Radiator", "watts": 2000, "typicalHoursPerDay": 4 }
+      ]
+    },
+    {
+      "category": "Power Backup",
+      "appliances": [
+        { "name": "Inverter/UPS (charging)", "watts": 180, "typicalHoursPerDay": 5 }
       ]
     }
   ]
