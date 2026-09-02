@@ -566,11 +566,11 @@ export default function Home() {
             </span>
             <h2
               id="rate-compare"
-              className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink-navy dark:text-gazette-cream"
+              className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink-navy"
             >
               Who pays the least — and the most — per unit?
             </h2>
-            <p className="mx-auto mt-2 max-w-2xl text-ash/70 dark:text-gazette-cream/60">
+            <p className="mx-auto mt-2 max-w-2xl text-ash/70">
               Top domestic slab rate by state, computed straight from each
               DISCOM&apos;s own tariff file — not a national average.
             </p>
@@ -585,9 +585,9 @@ export default function Home() {
                   <li key={r.code}>
                     <Link
                       href={r.href}
-                      className="flex items-center justify-between rounded-lg px-2 py-1.5 hover:bg-white/60 dark:hover:bg-white/5"
+                      className="flex items-center justify-between rounded-lg px-2 py-1.5 hover:bg-white/60"
                     >
-                      <span className="text-sm font-medium text-ink-navy dark:text-gazette-cream">
+                      <span className="text-sm font-medium text-ink-navy">
                         {r.state} <span className="text-ash/50">({r.code})</span>
                       </span>
                       <span className="font-display font-bold tabular-nums text-spark-teal">
@@ -607,9 +607,9 @@ export default function Home() {
                   <li key={r.code}>
                     <Link
                       href={r.href}
-                      className="flex items-center justify-between rounded-lg px-2 py-1.5 hover:bg-white/60 dark:hover:bg-white/5"
+                      className="flex items-center justify-between rounded-lg px-2 py-1.5 hover:bg-white/60"
                     >
-                      <span className="text-sm font-medium text-ink-navy dark:text-gazette-cream">
+                      <span className="text-sm font-medium text-ink-navy">
                         {r.state} <span className="text-ash/50">({r.code})</span>
                       </span>
                       <span className="font-display font-bold tabular-nums text-caution-amber">
@@ -624,7 +624,7 @@ export default function Home() {
         </section>
 
         {/* ------------------------------------------------------------- State grid */}
-        <section aria-labelledby="states" className="bg-gazette-cream px-4 py-16 dark:bg-[#02181c]">
+        <section aria-labelledby="states" className="bg-gazette-cream px-4 py-16">
           <div className="mx-auto max-w-6xl">
             <div className="text-center">
               <span className="text-xs font-semibold tracking-[0.2em] text-brass uppercase">
@@ -632,7 +632,7 @@ export default function Home() {
               </span>
               <h2
                 id="states"
-                className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink-navy dark:text-gazette-cream"
+                className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink-navy"
               >
                 Pick your state
               </h2>
@@ -644,9 +644,9 @@ export default function Home() {
                   <li key={s.name}>
                     <Link
                       href={s.href}
-                      className="flex h-full flex-col rounded-xl border border-hairline bg-paper p-4 transition hover:border-brass hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+                      className="flex h-full flex-col rounded-xl border border-hairline bg-paper p-4 transition hover:border-brass hover:shadow-sm"
                     >
-                      <span className="font-semibold text-ink-navy dark:text-gazette-cream">
+                      <span className="font-semibold text-ink-navy">
                         {s.name}
                       </span>
                       <span className="mt-1 text-xs text-brass">{label}</span>
@@ -656,12 +656,12 @@ export default function Home() {
                   <li
                     key={s.name}
                     title="Coming soon"
-                    className="cursor-not-allowed rounded-xl border border-hairline bg-mist p-4 opacity-60 dark:border-white/10 dark:bg-slate-900"
+                    className="cursor-not-allowed rounded-xl border border-hairline bg-mist p-4 opacity-60"
                   >
-                    <span className="font-medium text-ash/60 dark:text-gazette-cream/50">
+                    <span className="font-medium text-ash/60">
                       {s.name}
                     </span>
-                    <span className="mt-1 block text-xs text-ash/40 dark:text-gazette-cream/30">
+                    <span className="mt-1 block text-xs text-ash/40">
                       Coming soon
                     </span>
                   </li>
@@ -700,13 +700,13 @@ export default function Home() {
         </section>
 
         {/* -------------------------------------------------------- How we verify */}
-        <section className="bg-gazette-cream dark:bg-[#02181c]">
+        <section className="bg-gazette-cream">
           <div className="mx-auto max-w-6xl px-4 py-16">
             <div className="text-center">
               <span className="text-xs font-semibold tracking-[0.2em] text-brass uppercase">
                 Built on the record, not guesswork
               </span>
-              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink-navy dark:text-gazette-cream">
+              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink-navy">
                 How we verify every tariff
               </h2>
             </div>
@@ -731,7 +731,7 @@ export default function Home() {
               ].map((s) => (
                 <div
                   key={s.n}
-                  className="relative rounded-2xl border border-hairline bg-paper p-6 dark:border-white/10 dark:bg-slate-900"
+                  className="relative rounded-2xl border border-hairline bg-paper p-6"
                 >
                   <div className="flex items-center gap-3">
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brass font-display text-lg font-bold text-white">
@@ -743,10 +743,10 @@ export default function Home() {
                       </span>
                     )}
                   </div>
-                  <h3 className="mt-4 font-display text-lg font-bold text-ink-navy dark:text-gazette-cream">
+                  <h3 className="mt-4 font-display text-lg font-bold text-ink-navy">
                     {s.title}
                   </h3>
-                  <p className="mt-1 text-sm text-ash/80 dark:text-gazette-cream/70">
+                  <p className="mt-1 text-sm text-ash/80">
                     {s.body}
                   </p>
                 </div>
@@ -766,7 +766,7 @@ export default function Home() {
         {/* -------------------------------------------------------------- Blog */}
         <section className="mx-auto max-w-6xl px-4 py-16">
           <div className="flex items-end justify-between">
-            <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink-navy dark:text-gazette-cream">
+            <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink-navy">
               From the blog
             </h2>
             <Link
@@ -781,12 +781,12 @@ export default function Home() {
               <Link
                 key={p.title}
                 href={p.href}
-                className="flex flex-col rounded-2xl border border-hairline bg-paper p-6 transition hover:border-brass hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+                className="flex flex-col rounded-2xl border border-hairline bg-paper p-6 transition hover:border-brass hover:shadow-sm"
               >
                 <span className="w-fit rounded-full bg-brass/10 px-2.5 py-0.5 text-xs font-semibold text-brass">
                   {p.tag}
                 </span>
-                <h3 className="mt-3 flex-1 font-display text-lg font-bold text-ink-navy dark:text-gazette-cream">
+                <h3 className="mt-3 flex-1 font-display text-lg font-bold text-ink-navy">
                   {p.title}
                 </h3>
                 <span className="mt-4 text-sm font-semibold text-brass">
@@ -800,25 +800,25 @@ export default function Home() {
         {/* --------------------------------------------------------------- FAQ */}
         <section
           aria-labelledby="home-faq"
-          className="border-t border-hairline bg-gazette-cream dark:border-white/10 dark:bg-[#02181c]"
+          className="border-t border-hairline bg-gazette-cream"
         >
           <div className="mx-auto max-w-3xl px-4 py-16">
             <h2
               id="home-faq"
-              className="text-center font-display text-3xl font-extrabold tracking-tight text-ink-navy dark:text-gazette-cream"
+              className="text-center font-display text-3xl font-extrabold tracking-tight text-ink-navy"
             >
               Frequently asked questions
             </h2>
-            <div className="mt-8 divide-y divide-hairline dark:divide-white/10">
+            <div className="mt-8 divide-y divide-hairline">
               {faqs.map((f, i) => (
                 <details key={i} className="group py-4">
-                  <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-ink-navy dark:text-gazette-cream">
+                  <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-ink-navy">
                     {f.q}
                     <span className="ml-4 text-brass transition group-open:rotate-45">
                       +
                     </span>
                   </summary>
-                  <p className="mt-2 text-ash/80 dark:text-gazette-cream/70">
+                  <p className="mt-2 text-ash/80">
                     {f.a}
                   </p>
                 </details>
