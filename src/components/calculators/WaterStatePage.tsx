@@ -111,48 +111,76 @@ export default function WaterStatePage({ state }: { state: string }) {
       </section>
 
       <section aria-labelledby="charges-explained" className="mb-10 scroll-mt-20">
-        <h2 id="charges-explained" className="font-display mb-2 text-2xl font-semibold">
+        <h2 id="charges-explained" className="font-display mb-4 text-2xl font-semibold">
           Sewerage &amp; fixed charges explained
         </h2>
-        <div className="space-y-3 text-ash/80">
-          <p>
-            <strong>Sewerage charge.</strong> Many water boards add a
-            wastewater treatment fee on top of the volumetric water charge,
-            commonly billed as a percentage of it — check your last bill for
-            the exact line item, and roll it into the rate or fixed charge
-            you enter above so the total reflects your real bill.
-          </p>
-          <p>
-            <strong>Fixed / meter charge.</strong> A flat amount per billing
-            period, often based on your connection&apos;s meter size,
-            charged regardless of how much water you use — it covers the
-            cost of maintaining your connection and meter.
-          </p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="font-display font-bold text-ink-navy">Sewerage charge</p>
+            <p className="mt-1 text-sm text-ash/70">
+              Many water boards add a wastewater treatment fee on top of the
+              volumetric water charge, commonly billed as a percentage of
+              it — check your last bill for the exact line item, and roll
+              it into the rate or fixed charge you enter above so the total
+              reflects your real bill.
+            </p>
+          </div>
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="font-display font-bold text-ink-navy">Fixed / meter charge</p>
+            <p className="mt-1 text-sm text-ash/70">
+              A flat amount per billing period, often based on your
+              connection&apos;s meter size, charged regardless of how much
+              water you use — it covers the cost of maintaining your
+              connection and meter.
+            </p>
+          </div>
         </div>
       </section>
 
       <section aria-labelledby="tanker" className="mb-10 scroll-mt-20">
-        <h2 id="tanker" className="font-display mb-2 text-2xl font-semibold">
+        <h2 id="tanker" className="font-display mb-4 text-2xl font-semibold">
           Piped water vs tanker/jar delivery
         </h2>
-        <p className="text-ash/80">
-          Piped municipal supply is almost always dramatically cheaper per
-          litre than tanker or 20L jar delivery, when it&apos;s reliably
-          available. As a rough sense of scale: a private water tanker
-          (typically 5,000-10,000 litres) commonly costs somewhere in the{' '}
-          <strong>₹500-1,500</strong> range in many Indian cities, and a 20L
-          branded jar commonly runs <strong>₹40-80</strong> — both figures
-          vary a lot by city and season, so check local rates for an exact
-          comparison. Either way, that works out to many times more per
-          litre than metered piped water.
-        </p>
+        <div className="rounded-xl border border-hairline bg-paper p-5">
+          <p className="text-ash/80">
+            Piped municipal supply is almost always dramatically cheaper per
+            litre than tanker or 20L jar delivery, when it&apos;s reliably
+            available — check local rates for an exact comparison, but
+            either way it typically works out to many times more per litre
+            than metered piped water.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <div className="rounded-lg border border-hairline bg-mist px-4 py-2.5">
+              <p className="text-[11px] font-semibold tracking-wide text-ash/50 uppercase">
+                Water tanker (5,000–10,000L)
+              </p>
+              <p className="font-display text-lg font-bold tabular-nums text-ink-navy">
+                ₹500–1,500
+              </p>
+            </div>
+            <div className="rounded-lg border border-hairline bg-mist px-4 py-2.5">
+              <p className="text-[11px] font-semibold tracking-wide text-ash/50 uppercase">
+                20L branded jar
+              </p>
+              <p className="font-display text-lg font-bold tabular-nums text-ink-navy">
+                ₹40–80
+              </p>
+            </div>
+          </div>
+          <p className="mt-2 text-xs text-ash/50">
+            Rough, commonly-cited ranges — vary by city and season.
+          </p>
+        </div>
       </section>
 
-      <section aria-labelledby="leaks" className="mb-10 scroll-mt-20">
-        <h2 id="leaks" className="font-display mb-2 text-2xl font-semibold">
+      <section
+        aria-labelledby="leaks"
+        className="mb-10 scroll-mt-20 rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-5"
+      >
+        <h2 id="leaks" className="font-display mb-2 text-xl font-bold text-ink-navy">
           Spotting a leak from your bill
         </h2>
-        <p className="text-ash/80">
+        <p className="text-sm text-ash/80">
           If your consumption jumps well above your usual monthly range with
           no change in household usage, a running cistern or a slow pipe
           leak is a common cause — both can waste hundreds of litres a month
