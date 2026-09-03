@@ -6,11 +6,15 @@ const LANGS = [
   { code: 'EN', label: 'English', ready: true },
   { code: 'HI', label: 'हिन्दी', ready: false },
   { code: 'TA', label: 'தமிழ்', ready: false },
+  { code: 'TE', label: 'తెలుగు', ready: false },
+  { code: 'MR', label: 'मराठी', ready: false },
+  { code: 'BN', label: 'বাংলা', ready: false },
+  { code: 'KN', label: 'ಕನ್ನಡ', ready: false },
+  { code: 'GU', label: 'ગુજરાતી', ready: false },
 ]
 
 export default function LanguageSwitcher({ transparent = false }: { transparent?: boolean }) {
   const [open, setOpen] = useState(false)
-  const [note, setNote] = useState('')
 
   return (
     <div className="relative">
@@ -30,25 +34,23 @@ export default function LanguageSwitcher({ transparent = false }: { transparent?
       {open && (
         <div
           role="menu"
-          className="absolute right-0 z-20 mt-1 w-40 overflow-hidden rounded-lg border border-hairline bg-paper shadow-lg"
+          className="absolute right-0 z-20 mt-1 w-44 overflow-hidden rounded-lg border border-hairline bg-paper shadow-lg"
         >
           {LANGS.map((l) => (
             <button
               key={l.code}
               role="menuitem"
               type="button"
+              disabled={!l.ready}
+              aria-disabled={!l.ready}
+              title={l.ready ? undefined : `${l.label} — coming soon`}
               onClick={() => {
-                if (l.ready) {
-                  setNote('')
-                  setOpen(false)
-                } else {
-                  setNote(`${l.label} coming soon`)
-                }
+                if (l.ready) setOpen(false)
               }}
-              className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-mist ${
+              className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm ${
                 l.ready
-                  ? 'font-semibold text-ash'
-                  : 'text-ash/40'
+                  ? 'font-semibold text-ash hover:bg-mist'
+                  : 'cursor-not-allowed text-ash/35'
               }`}
             >
               {l.label}
@@ -59,11 +61,6 @@ export default function LanguageSwitcher({ transparent = false }: { transparent?
               )}
             </button>
           ))}
-          {note && (
-            <p className="border-t border-hairline px-3 py-2 text-xs text-ash/60">
-              {note}
-            </p>
-          )}
         </div>
       )}
     </div>
