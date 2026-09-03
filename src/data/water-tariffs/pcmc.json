@@ -1,0 +1,27 @@
+{
+  "boardCode": "PCMC",
+  "boardName": "Pimpri Chinchwad Municipal Corporation",
+  "citiesServed": ["Pimpri", "Chinchwad", "Pimpri-Chinchwad"],
+  "billingCycle": "monthly",
+  "connectionTypes": [
+    {
+      "connectionType": "domestic",
+      "slabs": [
+        { "minKL": 0, "maxKL": 6, "ratePerKL": 0 },
+        { "minKL": 6.001, "maxKL": 22.5, "ratePerKL": 5.1 },
+        { "minKL": 22.501, "maxKL": 30, "ratePerKL": 10.21 },
+        { "minKL": 30.001, "maxKL": null, "ratePerKL": 15.46 }
+      ],
+      "sewerageChargePercent": 15,
+      "fixedChargeByMeterSize": {
+        "15mm": 0
+      },
+      "additionalFees": [],
+      "verifiedByNote": "Fixed/service charge amount was not found in the available source and is modeled as ₹0 rather than guessed — real PCMC bills likely include a nominal fixed charge not reflected here."
+    }
+  ],
+  "effectiveFrom": "2026-04-01",
+  "sourceUrl": "https://uppclbillcalculator.com/pcmc-water-bill-calculator/",
+  "lastVerified": "2026-09-04",
+  "verifiedBy": "SOURCED (secondary, single-source) — from one secondary aggregator (uppclbillcalculator.com), describing the rates as applying to \"2026-27 budget revisions\" without citing a specific PCMC resolution number, official notification, or precise effective date (2026-04-01 used as a reasonable fiscal-year-start estimate, not a confirmed date). The first 6 KL/month is genuinely free (a true allowance, not all-or-nothing like Delhi's scheme) with sewerage charge at 15% of the water charge. This is a weaker verification tier than DJB/CMWSSB — pending a second independent source or a primary PCMC tariff notification before being treated as fully billing-grade. Commercial/industrial tariffs not sourced."
+}

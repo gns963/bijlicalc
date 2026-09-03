@@ -1,4 +1,4 @@
-import { computeWaterBill, getWaterTariff } from '@/lib/calc/water'
+import { computeWaterBill, getConnectionTariff, getWaterTariff } from '@/lib/calc/water'
 import { formatINR } from '@/lib/format'
 
 /**
@@ -39,10 +39,10 @@ export default function WaterBoardComparisonTable({
                 {tariff.boardName} ({tariff.boardCode})
               </td>
               <td className="px-4 py-2 text-right tabular-nums">
-                {formatINR(tariff.slabs[0].ratePerKL)}
+                {formatINR(getConnectionTariff(tariff).slabs[0].ratePerKL)}
               </td>
               <td className="px-4 py-2 text-right tabular-nums">
-                {tariff.sewerageChargePercent}%
+                {getConnectionTariff(tariff).sewerageChargePercent}%
               </td>
               <td className="px-4 py-2 text-right font-semibold tabular-nums text-hub-water">
                 {formatINR(result.total)}

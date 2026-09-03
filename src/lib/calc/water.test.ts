@@ -3,6 +3,7 @@ import {
   calculateFullWaterBill,
   calculateWaterBill,
   computeWaterBill,
+  getConnectionTariff,
   getWaterTariff,
 } from './water'
 
@@ -55,10 +56,52 @@ describe('computeWaterBill / calculateFullWaterBill (DJB all-or-nothing rule)', 
   it('applies sewerage charge as a percentage of the water charge', () => {
     const tariff = getWaterTariff('DJB')
     const bill = computeWaterBill(tariff, { consumptionKl: 30 })
-    expect(bill.sewerageCharge).toBeCloseTo(bill.waterCharge * (tariff.sewerageChargePercent / 100), 2)
+    expect(bill.sewerageCharge).toBeCloseTo(bill.waterCharge * (getConnectionTariff(tariff).sewerageChargePercent / 100), 2)
   })
 
   it('throws for an unregistered board code', () => {
     expect(() => getWaterTariff('NOPE')).toThrow()
+  })
+
+  it('19 KL is still within the free threshold, 21 KL is not', () => {
+    const tariff = getWaterTariff('DJB')
+    const at19 = computeWaterBill(tariff, { consumptionKl: 19 })
+    const at20 = computeWaterBill(tariff, { consumptionKl: 20 })
+    const at21 = computeWaterBill(tariff, { consumptionKl: 21 })
+    expect(at19.freeAllowanceApplied).toBe(true)
+    expect(at20.freeAllowanceApplied).toBe(true)
+    expect(at21.freeAllowanceApplied).toBe(false)
+    expect(at19.waterCharge).toBe(0)
+    expect(at20.waterCharge).toBe(0)
+    expect(at21.waterCharge).toBeGreaterThan(0)
+  })
+
+  it('has a real, sourced commercial connection type alongside domestic', () => {
+    const tariff = getWaterTariff('DJB')
+    const commercial = getConnectionTariff(tariff, 'commercial')
+    expect(commercial.connectionType).toBe('commercial')
+    expect(commercial.slabs[0].ratePerKL).toBeGreaterThan(getConnectionTariff(tariff, 'domestic').slabs[0].ratePerKL)
+  })
+})
+
+describe('computeWaterBill (PCMC — straightforward telescopic slabs, no all-or-nothing rule)', () => {
+  it('the first 6 KL band is priced at ₹0, not exempted via a free-allowance flag', () => {
+    const tariff = getWaterTariff('PCMC')
+    const bill = computeWaterBill(tariff, { consumptionKl: 6 })
+    expect(bill.freeAllowanceApplied).toBe(false)
+    expect(bill.waterCharge).toBe(0)
+  })
+
+  it('consumption above 6 KL is priced at the next slab, only for the excess', () => {
+    const bill = calculateFullWaterBill({ boardCode: 'PCMC', consumptionKl: 10 })
+    expect(bill.waterCharge).toBeGreaterThan(0)
+  })
+
+  it('billing scales smoothly across the 6 KL band boundary (no cliff-edge jump)', () => {
+    const at7 = calculateFullWaterBill({ boardCode: 'PCMC', consumptionKl: 7 })
+    const at8 = calculateFullWaterBill({ boardCode: 'PCMC', consumptionKl: 8 })
+    // No all-or-nothing rule here — one additional KL costs exactly one
+    // slab-rate's worth (₹5.10), not a multi-fold cliff-edge jump like DJB's.
+    expect(at8.waterCharge - at7.waterCharge).toBeCloseTo(5.1, 1)
   })
 })

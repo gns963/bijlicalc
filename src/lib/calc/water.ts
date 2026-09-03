@@ -44,10 +44,20 @@ export function calculateWaterBill(input: WaterBillInput): WaterBillResult {
 // honestly-flagged-unverified) tariff file in src/data/water-tariffs/.
 // ---------------------------------------------------------------------------
 
-import type { WaterSlab, WaterTariffFile } from '../../data/water-tariffs/_schema'
-import { parseWaterTariffFile } from '../../data/water-tariffs/_schema'
+import type { WaterConnectionType, WaterSlab, WaterTariffFile } from '../../data/water-tariffs/_schema'
+import { getConnectionTariff, parseWaterTariffFile } from '../../data/water-tariffs/_schema'
 import djbJson from '../../data/water-tariffs/djb.json'
 import cmwssbJson from '../../data/water-tariffs/cmwssb.json'
+import pcmcJson from '../../data/water-tariffs/pcmc.json'
+
+export type { WaterConnectionType } from '../../data/water-tariffs/_schema'
+export { getConnectionTariff } from '../../data/water-tariffs/_schema'
+
+/** Which connection types a board has real, sourced data for — drives
+ *  whether the UI shows tabs at all (most boards are domestic-only today). */
+export function availableConnectionTypes(tariff: WaterTariffFile): WaterConnectionType[] {
+  return tariff.connectionTypes.map((c) => c.connectionType)
+}
 
 export interface WaterSlabLine {
   fromKL: number
@@ -87,6 +97,7 @@ export interface RealWaterBillBreakdown {
   boardCode: string
   boardName: string
   billingCycle: WaterTariffFile['billingCycle']
+  connectionType: WaterConnectionType
   consumptionKl: number
   meterSize: string
 
@@ -110,6 +121,9 @@ export interface RealWaterBillInput {
   consumptionKl: number
   /** Defaults to the first meter size listed in the tariff file. */
   meterSize?: string
+  /** Defaults to 'domestic' — falls back to the first available type if a
+   *  board has no domestic entry (shouldn't happen in practice). */
+  connectionType?: WaterConnectionType
 }
 
 export function computeWaterBill(
@@ -119,11 +133,13 @@ export function computeWaterBill(
   const { consumptionKl } = input
   if (consumptionKl < 0) throw new Error('consumptionKl must be >= 0')
 
-  const meterSize = input.meterSize ?? Object.keys(tariff.fixedChargeByMeterSize)[0]
-  const fixedCharge = tariff.fixedChargeByMeterSize[meterSize]
+  const connection = getConnectionTariff(tariff, input.connectionType)
+
+  const meterSize = input.meterSize ?? Object.keys(connection.fixedChargeByMeterSize)[0]
+  const fixedCharge = connection.fixedChargeByMeterSize[meterSize]
   if (fixedCharge === undefined) {
     throw new Error(
-      `Unknown meter size "${meterSize}" for ${tariff.boardCode}. Available: ${Object.keys(tariff.fixedChargeByMeterSize).join(', ')}`,
+      `Unknown meter size "${meterSize}" for ${tariff.boardCode} (${connection.connectionType}). Available: ${Object.keys(connection.fixedChargeByMeterSize).join(', ')}`,
     )
   }
 
@@ -132,33 +148,33 @@ export function computeWaterBill(
   let slab: WaterSlabResult
 
   if (
-    tariff.freeAllowance?.type === 'allOrNothing' &&
-    consumptionKl <= tariff.freeAllowance.kl
+    connection.freeAllowance?.type === 'allOrNothing' &&
+    consumptionKl <= connection.freeAllowance.kl
   ) {
     // Within the free threshold — the whole water charge is waived.
     freeAllowanceApplied = true
     slab = { lines: [], subtotal: 0 }
     notes.push(
-      `Consumption is at or below the ${tariff.freeAllowance.kl} KL free threshold, so the entire water charge is waived — but crossing it by even 1 litre would make the FULL consumption billable, not just the excess.`,
+      `Consumption is at or below the ${connection.freeAllowance.kl} KL free threshold, so the entire water charge is waived — but crossing it by even 1 litre would make the FULL consumption billable, not just the excess.`,
     )
   } else {
     // Either no free allowance, a true allowance, or an all-or-nothing
     // threshold that's been crossed (billing the FULL consumption).
-    slab = calculateWaterSlabCharges(consumptionKl, tariff.slabs)
-    if (tariff.freeAllowance?.type === 'allOrNothing') {
+    slab = calculateWaterSlabCharges(consumptionKl, connection.slabs)
+    if (connection.freeAllowance?.type === 'allOrNothing') {
       notes.push(
-        `Consumption exceeded the ${tariff.freeAllowance.kl} KL free threshold, so the ENTIRE consumption is billed at slab rates — not just the amount above the threshold.`,
+        `Consumption exceeded the ${connection.freeAllowance.kl} KL free threshold, so the ENTIRE consumption is billed at slab rates — not just the amount above the threshold.`,
       )
-    } else if (tariff.freeAllowance?.type === 'trueAllowance') {
-      const freeKl = Math.min(tariff.freeAllowance.kl, consumptionKl)
-      const freeValue = calculateWaterSlabCharges(freeKl, tariff.slabs).subtotal
+    } else if (connection.freeAllowance?.type === 'trueAllowance') {
+      const freeKl = Math.min(connection.freeAllowance.kl, consumptionKl)
+      const freeValue = calculateWaterSlabCharges(freeKl, connection.slabs).subtotal
       slab = { lines: slab.lines, subtotal: Math.max(0, slab.subtotal - freeValue) }
     }
   }
 
   const waterCharge = slab.subtotal
-  const sewerageCharge = waterCharge * (tariff.sewerageChargePercent / 100)
-  const additionalFeesTotal = (tariff.additionalFees ?? []).reduce((sum, f) => sum + f.amount, 0)
+  const sewerageCharge = waterCharge * (connection.sewerageChargePercent / 100)
+  const additionalFeesTotal = (connection.additionalFees ?? []).reduce((sum, f) => sum + f.amount, 0)
 
   const total = waterCharge + sewerageCharge + fixedCharge + additionalFeesTotal
   const periodMonths = tariff.billingCycle === 'bimonthly' ? 2 : 1
@@ -173,6 +189,7 @@ export function computeWaterBill(
     boardCode: tariff.boardCode,
     boardName: tariff.boardName,
     billingCycle: tariff.billingCycle,
+    connectionType: connection.connectionType,
     consumptionKl,
     meterSize,
 
@@ -201,6 +218,7 @@ export function computeWaterBill(
 export const waterTariffRegistry: Record<string, WaterTariffFile> = {
   DJB: parseWaterTariffFile(djbJson),
   CMWSSB: parseWaterTariffFile(cmwssbJson),
+  PCMC: parseWaterTariffFile(pcmcJson),
 }
 
 export function getWaterTariff(boardCode: string): WaterTariffFile {

@@ -1,4 +1,4 @@
-import { computeWaterBill, getWaterTariff } from '@/lib/calc/water'
+import { computeWaterBill, getConnectionTariff, getWaterTariff } from '@/lib/calc/water'
 import { formatINR } from '@/lib/format'
 
 /**
@@ -8,9 +8,10 @@ import { formatINR } from '@/lib/format'
  */
 export default function WaterFormulaBlock({ boardCode = 'DJB' }: { boardCode?: string }) {
   const tariff = getWaterTariff(boardCode)
+  const connection = getConnectionTariff(tariff)
   const exampleKl = 25
   const example = computeWaterBill(tariff, { consumptionKl: exampleKl })
-  const defaultMeter = Object.keys(tariff.fixedChargeByMeterSize)[0]
+  const defaultMeter = Object.keys(connection.fixedChargeByMeterSize)[0]
 
   return (
     <div className="rounded-xl border border-hairline bg-paper p-5">
@@ -22,10 +23,10 @@ export default function WaterFormulaBlock({ boardCode = 'DJB' }: { boardCode?: s
           Water charge = KL consumed × slab rate per KL
         </p>
         <p className="rounded-lg bg-mist px-3 py-2">
-          + Sewerage charge ({tariff.sewerageChargePercent}% of water charge)
+          + Sewerage charge ({connection.sewerageChargePercent}% of water charge)
         </p>
         <p className="rounded-lg bg-mist px-3 py-2">
-          + Fixed charge ({formatINR(tariff.fixedChargeByMeterSize[defaultMeter])}/cycle)
+          + Fixed charge ({formatINR(connection.fixedChargeByMeterSize[defaultMeter])}/cycle)
         </p>
         <p className="rounded-lg bg-mist px-3 py-2">= Total bill</p>
       </div>

@@ -64,11 +64,11 @@ export const AdditionalFeeSchema = z.object({
 })
 export type AdditionalFee = z.infer<typeof AdditionalFeeSchema>
 
-export const WaterTariffFileSchema = z.object({
-  boardCode: z.string().min(1),
-  boardName: z.string().min(1),
-  citiesServed: z.array(z.string().min(1)).min(1),
-  billingCycle: WaterBillingCycle,
+export const WaterConnectionType = z.enum(['domestic', 'commercial', 'industrial'])
+export type WaterConnectionType = z.infer<typeof WaterConnectionType>
+
+export const WaterConnectionTariffSchema = z.object({
+  connectionType: WaterConnectionType,
   slabs: WaterSlabList,
   /**
    * Free-consumption scheme, if any. Two real patterns exist in Indian
@@ -92,6 +92,22 @@ export const WaterTariffFileSchema = z.object({
   /** Flat fixed charge per billing cycle, keyed by meter size (e.g. "15mm"). */
   fixedChargeByMeterSize: z.record(z.string(), NonNegative),
   additionalFees: z.array(AdditionalFeeSchema).optional(),
+  /** Per-connection-type note on data confidence, e.g. when a commercial
+   *  table is sourced from an older order than the domestic one in the
+   *  same file. Omit when it matches the file-level verifiedBy exactly. */
+  verifiedByNote: z.string().optional(),
+})
+export type WaterConnectionTariff = z.infer<typeof WaterConnectionTariffSchema>
+
+export const WaterTariffFileSchema = z.object({
+  boardCode: z.string().min(1),
+  boardName: z.string().min(1),
+  citiesServed: z.array(z.string().min(1)).min(1),
+  billingCycle: WaterBillingCycle,
+  /** One entry per connection type this board has real, sourced data for.
+   *  Most boards only have domestic today — commercial/industrial are
+   *  added only once independently verifiable, never guessed. */
+  connectionTypes: z.array(WaterConnectionTariffSchema).min(1),
   effectiveFrom: IsoDate,
   /** Link to the board's official tariff notification / gazette order. */
   sourceUrl: z.url(),
@@ -100,6 +116,19 @@ export const WaterTariffFileSchema = z.object({
 })
 
 export type WaterTariffFile = z.infer<typeof WaterTariffFileSchema>
+
+/** Domestic is always the default/fallback connection type shown across the
+ *  site; falls back to the first entry if a board somehow has no domestic
+ *  tariff on file (shouldn't happen in practice). */
+export function getConnectionTariff(
+  tariff: WaterTariffFile,
+  connectionType: WaterConnectionType = 'domestic',
+): WaterConnectionTariff {
+  return (
+    tariff.connectionTypes.find((c) => c.connectionType === connectionType) ??
+    tariff.connectionTypes[0]
+  )
+}
 
 export function parseWaterTariffFile(data: unknown): WaterTariffFile {
   return WaterTariffFileSchema.parse(data)

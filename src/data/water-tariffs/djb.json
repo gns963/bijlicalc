@@ -3,21 +3,45 @@
   "boardName": "Delhi Jal Board",
   "citiesServed": ["Delhi", "New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi"],
   "billingCycle": "bimonthly",
-  "slabs": [
-    { "minKL": 0, "maxKL": 20, "ratePerKL": 5.27 },
-    { "minKL": 21, "maxKL": 30, "ratePerKL": 26.36 },
-    { "minKL": 31, "maxKL": null, "ratePerKL": 43.93 }
+  "connectionTypes": [
+    {
+      "connectionType": "domestic",
+      "slabs": [
+        { "minKL": 0, "maxKL": 20, "ratePerKL": 5.27 },
+        { "minKL": 21, "maxKL": 30, "ratePerKL": 26.36 },
+        { "minKL": 31, "maxKL": null, "ratePerKL": 43.93 }
+      ],
+      "freeAllowance": { "kl": 20, "type": "allOrNothing" },
+      "sewerageChargePercent": 60,
+      "fixedChargeByMeterSize": {
+        "15mm": 20,
+        "20mm": 40,
+        "25mm": 100
+      },
+      "additionalFees": []
+    },
+    {
+      "connectionType": "commercial",
+      "slabs": [
+        { "minKL": 0, "maxKL": 6, "ratePerKL": 14.64 },
+        { "minKL": 7, "maxKL": 15, "ratePerKL": 21.96 },
+        { "minKL": 16, "maxKL": 25, "ratePerKL": 29.28 },
+        { "minKL": 26, "maxKL": 50, "ratePerKL": 73.21 },
+        { "minKL": 51, "maxKL": 100, "ratePerKL": 117.13 },
+        { "minKL": 101, "maxKL": null, "ratePerKL": 146.4 }
+      ],
+      "sewerageChargePercent": 60,
+      "fixedChargeByMeterSize": {
+        "15mm": 20,
+        "20mm": 40,
+        "25mm": 100
+      },
+      "additionalFees": [],
+      "verifiedByNote": "SOURCED (official domain) — from DJB's own published Category-II (commercial/industrial) tariff table, but dated to the same 14/08/2015 order whose domestic figures we've since identified as likely superseded by newer domestic rates. No commercial-specific free allowance applies (Delhi's free-water scheme is domestic-only). The real commercial rate today is plausibly higher than shown here — treat this table as directionally correct (commercial runs 2-4x domestic per KL) rather than precisely current. Fixed charge uses the same unverified meter-size simplification as domestic; DJB's real commercial service charge also appears tier-based."
+    }
   ],
-  "freeAllowance": { "kl": 20, "type": "allOrNothing" },
-  "sewerageChargePercent": 60,
-  "fixedChargeByMeterSize": {
-    "15mm": 20,
-    "20mm": 40,
-    "25mm": 100
-  },
-  "additionalFees": [],
   "effectiveFrom": "2018-02-01",
   "sourceUrl": "https://delhijalboard.delhi.gov.in/jalboard/water",
   "lastVerified": "2026-09-04",
-  "verifiedBy": "SOURCED (secondary) — restructured from a 4-slab placeholder to DJB's real 3-slab structure (0-20 / 21-30 / 31+ KL) after cross-checking two independent secondary sources that converged exactly on the 21-30 KL (₹26.36) and 31+ KL (₹43.93) rates. The entry-slab rate is less certain — sources ranged ₹4.39-5.27/KL for the same slab; ₹5.27 used as the more recently-dated figure. The 20 KL/month all-or-nothing free scheme and 60% sewerage charge were independently confirmed and unchanged from the prior placeholder. NOT modeled: DJB's real fixed charge appears to be a 'service charge' that scales by consumption tier (roughly ₹146-293/cycle per secondary sources), not by meter size as this file assumes — the meter-size-keyed fixedChargeByMeterSize values here remain an unverified simplification. Pending a clean, single, dated primary-source tariff notification to fully resolve."
+  "verifiedBy": "SOURCED (secondary) — restructured from a 4-slab placeholder to DJB's real 3-slab domestic structure (0-20 / 21-30 / 31+ KL) after cross-checking two independent secondary sources that converged exactly on the 21-30 KL (₹26.36) and 31+ KL (₹43.93) rates. The entry-slab rate is less certain — sources ranged ₹4.39-5.27/KL for the same slab; ₹5.27 used as the more recently-dated figure. The 20 KL/month all-or-nothing free scheme and 60% sewerage charge were independently confirmed and unchanged from the prior placeholder. NOT modeled: DJB's real fixed charge appears to be a 'service charge' that scales by consumption tier (roughly ₹146-293/cycle per secondary sources), not by meter size as this file assumes — the meter-size-keyed fixedChargeByMeterSize values here remain an unverified simplification. See each connection type's own verifiedByNote for type-specific caveats. Pending a clean, single, dated primary-source tariff notification to fully resolve."
 }

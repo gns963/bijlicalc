@@ -1,7 +1,13 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { calculateFullWaterBill, getWaterTariff } from '@/lib/calc/water'
+import {
+  availableConnectionTypes,
+  calculateFullWaterBill,
+  getConnectionTariff,
+  getWaterTariff,
+  type WaterConnectionType,
+} from '@/lib/calc/water'
 import { formatINR } from '@/lib/format'
 import { CalculatorCard, CalculatorCta, CalculatorHeader, SliderField } from './CalculatorShell'
 
@@ -10,6 +16,12 @@ const COMPOSITION_COLORS = {
   sewerage: 'bg-caution-amber',
   fixed: 'bg-ash/40',
 } as const
+
+const CONNECTION_LABELS: Record<WaterConnectionType, string> = {
+  domestic: 'Domestic',
+  commercial: 'Commercial',
+  industrial: 'Industrial',
+}
 
 /** Real-tariff water bill calculator for a board with a populated tariff
  *  file — no rate input needed, since the tariff itself is real and dated. */
@@ -21,30 +33,62 @@ export default function WaterBoardBillCalculator({
   boardName: string
 }) {
   const tariff = getWaterTariff(boardCode)
-  const meterSizes = Object.keys(tariff.fixedChargeByMeterSize)
+  const connectionTypes = availableConnectionTypes(tariff)
+  const [connectionType, setConnectionType] = useState<WaterConnectionType>(connectionTypes[0])
+  const connection = getConnectionTariff(tariff, connectionType)
+  const meterSizes = Object.keys(connection.fixedChargeByMeterSize)
   const [kl, setKl] = useState(15)
   const [meterSize, setMeterSize] = useState(meterSizes[0])
 
   const { result, error } = useMemo(() => {
     try {
       return {
-        result: calculateFullWaterBill({ boardCode, consumptionKl: kl, meterSize }),
+        result: calculateFullWaterBill({ boardCode, consumptionKl: kl, meterSize, connectionType }),
         error: null as string | null,
       }
     } catch (e) {
       return { result: null, error: e instanceof Error ? e.message : 'Calculation error' }
     }
-  }, [boardCode, kl, meterSize])
+  }, [boardCode, kl, meterSize, connectionType])
 
   return (
     <CalculatorCard>
       <CalculatorHeader
         icon="💧"
         title={`${boardName} Bill Calculator`}
-        subtitle={`Priced at ${boardCode}'s real domestic tariff`}
+        subtitle={`Priced at ${boardCode}'s real ${CONNECTION_LABELS[connectionType].toLowerCase()} tariff`}
       />
 
       <form className="grid gap-5" onSubmit={(e) => e.preventDefault()}>
+        {connectionTypes.length > 1 && (
+          <div>
+            <span className="mb-1.5 block text-sm font-medium text-ash">
+              Connection type
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {connectionTypes.map((ct) => (
+                <button
+                  key={ct}
+                  type="button"
+                  onClick={() => {
+                    setConnectionType(ct)
+                    const nextMeterSizes = Object.keys(getConnectionTariff(tariff, ct).fixedChargeByMeterSize)
+                    if (!nextMeterSizes.includes(meterSize)) setMeterSize(nextMeterSizes[0])
+                  }}
+                  aria-pressed={ct === connectionType}
+                  className={`rounded-lg border-2 px-3 py-1.5 text-sm font-semibold transition ${
+                    ct === connectionType
+                      ? 'border-hub-water bg-hub-water/10 text-ink-navy'
+                      : 'border-hairline text-ash/70 hover:border-hub-water/40'
+                  }`}
+                >
+                  {CONNECTION_LABELS[ct]}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <SliderField
           id="water-board-consumption"
           label={`Consumption per ${result?.billingCycle === 'bimonthly' ? 'billing cycle (~60 days)' : 'month'}`}
