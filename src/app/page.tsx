@@ -397,7 +397,10 @@ const hubsItemList = itemListLd(hubs.map((h) => ({ name: `${h.title} Calculators
 export const metadata: Metadata = {
   title: 'Free Indian Utility Calculators — Electricity, Water, Gas, Solar, AC & Finance',
   description: `Free, accurate calculators for Indian electricity, water and gas bills, rooftop solar, AC running cost, home appliances, fuel cost and personal finance. Real DISCOM tariffs for all ${stateCount} states + ${utCount} UTs, verified against SERC orders.`,
-  alternates: { canonical: `${SITE}/` },
+  alternates: {
+    canonical: `${SITE}/`,
+    languages: { 'en-IN': `${SITE}/`, 'hi-IN': `${SITE}/hi` },
+  },
   openGraph: { url: `${SITE}/`, type: 'website' },
 }
 

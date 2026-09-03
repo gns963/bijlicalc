@@ -18,10 +18,36 @@ const PRESETS = [100, 200, 300, 500]
  * the same computeBill engine as the full calculators, just for a single
  * residential/single-phase/no-subsidy scenario.
  */
+export interface QuickBillEstimateLabels {
+  title: string
+  badge: string
+  discomSrLabel: string
+  unitsSrLabel: string
+  unitsPlaceholder: string
+  estimatedBillFor: string
+  enterUnitsPrompt: string
+  fullBreakdownPrefix: string
+  fullBreakdownSuffix: string
+}
+
+const DEFAULT_LABELS: QuickBillEstimateLabels = {
+  title: 'Quick Bill Estimate',
+  badge: '2026 tariff',
+  discomSrLabel: 'Your DISCOM / state',
+  unitsSrLabel: 'Units consumed (kWh)',
+  unitsPlaceholder: 'Units (kWh)',
+  estimatedBillFor: 'Estimated bill for',
+  enterUnitsPrompt: 'Enter units to see an instant estimate',
+  fullBreakdownPrefix: 'Full',
+  fullBreakdownSuffix: 'breakdown →',
+}
+
 export default function QuickBillEstimate({
   discoms,
+  labels = DEFAULT_LABELS,
 }: {
   discoms: QuickEstimateDiscom[]
+  labels?: QuickBillEstimateLabels
 }) {
   const [discomCode, setDiscomCode] = useState(discoms[0]?.code ?? '')
   const [units, setUnits] = useState(200)
@@ -50,14 +76,14 @@ export default function QuickBillEstimate({
     <div className="rounded-2xl border border-white/15 bg-white/[0.07] p-3.5 shadow-xl backdrop-blur-md">
       <div className="flex items-center justify-between">
         <p className="flex items-center gap-2 text-sm font-semibold text-white">
-          <span aria-hidden>⚡</span> Quick Bill Estimate
+          <span aria-hidden>⚡</span> {labels.title}
         </p>
-        <span className="text-[11px] font-medium text-white/40">2026 tariff</span>
+        <span className="text-[11px] font-medium text-white/40">{labels.badge}</span>
       </div>
 
       <div className="mt-2 grid grid-cols-2 gap-2">
         <label className="block">
-          <span className="sr-only">Your DISCOM / state</span>
+          <span className="sr-only">{labels.discomSrLabel}</span>
           <select
             value={discomCode}
             onChange={(e) => setDiscomCode(e.target.value)}
@@ -72,13 +98,13 @@ export default function QuickBillEstimate({
         </label>
 
         <label className="block">
-          <span className="sr-only">Units consumed (kWh)</span>
+          <span className="sr-only">{labels.unitsSrLabel}</span>
           <input
             type="number"
             min={0}
             value={units}
             onChange={(e) => setUnits(Math.max(0, Number(e.target.value) || 0))}
-            placeholder="Units (kWh)"
+            placeholder={labels.unitsPlaceholder}
             className="w-full rounded-lg border border-white/15 bg-white/10 px-2.5 py-2 text-sm text-white placeholder:text-white/40 outline-none focus:border-brass focus:ring-2 focus:ring-brass/40"
           />
         </label>
@@ -105,14 +131,14 @@ export default function QuickBillEstimate({
         {result ? (
           <>
             <p className="text-xs text-white/50">
-              Estimated bill for {selected?.state}
+              {labels.estimatedBillFor} {selected?.state}
             </p>
             <p className="font-display text-2xl font-extrabold tabular-nums text-brass">
               {formatINR(result.total)}
             </p>
           </>
         ) : (
-          <p className="text-sm text-white/50">Enter units to see an instant estimate</p>
+          <p className="text-sm text-white/50">{labels.enterUnitsPrompt}</p>
         )}
       </div>
 
@@ -121,7 +147,7 @@ export default function QuickBillEstimate({
           href={selected.href}
           className="mt-2 flex items-center justify-center gap-1.5 rounded-full bg-brass px-4 py-2 text-sm font-semibold text-white transition hover:bg-brass/90"
         >
-          Full {selected.state} breakdown →
+          {labels.fullBreakdownPrefix} {selected.state} {labels.fullBreakdownSuffix}
         </Link>
       )}
     </div>
