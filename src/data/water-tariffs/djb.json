@@ -4,10 +4,9 @@
   "citiesServed": ["Delhi", "New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi"],
   "billingCycle": "bimonthly",
   "slabs": [
-    { "minKL": 0, "maxKL": 20, "ratePerKL": 4.5 },
-    { "minKL": 21, "maxKL": 30, "ratePerKL": 7.5 },
-    { "minKL": 31, "maxKL": 40, "ratePerKL": 11.5 },
-    { "minKL": 41, "maxKL": null, "ratePerKL": 16.5 }
+    { "minKL": 0, "maxKL": 20, "ratePerKL": 5.27 },
+    { "minKL": 21, "maxKL": 30, "ratePerKL": 26.36 },
+    { "minKL": 31, "maxKL": null, "ratePerKL": 43.93 }
   ],
   "freeAllowance": { "kl": 20, "type": "allOrNothing" },
   "sewerageChargePercent": 60,
@@ -17,8 +16,8 @@
     "25mm": 100
   },
   "additionalFees": [],
-  "effectiveFrom": "2026-01-01",
-  "sourceUrl": "https://delhijalboard.delhi.gov.in",
-  "lastVerified": "2026-08-31",
-  "verifiedBy": "UNVERIFIED — placeholder figures based on DJB's generally known domestic tariff structure (20 KL/month all-or-nothing free scheme, telescopic slabs above it, sewerage cess as a percentage of the water charge); pending cross-check against DJB's current official tariff notification before being treated as billing-grade"
+  "effectiveFrom": "2018-02-01",
+  "sourceUrl": "https://delhijalboard.delhi.gov.in/jalboard/water",
+  "lastVerified": "2026-09-04",
+  "verifiedBy": "SOURCED (secondary) — restructured from a 4-slab placeholder to DJB's real 3-slab structure (0-20 / 21-30 / 31+ KL) after cross-checking two independent secondary sources that converged exactly on the 21-30 KL (₹26.36) and 31+ KL (₹43.93) rates. The entry-slab rate is less certain — sources ranged ₹4.39-5.27/KL for the same slab; ₹5.27 used as the more recently-dated figure. The 20 KL/month all-or-nothing free scheme and 60% sewerage charge were independently confirmed and unchanged from the prior placeholder. NOT modeled: DJB's real fixed charge appears to be a 'service charge' that scales by consumption tier (roughly ₹146-293/cycle per secondary sources), not by meter size as this file assumes — the meter-size-keyed fixedChargeByMeterSize values here remain an unverified simplification. Pending a clean, single, dated primary-source tariff notification to fully resolve."
 }

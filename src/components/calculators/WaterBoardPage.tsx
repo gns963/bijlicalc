@@ -6,7 +6,9 @@ import WaterBoardComparisonTable from '@/components/water/WaterBoardComparisonTa
 import WaterConsumptionReferenceTable from '@/components/water/WaterConsumptionReferenceTable'
 import WaterFormulaBlock from '@/components/water/WaterFormulaBlock'
 import WaterNeighborDiagnostic from '@/components/water/WaterNeighborDiagnostic'
+import WaterHouseholdConsumptionTable from '@/components/water/WaterHouseholdConsumptionTable'
 import WaterSampleCalculations from '@/components/water/WaterSampleCalculations'
+import { getWaterBoardFacts } from '@/data/water-board-facts'
 import waterBoardsJson from '@/data/water-boards.json'
 import { computeWaterBill, getWaterTariff, waterTariffRegistry } from '@/lib/calc/water'
 import { formatINR, formatIsoDate } from '@/lib/format'
@@ -29,6 +31,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
   const overExample = freeKl != null ? computeWaterBill(tariff, { consumptionKl: freeKl + 1 }) : null
   const heroExample = underExample ?? computeWaterBill(tariff, { consumptionKl: 15 })
 
+  const facts = getWaterBoardFacts(boardCode)
   const otherBoards = waterBoardsJson.boards.filter((b) => b.slug !== slug).slice(0, 3)
   const hasMultiBoardComparison = REAL_TARIFF_BOARD_CODES.length > 1
   const comparisonKl = 15
@@ -82,8 +85,30 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
     },
     {
       q: `How do I check or pay my ${tariff.boardCode} bill online?`,
-      a: `${tariff.boardName} provides an online customer portal for checking consumption history, viewing bills and paying online — check their official website for the current portal link, since these occasionally change.`,
+      a: facts
+        ? `Use the ${facts.paymentPortal.name} (${facts.paymentPortal.url})${facts.app ? `, or the ${facts.app.name} app — ${facts.app.note}` : ''}. ${facts.helpline ? `For complaints or issues: ${facts.helpline}.` : ''}`
+        : `${tariff.boardName} provides an online customer portal for checking consumption history, viewing bills and paying online — check their official website for the current portal link, since these occasionally change.`,
     },
+    ...(facts
+      ? [
+          {
+            q: `Is ${tariff.boardCode} tap water safe to drink?`,
+            a: facts.qualityNote,
+          },
+          {
+            q: `Where does my ${tariff.boardCode} water actually come from?`,
+            a: facts.waterSources,
+          },
+        ]
+      : []),
+    ...(facts?.meteringCaveat
+      ? [
+          {
+            q: `Does this calculator apply to my connection if I don't have a working meter?`,
+            a: facts.meteringCaveat,
+          },
+        ]
+      : []),
     {
       q: 'Paani ka bill kitna aata hai mahine mein?',
       a: `For a typical household using around 15 KL a month, expect roughly ${formatINR(computeWaterBill(tariff, { consumptionKl: 15 * (tariff.billingCycle === 'bimonthly' ? 2 : 1) }).monthlyEquivalent?.total ?? computeWaterBill(tariff, { consumptionKl: 15 }).total)} on ${tariff.boardCode}'s real tariff — your actual bill depends on household size and your board's own rate. Use the calculator above for your specific number.`,
@@ -391,6 +416,38 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
               the slab rates, sewerage charge and fixed charges shown above
               are theirs, sourced and dated as shown on the tariff table.
             </p>
+            {facts && (
+              <>
+                <p>
+                  <strong>Where your water comes from.</strong> {facts.waterSources}{' '}
+                  <a href={facts.sourcesCitation} target="_blank" rel="noopener noreferrer" className="text-brass underline">
+                    Source
+                  </a>
+                  .
+                </p>
+                <p>
+                  <strong>Water quality.</strong> {facts.qualityNote}
+                </p>
+                {facts.meteringCaveat && (
+                  <p className="rounded-lg border border-caution-amber/25 bg-caution-amber/5 p-3 text-sm">
+                    <strong>Metering status:</strong> {facts.meteringCaveat}
+                  </p>
+                )}
+                <p>
+                  <strong>Paying your bill.</strong> {tariff.boardCode} runs an
+                  online portal — the{' '}
+                  <a href={facts.paymentPortal.url} target="_blank" rel="noopener noreferrer" className="text-brass underline">
+                    {facts.paymentPortal.name}
+                  </a>
+                  {facts.app && (
+                    <> — plus the <strong>{facts.app.name}</strong> app, {facts.app.note}.</>
+                  )}
+                  {facts.helpline && (
+                    <> For complaints or questions: {facts.helpline}.</>
+                  )}
+                </p>
+              </>
+            )}
             <p className="rounded-lg border border-caution-amber/25 bg-caution-amber/5 p-3 text-sm">
               <strong>Independence disclaimer:</strong> DesiMetrics is an
               independent calculator and is <strong>not affiliated with,
@@ -402,6 +459,18 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
               or payment purposes.
             </p>
           </div>
+        </section>
+
+        <section aria-labelledby="household" className="mb-10 scroll-mt-20">
+          <h2 id="household" className="font-display mb-2 text-2xl font-semibold">
+            Estimated bill by household size
+          </h2>
+          <p className="mb-4 text-sm text-ash/60">
+            A relatable starting point if you don&apos;t have a meter reading
+            handy yet — computed through {tariff.boardCode}&apos;s real
+            tariff, using a common per-person usage benchmark.
+          </p>
+          <WaterHouseholdConsumptionTable tariff={tariff} />
         </section>
 
         <section aria-labelledby="samples" className="mb-10 scroll-mt-20">

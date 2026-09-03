@@ -5,6 +5,12 @@ import { calculateFullWaterBill, getWaterTariff } from '@/lib/calc/water'
 import { formatINR } from '@/lib/format'
 import { CalculatorCard, CalculatorCta, CalculatorHeader, SliderField } from './CalculatorShell'
 
+const COMPOSITION_COLORS = {
+  water: 'bg-hub-water',
+  sewerage: 'bg-caution-amber',
+  fixed: 'bg-ash/40',
+} as const
+
 /** Real-tariff water bill calculator for a board with a populated tariff
  *  file — no rate input needed, since the tariff itself is real and dated. */
 export default function WaterBoardBillCalculator({
@@ -112,6 +118,75 @@ export default function WaterBoardBillCalculator({
               <dt className="text-ash/60">Fixed charge</dt>
               <dd className="text-right tabular-nums">{formatINR(result.fixedCharge)}</dd>
             </dl>
+
+            {result.total > 0 && (
+              <div>
+                <p className="mb-1.5 text-xs font-medium text-ash/60">Cost composition</p>
+                <div className="flex h-3 w-full overflow-hidden rounded-full bg-mist">
+                  {(
+                    [
+                      ['water', result.waterCharge],
+                      ['sewerage', result.sewerageCharge],
+                      ['fixed', result.fixedCharge],
+                    ] as const
+                  ).map(([key, amount]) =>
+                    amount > 0 ? (
+                      <div
+                        key={key}
+                        className={COMPOSITION_COLORS[key]}
+                        style={{ width: `${(amount / result.total) * 100}%` }}
+                        title={`${key}: ${formatINR(amount)}`}
+                      />
+                    ) : null,
+                  )}
+                </div>
+                <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-ash/50">
+                  <span className="flex items-center gap-1">
+                    <span className="h-2 w-2 rounded-full bg-hub-water" aria-hidden /> Water
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="h-2 w-2 rounded-full bg-caution-amber" aria-hidden /> Sewerage
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="h-2 w-2 rounded-full bg-ash/40" aria-hidden /> Fixed
+                  </span>
+                </div>
+              </div>
+            )}
+
+            <div className="flex flex-wrap gap-2 border-t border-hairline pt-3">
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="rounded-lg border border-hairline px-3 py-1.5 text-xs font-semibold text-ash hover:border-hub-water/40"
+              >
+                🖨️ Print bill
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  if (navigator.share) {
+                    navigator.share({
+                      title: `${boardName} water bill estimate`,
+                      text: `My estimated ${boardCode} water bill: ${formatINR(result.total)}`,
+                      url: window.location.href,
+                    }).catch(() => {})
+                  } else {
+                    navigator.clipboard?.writeText(window.location.href)
+                  }
+                }}
+                className="rounded-lg border border-hairline px-3 py-1.5 text-xs font-semibold text-ash hover:border-hub-water/40"
+              >
+                🔗 Share
+              </button>
+              <button
+                type="button"
+                onClick={() => navigator.clipboard?.writeText(window.location.href)}
+                className="rounded-lg border border-hairline px-3 py-1.5 text-xs font-semibold text-ash hover:border-hub-water/40"
+              >
+                📋 Copy link
+              </button>
+            </div>
           </div>
         )}
       </div>
