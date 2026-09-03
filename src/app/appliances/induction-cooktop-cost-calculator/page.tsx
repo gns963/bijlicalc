@@ -101,7 +101,7 @@ export default function InductionCooktopCostPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -109,7 +109,7 @@ export default function InductionCooktopCostPage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           A <strong>1600W induction cooktop</strong> used 1 hour/day in
           Tamil Nadu uses about <strong>{example.dailyUnits} units/day</strong>{' '}
           and costs roughly <strong>{formatINR(example.monthlyCost)}/month</strong>{' '}
@@ -129,7 +129,7 @@ export default function InductionCooktopCostPage() {
         <h2 id="how" className="font-display mb-4 text-2xl font-semibold">
           How this is calculated
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             <strong>Units = wattage × hours ÷ 1000.</strong> The
             cooktop&apos;s daily energy use in kWh is its wattage multiplied
@@ -154,37 +154,37 @@ export default function InductionCooktopCostPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
             href="/gas"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔥</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Gas bill calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Compare against PNG cooking cost.
             </p>
           </Link>
           <Link
             href="/fuel-cost/lpg-cylinder-usage-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔥</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               LPG cylinder usage
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Compare against LPG cylinder cooking cost.
             </p>
           </Link>
           <Link
             href="/electricity"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>⚡</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Full bill calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See your complete monthly bill, not just this one appliance.
             </p>
           </Link>
@@ -195,13 +195,13 @@ export default function InductionCooktopCostPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

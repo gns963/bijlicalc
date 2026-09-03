@@ -15,10 +15,10 @@ export function CalculatorHeader({
       <span aria-hidden className="text-3xl">
         {icon}
       </span>
-      <h3 className="mt-1 font-display text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+      <h3 className="mt-1 font-display text-2xl font-bold text-ink-navy">
         {title}
       </h3>
-      <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+      <p className="mt-1 text-sm text-ash/70">
         {subtitle}
       </p>
     </div>
@@ -45,10 +45,10 @@ export function OptionCardGroup<T extends string>({
     const only = options[0]
     return (
       <div>
-        <span className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+        <span className="mb-1.5 block text-sm font-medium text-ash">
           {legend}
         </span>
-        <div className="inline-flex items-center gap-2 rounded-xl border-2 border-brass bg-brass/10 px-4 py-2 text-ink-navy dark:text-gazette-cream">
+        <div className="inline-flex items-center gap-2 rounded-xl border-2 border-brass bg-brass/10 px-4 py-2 text-ink-navy">
           <span aria-hidden className="text-xl">
             {only.icon}
           </span>
@@ -70,7 +70,7 @@ export function OptionCardGroup<T extends string>({
         : 'grid-cols-2 sm:grid-cols-4'
   return (
     <fieldset>
-      <legend className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+      <legend className="mb-1.5 block text-sm font-medium text-ash">
         {legend}
       </legend>
       <div className={`grid gap-2 ${cols}`}>
@@ -84,8 +84,8 @@ export function OptionCardGroup<T extends string>({
               aria-pressed={active}
               className={`flex flex-col items-center gap-1.5 rounded-xl border-2 px-2 py-3 text-center transition ${
                 active
-                  ? 'border-brass bg-brass/10 text-ink-navy dark:text-gazette-cream'
-                  : 'border-hairline text-ash/70 hover:border-brass/40 dark:border-white/10 dark:text-gazette-cream/60'
+                  ? 'border-brass bg-brass/10 text-ink-navy'
+                  : 'border-hairline text-ash/70 hover:border-brass/40'
               }`}
             >
               <span aria-hidden className="text-2xl">
@@ -126,7 +126,7 @@ export function SliderField({
     <div>
       <label
         htmlFor={id}
-        className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+        className="mb-1.5 block text-sm font-medium text-ash"
       >
         {label}
       </label>
@@ -141,17 +141,17 @@ export function SliderField({
           onChange={(e) => onChange(Number(e.target.value))}
           className="w-full accent-brass"
         />
-        <div className="flex shrink-0 items-center gap-1 rounded-lg border border-hairline bg-mist px-2.5 py-1.5 dark:border-white/10 dark:bg-slate-800">
-          <span className="w-10 text-right font-display text-sm font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+        <div className="flex shrink-0 items-center gap-1 rounded-lg border border-hairline bg-mist px-2.5 py-1.5">
+          <span className="w-10 text-right font-display text-sm font-bold tabular-nums text-ink-navy">
             {value}
           </span>
-          <span className="text-xs text-ash/60 dark:text-gazette-cream/50">
+          <span className="text-xs text-ash/60">
             {unit}
           </span>
         </div>
       </div>
       {hint && (
-        <p className="mt-1 text-xs text-ash/50 dark:text-gazette-cream/40">
+        <p className="mt-1 text-xs text-ash/50">
           {hint}
         </p>
       )}
@@ -201,7 +201,7 @@ export function CalculatorCta({
         <span aria-hidden>{CTA_TONE_ICON[tone]}</span>
         {label}
       </button>
-      <p className="mt-2 text-center text-xs text-ash/50 dark:text-gazette-cream/40">
+      <p className="mt-2 text-center text-xs text-ash/50">
         Results are approximate estimates. Your actual bill may vary.
       </p>
     </div>
@@ -210,7 +210,7 @@ export function CalculatorCta({
 
 export function CalculatorCard({ children }: { children: ReactNode }) {
   return (
-    <div className="rounded-xl border border-hairline bg-paper p-6 shadow-sm dark:border-white/10 dark:bg-slate-900">
+    <div className="rounded-xl border border-hairline bg-paper p-6 shadow-sm">
       {children}
     </div>
   )

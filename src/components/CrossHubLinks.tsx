@@ -63,15 +63,15 @@ export default function CrossHubLinks({ current }: { current: string }) {
           <Link
             key={h.slug}
             href={`/${h.slug}`}
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>
               {h.emoji}
             </span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               {h.label}
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               {h.desc}
             </p>
           </Link>

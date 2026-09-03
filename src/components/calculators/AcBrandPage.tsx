@@ -93,7 +93,7 @@ export default function AcBrandPage({
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -101,7 +101,7 @@ export default function AcBrandPage({
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           A <strong>1.5 ton 3-star {brandName}</strong> AC running 8
           hours/day in Tamil Nadu uses about{' '}
           <strong>{example.dailyUnits} units/day</strong> and costs roughly{' '}
@@ -122,7 +122,7 @@ export default function AcBrandPage({
         <h2 id="how" className="font-display mb-4 text-2xl font-semibold">
           How this is calculated
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             <strong>Efficiency (ISEER).</strong> Your {brandName} AC&apos;s
             star rating maps to a BEE ISEER value — the same standard applies
@@ -147,37 +147,37 @@ export default function AcBrandPage({
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
             href="/ac/tonnage-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC tonnage calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Not sure this is the right size {brandName} AC for your room?
             </p>
           </Link>
           <Link
             href="/ac/comparison-tool"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>⚖️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC comparison tool
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Compare two configurations side by side.
             </p>
           </Link>
           <Link
             href="/ac/brands"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🏷️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               All AC brands
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See every brand this calculator covers.
             </p>
           </Link>
@@ -188,13 +188,13 @@ export default function AcBrandPage({
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

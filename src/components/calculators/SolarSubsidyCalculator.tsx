@@ -45,7 +45,7 @@ export default function SolarSubsidyCalculator() {
         />
 
         <fieldset className="grid gap-2">
-          <legend className="mb-1 text-sm font-medium text-ash dark:text-gazette-cream/80">
+          <legend className="mb-1 text-sm font-medium text-ash">
             Eligibility
           </legend>
           {CRITERIA.map((c) => (
@@ -58,7 +58,7 @@ export default function SolarSubsidyCalculator() {
                 }
                 className="mt-0.5 h-4 w-4 rounded border-hairline text-brass focus:ring-brass"
               />
-              <span className="text-ash dark:text-gazette-cream/80">
+              <span className="text-ash">
                 {c.label}
               </span>
             </label>
@@ -68,11 +68,11 @@ export default function SolarSubsidyCalculator() {
         <CalculatorCta label="Check My Subsidy" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-mist p-5 dark:bg-slate-800/60">
-        <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+      <div className="mt-6 rounded-xl bg-mist p-5">
+        <p className="text-sm text-ash/60">
           Estimated PM Surya Ghar subsidy
         </p>
-        <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+        <p className="font-display text-4xl font-bold tabular-nums text-ink-navy">
           {formatINR(subsidy)}
         </p>
 
@@ -88,7 +88,7 @@ export default function SolarSubsidyCalculator() {
             : '⚠️ Tick all criteria above to qualify for the subsidy.'}
         </div>
 
-        <ul className="mt-4 space-y-1 text-xs text-ash/50 dark:text-gazette-cream/40">
+        <ul className="mt-4 space-y-1 text-xs text-ash/50">
           <li>• ₹30,000/kW for the first 2 kW</li>
           <li>• ₹18,000 for the 3rd kW</li>
           <li>• Capped at ₹78,000 (systems of 3 kW and above)</li>

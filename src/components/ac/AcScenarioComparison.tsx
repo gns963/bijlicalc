@@ -31,31 +31,31 @@ export default function AcScenarioComparison({
   return (
     <div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-          <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+        <div className="rounded-xl border border-hairline bg-paper p-5">
+          <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
             3-star, fixed-speed (non-inverter)
           </p>
-          <p className="font-display mt-1 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+          <p className="font-display mt-1 text-2xl font-bold text-ink-navy">
             {formatINR(nonInverter.monthlyCost)}/mo
           </p>
-          <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+          <p className="mt-1 text-sm text-ash/60">
             {formatINR(nonInverter.annualCost)}/year · {tonnage}T at {dailyHours}h/day
           </p>
         </div>
         <div className="rounded-xl border border-spark-teal/25 bg-spark-teal/5 p-5">
-          <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+          <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
             5-star inverter
           </p>
           <p className="font-display mt-1 text-2xl font-bold text-spark-teal">
             {formatINR(inverter.monthlyCost)}/mo
           </p>
-          <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+          <p className="mt-1 text-sm text-ash/60">
             {formatINR(inverter.annualCost)}/year · {tonnage}T at {dailyHours}h/day
           </p>
         </div>
       </div>
-      <div className="mt-4 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900">
-        <p className="text-ash/80 dark:text-gazette-cream/90">
+      <div className="mt-4 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5">
+        <p className="text-ash/80">
           That&apos;s <strong>{formatINR(annualSaving)}/year</strong> less
           for the inverter unit in {discomLabel}.
           {priceDiff !== null && paybackYears !== null && (
@@ -69,7 +69,7 @@ export default function AcScenarioComparison({
           )}
         </p>
       </div>
-      <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+      <p className="mt-2 text-xs text-ash/50">
         Our engine prices efficiency via ISEER (star rating), not inverter
         technology directly — but in today&apos;s BEE-labelled Indian market,
         3-star split ACs are typically fixed-speed while 5-star models are

@@ -20,7 +20,7 @@ export default function AboutPage() {
       stub={false}
       path="/about"
     >
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Why we exist
       </h2>
       <p>
@@ -33,7 +33,7 @@ export default function AboutPage() {
         source order on every page.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         What we cover today
       </h2>
       <ul className="list-disc space-y-1 pl-5">
@@ -73,7 +73,7 @@ export default function AboutPage() {
         </li>
       </ul>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         How we&apos;re different
       </h2>
       <p>
@@ -92,7 +92,7 @@ export default function AboutPage() {
         for the full mechanism.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Who runs it
       </h2>
       <p>

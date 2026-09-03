@@ -70,7 +70,7 @@ export default function LeadGenForm({
         className={
           glass
             ? 'rounded-2xl border border-white/15 bg-white/[0.07] p-6 text-center shadow-xl backdrop-blur-md'
-            : 'rounded-2xl border border-hairline bg-paper p-6 text-center shadow-lg dark:border-white/10 dark:bg-slate-900'
+            : 'rounded-2xl border border-hairline bg-paper p-6 text-center shadow-lg'
         }
         role="status"
       >
@@ -78,7 +78,7 @@ export default function LeadGenForm({
         <p className="mt-2 text-lg font-semibold text-spark-teal">
           Thanks — we’ll connect you with 3 verified installers.
         </p>
-        <p className={`mt-1 text-sm ${glass ? 'text-white/70' : 'text-ash/70 dark:text-gazette-cream/60'}`}>
+        <p className={`mt-1 text-sm ${glass ? 'text-white/70' : 'text-ash/70'}`}>
           Keep an eye on your phone; quotes typically arrive within 2 working
           days.
         </p>
@@ -88,10 +88,10 @@ export default function LeadGenForm({
 
   const inputCls = glass
     ? 'w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-brass/40 bg-white/10 text-white placeholder:text-white/40'
-    : 'w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-brass/20 dark:bg-slate-800 dark:text-gazette-cream'
+    : 'w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-brass/20'
   const okBorder = glass
     ? 'border-white/20 focus:border-brass'
-    : 'border-hairline focus:border-brass dark:border-white/10'
+    : 'border-hairline focus:border-brass'
   const errBorder = glass
     ? 'border-red-400/70 focus:border-red-400'
     : 'border-red-400 focus:border-red-500'
@@ -104,15 +104,15 @@ export default function LeadGenForm({
       className={
         glass
           ? 'rounded-2xl border border-white/15 bg-white/[0.07] p-6 shadow-xl backdrop-blur-md'
-          : 'rounded-2xl border border-hairline bg-paper p-6 shadow-lg dark:border-white/10 dark:bg-slate-900'
+          : 'rounded-2xl border border-hairline bg-paper p-6 shadow-lg'
       }
     >
       <h3
-        className={`font-display text-xl font-semibold ${glass ? 'text-white' : 'text-ink-navy dark:text-gazette-cream'}`}
+        className={`font-display text-xl font-semibold ${glass ? 'text-white' : 'text-ink-navy'}`}
       >
         {heading}
       </h3>
-      <p className={`mt-1 text-sm ${glass ? 'text-white/70' : 'text-ash/70 dark:text-gazette-cream/60'}`}>
+      <p className={`mt-1 text-sm ${glass ? 'text-white/70' : 'text-ash/70'}`}>
         {subheading}
       </p>
 
@@ -207,7 +207,7 @@ export default function LeadGenForm({
       >
         Get my free quotes →
       </button>
-      <p className={`mt-2 text-xs ${glass ? 'text-white/50' : 'text-ash/50 dark:text-gazette-cream/40'}`}>
+      <p className={`mt-2 text-xs ${glass ? 'text-white/50' : 'text-ash/50'}`}>
         No spam. We share your details only with installers you’re matched to.
       </p>
     </form>

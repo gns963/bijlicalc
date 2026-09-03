@@ -66,7 +66,7 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
   }
 
   const fieldCls =
-    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30'
 
   return (
     <CalculatorCard>
@@ -78,7 +78,7 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
 
       <div className="mb-5 grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor={`${selectId}-discom`} className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+          <label htmlFor={`${selectId}-discom`} className="mb-1.5 block text-sm font-medium text-ash">
             DISCOM / state
           </label>
           <select
@@ -95,7 +95,7 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
           </select>
         </div>
         <div>
-          <span className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+          <span className="mb-1.5 block text-sm font-medium text-ash">
             Input method
           </span>
           <div className="flex gap-2">
@@ -112,8 +112,8 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
                 aria-pressed={mode === val}
                 className={`flex-1 rounded-lg border-2 px-3 py-2 text-xs font-semibold transition ${
                   mode === val
-                    ? 'border-brass bg-brass/10 text-ink-navy dark:text-gazette-cream'
-                    : 'border-hairline text-ash/70 dark:border-white/10 dark:text-gazette-cream/60'
+                    ? 'border-brass bg-brass/10 text-ink-navy'
+                    : 'border-hairline text-ash/70'
                 }`}
               >
                 {label}
@@ -126,9 +126,9 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
       {mode === 'meter' ? (
         <div className="grid gap-5">
           <div>
-            <label htmlFor={`${selectId}-meter`} className="mb-1.5 flex items-center justify-between text-sm font-medium text-ash dark:text-gazette-cream/80">
+            <label htmlFor={`${selectId}-meter`} className="mb-1.5 flex items-center justify-between text-sm font-medium text-ash">
               <span>Monthly units (from your meter/bill)</span>
-              <span className="tabular-nums text-ink-navy dark:text-gazette-cream">{meterUnits}</span>
+              <span className="tabular-nums text-ink-navy">{meterUnits}</span>
             </label>
             <input
               id={`${selectId}-meter`}
@@ -142,8 +142,8 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
             />
           </div>
           {meterBill && (
-            <div className="rounded-xl border border-hub-electricity/15 bg-hub-electricity/5 p-5 dark:border-hub-electricity/20 dark:bg-hub-electricity/10">
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">Estimated bill</p>
+            <div className="rounded-xl border border-hub-electricity/15 bg-hub-electricity/5 p-5">
+              <p className="text-sm text-ash/60">Estimated bill</p>
               <p className="font-display text-4xl font-bold tabular-nums text-hub-electricity">
                 {formatINR(meterBill.total)}
               </p>
@@ -178,16 +178,16 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
           </div>
 
           {items.length === 0 ? (
-            <p className="mb-5 rounded-xl border border-dashed border-hairline p-6 text-center text-sm text-ash/60 dark:border-white/10 dark:text-gazette-cream/50">
+            <p className="mb-5 rounded-xl border border-dashed border-hairline p-6 text-center text-sm text-ash/60">
               Add appliances one at a time to build your household total.
             </p>
           ) : (
             <div className="mb-5 space-y-3">
               {result?.items.map((item) => (
                 <div key={item.id}>
-                  <div className="flex items-center gap-3 rounded-xl border border-hairline bg-paper p-3 dark:border-white/10 dark:bg-slate-900">
+                  <div className="flex items-center gap-3 rounded-xl border border-hairline bg-paper p-3">
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-semibold text-ink-navy dark:text-gazette-cream">
+                      <p className="truncate font-semibold text-ink-navy">
                         {item.name}
                       </p>
                       <div className="mt-1 flex items-center gap-2">
@@ -201,7 +201,7 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
                           className="w-full accent-brass"
                           aria-label={`${item.name} daily hours`}
                         />
-                        <span className="w-16 shrink-0 text-right text-xs tabular-nums text-ash/60 dark:text-gazette-cream/50">
+                        <span className="w-16 shrink-0 text-right text-xs tabular-nums text-ash/60">
                           {item.hoursPerDay.toFixed(1)} hrs/day
                         </span>
                       </div>
@@ -213,7 +213,7 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
                       type="button"
                       onClick={() => removeItem(item.id)}
                       aria-label={`Remove ${item.name}`}
-                      className="shrink-0 rounded-lg px-2 py-1 text-ash/40 transition hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950"
+                      className="shrink-0 rounded-lg px-2 py-1 text-ash/40 transition hover:bg-red-50 hover:text-red-600"
                     >
                       ✕
                     </button>
@@ -232,14 +232,14 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
           <CalculatorCta label="Calculate Household Total" tone="brass" />
 
           {error && (
-            <p className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+            <p className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
               {error}
             </p>
           )}
           {result && items.length > 0 && (
-            <div className="mt-4 grid gap-4 rounded-xl border border-hub-electricity/15 bg-hub-electricity/5 p-5 dark:border-hub-electricity/20 dark:bg-hub-electricity/10">
+            <div className="mt-4 grid gap-4 rounded-xl border border-hub-electricity/15 bg-hub-electricity/5 p-5">
               <div>
-                <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="text-sm text-ash/60">
                   Combined household bill ({result.totalMonthlyUnits} units)
                 </p>
                 <p className="font-display text-4xl font-bold tabular-nums text-hub-electricity">
@@ -247,9 +247,9 @@ export default function ApplianceBuilder({ discoms }: { discoms: DiscomOption[] 
                 </p>
               </div>
               <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                <dt className="text-ash/60 dark:text-gazette-cream/50">Energy charge</dt>
+                <dt className="text-ash/60">Energy charge</dt>
                 <dd className="text-right tabular-nums">{formatINR(result.bill.energyChargeGross)}</dd>
-                <dt className="text-ash/60 dark:text-gazette-cream/50">Fixed charge</dt>
+                <dt className="text-ash/60">Fixed charge</dt>
                 <dd className="text-right tabular-nums">{formatINR(result.bill.fixedCharge.amount)}</dd>
               </dl>
             </div>

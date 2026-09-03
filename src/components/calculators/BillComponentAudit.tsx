@@ -12,10 +12,10 @@ type Tag = 'reducible' | 'fixed' | 'discom-set' | 'check' | 'statutory'
  */
 const TAG_STYLE: Record<Tag, { label: string; cls: string }> = {
   reducible: { label: 'Reducible', cls: 'bg-brass/15 text-brass' },
-  fixed: { label: 'Fixed', cls: 'bg-ash/10 text-ash dark:text-gazette-cream/70' },
-  'discom-set': { label: 'Set by DISCOM', cls: 'bg-ash/10 text-ash dark:text-gazette-cream/70' },
+  fixed: { label: 'Fixed', cls: 'bg-ash/10 text-ash' },
+  'discom-set': { label: 'Set by DISCOM', cls: 'bg-ash/10 text-ash' },
   check: { label: 'Worth checking', cls: 'bg-brass/15 text-brass' },
-  statutory: { label: 'Statutory', cls: 'bg-ash/10 text-ash dark:text-gazette-cream/70' },
+  statutory: { label: 'Statutory', cls: 'bg-ash/10 text-ash' },
 }
 
 /**
@@ -78,12 +78,12 @@ export default function BillComponentAudit({ bill }: { bill: BillBreakdown }) {
   }
 
   return (
-    <div className="divide-y divide-hairline rounded-xl border border-hairline bg-paper dark:divide-white/10 dark:border-white/10 dark:bg-slate-900">
+    <div className="divide-y divide-hairline rounded-xl border border-hairline bg-paper">
       {items.map((item) => (
         <details key={item.title} className="group p-4">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
             <span className="flex items-center gap-2">
-              <span className="font-semibold text-ink-navy dark:text-gazette-cream">
+              <span className="font-semibold text-ink-navy">
                 {item.title}
               </span>
               <span
@@ -92,12 +92,12 @@ export default function BillComponentAudit({ bill }: { bill: BillBreakdown }) {
                 {TAG_STYLE[item.tag].label}
               </span>
             </span>
-            <span className="flex items-center gap-2 tabular-nums text-ash dark:text-gazette-cream/80">
+            <span className="flex items-center gap-2 tabular-nums text-ash">
               {formatINR(item.amount)}
               <span className="text-brass transition group-open:rotate-45">+</span>
             </span>
           </summary>
-          <p className="mt-2 text-sm text-ash/70 dark:text-gazette-cream/60">
+          <p className="mt-2 text-sm text-ash/70">
             {item.body}
           </p>
         </details>

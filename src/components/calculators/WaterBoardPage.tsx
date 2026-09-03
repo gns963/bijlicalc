@@ -210,7 +210,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hub-water font-display text-xs font-bold text-white">
                   {i + 1}
                 </span>
-                <span className="text-ash/80 dark:text-gazette-cream/70">{s}</span>
+                <span className="text-ash/80">{s}</span>
               </li>
             ))}
           </ol>
@@ -228,10 +228,10 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
             aria-labelledby="free-rule"
             className="mb-10 scroll-mt-20 rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-5"
           >
-            <h2 id="free-rule" className="font-display mb-2 text-xl font-bold text-ink-navy dark:text-gazette-cream">
+            <h2 id="free-rule" className="font-display mb-2 text-xl font-bold text-ink-navy">
               Understanding the {freeKl} KL free rule
             </h2>
-            <p className="text-sm text-ash/80 dark:text-gazette-cream/70">
+            <p className="text-sm text-ash/80">
               This is <strong>not</strong> a true allowance where only your
               first {freeKl} KL is free and the rest is billed normally.
               It&apos;s all-or-nothing: stay at or under {freeKl} KL and your
@@ -249,11 +249,11 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
             Why most water bill calculators are wrong
           </h2>
           <div className="space-y-4">
-            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+            <div className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="font-display font-bold text-ink-navy">
                 They use a flat, generic rate
               </p>
-              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+              <p className="mt-1 text-sm text-ash/70">
                 Most water calculators ask you to type in your own per-KL
                 rate, or apply one assumed national figure. Real municipal
                 water tariffs vary a lot by board
@@ -272,11 +272,11 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
                 )}
               </p>
             </div>
-            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+            <div className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="font-display font-bold text-ink-navy">
                 They skip the sewerage charge
               </p>
-              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+              <p className="mt-1 text-sm text-ash/70">
                 Many quick calculators price only the volumetric water
                 charge and drop the sewerage charge entirely — and because
                 it&apos;s a percentage of the water charge (as high as{' '}
@@ -286,11 +286,11 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
                 flat amount.
               </p>
             </div>
-            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+            <div className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="font-display font-bold text-ink-navy">
                 They ignore billing-cycle differences
               </p>
-              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+              <p className="mt-1 text-sm text-ash/70">
                 {cyclesDiffer
                   ? 'Some boards bill monthly and others bi-monthly — a generic calculator that assumes one cycle for every city will misstate your real bill by up to 2×.'
                   : `${tariff.boardCode} bills ${tariff.billingCycle}, and generic calculators often assume a single cycle for every city.`}{' '}
@@ -312,15 +312,15 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <h2 id="tariff-table" className="font-display mb-4 text-2xl font-semibold">
             {tariff.boardCode} domestic water tariff
           </h2>
-          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Slab (KL)</th>
                   <th className="px-4 py-2 text-right font-semibold">Rate (₹/KL)</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {tariff.slabs.map((s, i) => (
                   <tr key={i}>
                     <td className="px-4 py-2">{s.minKL}–{s.maxKL ?? 'above'}</td>
@@ -328,7 +328,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
                   </tr>
                 ))}
               </tbody>
-              <tfoot className="bg-mist text-ash/70 dark:bg-slate-800 dark:text-gazette-cream/70">
+              <tfoot className="bg-mist text-ash/70">
                 <tr>
                   <td className="px-4 py-2">Sewerage charge</td>
                   <td className="px-4 py-2 text-right tabular-nums">{tariff.sewerageChargePercent}% of water charge</td>
@@ -342,7 +342,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
               </tfoot>
             </table>
           </div>
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             Effective from {formatIsoDate(tariff.effectiveFrom)} · Verified{' '}
             {formatIsoDate(tariff.lastVerified)} ·{' '}
             <a
@@ -364,29 +364,29 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl border border-spark-teal/25 bg-spark-teal/5 p-5">
-                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
                   {freeKl} KL — at the free threshold
                 </p>
                 <p className="font-display mt-1 text-2xl font-bold tabular-nums text-spark-teal">
                   {formatINR(underExample.total)}
                 </p>
-                <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="mt-1 text-sm text-ash/60">
                   Water charge waived · only the fixed charge applies
                 </p>
               </div>
               <div className="rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-5">
-                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
                   {(freeKl ?? 0) + 1} KL — just 1 KL over
                 </p>
                 <p className="font-display mt-1 text-2xl font-bold tabular-nums text-caution-amber">
                   {formatINR(overExample.total)}
                 </p>
-                <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="mt-1 text-sm text-ash/60">
                   Full consumption billed · {formatINR(overExample.waterCharge)} water + {formatINR(overExample.sewerageCharge)} sewerage
                 </p>
               </div>
             </div>
-            <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+            <p className="mt-2 text-xs text-ash/50">
               A single extra litre pushes the bill from{' '}
               {formatINR(underExample.total)} to {formatINR(overExample.total)}{' '}
               — the all-or-nothing rule in action.
@@ -399,7 +399,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
             <h2 id="board-comparison" className="font-display mb-2 text-2xl font-semibold">
               How per-board billing changes your water bill
             </h2>
-            <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+            <p className="mb-4 text-sm text-ash/60">
               The exact same <strong>{comparisonKl} KL</strong> — priced at
               each board&apos;s real tariff, computed live by this
               calculator&apos;s own engine. We only compare boards with a
@@ -421,7 +421,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <h2 id="charges-explained" className="font-display mb-2 text-2xl font-semibold">
             Sewerage &amp; fixed charges explained
           </h2>
-          <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+          <div className="space-y-3 text-ash/80">
             <p>
               <strong>Sewerage charge.</strong> A wastewater treatment and
               disposal fee, billed as {tariff.sewerageChargePercent}% of your
@@ -442,7 +442,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <h2 id="tanker" className="font-display mb-2 text-2xl font-semibold">
             Piped water vs tanker/jar delivery
           </h2>
-          <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+          <p className="mb-4 text-sm text-ash/60">
             A real numeric comparison, not a guess — priced at{' '}
             {tariff.boardCode}&apos;s actual tariff against your own local
             tanker and jar prices.
@@ -454,7 +454,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <h2 id="landscape" className="font-display mb-2 text-2xl font-semibold">
             How municipal water tariffs are actually set
           </h2>
-          <p className="text-ash/80 dark:text-gazette-cream/70">
+          <p className="text-ash/80">
             Unlike electricity (state electricity regulatory commissions) or
             gas (the PNGRB), there&apos;s no single central regulator that
             sets municipal water tariffs in India — each municipal
@@ -478,85 +478,85 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
               href="/appliances/water-tank-filling-time-calculator"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🚰</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Water tank fill time
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 How long your tank takes to fill.
               </p>
             </Link>
             <Link
               href="/electricity"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>⚡</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Electricity bill calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Real DISCOM tariffs for all 36 states.
               </p>
             </Link>
             <Link
               href="/gas"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🔥</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Gas bill calculator
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Same real-tariff approach for PNG.
               </p>
             </Link>
             <Link
               href="/appliances/household-bill-builder"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🔌</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Household bill builder
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Add every appliance, see your combined electricity bill.
               </p>
             </Link>
             <Link
               href="/ac"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>❄️</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 AC running cost
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 What your AC adds to your electricity bill.
               </p>
             </Link>
             <Link
               href="/fuel-cost"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>⛽</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Fuel cost calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Petrol/diesel, LPG cylinder and generator cost.
               </p>
             </Link>
             <Link
               href="/financial"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🧮</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Financial calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 GST, SIP, gratuity and tax-regime maths.
               </p>
             </Link>
@@ -564,13 +564,13 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
               <Link
                 key={b.slug}
                 href={`/water/${b.slug}`}
-                className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+                className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm"
               >
                 <span className="text-xl" aria-hidden>🗺️</span>
-                <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                <p className="font-display mt-2 font-bold text-ink-navy">
                   {b.name}
                 </p>
-                <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                <p className="mt-1 text-xs text-ash/60">
                   {b.hasTariffFile ? `Water bill calculator for ${b.name}.` : 'Coming soon.'}
                 </p>
               </Link>
@@ -585,24 +585,24 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <div className="grid gap-3 sm:grid-cols-3">
             <a
               href="#reference"
-              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm"
             >
               How KL billing units work →
             </a>
             <a
               href="#charges-explained"
-              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm"
             >
               Sewerage &amp; fixed charges explained →
             </a>
             <Link
               href="/water"
-              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-water/50 hover:shadow-sm"
             >
               Browse all water calculators →
             </Link>
           </div>
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             Standalone deep-dive guides on connection process and metering
             are on our roadmap — for now, each of these jumps to the
             relevant section on this page.
@@ -613,28 +613,28 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
             Frequently asked questions
           </h2>
-          <div className="divide-y divide-hairline dark:divide-white/10">
+          <div className="divide-y divide-hairline">
             {faqs.map((f, i) => (
               <details key={i} className="group py-3">
-                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                   {f.q}
                 </summary>
-                <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+                <p className="mt-2 text-ash/70">{f.a}</p>
               </details>
             ))}
           </div>
         </section>
 
-        <footer className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+        <footer className="rounded-xl border border-hairline bg-paper p-5">
           <div className="flex flex-wrap items-center gap-2">
             <span className="flex items-center gap-1.5 rounded-full border border-seal-red/30 bg-seal-red/5 px-2.5 py-1 text-xs font-semibold text-seal-red">
               <span aria-hidden>⦿</span> Verified {formatIsoDate(tariff.lastVerified)}
             </span>
-            <span className="text-xs text-ash/50 dark:text-gazette-cream/40">
+            <span className="text-xs text-ash/50">
               Effective from {formatIsoDate(tariff.effectiveFrom)}
             </span>
           </div>
-          <p className="mt-3 text-sm text-ash/70 dark:text-gazette-cream/60">
+          <p className="mt-3 text-sm text-ash/70">
             Source:{' '}
             <a
               href={tariff.sourceUrl}
@@ -645,7 +645,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
               {tariff.boardName} tariff notification
             </a>
           </p>
-          <p className="mt-1 text-xs text-ash/50 dark:text-gazette-cream/40">{tariff.verifiedBy}</p>
+          <p className="mt-1 text-xs text-ash/50">{tariff.verifiedBy}</p>
         </footer>
 
         <script

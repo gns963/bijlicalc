@@ -6,8 +6,8 @@ export default function TableOfContents({
 }) {
   return (
     <nav aria-label="Table of contents" className="mb-8">
-      <details className="group rounded-xl border border-hairline bg-paper p-4 dark:border-white/10 dark:bg-slate-900">
-        <summary className="flex cursor-pointer list-none items-center justify-between font-display font-bold text-ink-navy dark:text-gazette-cream">
+      <details className="group rounded-xl border border-hairline bg-paper p-4">
+        <summary className="flex cursor-pointer list-none items-center justify-between font-display font-bold text-ink-navy">
           Table of contents
           <span className="text-brass transition group-open:rotate-45">+</span>
         </summary>
@@ -16,7 +16,7 @@ export default function TableOfContents({
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className="text-ash/70 hover:text-brass dark:text-gazette-cream/60"
+                className="text-ash/70 hover:text-brass"
               >
                 {i + 1}. {item.label}
               </a>

@@ -128,7 +128,7 @@ export default function GasCompanyPage({
         <h2 id="scm" className="font-display mb-2 text-2xl font-semibold">
           Understanding SCM units
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           A <strong>Standard Cubic Metre (SCM)</strong> is the billing unit
           for piped natural gas — roughly one day of standard cooking (two
           meals) for an average family on a typical domestic burner. It is
@@ -141,7 +141,7 @@ export default function GasCompanyPage({
         <h2 id="billing-cycle" className="font-display mb-2 text-2xl font-semibold">
           Why your bill might cover more than one month
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           Many CGDs, including some of {companyName}&apos;s service areas,
           bill bi-monthly rather than monthly — check your own bill for the
           exact period it covers. If yours is bi-monthly, the SCM figure and
@@ -155,12 +155,12 @@ export default function GasCompanyPage({
         <h2 id="png-vs-lpg" className="font-display mb-2 text-2xl font-semibold">
           PNG vs LPG cylinder — which costs less for you?
         </h2>
-        <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+        <p className="mb-4 text-sm text-ash/60">
           A real numeric comparison using your own PNG rate and local LPG
           cylinder price — not a guess.
         </p>
         <PngVsLpgSelfRateComparison />
-        <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+        <p className="mt-2 text-xs text-ash/50">
           Uses a commonly cited ~1.33 SCM-per-kg calorific equivalence to
           translate your PNG usage into an equivalent LPG weight — a
           planning approximation, not a precise thermodynamic conversion.
@@ -176,10 +176,10 @@ export default function GasCompanyPage({
         aria-labelledby="png-safety"
         className="mb-10 scroll-mt-20 rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-5"
       >
-        <h2 id="png-safety" className="font-display mb-2 text-xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="png-safety" className="font-display mb-2 text-xl font-bold text-ink-navy">
           PNG vs LPG safety
         </h2>
-        <p className="text-sm text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-sm text-ash/80">
           Both are safe when installed and maintained correctly. Piped
           natural gas is lighter than air and disperses upward in a leak;
           LPG is heavier than air and can pool near the floor — a factual
@@ -194,7 +194,7 @@ export default function GasCompanyPage({
         <h2 id="winter" className="font-display mb-2 text-2xl font-semibold">
           Why your bill might spike in winter
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           Colder months bring more stovetop cooking time and, in homes with
           one, more use of a gas geyser for hot water — both add SCM
           consumption. A 10-15% seasonal increase over your summer baseline
@@ -207,7 +207,7 @@ export default function GasCompanyPage({
         <h2 id="meter-reading" className="font-display mb-2 text-2xl font-semibold">
           How to submit your meter reading
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           If {companyName}&apos;s meter reader can&apos;t access your
           property, most CGDs let you submit a self-reading: photograph the
           meter&apos;s black digit display clearly, then upload it through
@@ -225,49 +225,49 @@ export default function GasCompanyPage({
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/gas"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🏷️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               All gas providers
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See every provider this calculator covers.
             </p>
           </Link>
           <Link
             href="/gas/igl"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📊</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               See a real-tariff example
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               IGL (Delhi/NCR) uses a real, dated tariff — no rate entry needed.
             </p>
           </Link>
           <Link
             href="/fuel-cost/lpg-cylinder-usage-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔥</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               LPG cylinder usage
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               No PNG connection? Estimate your LPG cylinder instead.
             </p>
           </Link>
           <Link
             href="/water"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>💧</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Water bill calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Same honest approach for your water bill.
             </p>
           </Link>
@@ -278,13 +278,13 @@ export default function GasCompanyPage({
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

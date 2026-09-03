@@ -73,7 +73,7 @@ export default function Header() {
       className={`sticky top-0 z-30 border-b transition-colors ${
         transparent
           ? 'border-transparent bg-transparent'
-          : 'border-hairline/70 bg-paper/85 backdrop-blur dark:border-white/10 dark:bg-[#02181c]/85'
+          : 'border-hairline/70 bg-paper/85 backdrop-blur'
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
@@ -106,8 +106,8 @@ export default function Header() {
                         ? 'bg-white/10 text-spark-teal'
                         : 'text-white/80 hover:text-spark-teal'
                       : isOpen
-                        ? 'bg-mist text-brass dark:bg-slate-800'
-                        : 'text-ash hover:text-brass dark:text-gazette-cream/80'
+                        ? 'bg-mist text-brass'
+                        : 'text-ash hover:text-brass'
                   }`}
                 >
                   {hub.label}
@@ -128,12 +128,12 @@ export default function Header() {
                   <div className="absolute left-1/2 top-full z-40 -translate-x-1/2 pt-2">
                   <div
                     role="menu"
-                    className="flex gap-8 rounded-xl border border-hairline bg-paper p-6 shadow-xl dark:border-white/10 dark:bg-slate-900"
+                    className="flex gap-8 rounded-xl border border-hairline bg-paper p-6 shadow-xl"
                     style={{ minWidth: 'max-content' }}
                   >
                     {hub.columns.map((col) => (
                       <div key={col.heading} className="w-56">
-                        <p className="mb-3 text-[11px] font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+                        <p className="mb-3 text-[11px] font-semibold tracking-wide text-ash/50 uppercase">
                           {col.heading}
                         </p>
                         <ul className="space-y-2.5">
@@ -142,7 +142,7 @@ export default function Header() {
                               <Link
                                 href={link.href}
                                 onClick={() => setOpenHub(null)}
-                                className="group flex items-start gap-2 rounded-lg px-1.5 py-1 -mx-1.5 hover:bg-mist dark:hover:bg-slate-800"
+                                className="group flex items-start gap-2 rounded-lg px-1.5 py-1 -mx-1.5 hover:bg-mist"
                               >
                                 {link.icon && (
                                   <span className="mt-0.5 text-base" aria-hidden>
@@ -150,11 +150,11 @@ export default function Header() {
                                   </span>
                                 )}
                                 <span>
-                                  <span className="block text-sm font-semibold text-ink-navy group-hover:text-brass dark:text-gazette-cream">
+                                  <span className="block text-sm font-semibold text-ink-navy group-hover:text-brass">
                                     {link.label}
                                   </span>
                                   {link.sub && (
-                                    <span className="block text-xs text-ash/50 dark:text-gazette-cream/40">
+                                    <span className="block text-xs text-ash/50">
                                       {link.sub}
                                     </span>
                                   )}
@@ -167,7 +167,7 @@ export default function Header() {
                           <Link
                             href={col.viewAllHref}
                             onClick={() => setOpenHub(null)}
-                            className="mt-3 flex items-center gap-1 border-t border-hairline pt-3 text-sm font-semibold text-brass hover:underline dark:border-white/10"
+                            className="mt-3 flex items-center gap-1 border-t border-hairline pt-3 text-sm font-semibold text-brass hover:underline"
                           >
                             {col.viewAllLabel ?? 'View all'} <span aria-hidden>→</span>
                           </Link>
@@ -200,7 +200,7 @@ export default function Header() {
             className={`flex h-9 w-9 items-center justify-center rounded-lg border lg:hidden ${
               transparent
                 ? 'border-white/30 text-white'
-                : 'border-hairline text-ash dark:border-white/10 dark:text-gazette-cream'
+                : 'border-hairline text-ash'
             }`}
           >
             <span aria-hidden className="text-lg">
@@ -212,16 +212,16 @@ export default function Header() {
 
       {/* Mobile accordion menu */}
       {mobileOpen && (
-        <div className="max-h-[calc(100vh-57px)] overflow-y-auto border-t border-hairline bg-paper px-4 py-3 lg:hidden dark:border-white/10 dark:bg-[#02181c]">
+        <div className="max-h-[calc(100vh-57px)] overflow-y-auto border-t border-hairline bg-paper px-4 py-3 lg:hidden">
           {MEGA_MENU.map((hub) => {
             const isExpanded = mobileExpanded === hub.key
             return (
-              <div key={hub.key} className="border-b border-hairline last:border-b-0 dark:border-white/10">
+              <div key={hub.key} className="border-b border-hairline last:border-b-0">
                 <button
                   type="button"
                   onClick={() => setMobileExpanded((cur) => (cur === hub.key ? null : hub.key))}
                   aria-expanded={isExpanded}
-                  className="flex w-full items-center justify-between py-3 text-left text-sm font-semibold text-ink-navy dark:text-gazette-cream"
+                  className="flex w-full items-center justify-between py-3 text-left text-sm font-semibold text-ink-navy"
                 >
                   <span className="flex items-center gap-2">
                     <span aria-hidden>{hub.emoji}</span>
@@ -235,7 +235,7 @@ export default function Header() {
                   <div className="pb-3 pl-6">
                     {hub.columns.map((col) => (
                       <div key={col.heading} className="mb-3">
-                        <p className="mb-1.5 text-[11px] font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+                        <p className="mb-1.5 text-[11px] font-semibold tracking-wide text-ash/50 uppercase">
                           {col.heading}
                         </p>
                         <ul className="space-y-2">
@@ -244,7 +244,7 @@ export default function Header() {
                               <Link
                                 href={link.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="text-sm text-ash hover:text-brass dark:text-gazette-cream/80"
+                                className="text-sm text-ash hover:text-brass"
                               >
                                 {link.label}
                                 {link.sub && (

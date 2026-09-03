@@ -58,7 +58,7 @@ export default function PhantomLoadChecker({ discoms }: { discoms: DiscomOption[
   }, [discomCode, checked])
 
   const fieldCls =
-    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30'
 
   return (
     <CalculatorCard>
@@ -69,7 +69,7 @@ export default function PhantomLoadChecker({ discoms }: { discoms: DiscomOption[
       />
 
       <div className="mb-5">
-        <label htmlFor="phantom-discom" className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+        <label htmlFor="phantom-discom" className="mb-1.5 block text-sm font-medium text-ash">
           DISCOM / state
         </label>
         <select
@@ -87,14 +87,14 @@ export default function PhantomLoadChecker({ discoms }: { discoms: DiscomOption[
       </div>
 
       <fieldset className="mb-5">
-        <legend className="mb-2 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+        <legend className="mb-2 block text-sm font-medium text-ash">
           Which of these stay plugged in 24/7 at your place?
         </legend>
         <div className="grid gap-2 sm:grid-cols-2">
           {STANDBY_DEVICES.map((d) => (
             <label
               key={d.name}
-              className="flex items-center gap-2.5 rounded-lg border border-hairline px-3 py-2.5 text-sm dark:border-white/10"
+              className="flex items-center gap-2.5 rounded-lg border border-hairline px-3 py-2.5 text-sm"
             >
               <input
                 type="checkbox"
@@ -102,8 +102,8 @@ export default function PhantomLoadChecker({ discoms }: { discoms: DiscomOption[
                 onChange={() => toggle(d.name)}
                 className="accent-brass"
               />
-              <span className="flex-1 text-ash dark:text-gazette-cream/80">{d.name}</span>
-              <span className="shrink-0 tabular-nums text-ash/50 dark:text-gazette-cream/40">
+              <span className="flex-1 text-ash">{d.name}</span>
+              <span className="shrink-0 tabular-nums text-ash/50">
                 {d.watts}W
               </span>
             </label>
@@ -113,15 +113,15 @@ export default function PhantomLoadChecker({ discoms }: { discoms: DiscomOption[
 
       <CalculatorCta label="Calculate Standby Cost" tone="appliance" />
 
-      <div className="mt-6 rounded-xl border border-hub-appliance/15 bg-hub-appliance/5 p-5 dark:border-hub-appliance/20 dark:bg-hub-appliance/10">
-        <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+      <div className="mt-6 rounded-xl border border-hub-appliance/15 bg-hub-appliance/5 p-5">
+        <p className="text-sm text-ash/60">
           {result.count} device{result.count === 1 ? '' : 's'} · {result.totalWatts}W continuous · {result.dailyUnits} units/day
         </p>
         <p className="font-display text-4xl font-bold tabular-nums text-hub-appliance">
           {formatINR(result.monthlyCost)}
-          <span className="ml-1 text-sm font-normal text-ash/50 dark:text-gazette-cream/40">/month</span>
+          <span className="ml-1 text-sm font-normal text-ash/50">/month</span>
         </p>
-        <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+        <p className="mt-1 text-sm text-ash/60">
           ≈ {formatINR(result.annualCost)}/year, just from devices that never actually switch off.
         </p>
       </div>

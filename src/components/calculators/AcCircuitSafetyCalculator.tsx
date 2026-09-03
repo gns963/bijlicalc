@@ -45,9 +45,9 @@ export default function AcCircuitSafetyCalculator() {
         <CalculatorCta label="Get Circuit Recommendation" tone="brass" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-ac/15 bg-hub-ac/5 p-5 dark:border-hub-ac/20 dark:bg-hub-ac/10">
+      <div className="mt-6 rounded-xl border border-hub-ac/15 bg-hub-ac/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
@@ -55,7 +55,7 @@ export default function AcCircuitSafetyCalculator() {
           <div className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="text-sm text-ash/60">
                   Recommended MCB
                 </p>
                 <p className="font-display text-3xl font-bold tabular-nums text-hub-ac">
@@ -63,7 +63,7 @@ export default function AcCircuitSafetyCalculator() {
                 </p>
               </div>
               <div>
-                <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="text-sm text-ash/60">
                   Recommended wire
                 </p>
                 <p className="font-display text-3xl font-bold tabular-nums text-hub-ac">

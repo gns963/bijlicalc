@@ -110,7 +110,7 @@ export default function AcCircuitSafetyPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-caution-amber bg-paper p-5 dark:border-white/10 dark:border-l-caution-amber dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-caution-amber bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -118,7 +118,7 @@ export default function AcCircuitSafetyPage() {
         >
           Worked example — general guidance only
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           An AC rated at <strong>6A</strong> would typically call for around a{' '}
           <strong>{example.recommendedMcbAmps}A MCB</strong> and{' '}
           <strong>{example.recommendedWireSqmm} sq mm</strong> copper wire —
@@ -138,7 +138,7 @@ export default function AcCircuitSafetyPage() {
         <h2 id="how" className="font-display mb-4 text-2xl font-semibold">
           How this is calculated
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             <strong>Design current.</strong> We take the AC&apos;s nameplate
             rated current and add 25% headroom, since compressor motors draw a
@@ -165,11 +165,11 @@ export default function AcCircuitSafetyPage() {
       >
         <h2
           id="reference-table"
-          className="font-display mb-2 text-2xl font-semibold text-ink-navy dark:text-gazette-cream"
+          className="font-display mb-2 text-2xl font-semibold text-ink-navy"
         >
           Typical MCB &amp; wire gauge by AC tonnage — general reference
         </h2>
-        <p className="mb-4 text-sm text-ash/70 dark:text-gazette-cream/70">
+        <p className="mb-4 text-sm text-ash/70">
           For browsing only, not a specification — always size a real
           installation from the AC&apos;s own nameplate current using the
           calculator above, then have it confirmed by a licensed electrician.
@@ -184,49 +184,49 @@ export default function AcCircuitSafetyPage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/ac/power-consumption-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔢</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Power consumption
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Same rated current, for power draw and units.
             </p>
           </Link>
           <Link
             href="/ac/tonnage-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC tonnage calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Still choosing an AC size? Start here.
             </p>
           </Link>
           <Link
             href="/appliances/inverter-sizing-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔌</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Inverter sizing
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Planning backup power for other circuits too?
             </p>
           </Link>
           <Link
             href="/solar/roi-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>☀️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Offset it with solar
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See the payback on a rooftop system sized for AC-heavy usage.
             </p>
           </Link>
@@ -237,19 +237,19 @@ export default function AcCircuitSafetyPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>
       </section>
 
-      <footer className="rounded-lg bg-caution-amber/10 p-4 text-sm text-ash/70 dark:bg-caution-amber/10 dark:text-gazette-cream/70">
+      <footer className="rounded-lg bg-caution-amber/10 p-4 text-sm text-ash/70">
         <p>
           ⚠ <strong>Safety notice:</strong> electrical wiring carries real
           fire and shock risk if sized or installed incorrectly. This

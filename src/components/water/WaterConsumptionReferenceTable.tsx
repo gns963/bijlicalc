@@ -16,9 +16,9 @@ export default function WaterConsumptionReferenceTable() {
 
   return (
     <div>
-      <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-hairline">
         <table className="w-full text-left text-sm">
-          <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+          <thead className="border-b border-hairline bg-mist text-ink-navy">
             <tr>
               <th className="px-4 py-2 font-semibold">KL (per cycle)</th>
               <th className="px-4 py-2 text-right font-semibold">~Household size</th>
@@ -27,7 +27,7 @@ export default function WaterConsumptionReferenceTable() {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-hairline dark:divide-white/10">
+          <tbody className="divide-y divide-hairline">
             {KL_LEVELS.map((kl) => {
               const bill = computeWaterBill(tariff, { consumptionKl: kl })
               const monthly = bill.monthlyEquivalent?.total ?? bill.total
@@ -50,7 +50,7 @@ export default function WaterConsumptionReferenceTable() {
           </tbody>
         </table>
       </div>
-      <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+      <p className="mt-2 text-xs text-ash/50">
         Approximate figures at {tariff.boardName}&apos;s real rate, using a
         commonly cited ~4.5 KL/person/month benchmark, for quick browsing
         only — your own board&apos;s rate and household&apos;s real usage may

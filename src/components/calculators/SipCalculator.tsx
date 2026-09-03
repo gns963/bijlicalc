@@ -26,7 +26,7 @@ export default function SipCalculator() {
         <div>
           <label
             htmlFor="sip-monthly"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             Monthly investment (₹)
           </label>
@@ -36,7 +36,7 @@ export default function SipCalculator() {
             min={0}
             value={monthly}
             onChange={(e) => setMonthly(Number(e.target.value) || 0)}
-            className="w-full rounded-lg border border-hairline px-3 py-2.5 text-lg tabular-nums outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
+            className="w-full rounded-lg border border-hairline px-3 py-2.5 text-lg tabular-nums outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30"
           />
         </div>
 
@@ -63,16 +63,16 @@ export default function SipCalculator() {
         <CalculatorCta label="Calculate SIP Returns" tone="financial" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5">
         <div className="grid gap-4">
           <div>
-            <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+            <p className="text-sm text-ash/60">
               Maturity value
             </p>
-            <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+            <p className="font-display text-4xl font-bold tabular-nums text-ink-navy">
               {formatINR(result.maturityValue)}
             </p>
-            <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+            <p className="text-sm text-ash/60">
               Invested {formatINR(result.invested)} · Gains{' '}
               <span className="text-spark-teal">{formatINR(result.gains)}</span>
             </p>
@@ -103,7 +103,7 @@ export default function SipCalculator() {
                 )
               })}
             </div>
-            <div className="mt-2 flex gap-4 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <div className="mt-2 flex gap-4 text-xs text-ash/60">
               <span className="flex items-center gap-1">
                 <span className="inline-block h-2 w-2 rounded-sm bg-brass" />
                 Invested

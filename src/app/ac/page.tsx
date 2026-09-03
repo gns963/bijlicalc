@@ -30,8 +30,8 @@ const cards = [
     title: 'AC Running Cost Calculator',
     body: 'Monthly and yearly electricity cost by tonnage, star rating, hours and DISCOM.',
     cta: 'Calculate cost →',
-    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50 dark:border-spark-teal/20 dark:bg-spark-teal/15/30',
-    ctaCls: 'text-spark-teal dark:text-spark-teal',
+    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50',
+    ctaCls: 'text-spark-teal',
   },
   {
     href: '/ac/tonnage-calculator',
@@ -39,8 +39,8 @@ const cards = [
     title: 'AC Tonnage Calculator',
     body: 'What size AC your room needs, adjusted for sun exposure and floor level.',
     cta: 'Find AC size →',
-    cls: 'border-brass/20 bg-brass/5 hover:border-brass/50 dark:border-brass/20 dark:bg-brass/15/30',
-    ctaCls: 'text-brass dark:text-brass',
+    cls: 'border-brass/20 bg-brass/5 hover:border-brass/50',
+    ctaCls: 'text-brass',
   },
   {
     href: '/ac/comparisons/3-star-vs-5-star-savings-guide',
@@ -48,8 +48,8 @@ const cards = [
     title: '3 Star vs 5 Star Savings',
     body: 'Interactive comparison of annual savings from a 5-star AC by usage and tariff.',
     cta: 'Compare now →',
-    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50 dark:border-spark-teal/20 dark:bg-spark-teal/15/30',
-    ctaCls: 'text-spark-teal dark:text-spark-teal',
+    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50',
+    ctaCls: 'text-spark-teal',
   },
   {
     href: '/ac/comparison-tool',
@@ -57,8 +57,8 @@ const cards = [
     title: 'AC Comparison Tool',
     body: 'Compare any two AC configurations side by side — tonnage, star rating, or both.',
     cta: 'Compare ACs →',
-    cls: 'border-brass/20 bg-brass/5 hover:border-brass/50 dark:border-brass/20 dark:bg-brass/15/30',
-    ctaCls: 'text-brass dark:text-brass',
+    cls: 'border-brass/20 bg-brass/5 hover:border-brass/50',
+    ctaCls: 'text-brass',
   },
   {
     href: '/ac/power-consumption-calculator',
@@ -66,8 +66,8 @@ const cards = [
     title: 'Power Consumption Calculator',
     body: "From your AC's nameplate rated current — no tonnage lookup needed.",
     cta: 'Calculate draw →',
-    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50 dark:border-spark-teal/20 dark:bg-spark-teal/15/30',
-    ctaCls: 'text-spark-teal dark:text-spark-teal',
+    cls: 'border-spark-teal/20 bg-spark-teal/5 hover:border-spark-teal/50',
+    ctaCls: 'text-spark-teal',
   },
   {
     href: '/ac/circuit-safety-calculator',
@@ -75,8 +75,8 @@ const cards = [
     title: 'Circuit Safety Calculator',
     body: 'General MCB rating and wire gauge guidance for an AC circuit.',
     cta: 'Get guidance →',
-    cls: 'border-caution-amber/20 bg-caution-amber/5 hover:border-caution-amber/50 dark:border-caution-amber/20 dark:bg-caution-amber/15/30',
-    ctaCls: 'text-caution-amber dark:text-caution-amber',
+    cls: 'border-caution-amber/20 bg-caution-amber/5 hover:border-caution-amber/50',
+    ctaCls: 'text-caution-amber',
   },
 ]
 
@@ -181,10 +181,10 @@ export default function AcHubPage() {
             className={`flex flex-col rounded-2xl border p-6 transition hover:shadow-sm ${c.cls}`}
           >
             <span className="text-2xl">{c.emoji}</span>
-            <h2 className="font-display mt-2 text-lg font-semibold text-ink-navy dark:text-gazette-cream">
+            <h2 className="font-display mt-2 text-lg font-semibold text-ink-navy">
               {c.title}
             </h2>
-            <p className="mt-1 flex-1 text-sm text-ash/70 dark:text-gazette-cream/70">
+            <p className="mt-1 flex-1 text-sm text-ash/70">
               {c.body}
             </p>
             <span className={`mt-3 text-sm font-semibold ${c.ctaCls}`}>
@@ -198,7 +198,7 @@ export default function AcHubPage() {
         <h2 id="why" className="font-display mb-4 text-2xl font-semibold">
           Why AC cost depends on more than the price tag
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             An air conditioner is often the single biggest line on a summer
             electricity bill. Two things drive the cost: how efficiently the unit
@@ -218,13 +218,13 @@ export default function AcHubPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

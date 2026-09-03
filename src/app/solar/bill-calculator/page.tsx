@@ -88,9 +88,9 @@ export default function SolarBillCalculatorIndexPage() {
             <li key={r.slug}>
               <Link
                 href={`/solar/bill-calculator/${r.slug}`}
-                className="block rounded-xl border border-hub-solar/20 bg-hub-solar/5 p-4 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-hub-solar/20 dark:bg-hub-solar/10"
+                className="block rounded-xl border border-hub-solar/20 bg-hub-solar/5 p-4 transition hover:border-hub-solar/50 hover:shadow-sm"
               >
-                <span className="font-semibold text-ink-navy dark:text-gazette-cream">
+                <span className="font-semibold text-ink-navy">
                   {r.state}
                 </span>
                 <span className="mt-1 block text-xs text-hub-solar">
@@ -106,13 +106,13 @@ export default function SolarBillCalculatorIndexPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

@@ -22,7 +22,7 @@ export default function LanguageSwitcher({ transparent = false }: { transparent?
         className={`flex items-center gap-1 rounded-full border px-2.5 py-1.5 text-xs font-semibold ${
           transparent
             ? 'border-white/30 text-white hover:border-white/60'
-            : 'border-hairline text-ash hover:border-brass dark:border-white/10 dark:text-gazette-cream'
+            : 'border-hairline text-ash hover:border-brass'
         }`}
       >
         🌐 EN <span className="text-[10px]">▾</span>
@@ -30,7 +30,7 @@ export default function LanguageSwitcher({ transparent = false }: { transparent?
       {open && (
         <div
           role="menu"
-          className="absolute right-0 z-20 mt-1 w-40 overflow-hidden rounded-lg border border-hairline bg-paper shadow-lg dark:border-white/10 dark:bg-slate-900"
+          className="absolute right-0 z-20 mt-1 w-40 overflow-hidden rounded-lg border border-hairline bg-paper shadow-lg"
         >
           {LANGS.map((l) => (
             <button
@@ -45,9 +45,9 @@ export default function LanguageSwitcher({ transparent = false }: { transparent?
                   setNote(`${l.label} coming soon`)
                 }
               }}
-              className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-mist dark:hover:bg-slate-800 ${
+              className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-mist ${
                 l.ready
-                  ? 'font-semibold text-ash dark:text-gazette-cream'
+                  ? 'font-semibold text-ash'
                   : 'text-ash/40'
               }`}
             >
@@ -60,7 +60,7 @@ export default function LanguageSwitcher({ transparent = false }: { transparent?
             </button>
           ))}
           {note && (
-            <p className="border-t border-hairline px-3 py-2 text-xs text-ash/60 dark:border-white/10">
+            <p className="border-t border-hairline px-3 py-2 text-xs text-ash/60">
               {note}
             </p>
           )}

@@ -117,7 +117,7 @@ export default function EvChargingCostPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -125,7 +125,7 @@ export default function EvChargingCostPage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           A <strong>30 kWh battery</strong> with a{' '}
           <strong>200 km</strong> full-charge range costs about{' '}
           <strong>{formatINR(example.costToFullCharge)}</strong> to fully
@@ -145,7 +145,7 @@ export default function EvChargingCostPage() {
         <h2 id="ev-vs-fuel" className="font-display mb-2 text-2xl font-semibold">
           EV vs Petrol vs Diesel vs CNG — cost per km
         </h2>
-        <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+        <p className="mb-4 text-sm text-ash/60">
           EV cost uses your real DISCOM tariff from above; enter your own
           fuel prices and mileage for a genuine like-for-like comparison.
         </p>
@@ -159,37 +159,37 @@ export default function EvChargingCostPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
             href="/electricity/appliance-cost-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔋</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Appliance cost calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Any other appliance, from its wattage.
             </p>
           </Link>
           <Link
             href="/fuel-cost/petrol-diesel-cost-per-km-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🚗</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Petrol/diesel cost per km
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Compare against your old vehicle&apos;s running cost.
             </p>
           </Link>
           <Link
             href="/solar/roi-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>☀️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Solar ROI calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Offset EV charging with rooftop solar.
             </p>
           </Link>
@@ -200,13 +200,13 @@ export default function EvChargingCostPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

@@ -134,7 +134,7 @@ export default function AcComparisonPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -142,7 +142,7 @@ export default function AcComparisonPage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           At 8 hours/day in Tamil Nadu, a <strong>1-ton 5-star</strong> AC
           costs about <strong>{formatINR(exampleA.annualCost)}/year</strong>{' '}
           versus <strong>{formatINR(exampleB.annualCost)}/year</strong> for a{' '}
@@ -164,7 +164,7 @@ export default function AcComparisonPage() {
         <h2 id="how-to-read" className="font-display mb-4 text-2xl font-semibold">
           How to read the output
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             Each side shows the same figures the running-cost calculator
             gives for a single AC — monthly cost, annual cost, and daily
@@ -191,12 +191,12 @@ export default function AcComparisonPage() {
             return (
               <div
                 key={s.question}
-                className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900"
+                className="rounded-xl border border-hairline bg-paper p-5"
               >
-                <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+                <p className="font-display font-bold text-ink-navy">
                   {s.question}
                 </p>
-                <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+                <p className="mt-1 text-sm text-ash/70">
                   {s.a.label}: {formatINR(s.a.cost.annualCost)}/year vs {s.b.label}:{' '}
                   {formatINR(s.b.cost.annualCost)}/year (TNEB, 8h/day) —{' '}
                   {diff > 0 ? s.b.label : s.a.label} costs{' '}
@@ -215,49 +215,49 @@ export default function AcComparisonPage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/ac/tonnage-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC tonnage calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Confirm both sizes would actually suit your room.
             </p>
           </Link>
           <Link
             href="/ac/comparisons/3-star-vs-5-star-savings-guide"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>⭐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               3★ vs 5★ savings guide
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Same tonnage, star rating only — with a detailed breakdown.
             </p>
           </Link>
           <Link
             href="/ac/bill-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>💡</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC running cost
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Full detail for a single configuration.
             </p>
           </Link>
           <Link
             href="/solar/roi-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>☀️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Offset it with solar
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See the payback on a rooftop system sized for AC-heavy usage.
             </p>
           </Link>
@@ -268,13 +268,13 @@ export default function AcComparisonPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

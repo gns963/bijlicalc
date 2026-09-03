@@ -173,7 +173,7 @@ export default function StarComparisonPage() {
         <h2 id="criteria" className="font-display mb-4 text-2xl font-semibold">
           How BEE actually decides the star rating
         </h2>
-        <p className="mb-4 text-ash/80 dark:text-gazette-cream/70">
+        <p className="mb-4 text-ash/80">
           The Bureau of Energy Efficiency (BEE) tests each AC model and rates
           it by ISEER (Indian Seasonal Energy Efficiency Ratio) — a
           season-long ratio of total cooling output to total electrical
@@ -186,16 +186,16 @@ export default function StarComparisonPage() {
             .map(([star, iseer]) => (
               <div
                 key={star}
-                className="rounded-lg border border-hairline bg-mist px-2 py-2 dark:border-white/10 dark:bg-slate-800"
+                className="rounded-lg border border-hairline bg-mist px-2 py-2"
               >
                 <p className="font-display text-sm font-bold text-hub-ac">{star}★</p>
-                <p className="text-xs text-ash/60 dark:text-gazette-cream/50">
+                <p className="text-xs text-ash/60">
                   ISEER {iseer}
                 </p>
               </div>
             ))}
         </div>
-        <p className="mt-3 text-xs text-ash/50 dark:text-gazette-cream/40">
+        <p className="mt-3 text-xs text-ash/50">
           BEE revises these thresholds periodically — the bands above are
           what our calculator engine currently uses. Always check the year
           printed on a specific model&apos;s BEE label.
@@ -206,21 +206,21 @@ export default function StarComparisonPage() {
         <h2 id="usage-payback" className="font-display mb-2 text-2xl font-semibold">
           Does the price premium pay back? By usage pattern
         </h2>
-        <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+        <p className="mb-4 text-sm text-ash/60">
           Same 1.5 ton unit, same {formatINR(priceDiff)} indicative price gap
           between the two models above, priced in Tamil Nadu — payback shrinks
           fast as daily hours rise:
         </p>
-        <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-hairline">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+            <thead className="border-b border-hairline bg-mist text-ink-navy">
               <tr>
                 <th className="px-4 py-2 font-semibold">Daily usage</th>
                 <th className="px-4 py-2 text-right font-semibold">Annual saving</th>
                 <th className="px-4 py-2 text-right font-semibold">Payback period</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-hairline dark:divide-white/10">
+            <tbody className="divide-y divide-hairline">
               {USAGE_SCENARIOS.map((s) => (
                 <tr key={s.hours}>
                   <td className="px-4 py-2 font-medium">{s.hours} h/day</td>
@@ -235,7 +235,7 @@ export default function StarComparisonPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+        <p className="mt-2 text-xs text-ash/50">
           A typical AC lasts 10-15 years, so any payback under 4-5 years
           leaves years of genuinely free savings afterward.
         </p>
@@ -245,7 +245,7 @@ export default function StarComparisonPage() {
         <h2 id="verdict" className="font-display mb-4 text-2xl font-semibold">
           So, is 5-star worth it?
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             The more hours you run the AC and the higher your electricity tariff,
             the faster a 5-star pays back its price premium. Light users (2–3
@@ -266,49 +266,49 @@ export default function StarComparisonPage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/ac/bill-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>💡</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC running cost
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Get the full monthly and yearly cost for a specific AC.
             </p>
           </Link>
           <Link
             href="/ac/tonnage-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC tonnage calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Make sure you&apos;re comparing the right size AC for your room.
             </p>
           </Link>
           <Link
             href="/electricity"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔌</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Electricity bill calculators
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Check your DISCOM&apos;s actual tariff slabs.
             </p>
           </Link>
           <Link
             href="/solar/roi-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>☀️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Offset it with solar
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See the payback on a rooftop system sized for AC-heavy usage.
             </p>
           </Link>
@@ -319,13 +319,13 @@ export default function StarComparisonPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

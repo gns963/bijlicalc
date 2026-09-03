@@ -177,7 +177,7 @@ export default function AcBillCalculatorPage() {
         <h2 id="picks" className="font-display mb-2 text-2xl font-semibold">
           Efficient models that cut this cost
         </h2>
-        <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+        <p className="mb-4 text-sm text-ash/60">
           A higher star rating pays for itself in a few seasons. Sample picks
           (indicative pricing):
         </p>
@@ -197,11 +197,11 @@ export default function AcBillCalculatorPage() {
           Why most AC bill calculators get this wrong
         </h2>
         <div className="space-y-4">
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-            <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="font-display font-bold text-ink-navy">
               SEER vs ISEER
             </p>
-            <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+            <p className="mt-1 text-sm text-ash/70">
               Some calculators quietly borrow US SEER-based efficiency
               assumptions instead of BEE&apos;s India-specific ISEER standard.
               The two are tested against different climate and duty-cycle
@@ -209,22 +209,22 @@ export default function AcBillCalculatorPage() {
               an Indian-labelled AC actually performs here.
             </p>
           </div>
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-            <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="font-display font-bold text-ink-navy">
               Flat-rate vs top-slab billing
             </p>
-            <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+            <p className="mt-1 text-sm text-ash/70">
               Many tools price every unit at one flat, national-average rate.
               Indian tariffs are telescopic — an AC adds to your existing
               usage, so its units land on your highest slab, which is almost
               always well above the average rate quoted.
             </p>
           </div>
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-            <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="font-display font-bold text-ink-navy">
               Keeping pace with BEE&apos;s ISEER rebalancing
             </p>
-            <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+            <p className="mt-1 text-sm text-ash/70">
               BEE periodically revises the ISEER thresholds behind each star
               rating, so a fixed set of efficiency numbers can quietly go
               stale. We keep our ISEER table current with BEE&apos;s latest
@@ -248,7 +248,7 @@ export default function AcBillCalculatorPage() {
         <h2 id="slabs" className="font-display mb-2 text-2xl font-semibold">
           How slab-wise billing changes your AC cost
         </h2>
-        <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+        <p className="mb-4 text-sm text-ash/60">
           The exact same <strong>1.5 ton, 3-star AC running 8 hours/day</strong>{' '}
           — priced at each state&apos;s real top-slab tariff, computed live by
           this calculator&apos;s own engine:
@@ -288,7 +288,7 @@ export default function AcBillCalculatorPage() {
         <h2 id="how" className="font-display mb-4 text-2xl font-semibold">
           How AC running cost is calculated
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             <strong>Efficiency (ISEER).</strong> A star rating maps to an ISEER
             value — the higher it is, the fewer units the same cooling needs.
@@ -312,49 +312,49 @@ export default function AcBillCalculatorPage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/ac/tonnage-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC tonnage calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Not sure this is even the right AC size for your room? Check first.
             </p>
           </Link>
           <Link
             href="/ac/comparisons/3-star-vs-5-star-savings-guide"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>⭐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               3★ vs 5★ savings
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See exactly how much a higher star rating would cut this cost.
             </p>
           </Link>
           <Link
             href="/ac/circuit-safety-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🛡️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Circuit safety calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Buying new? Check the MCB and wiring it needs too.
             </p>
           </Link>
           <Link
             href="/solar/roi-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>☀️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Offset it with solar
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See the payback on a rooftop system sized for AC-heavy usage.
             </p>
           </Link>
@@ -365,13 +365,13 @@ export default function AcBillCalculatorPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

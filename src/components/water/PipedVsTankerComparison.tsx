@@ -109,7 +109,7 @@ export default function PipedVsTankerComparison({ boardCode }: { boardCode: stri
             {formatINR(result.pipedMonthlyCost)}
             <span className="text-xs font-normal text-ash/50">/mo</span>
           </p>
-          <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+          <p className="mt-1 text-xs text-ash/60">
             ≈ ₹{result.pipedPerLitre.toFixed(3)}/litre
           </p>
         </div>
@@ -121,24 +121,24 @@ export default function PipedVsTankerComparison({ boardCode }: { boardCode: stri
             {formatINR(result.tankerMonthlyCost)}
             <span className="text-xs font-normal text-ash/50">/mo</span>
           </p>
-          <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+          <p className="mt-1 text-xs text-ash/60">
             {result.tankersNeeded} loads · ₹{result.tankerPerLitre.toFixed(3)}/litre
           </p>
         </div>
-        <div className="rounded-xl border border-hairline bg-mist p-4 dark:border-white/10 dark:bg-slate-800">
-          <p className="text-xs font-semibold tracking-wide text-ash/60 uppercase dark:text-gazette-cream/50">
+        <div className="rounded-xl border border-hairline bg-mist p-4">
+          <p className="text-xs font-semibold tracking-wide text-ash/60 uppercase">
             20L jars only
           </p>
-          <p className="font-display mt-1 text-xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+          <p className="font-display mt-1 text-xl font-bold tabular-nums text-ink-navy">
             {formatINR(result.jarMonthlyCost)}
             <span className="text-xs font-normal text-ash/50">/mo</span>
           </p>
-          <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+          <p className="mt-1 text-xs text-ash/60">
             {result.jarsNeeded} jars · ₹{result.jarPerLitre.toFixed(3)}/litre
           </p>
         </div>
       </div>
-      <p className="mt-3 text-xs text-ash/50 dark:text-gazette-cream/40">
+      <p className="mt-3 text-xs text-ash/50">
         Piped cost uses {tariff.boardCode}&apos;s real tariff via the same
         engine as the calculator above. Tanker and jar prices are your own
         local inputs — there&apos;s no centrally verifiable national rate for

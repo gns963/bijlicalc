@@ -201,7 +201,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hub-gas font-display text-xs font-bold text-white">
                   {i + 1}
                 </span>
-                <span className="text-ash/80 dark:text-gazette-cream/70">{s}</span>
+                <span className="text-ash/80">{s}</span>
               </li>
             ))}
           </ol>
@@ -218,7 +218,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <h2 id="scm" className="font-display mb-2 text-2xl font-semibold">
             Understanding SCM units
           </h2>
-          <p className="text-ash/80 dark:text-gazette-cream/70">
+          <p className="text-ash/80">
             A <strong>Standard Cubic Metre (SCM)</strong> is the billing unit
             for piped natural gas — roughly one day of standard cooking (two
             meals) for an average family on a typical domestic burner. It is
@@ -231,7 +231,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <h2 id="billing-cycle" className="font-display mb-2 text-2xl font-semibold">
             Why your {tariff.cgdCode} bill covers {tocLabel}
           </h2>
-          <p className="text-ash/80 dark:text-gazette-cream/70">
+          <p className="text-ash/80">
             {tariff.cgdCode} bills{' '}
             {tariff.billingCycle === 'bimonthly' ? 'every two months' : 'every month'}
             , so the SCM figure and total on your bill represent that whole
@@ -247,11 +247,11 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
             Why most gas bill calculators are wrong in 2026
           </h2>
           <div className="space-y-4">
-            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+            <div className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="font-display font-bold text-ink-navy">
                 They use a flat, generic rate
               </p>
-              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+              <p className="mt-1 text-sm text-ash/70">
                 Most gas calculators ask you to type in your own per-SCM rate,
                 or quietly apply one national-average figure. Real PNG tariffs
                 vary a lot by CGD
@@ -271,11 +271,11 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
                 )}
               </p>
             </div>
-            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+            <div className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="font-display font-bold text-ink-navy">
                 They ignore bi-monthly billing confusion
               </p>
-              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+              <p className="mt-1 text-sm text-ash/70">
                 Most PNG connections bill every two months, but generic
                 calculators present the total as if it were a monthly figure —
                 leaving users thinking their gas bill just doubled when
@@ -283,11 +283,11 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
                 the monthly-equivalent figure alongside the real cycle total.
               </p>
             </div>
-            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+            <div className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="font-display font-bold text-ink-navy">
                 They skip the fixed/meter charge
               </p>
-              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+              <p className="mt-1 text-sm text-ash/70">
                 Many quick calculators price only the SCM consumption and
                 quietly drop the separate fixed/meter charge every CGD
                 applies — understating the real bill by exactly that amount
@@ -309,15 +309,15 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <h2 id="tariff-table" className="font-display mb-4 text-2xl font-semibold">
             {tariff.cgdCode} domestic PNG tariff
           </h2>
-          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Slab (SCM)</th>
                   <th className="px-4 py-2 text-right font-semibold">Rate (₹/SCM)</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {tariff.slabs.map((s, i) => (
                   <tr key={i}>
                     <td className="px-4 py-2">{s.minSCM}–{s.maxSCM ?? 'above'}</td>
@@ -325,7 +325,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
                   </tr>
                 ))}
               </tbody>
-              <tfoot className="bg-mist text-ash/70 dark:bg-slate-800 dark:text-gazette-cream/70">
+              <tfoot className="bg-mist text-ash/70">
                 <tr>
                   <td className="px-4 py-2">Fixed charge</td>
                   <td className="px-4 py-2 text-right tabular-nums">
@@ -335,7 +335,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
               </tfoot>
             </table>
           </div>
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             Effective from {formatIsoDate(tariff.effectiveFrom)} · Verified{' '}
             {formatIsoDate(tariff.lastVerified)} ·{' '}
             <a
@@ -355,25 +355,25 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
             Two worked examples
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+            <div className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
                 Lower usage
               </p>
               <p className="font-display mt-1 text-2xl font-bold tabular-nums text-hub-gas">
                 {formatINR(lowExample.total)}
               </p>
-              <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-sm text-ash/60">
                 20 SCM · {formatINR(lowExample.gasChargeGross)} gas charge + {formatINR(lowExample.fixedCharge)} fixed
               </p>
             </div>
-            <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+            <div className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
                 Higher usage
               </p>
               <p className="font-display mt-1 text-2xl font-bold tabular-nums text-hub-gas">
                 {formatINR(highExample.total)}
               </p>
-              <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-sm text-ash/60">
                 80 SCM · {formatINR(highExample.gasChargeGross)} gas charge + {formatINR(highExample.fixedCharge)} fixed
               </p>
             </div>
@@ -385,7 +385,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
             <h2 id="cgd-comparison" className="font-display mb-2 text-2xl font-semibold">
               How per-CGD billing changes your gas bill
             </h2>
-            <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+            <p className="mb-4 text-sm text-ash/60">
               The exact same <strong>20 SCM</strong> — priced at each
               provider&apos;s real tariff, computed live by this
               calculator&apos;s own engine. We only compare CGDs with a
@@ -406,12 +406,12 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <h2 id="png-vs-lpg" className="font-display mb-2 text-2xl font-semibold">
             PNG vs LPG cylinder — which costs less for you?
           </h2>
-          <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+          <p className="mb-4 text-sm text-ash/60">
             A real numeric comparison, not a guess — priced at {tariff.cgdCode}&apos;s
             actual tariff against your own local LPG cylinder price.
           </p>
           <PngVsLpgComparison cgdCode={tariff.cgdCode} />
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             Uses a commonly cited ~1.33 SCM-per-kg calorific equivalence to
             translate your PNG usage into an equivalent LPG weight — a
             planning approximation, not a precise thermodynamic conversion.
@@ -427,10 +427,10 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           aria-labelledby="png-safety"
           className="mb-10 scroll-mt-20 rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-5"
         >
-          <h2 id="png-safety" className="font-display mb-2 text-xl font-bold text-ink-navy dark:text-gazette-cream">
+          <h2 id="png-safety" className="font-display mb-2 text-xl font-bold text-ink-navy">
             PNG vs LPG safety
           </h2>
-          <p className="text-sm text-ash/80 dark:text-gazette-cream/70">
+          <p className="text-sm text-ash/80">
             Both are safe when installed and maintained correctly. Piped
             natural gas is lighter than air and disperses upward in a leak;
             LPG is heavier than air and can pool near the floor — a factual
@@ -445,7 +445,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <h2 id="winter" className="font-display mb-2 text-2xl font-semibold">
             Why your bill might spike in winter
           </h2>
-          <p className="text-ash/80 dark:text-gazette-cream/70">
+          <p className="text-ash/80">
             Colder months bring more stovetop cooking time and, in homes
             with one, more use of a gas geyser for hot water — both add SCM
             consumption. A 10-15% seasonal increase over your summer
@@ -458,7 +458,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <h2 id="pngrb" className="font-display mb-2 text-2xl font-semibold">
             The PNGRB tariff landscape: how the math changes
           </h2>
-          <p className="text-ash/80 dark:text-gazette-cream/70">
+          <p className="text-ash/80">
             The <strong>Petroleum and Natural Gas Regulatory Board (PNGRB)</strong>{' '}
             oversees India&apos;s city gas distribution framework, but unlike
             electricity, individual CGD tariffs aren&apos;t set by a single
@@ -477,7 +477,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <h2 id="meter-reading" className="font-display mb-2 text-2xl font-semibold">
             How to submit your meter reading
           </h2>
-          <p className="text-ash/80 dark:text-gazette-cream/70">
+          <p className="text-ash/80">
             If {tariff.cgdCode}&apos;s meter reader can&apos;t access your
             property, most CGDs let you submit a self-reading: photograph the
             meter&apos;s black digit display clearly, then upload it through
@@ -495,61 +495,61 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
               href="/fuel-cost/lpg-cylinder-usage-calculator"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🔥</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 LPG cylinder usage
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Size your own LPG cylinder usage and cost per day.
               </p>
             </Link>
             <Link
               href="/electricity"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>⚡</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Electricity bill calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Real DISCOM tariffs for all 36 states.
               </p>
             </Link>
             <Link
               href="/ac"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>❄️</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 AC running cost
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 What your AC adds to the same electricity bill.
               </p>
             </Link>
             <Link
               href="/appliances"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🔌</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Appliance calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Fan, fridge, inverter sizing and more.
               </p>
             </Link>
             <Link
               href="/financial"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🧮</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Financial calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 GST, SIP, gratuity and tax-regime maths.
               </p>
             </Link>
@@ -557,13 +557,13 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
               <Link
                 key={c.slug}
                 href={`/gas/${c.slug}`}
-                className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+                className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm"
               >
                 <span className="text-xl" aria-hidden>🏢</span>
-                <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+                <p className="font-display mt-2 font-bold text-ink-navy">
                   {c.name}
                 </p>
-                <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+                <p className="mt-1 text-xs text-ash/60">
                   PNG bill calculator for {c.name}.
                 </p>
               </Link>
@@ -578,24 +578,24 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <div className="grid gap-3 sm:grid-cols-3">
             <a
               href="#scm"
-              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm"
             >
               How PNG billing units (SCM) work →
             </a>
             <a
               href="#meter-reading"
-              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm"
             >
               How to read/submit your gas meter →
             </a>
             <a
               href="#png-safety"
-              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-gazette-cream"
+              className="rounded-xl border border-hairline bg-paper p-4 text-sm font-semibold text-ink-navy transition hover:border-hub-gas/50 hover:shadow-sm"
             >
               PNG safety basics →
             </a>
           </div>
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             Standalone deep-dive guides on connection process and installation
             are on our roadmap — for now, each of these jumps to the relevant
             section on this page.
@@ -606,28 +606,28 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
           <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
             Frequently asked questions
           </h2>
-          <div className="divide-y divide-hairline dark:divide-white/10">
+          <div className="divide-y divide-hairline">
             {faqs.map((f, i) => (
               <details key={i} className="group py-3">
-                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                   {f.q}
                 </summary>
-                <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+                <p className="mt-2 text-ash/70">{f.a}</p>
               </details>
             ))}
           </div>
         </section>
 
-        <footer className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+        <footer className="rounded-xl border border-hairline bg-paper p-5">
           <div className="flex flex-wrap items-center gap-2">
             <span className="flex items-center gap-1.5 rounded-full border border-seal-red/30 bg-seal-red/5 px-2.5 py-1 text-xs font-semibold text-seal-red">
               <span aria-hidden>⦿</span> Verified {formatIsoDate(tariff.lastVerified)}
             </span>
-            <span className="text-xs text-ash/50 dark:text-gazette-cream/40">
+            <span className="text-xs text-ash/50">
               Effective from {formatIsoDate(tariff.effectiveFrom)}
             </span>
           </div>
-          <p className="mt-3 text-sm text-ash/70 dark:text-gazette-cream/60">
+          <p className="mt-3 text-sm text-ash/70">
             Source:{' '}
             <a
               href={tariff.sourceUrl}
@@ -638,7 +638,7 @@ export default function GasCgdPage({ cgdCode, slug }: { cgdCode: string; slug: s
               {tariff.cgdName} tariff notification
             </a>
           </p>
-          <p className="mt-1 text-xs text-ash/50 dark:text-gazette-cream/40">{tariff.verifiedBy}</p>
+          <p className="mt-1 text-xs text-ash/50">{tariff.verifiedBy}</p>
         </footer>
 
         <script

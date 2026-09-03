@@ -74,12 +74,12 @@ const faqLd = {
   })),
 }
 
-const h2Cls = 'font-display mb-3 text-2xl font-bold text-ink-navy dark:text-gazette-cream'
-const pCls = 'text-ash/80 dark:text-gazette-cream/70'
-const takeawayCls = 'mt-3 font-semibold text-ink-navy dark:text-gazette-cream'
+const h2Cls = 'font-display mb-3 text-2xl font-bold text-ink-navy'
+const pCls = 'text-ash/80'
+const takeawayCls = 'mt-3 font-semibold text-ink-navy'
 
 const rowCls = 'px-4 py-2.5'
-const rowLabelCls = `${rowCls} font-medium text-ash/70 dark:text-gazette-cream/60`
+const rowLabelCls = `${rowCls} font-medium text-ash/70`
 const rowValCls = `${rowCls} text-right font-display font-bold tabular-nums text-hub-financial`
 
 const exampleA = [
@@ -121,7 +121,7 @@ export default function TaxRegimeArticlePage() {
       />
 
       <main className="mx-auto max-w-3xl px-4 py-10">
-        <p className="text-sm text-ash/50 dark:text-gazette-cream/40">
+        <p className="text-sm text-ash/50">
           By{' '}
           <Link href="/author/editorial-team" className="text-brass hover:underline">
             DesiMetrics Editorial Team
@@ -147,15 +147,15 @@ export default function TaxRegimeArticlePage() {
             Budget 2026 kept the new regime slabs unchanged from Budget 2025, for FY
             2026-27 (AY 2027-28):
           </p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Income slab</th>
                   <th className="px-4 py-2 text-right font-semibold">Rate</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {[
                   ['₹0 – ₹4,00,000', 'Nil'],
                   ['₹4,00,000 – ₹8,00,000', '5%'],
@@ -194,15 +194,15 @@ export default function TaxRegimeArticlePage() {
             What Are the Old Regime Tax Slabs and Deductions?
           </h2>
           <p className={pCls}>The old regime uses the traditional slab structure:</p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Income slab</th>
                   <th className="px-4 py-2 text-right font-semibold">Rate</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {[
                   ['₹0 – ₹2,50,000', 'Nil'],
                   ['₹2,50,000 – ₹5,00,000', '5%'],
@@ -237,16 +237,16 @@ export default function TaxRegimeArticlePage() {
           <h2 id="comparison" className={h2Cls}>
             Key Differences Between New and Old Regime
           </h2>
-          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold"></th>
                   <th className="px-4 py-2 font-semibold">New Regime</th>
                   <th className="px-4 py-2 font-semibold">Old Regime</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 <tr>
                   <td className="px-4 py-2 font-medium">Standard deduction</td>
                   <td className="px-4 py-2">₹75,000</td>
@@ -349,12 +349,12 @@ export default function TaxRegimeArticlePage() {
             exact FY 2026-27 slabs and rebate rules above.
           </p>
 
-          <h3 className="font-display mt-6 mb-2 text-lg font-bold text-ink-navy dark:text-gazette-cream">
+          <h3 className="font-display mt-6 mb-2 text-lg font-bold text-ink-navy">
             Example A: Minimal deductions
           </h3>
-          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {exampleA.map(([label, value]) => (
                   <tr key={label}>
                     <td className={rowLabelCls}>{label}</td>
@@ -365,12 +365,12 @@ export default function TaxRegimeArticlePage() {
             </table>
           </div>
 
-          <h3 className="font-display mt-6 mb-2 text-lg font-bold text-ink-navy dark:text-gazette-cream">
+          <h3 className="font-display mt-6 mb-2 text-lg font-bold text-ink-navy">
             Example B: High HRA + 80C + home loan interest
           </h3>
-          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {exampleB.map(([label, value]) => (
                   <tr key={label}>
                     <td className={rowLabelCls}>{label}</td>
@@ -436,25 +436,25 @@ export default function TaxRegimeArticlePage() {
           <div className="grid gap-4 sm:grid-cols-2">
             <Link
               href="/financial/new-vs-old-tax-regime-calculator"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🏦</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 New vs old tax regime calculator
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Run your own salary and deductions through both regimes.
               </p>
             </Link>
             <Link
               href="/financial"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🧮</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 All financial calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 GST, SIP, and gratuity calculators for FY 2026-27.
               </p>
             </Link>
@@ -465,13 +465,13 @@ export default function TaxRegimeArticlePage() {
           <h2 id="faq" className={h2Cls}>
             Frequently asked questions
           </h2>
-          <div className="divide-y divide-hairline dark:divide-white/10">
+          <div className="divide-y divide-hairline">
             {faqs.map((f, i) => (
               <details key={i} className="group py-3">
-                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                   {f.q}
                 </summary>
-                <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+                <p className="mt-2 text-ash/70">{f.a}</p>
               </details>
             ))}
           </div>

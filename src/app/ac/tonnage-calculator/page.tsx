@@ -142,7 +142,7 @@ export default function AcTonnagePage() {
 
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section aria-labelledby="calculator" className="mb-10 scroll-mt-20">
-        <h2 id="calculator" className="font-display mb-4 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="calculator" className="font-display mb-4 text-2xl font-bold text-ink-navy">
           Find your AC size
         </h2>
         <AcTonnageCalculator />
@@ -150,17 +150,17 @@ export default function AcTonnagePage() {
 
       {/* Room-size chart — real computed values */}
       <section aria-labelledby="chart" className="mb-10 scroll-mt-20">
-        <h2 id="chart" className="font-display mb-2 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="chart" className="font-display mb-2 text-2xl font-bold text-ink-navy">
           AC tonnage by room size — complete chart
         </h2>
-        <p className="mb-4 text-ash/70 dark:text-gazette-cream/60">
+        <p className="mb-4 text-ash/70">
           &ldquo;Standard&rdquo; assumes medium sun exposure and a non-top-floor
           room. &ldquo;Best case&rdquo; and &ldquo;worst case&rdquo; show how much a shaded room
           or a top-floor, direct-sun room can shift the recommendation.
         </p>
-        <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-hairline">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+            <thead className="border-b border-hairline bg-mist text-ink-navy">
               <tr>
                 <th className="px-4 py-2 font-semibold">Room size</th>
                 <th className="px-4 py-2 text-right font-semibold">Best case</th>
@@ -169,7 +169,7 @@ export default function AcTonnagePage() {
                 <th className="px-4 py-2 text-right font-semibold">BTU/hr (standard)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-hairline dark:divide-white/10">
+            <tbody className="divide-y divide-hairline">
               {STANDARD_ROWS.map((r) => (
                 <tr key={r.area}>
                   <td className="px-4 py-2 font-medium">{r.area} sq ft</td>
@@ -190,7 +190,7 @@ export default function AcTonnagePage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+        <p className="mt-2 text-xs text-ash/50">
           Beyond {boundary2Ton} sq ft, our calculator caps its recommendation at 2
           ton — see &ldquo;Large rooms&rdquo; below for why splitting into two units is
           usually the better move past this point.
@@ -199,11 +199,11 @@ export default function AcTonnagePage() {
 
       {/* 1 ton coverage */}
       <section aria-labelledby="one-ton" className="mb-10 scroll-mt-20">
-        <h2 id="one-ton" className="font-display mb-2 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="one-ton" className="font-display mb-2 text-2xl font-bold text-ink-navy">
           1 ton AC — how much area does it cover?
         </h2>
         <div className="rounded-xl border border-hub-ac/20 bg-hub-ac/5 p-5">
-          <p className="text-ash/80 dark:text-gazette-cream/80">
+          <p className="text-ash/80">
             Under standard conditions, 1 ton covers rooms up to about{' '}
             <strong className="text-hub-ac">{boundary1_5Ton - 1} sq ft</strong>{' '}
             (roughly an 11×12 ft room). A shaded, lower-floor room can sometimes
@@ -228,37 +228,37 @@ export default function AcTonnagePage() {
 
       {/* 1.5 ton breakout */}
       <section aria-labelledby="onefive-ton" className="mb-10 scroll-mt-20">
-        <h2 id="onefive-ton" className="font-display mb-2 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="onefive-ton" className="font-display mb-2 text-2xl font-bold text-ink-navy">
           1.5 ton AC — room size in feet
         </h2>
-        <p className="mb-4 text-ash/70 dark:text-gazette-cream/60">
+        <p className="mb-4 text-ash/70">
           1.5 ton is India&apos;s most common domestic AC size. Under standard
           conditions it covers roughly {boundary1_5Ton}–{boundary2Ton - 1} sq ft.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-            <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
               Coverage range (standard conditions)
             </p>
             <p className="font-display mt-1 text-2xl font-bold text-hub-ac">
               {boundary1_5Ton}–{boundary2Ton - 1} sq ft
             </p>
-            <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-sm text-ash/60">
               e.g. a 12×15 ft (180 sq ft) bedroom or small living room
             </p>
           </div>
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-            <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
               1.5 ton = 12,000 × 1.5
             </p>
             <p className="font-display mt-1 text-2xl font-bold text-hub-ac">18,000 BTU/hr</p>
-            <p className="mt-1 text-sm text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-sm text-ash/60">
               the standard worldwide unit for cooling capacity
             </p>
           </div>
         </div>
-        <div className="mt-4 grid gap-3 rounded-xl bg-mist p-5 sm:grid-cols-2 dark:bg-slate-800/60">
-          <p className="text-sm font-semibold text-ink-navy dark:text-gazette-cream sm:col-span-2">
+        <div className="mt-4 grid gap-3 rounded-xl bg-mist p-5 sm:grid-cols-2">
+          <p className="text-sm font-semibold text-ink-navy sm:col-span-2">
             When to choose 1.5 ton over 1 ton
           </p>
           {[
@@ -267,7 +267,7 @@ export default function AcTonnagePage() {
             'West-facing or unshaded windows — afternoon sun adds real load',
             'Poor insulation or older construction — 1.5T compensates',
           ].map((t) => (
-            <div key={t} className="flex items-start gap-2 text-sm text-ash/80 dark:text-gazette-cream/70">
+            <div key={t} className="flex items-start gap-2 text-sm text-ash/80">
               <span className="mt-0.5 text-hub-ac" aria-hidden>✓</span>
               {t}
             </div>
@@ -277,10 +277,10 @@ export default function AcTonnagePage() {
 
       {/* Large rooms */}
       <section aria-labelledby="large-rooms" className="mb-10 scroll-mt-20">
-        <h2 id="large-rooms" className="font-display mb-2 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="large-rooms" className="font-display mb-2 text-2xl font-bold text-ink-navy">
           Large rooms &amp; halls (300+ sq ft)
         </h2>
-        <p className="mb-4 text-ash/70 dark:text-gazette-cream/60">
+        <p className="mb-4 text-ash/70">
           Our calculator caps its single-unit recommendation at 2 ton. For
           genuinely large or open-plan rooms, a single large AC isn&apos;t always
           the best answer — two smaller units are a well-established
@@ -292,9 +292,9 @@ export default function AcTonnagePage() {
             { title: 'Redundancy', body: 'If your one large AC needs servicing, you lose all cooling. With two units, you keep partial cooling while one is repaired.' },
             { title: 'Running cost', body: 'Two inverter units running at partial load are often more efficient than one large unit running flat out, especially in mild weather.' },
           ].map((c) => (
-            <div key={c.title} className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-              <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">{c.title}</p>
-              <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">{c.body}</p>
+            <div key={c.title} className="rounded-xl border border-hairline bg-paper p-5">
+              <p className="font-display font-bold text-ink-navy">{c.title}</p>
+              <p className="mt-1 text-sm text-ash/70">{c.body}</p>
             </div>
           ))}
         </div>
@@ -302,7 +302,7 @@ export default function AcTonnagePage() {
 
       {/* Step by step */}
       <section aria-labelledby="how" className="mb-10 scroll-mt-20">
-        <h2 id="how" className="font-display mb-4 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="how" className="font-display mb-4 text-2xl font-bold text-ink-navy">
           How to calculate AC tonnage — step by step
         </h2>
         <ol className="space-y-3">
@@ -317,7 +317,7 @@ export default function AcTonnagePage() {
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hub-ac font-display text-xs font-bold text-white">
                 {i + 1}
               </span>
-              <span className="text-ash/80 dark:text-gazette-cream/70">{s}</span>
+              <span className="text-ash/80">{s}</span>
             </li>
           ))}
         </ol>
@@ -325,26 +325,26 @@ export default function AcTonnagePage() {
 
       {/* BTU conversion */}
       <section aria-labelledby="btu" className="mb-10 scroll-mt-20">
-        <h2 id="btu" className="font-display mb-4 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="btu" className="font-display mb-4 text-2xl font-bold text-ink-navy">
           AC ton to BTU conversion
         </h2>
-        <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-          <p className="text-center text-sm text-ash/60 dark:text-gazette-cream/50">
+        <div className="rounded-xl border border-hairline bg-paper p-5">
+          <p className="text-center text-sm text-ash/60">
             The universal formula
           </p>
           <p className="font-display my-2 text-center text-2xl font-bold text-hub-ac">
             1 Ton = 12,000 BTU/hr
           </p>
           <div className="mt-4 grid gap-4 text-sm sm:grid-cols-2">
-            <div className="rounded-lg bg-mist p-3 dark:bg-slate-800">
-              <p className="font-semibold text-ink-navy dark:text-gazette-cream">Ton → BTU</p>
-              <p className="mt-1 text-ash/70 dark:text-gazette-cream/60">Multiply tonnage by 12,000</p>
+            <div className="rounded-lg bg-mist p-3">
+              <p className="font-semibold text-ink-navy">Ton → BTU</p>
+              <p className="mt-1 text-ash/70">Multiply tonnage by 12,000</p>
               <p className="mt-1 font-mono text-xs">1.5 Ton × 12,000 = 18,000 BTU</p>
               <p className="font-mono text-xs">2.0 Ton × 12,000 = 24,000 BTU</p>
             </div>
-            <div className="rounded-lg bg-mist p-3 dark:bg-slate-800">
-              <p className="font-semibold text-ink-navy dark:text-gazette-cream">BTU → Ton</p>
-              <p className="mt-1 text-ash/70 dark:text-gazette-cream/60">Divide BTU by 12,000</p>
+            <div className="rounded-lg bg-mist p-3">
+              <p className="font-semibold text-ink-navy">BTU → Ton</p>
+              <p className="mt-1 text-ash/70">Divide BTU by 12,000</p>
               <p className="mt-1 font-mono text-xs">18,000 ÷ 12,000 = 1.5 Ton</p>
               <p className="font-mono text-xs">24,000 ÷ 12,000 = 2.0 Ton</p>
             </div>
@@ -354,27 +354,27 @@ export default function AcTonnagePage() {
 
       {/* Common mistakes */}
       <section aria-labelledby="mistakes" className="mb-10 scroll-mt-20">
-        <h2 id="mistakes" className="font-display mb-4 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="mistakes" className="font-display mb-4 text-2xl font-bold text-ink-navy">
           Undersized vs. oversized vs. correctly sized
         </h2>
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-5">
             <p className="font-display font-bold text-caution-amber">Undersized AC</p>
-            <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+            <p className="mt-1 text-sm text-ash/70">
               Runs continuously at full load, never quite reaches the set
               temperature on hot days, and wears the compressor faster.
             </p>
           </div>
           <div className="rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-5">
             <p className="font-display font-bold text-caution-amber">Oversized AC</p>
-            <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+            <p className="mt-1 text-sm text-ash/70">
               Cools the room quickly then shuts off (short-cycling) before
               properly dehumidifying — the room feels cool but clammy.
             </p>
           </div>
           <div className="rounded-xl border border-spark-teal/25 bg-spark-teal/5 p-5">
             <p className="font-display font-bold text-spark-teal">Correctly sized AC</p>
-            <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+            <p className="mt-1 text-sm text-ash/70">
               Runs steady cycles, maintains temperature and humidity, and
               gives the lowest running cost for the room.
             </p>
@@ -384,55 +384,55 @@ export default function AcTonnagePage() {
 
       {/* Cross-sell */}
       <section aria-labelledby="related" className="mb-10 scroll-mt-20">
-        <h2 id="related" className="font-display mb-4 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="related" className="font-display mb-4 text-2xl font-bold text-ink-navy">
           Once you know your tonnage
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/ac/bill-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>💡</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC running cost
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See the exact monthly cost for your recommended tonnage and DISCOM.
             </p>
           </Link>
           <Link
             href="/ac/comparisons/3-star-vs-5-star-savings-guide"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>⭐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               3★ vs 5★ savings
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Is the 5-star premium worth it for your usage pattern?
             </p>
           </Link>
           <Link
             href="/electricity"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔌</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Electricity bill calculators
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See your full bill, not just what the AC adds.
             </p>
           </Link>
           <Link
             href="/solar/roi-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>☀️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Offset it with solar
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See the payback on a rooftop system sized for AC-heavy usage.
             </p>
           </Link>
@@ -440,22 +440,22 @@ export default function AcTonnagePage() {
       </section>
 
       <section aria-labelledby="faq" className="mb-10 scroll-mt-20">
-        <h2 id="faq" className="font-display mb-4 text-2xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="faq" className="font-display mb-4 text-2xl font-bold text-ink-navy">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>
       </section>
 
-      <footer className="rounded-lg bg-mist p-4 text-sm text-ash/60 dark:bg-slate-800 dark:text-gazette-cream/50">
+      <footer className="rounded-lg bg-mist p-4 text-sm text-ash/60">
         <p>
           Methodology: this calculator uses a widely-used sizing rule of
           thumb — roughly 1 ton of cooling per 140 sq ft — adjusted for sun

@@ -78,10 +78,10 @@ export default function DiscomComparisonTable({
           return (
             <div
               key={code}
-              className={`relative rounded-2xl border bg-paper p-5 dark:bg-slate-900 ${
+              className={`relative rounded-2xl border bg-paper p-5 ${
                 isCurrent
                   ? 'border-2 border-brass'
-                  : 'border border-hairline dark:border-white/10'
+                  : 'border border-hairline'
               }`}
             >
               {isCurrent && (
@@ -96,21 +96,21 @@ export default function DiscomComparisonTable({
                   {code.slice(0, 2).toUpperCase()}
                 </span>
                 <div className="min-w-0">
-                  <p className="truncate font-display font-bold text-ink-navy dark:text-gazette-cream">
+                  <p className="truncate font-display font-bold text-ink-navy">
                     {t.discomCode}
                   </p>
-                  <p className="truncate text-xs text-ash/50 dark:text-gazette-cream/40">
+                  <p className="truncate text-xs text-ash/50">
                     {t.state}
                   </p>
                 </div>
               </div>
 
-              <p className="mt-4 text-[11px] font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+              <p className="mt-4 text-[11px] font-semibold tracking-wide text-ash/50 uppercase">
                 Top slab rate
               </p>
               <p className={`font-display text-2xl font-extrabold ${color.text}`}>
                 ₹{rate.toFixed(2)}
-                <span className="text-sm font-medium text-ash/50 dark:text-gazette-cream/40">
+                <span className="text-sm font-medium text-ash/50">
                   /unit
                 </span>
               </p>
@@ -125,27 +125,27 @@ export default function DiscomComparisonTable({
               )}
 
               <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-                <div className="rounded-lg bg-mist p-2 dark:bg-slate-800">
-                  <p className="text-ash/50 dark:text-gazette-cream/40">Base slab</p>
-                  <p className="font-semibold text-ink-navy dark:text-gazette-cream">
+                <div className="rounded-lg bg-mist p-2">
+                  <p className="text-ash/50">Base slab</p>
+                  <p className="font-semibold text-ink-navy">
                     ₹{baseRate(code).toFixed(2)}
                   </p>
                 </div>
-                <div className="rounded-lg bg-mist p-2 dark:bg-slate-800">
-                  <p className="text-ash/50 dark:text-gazette-cream/40">Slabs</p>
-                  <p className="font-semibold text-ink-navy dark:text-gazette-cream">
+                <div className="rounded-lg bg-mist p-2">
+                  <p className="text-ash/50">Slabs</p>
+                  <p className="font-semibold text-ink-navy">
                     {slabCount(code)}
                   </p>
                 </div>
-                <div className="rounded-lg bg-mist p-2 dark:bg-slate-800">
-                  <p className="text-ash/50 dark:text-gazette-cream/40">Billing</p>
-                  <p className="font-semibold text-ink-navy capitalize dark:text-gazette-cream">
+                <div className="rounded-lg bg-mist p-2">
+                  <p className="text-ash/50">Billing</p>
+                  <p className="font-semibold text-ink-navy capitalize">
                     {cycleLabel(t.billingCycle)}
                   </p>
                 </div>
-                <div className="rounded-lg bg-mist p-2 dark:bg-slate-800">
-                  <p className="text-ash/50 dark:text-gazette-cream/40">Duty</p>
-                  <p className="font-semibold text-ink-navy dark:text-gazette-cream">
+                <div className="rounded-lg bg-mist p-2">
+                  <p className="text-ash/50">Duty</p>
+                  <p className="font-semibold text-ink-navy">
                     {t.electricityDutyPercent}%
                   </p>
                 </div>
@@ -157,7 +157,7 @@ export default function DiscomComparisonTable({
                     ? 'bg-spark-teal/15 text-spark-teal'
                     : status.tone === 'costly'
                       ? 'bg-caution-amber/15 text-caution-amber'
-                      : 'bg-ash/10 text-ash dark:text-gazette-cream/60'
+                      : 'bg-ash/10 text-ash'
                 }`}
               >
                 {status.label}
@@ -169,7 +169,7 @@ export default function DiscomComparisonTable({
                   className={`mt-4 block rounded-lg px-3 py-2 text-center text-sm font-semibold transition ${
                     isCurrent
                       ? 'bg-brass text-white hover:bg-brass/90'
-                      : 'border border-hairline text-ink-navy hover:border-brass/50 dark:border-white/10 dark:text-gazette-cream'
+                      : 'border border-hairline text-ink-navy hover:border-brass/50'
                   }`}
                 >
                   {isCurrent ? 'View Full Calculator →' : `${t.discomCode} Calculator →`}
@@ -181,8 +181,8 @@ export default function DiscomComparisonTable({
       </div>
 
       {/* Bar chart — same rates, sorted cheapest to costliest */}
-      <div className="rounded-2xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-        <p className="mb-4 text-sm font-semibold text-ink-navy dark:text-gazette-cream">
+      <div className="rounded-2xl border border-hairline bg-paper p-5">
+        <p className="mb-4 text-sm font-semibold text-ink-navy">
           Top Slab Rate Comparison
         </p>
         <div className="grid gap-3">
@@ -195,10 +195,10 @@ export default function DiscomComparisonTable({
               const pct = Math.max((rate / chartMax) * 100, 10)
               return (
                 <div key={code} className="flex items-center gap-3">
-                  <span className="w-16 shrink-0 text-xs font-semibold text-ink-navy dark:text-gazette-cream">
+                  <span className="w-16 shrink-0 text-xs font-semibold text-ink-navy">
                     {code}
                   </span>
-                  <div className="h-6 flex-1 rounded-full bg-mist dark:bg-slate-800">
+                  <div className="h-6 flex-1 rounded-full bg-mist">
                     <div
                       className={`flex h-6 items-center justify-end rounded-full px-2 text-[11px] font-semibold text-white ${color.bar}`}
                       style={{ width: `${pct}%` }}
@@ -206,7 +206,7 @@ export default function DiscomComparisonTable({
                       ₹{rate.toFixed(2)}
                     </div>
                   </div>
-                  <span className="w-24 shrink-0 truncate text-xs text-ash/50 dark:text-gazette-cream/40">
+                  <span className="w-24 shrink-0 truncate text-xs text-ash/50">
                     {t.state}
                   </span>
                 </div>

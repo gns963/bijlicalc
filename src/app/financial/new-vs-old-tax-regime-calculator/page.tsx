@@ -112,7 +112,7 @@ export default function TaxRegimePage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -120,7 +120,7 @@ export default function TaxRegimePage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           On a <strong>₹15,00,000</strong> salary with ₹1,50,000 of old-regime
           deductions, the new regime tax is{' '}
           <strong>{formatINR(example.newRegime.totalTax)}</strong> vs{' '}
@@ -141,15 +141,15 @@ export default function TaxRegimePage() {
         <h2 id="slabs" className="font-display mb-4 text-2xl font-semibold">
           New regime slabs — FY 2026-27
         </h2>
-        <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-hairline">
           <table className="w-full text-left text-sm">
-            <thead className="bg-mist dark:bg-slate-800">
+            <thead className="bg-mist">
               <tr>
                 <th className="px-4 py-2 font-semibold">Income slab</th>
                 <th className="px-4 py-2 text-right font-semibold">Rate</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-hairline dark:divide-white/10">
+            <tbody className="divide-y divide-hairline">
               {[
                 ['Up to ₹4,00,000', 'Nil'],
                 ['₹4,00,001 – ₹8,00,000', '5%'],
@@ -173,13 +173,13 @@ export default function TaxRegimePage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

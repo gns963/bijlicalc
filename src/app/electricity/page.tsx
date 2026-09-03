@@ -114,13 +114,13 @@ export default function ElectricityHubPage() {
             <Link
               key={t.href}
               href={t.href}
-              className="flex flex-col rounded-2xl border border-hub-electricity/20 bg-hub-electricity/5 p-6 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-hub-electricity/20 dark:bg-hub-electricity/10"
+              className="flex flex-col rounded-2xl border border-hub-electricity/20 bg-hub-electricity/5 p-6 transition hover:border-hub-electricity/50 hover:shadow-sm"
             >
               <span className="text-2xl">{t.emoji}</span>
-              <h3 className="font-display mt-2 text-lg font-semibold text-ink-navy dark:text-gazette-cream">
+              <h3 className="font-display mt-2 text-lg font-semibold text-ink-navy">
                 {t.title}
               </h3>
-              <p className="mt-1 flex-1 text-sm text-ash/70 dark:text-gazette-cream/70">
+              <p className="mt-1 flex-1 text-sm text-ash/70">
                 {t.body}
               </p>
               <span className="mt-3 text-sm font-semibold text-hub-electricity">
@@ -140,12 +140,12 @@ export default function ElectricityHubPage() {
             <li key={d.slug}>
               <Link
                 href={`/electricity/${d.slug}`}
-                className="block rounded-xl border border-brass/20 bg-brass/5 p-4 transition hover:border-brass/50 hover:shadow-sm dark:border-brass dark:bg-brass/15/40"
+                className="block rounded-xl border border-brass/20 bg-brass/5 p-4 transition hover:border-brass/50 hover:shadow-sm"
               >
-                <span className="font-semibold text-ink-navy dark:text-gazette-cream">
+                <span className="font-semibold text-ink-navy">
                   {d.state}
                 </span>
-                <span className="mt-1 block text-xs text-brass dark:text-brass">
+                <span className="mt-1 block text-xs text-brass">
                   {d.discomCode} · {d.billingCycle} billing · Open →
                 </span>
               </Link>
@@ -158,7 +158,7 @@ export default function ElectricityHubPage() {
         <h2 id="more" className="font-display mb-2 text-2xl font-semibold">
           Found an error, or represent a DISCOM?
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           Every tariff here is being progressively cross-checked against
           primary SERC orders.{' '}
           <Link href="/contact" className="text-brass underline">
@@ -176,13 +176,13 @@ export default function ElectricityHubPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

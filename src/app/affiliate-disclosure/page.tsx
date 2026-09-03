@@ -16,7 +16,7 @@ export default function AffiliateDisclosurePage() {
       stub={false}
       path="/affiliate-disclosure"
     >
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Amazon Associates Programme
       </h2>
       <p>
@@ -30,7 +30,7 @@ export default function AffiliateDisclosurePage() {
         make a purchase, Amazon may pay us a small percentage of the sale.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         No extra cost to you
       </h2>
       <p>
@@ -39,7 +39,7 @@ export default function AffiliateDisclosurePage() {
         help us keep the calculators on DesiMetrics free to use.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Editorial independence
       </h2>
       <p>
@@ -50,7 +50,7 @@ export default function AffiliateDisclosurePage() {
         payment to alter a calculator&apos;s output or to rank a product higher.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Pricing and availability
       </h2>
       <p>
@@ -60,7 +60,7 @@ export default function AffiliateDisclosurePage() {
         and warranty on the retailer&apos;s page before buying.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Questions
       </h2>
       <p>

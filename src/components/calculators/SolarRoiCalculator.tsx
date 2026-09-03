@@ -51,7 +51,7 @@ export default function SolarRoiCalculator({
         <div>
           <label
             htmlFor="solar-discom"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             Your DISCOM / state
           </label>
@@ -59,7 +59,7 @@ export default function SolarRoiCalculator({
             id="solar-discom"
             value={discomCode}
             onChange={(e) => setDiscomCode(e.target.value)}
-            className="w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
+            className="w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30"
           >
             {discoms.map((d) => (
               <option key={d.code} value={d.code}>
@@ -95,16 +95,16 @@ export default function SolarRoiCalculator({
         <CalculatorCta label="Calculate Solar Savings" />
       </form>
 
-      <div className="mt-6 rounded-xl bg-gradient-to-br from-hub-solar/15 via-hub-solar/5 to-transparent p-5 dark:from-hub-solar/20 dark:via-hub-solar/5">
+      <div className="mt-6 rounded-xl bg-gradient-to-br from-hub-solar/15 via-hub-solar/5 to-transparent p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Payback period
               </p>
               <p className="font-display text-4xl font-bold tabular-nums text-spark-teal">
@@ -112,7 +112,7 @@ export default function SolarRoiCalculator({
                   ? `${result.paybackYears} yrs`
                   : '—'}
               </p>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 then ~
                 <span className="font-medium text-spark-teal">
                   {formatINR(result.annualSavings)}/year
@@ -123,13 +123,13 @@ export default function SolarRoiCalculator({
 
             {result.netCost > 0 && (
               <div>
-                <div className="flex items-baseline justify-between text-xs text-ash/60 dark:text-gazette-cream/50">
+                <div className="flex items-baseline justify-between text-xs text-ash/60">
                   <span>System cost recovered, year 1</span>
                   <span className="font-semibold tabular-nums text-hub-solar">
                     {Math.min(100, Math.round((result.annualSavings / result.netCost) * 100))}%
                   </span>
                 </div>
-                <div className="mt-1 h-2 rounded-full bg-white/60 dark:bg-slate-800">
+                <div className="mt-1 h-2 rounded-full bg-white/60">
                   <div
                     className="h-2 rounded-full bg-hub-solar transition-[width] duration-700"
                     style={{
@@ -141,7 +141,7 @@ export default function SolarRoiCalculator({
             )}
 
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 System cost
               </dt>
               <dd className="text-right tabular-nums">
@@ -151,25 +151,25 @@ export default function SolarRoiCalculator({
               <dd className="text-right tabular-nums text-spark-teal">
                 −{formatINR(result.subsidy)}
               </dd>
-              <dt className="font-medium text-ash dark:text-gazette-cream/80">
+              <dt className="font-medium text-ash">
                 Net cost
               </dt>
               <dd className="text-right font-medium tabular-nums">
                 {formatINR(result.netCost)}
               </dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 Annual generation
               </dt>
               <dd className="text-right tabular-nums">
                 {Math.round(result.annualGeneration)} units
               </dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 Monthly savings
               </dt>
               <dd className="text-right tabular-nums">
                 {formatINR(result.monthlySavings)}
               </dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 25-year net savings
               </dt>
               <dd className="text-right tabular-nums">
@@ -177,7 +177,7 @@ export default function SolarRoiCalculator({
               </dd>
             </dl>
 
-            <p className="text-xs text-ash/40 dark:text-gazette-cream/30">
+            <p className="text-xs text-ash/40">
               {result.notes[0]}
             </p>
           </div>

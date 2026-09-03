@@ -29,7 +29,7 @@ export default function FridgeCostCalculator({ discoms }: { discoms: DiscomOptio
   }, [discomCode, annualUnits])
 
   const fieldCls =
-    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30'
 
   return (
     <CalculatorCard>
@@ -43,7 +43,7 @@ export default function FridgeCostCalculator({ discoms }: { discoms: DiscomOptio
         <div>
           <label
             htmlFor="fridge-discom"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             DISCOM / state
           </label>
@@ -76,31 +76,31 @@ export default function FridgeCostCalculator({ discoms }: { discoms: DiscomOptio
         <CalculatorCta label="Calculate Fridge Cost" tone="appliance" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-appliance/15 bg-hub-appliance/5 p-5 dark:border-hub-appliance/20 dark:bg-hub-appliance/10">
+      <div className="mt-6 rounded-xl border border-hub-appliance/15 bg-hub-appliance/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Estimated monthly cost
               </p>
               <p className="font-display text-4xl font-bold tabular-nums text-hub-appliance">
                 {formatINR(result.monthlyCost)}
               </p>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 ≈ {formatINR(result.annualCost)}/year · {result.dailyUnits} units/day
               </p>
             </div>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 From BEE label
               </dt>
               <dd className="text-right tabular-nums">{result.annualUnitsFromLabel} units/yr</dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 Billed at (top slab)
               </dt>
               <dd className="text-right tabular-nums">

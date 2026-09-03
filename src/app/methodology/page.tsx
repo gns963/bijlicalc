@@ -17,7 +17,7 @@ export default function MethodologyPage() {
       stub={false}
       path="/methodology"
     >
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         1. One data file per DISCOM
       </h2>
       <p>
@@ -48,7 +48,7 @@ export default function MethodologyPage() {
         </li>
       </ul>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         2. Every file is schema-validated
       </h2>
       <p>
@@ -67,7 +67,7 @@ export default function MethodologyPage() {
         malformed or half-finished tariff simply cannot reach a calculator.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         3. A single, tested calculation engine
       </h2>
       <p>
@@ -79,7 +79,7 @@ export default function MethodologyPage() {
         consistent everywhere.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         4. We disclose what we don&apos;t model
       </h2>
       <p>
@@ -91,7 +91,7 @@ export default function MethodologyPage() {
         Estimates are close, not billing-grade, and we say so.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         5. Update cadence
       </h2>
       <p>

@@ -22,12 +22,12 @@ export default function DataSourcesPage() {
       stub={false}
       path="/data-sources"
     >
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Electricity DISCOMs
       </h2>
-      <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-hairline">
         <table className="w-full text-left text-sm">
-          <thead className="bg-mist dark:bg-slate-800">
+          <thead className="bg-mist">
             <tr>
               <th className="px-4 py-2 font-semibold">State</th>
               <th className="px-4 py-2 font-semibold">DISCOM</th>
@@ -35,7 +35,7 @@ export default function DataSourcesPage() {
               <th className="px-4 py-2 font-semibold">Last verified</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-hairline dark:divide-white/10">
+          <tbody className="divide-y divide-hairline">
             {tariffs.map((t) => (
               <tr key={t.discomCode}>
                 <td className="px-4 py-2">{t.state}</td>
@@ -58,14 +58,14 @@ export default function DataSourcesPage() {
           </tbody>
         </table>
       </div>
-      <p className="text-sm text-ash/60 dark:text-ash/40">
+      <p className="text-sm text-ash/60">
         Some entries are currently sourced from secondary references while we
         cross-check the primary SERC order — each such file carries an explicit
         &quot;pending primary cross-check&quot; note, shown on its calculator
         page.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Other data
       </h2>
       <ul className="list-disc space-y-1 pl-5">

@@ -72,22 +72,22 @@ export default async function AuthorPage({
       </section>
 
       <main className="mx-auto max-w-3xl px-4 py-12">
-      <div className="space-y-4 text-ash/80 dark:text-gazette-cream/70">
+      <div className="space-y-4 text-ash/80">
         {author.bio.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
       </div>
 
-      <h2 className="font-display mt-8 text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display mt-8 text-xl font-semibold text-ash">
         Areas of focus
       </h2>
-      <ul className="mt-2 list-disc space-y-1 pl-5 text-ash/80 dark:text-gazette-cream/70">
+      <ul className="mt-2 list-disc space-y-1 pl-5 text-ash/80">
         {author.expertise.map((e) => (
           <li key={e}>{e}</li>
         ))}
       </ul>
 
-      <p className="mt-8 text-sm text-ash/60 dark:text-ash/40">
+      <p className="mt-8 text-sm text-ash/60">
         Contact:{' '}
         <a
           href={`mailto:${author.email}`}

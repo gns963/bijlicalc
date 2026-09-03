@@ -102,16 +102,16 @@ export default function FinancialHubPage() {
           <Link
             key={c.href}
             href={c.href}
-            className="flex flex-col rounded-2xl border border-hairline bg-paper p-6 transition hover:border-brass/30 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="flex flex-col rounded-2xl border border-hairline bg-paper p-6 transition hover:border-brass/30 hover:shadow-sm"
           >
             <span className="text-2xl">{c.emoji}</span>
-            <h2 className="font-display mt-2 text-lg font-semibold text-ink-navy dark:text-gazette-cream">
+            <h2 className="font-display mt-2 text-lg font-semibold text-ink-navy">
               {c.title}
             </h2>
-            <p className="mt-1 flex-1 text-sm text-ash/70 dark:text-gazette-cream/70">
+            <p className="mt-1 flex-1 text-sm text-ash/70">
               {c.body}
             </p>
-            <span className="mt-3 text-sm font-semibold text-brass dark:text-brass">
+            <span className="mt-3 text-sm font-semibold text-brass">
               {c.cta}
             </span>
           </Link>
@@ -122,7 +122,7 @@ export default function FinancialHubPage() {
         <h2 id="why" className="font-display mb-4 text-2xl font-semibold">
           One platform for bills and money
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           DesiMetrics started with electricity bills and now covers the everyday
           numbers Indian households search for most — from what you owe in GST to
           how much a SIP could grow, which tax regime saves you more, and the
@@ -132,10 +132,10 @@ export default function FinancialHubPage() {
       </section>
 
       <section aria-labelledby="methodology" className="mb-10">
-        <h2 id="methodology" className="font-display mb-2 text-xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="methodology" className="font-display mb-2 text-xl font-bold text-ink-navy">
           Our methodology
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           Figures here are checked against the relevant official sources
           where applicable — GST slabs against GST Council/CBIC
           notifications, income tax slabs against the Finance Act/CBDT, and
@@ -156,13 +156,13 @@ export default function FinancialHubPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

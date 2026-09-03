@@ -117,7 +117,7 @@ export default function ElectricityCalculator({
 
         {selected?.fixedCharge.basis === 'perPhase' && (
           <fieldset>
-            <legend className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+            <legend className="mb-1.5 block text-sm font-medium text-ash">
               Phase
             </legend>
             <div className="flex gap-2">
@@ -129,8 +129,8 @@ export default function ElectricityCalculator({
                   aria-pressed={phase === p}
                   className={`flex-1 rounded-lg border-2 px-3 py-2 text-sm capitalize transition ${
                     phase === p
-                      ? 'border-brass bg-brass/10 font-semibold text-ink-navy dark:text-gazette-cream'
-                      : 'border-hairline text-ash/70 hover:border-hairline dark:border-white/10 dark:text-gazette-cream/60'
+                      ? 'border-brass bg-brass/10 font-semibold text-ink-navy'
+                      : 'border-hairline text-ash/70 hover:border-hairline'
                   }`}
                 >
                   {p}-phase
@@ -157,17 +157,17 @@ export default function ElectricityCalculator({
           <div className="mb-1.5 flex items-center justify-between">
             <label
               htmlFor="units"
-              className="block text-sm font-medium text-ash dark:text-gazette-cream/80"
+              className="block text-sm font-medium text-ash"
             >
               Units consumed
               {isMultiMonth && (
-                <span className="font-normal text-ash/50 dark:text-gazette-cream/40">
+                <span className="font-normal text-ash/50">
                   {' '}
                   — {cycleLabel(cycleWord)} cycle
                 </span>
               )}
             </label>
-            <div className="flex overflow-hidden rounded-lg border border-hairline text-xs dark:border-white/10">
+            <div className="flex overflow-hidden rounded-lg border border-hairline text-xs">
               {(
                 [
                   ['units', 'Direct units'],
@@ -182,7 +182,7 @@ export default function ElectricityCalculator({
                   className={`px-2.5 py-1 font-medium transition ${
                     inputMode === val
                       ? 'bg-brass text-ink-navy'
-                      : 'bg-paper text-ash/60 dark:bg-slate-800 dark:text-gazette-cream/50'
+                      : 'bg-paper text-ash/60'
                   }`}
                 >
                   {label}
@@ -201,9 +201,9 @@ export default function ElectricityCalculator({
                 placeholder="e.g. 250"
                 value={unitsStr}
                 onChange={(e) => setUnitsStr(e.target.value)}
-                className="w-full rounded-lg border border-hairline px-3 py-2.5 pr-14 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
+                className="w-full rounded-lg border border-hairline px-3 py-2.5 pr-14 text-lg tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30"
               />
-              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm text-ash/40 dark:text-gazette-cream/40">
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm text-ash/40">
                 kWh
               </span>
             </div>
@@ -213,7 +213,7 @@ export default function ElectricityCalculator({
                 <div>
                   <label
                     htmlFor="prev-reading"
-                    className="mb-1 block text-xs text-ash/50 dark:text-gazette-cream/40"
+                    className="mb-1 block text-xs text-ash/50"
                   >
                     Previous reading
                   </label>
@@ -225,13 +225,13 @@ export default function ElectricityCalculator({
                     placeholder="e.g. 4320"
                     value={prevReading}
                     onChange={(e) => setPrevReading(e.target.value)}
-                    className="w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
+                    className="w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="curr-reading"
-                    className="mb-1 block text-xs text-ash/50 dark:text-gazette-cream/40"
+                    className="mb-1 block text-xs text-ash/50"
                   >
                     Current reading
                   </label>
@@ -243,35 +243,35 @@ export default function ElectricityCalculator({
                     placeholder="e.g. 4570"
                     value={currReading}
                     onChange={(e) => setCurrReading(e.target.value)}
-                    className="w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
+                    className="w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-brass focus:ring-2 focus:ring-brass/30"
                   />
                 </div>
               </div>
-              <p className="mt-1.5 text-xs text-ash/50 dark:text-gazette-cream/40">
+              <p className="mt-1.5 text-xs text-ash/50">
                 = <span className="font-semibold tabular-nums text-brass">{readingUnits}</span> units consumed
               </p>
             </div>
           )}
         </div>
 
-        <div className="flex items-center justify-between rounded-lg bg-mist px-3 py-2 text-xs text-ash/70 dark:bg-slate-800 dark:text-gazette-cream/60">
+        <div className="flex items-center justify-between rounded-lg bg-mist px-3 py-2 text-xs text-ash/70">
           <span>Billing period</span>
-          <span className="font-semibold capitalize text-ink-navy dark:text-gazette-cream">
+          <span className="font-semibold capitalize text-ink-navy">
             {cycleLabel(cycleWord)}
           </span>
         </div>
 
         {subsidyScheme && (
-          <label className="flex items-start gap-3 rounded-lg bg-mist p-3 text-sm dark:bg-slate-800">
+          <label className="flex items-start gap-3 rounded-lg bg-mist p-3 text-sm">
             <input
               type="checkbox"
               checked={eligible}
               onChange={(e) => setEligible(e.target.checked)}
               className="mt-0.5 h-4 w-4 rounded border-hairline text-brass focus:ring-brass"
             />
-            <span className="text-ash dark:text-gazette-cream/80">
+            <span className="text-ash">
               Eligible for <strong>{subsidyScheme.schemeName}</strong>
-              <span className="block text-xs text-ash/50 dark:text-gazette-cream/40">
+              <span className="block text-xs text-ash/50">
                 {subsidyScheme.eligibility}
               </span>
             </span>
@@ -282,9 +282,9 @@ export default function ElectricityCalculator({
       </form>
 
       {/* ---- Result ---- */}
-      <div ref={resultRef} className="mt-6 rounded-xl bg-mist p-5 dark:bg-slate-800/60">
+      <div ref={resultRef} className="mt-6 rounded-xl bg-mist p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
@@ -292,14 +292,14 @@ export default function ElectricityCalculator({
         {bill && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Estimated {cycleLabel(cycleWord)} bill
               </p>
               <p className="font-display text-4xl font-bold tabular-nums text-brass">
                 {formatINR(bill.total)}
               </p>
               {bill.monthlyEquivalent && (
-                <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="text-sm text-ash/60">
                   ≈ {formatINR(bill.monthlyEquivalent.total)} / month (
                   {bill.monthlyEquivalent.units} units)
                 </p>
@@ -307,22 +307,22 @@ export default function ElectricityCalculator({
             </div>
 
             <table className="w-full text-sm">
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {bill.slab.lines
                   .filter((l) => l.unitsInSlab > 0)
                   .map((l, i) => (
                     <tr key={i}>
-                      <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
+                      <td className="py-1.5 text-ash/70">
                         {l.fromUnit + 1}–{l.toUnit ?? '∞'} @ ₹{l.ratePerUnit} ×{' '}
                         {l.unitsInSlab}
                       </td>
-                      <td className="py-1.5 text-right tabular-nums text-ash dark:text-gazette-cream/90">
+                      <td className="py-1.5 text-right tabular-nums text-ash">
                         {formatINR(l.charge)}
                       </td>
                     </tr>
                   ))}
                 <tr>
-                  <td className="py-1.5 font-medium text-ash dark:text-gazette-cream/80">
+                  <td className="py-1.5 font-medium text-ash">
                     Energy charge
                   </td>
                   <td className="py-1.5 text-right tabular-nums">
@@ -338,7 +338,7 @@ export default function ElectricityCalculator({
                   </tr>
                 )}
                 <tr>
-                  <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
+                  <td className="py-1.5 text-ash/70">
                     Fuel cost adjustment (₹{bill.fuelCostAdjustment.ratePerUnit}
                     /unit)
                   </td>
@@ -347,7 +347,7 @@ export default function ElectricityCalculator({
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
+                  <td className="py-1.5 text-ash/70">
                     Fixed charge ({bill.fixedCharge.detail})
                   </td>
                   <td className="py-1.5 text-right tabular-nums">
@@ -356,7 +356,7 @@ export default function ElectricityCalculator({
                 </tr>
                 {bill.electricityDuty.amount > 0 && (
                   <tr>
-                    <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
+                    <td className="py-1.5 text-ash/70">
                       Electricity duty ({bill.electricityDuty.percent}%)
                     </td>
                     <td className="py-1.5 text-right tabular-nums">
@@ -366,7 +366,7 @@ export default function ElectricityCalculator({
                 )}
                 {bill.meterRent > 0 && (
                   <tr>
-                    <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
+                    <td className="py-1.5 text-ash/70">
                       Meter rent
                     </td>
                     <td className="py-1.5 text-right tabular-nums">

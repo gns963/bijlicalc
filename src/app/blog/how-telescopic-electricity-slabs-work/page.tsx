@@ -74,9 +74,9 @@ const faqLd = {
   })),
 }
 
-const h2Cls = 'font-display mb-3 text-2xl font-bold text-ink-navy dark:text-gazette-cream'
-const pCls = 'text-ash/80 dark:text-gazette-cream/70'
-const takeawayCls = 'mt-3 font-semibold text-ink-navy dark:text-gazette-cream'
+const h2Cls = 'font-display mb-3 text-2xl font-bold text-ink-navy'
+const pCls = 'text-ash/80'
+const takeawayCls = 'mt-3 font-semibold text-ink-navy'
 
 const workedExample = [
   { slab: '0–100 units', units: 100, rate: 3.0, charge: 300 },
@@ -104,7 +104,7 @@ export default function TelescopicSlabsArticlePage() {
       />
 
       <main className="mx-auto max-w-3xl px-4 py-10">
-        <p className="text-sm text-ash/50 dark:text-gazette-cream/40">
+        <p className="text-sm text-ash/50">
           By{' '}
           <Link href="/author/editorial-team" className="text-brass hover:underline">
             DesiMetrics Editorial Team
@@ -194,16 +194,16 @@ export default function TelescopicSlabsArticlePage() {
             the extra units. This is sometimes called a &ldquo;slab-jump&rdquo; or
             &ldquo;cliff&rdquo; tariff structure.
           </p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold"></th>
                   <th className="px-4 py-2 font-semibold">Telescopic Billing</th>
                   <th className="px-4 py-2 font-semibold">Non-Telescopic Billing</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 <tr>
                   <td className="px-4 py-2 font-medium">How units are priced</td>
                   <td className="px-4 py-2">Each slab priced separately</td>
@@ -256,7 +256,7 @@ export default function TelescopicSlabsArticlePage() {
               <li key={t} className="flex items-start gap-2">
                 <span className="mt-0.5 text-hub-electricity" aria-hidden>✓</span>
                 <span className={pCls}>
-                  <strong className="text-ink-navy dark:text-gazette-cream">{t}</strong> — {d}
+                  <strong className="text-ink-navy">{t}</strong> — {d}
                 </span>
               </li>
             ))}
@@ -279,9 +279,9 @@ export default function TelescopicSlabsArticlePage() {
             Let&apos;s fully work through a consumer using <strong>260 units</strong> in a
             month, using the same <strong>illustrative example rates</strong> as before:
           </p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Slab</th>
                   <th className="px-4 py-2 text-right font-semibold">Units in Slab</th>
@@ -289,7 +289,7 @@ export default function TelescopicSlabsArticlePage() {
                   <th className="px-4 py-2 text-right font-semibold">Slab Charge</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {workedExample.map((r) => (
                   <tr key={r.slab}>
                     <td className="px-4 py-2 font-medium">{r.slab}</td>
@@ -298,8 +298,8 @@ export default function TelescopicSlabsArticlePage() {
                     <td className="px-4 py-2 text-right tabular-nums">₹{r.charge.toFixed(2)}</td>
                   </tr>
                 ))}
-                <tr className="bg-mist/60 dark:bg-slate-800/40">
-                  <td className="px-4 py-2 font-semibold text-ink-navy dark:text-gazette-cream">
+                <tr className="bg-mist/60">
+                  <td className="px-4 py-2 font-semibold text-ink-navy">
                     Total (260 units)
                   </td>
                   <td className="px-4 py-2" />
@@ -382,25 +382,25 @@ export default function TelescopicSlabsArticlePage() {
           <div className="grid gap-4 sm:grid-cols-2">
             <Link
               href="/electricity/unit-price"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>📍</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 1 unit price by state
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 See the real marginal (top-slab) rate for your state.
               </p>
             </Link>
             <Link
               href="/appliances/household-bill-builder"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🏠</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Household bill builder
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 See exactly when adding an appliance pushes you into a costlier slab.
               </p>
             </Link>
@@ -411,13 +411,13 @@ export default function TelescopicSlabsArticlePage() {
           <h2 id="faq" className={h2Cls}>
             Frequently asked questions
           </h2>
-          <div className="divide-y divide-hairline dark:divide-white/10">
+          <div className="divide-y divide-hairline">
             {faqs.map((f, i) => (
               <details key={i} className="group py-3">
-                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                   {f.q}
                 </summary>
-                <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+                <p className="mt-2 text-ash/70">{f.a}</p>
               </details>
             ))}
           </div>

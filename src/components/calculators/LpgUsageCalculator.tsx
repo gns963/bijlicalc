@@ -78,27 +78,27 @@ export default function LpgUsageCalculator() {
         <CalculatorCta label="Calculate LPG Usage" tone="fuel" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-fuel/15 bg-hub-fuel/5 p-5 dark:border-hub-fuel/20 dark:bg-hub-fuel/10">
+      <div className="mt-6 rounded-xl border border-hub-fuel/15 bg-hub-fuel/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Estimated days remaining
               </p>
               <p className="font-display text-4xl font-bold tabular-nums text-hub-fuel">
                 {result.daysRemaining} days
               </p>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 ≈ {formatINR(result.dailyCost)}/day · {formatINR(result.monthlyCost)}
                 /month equivalent
               </p>
             </div>
-            <p className="text-xs text-ash/50 dark:text-gazette-cream/40">
+            <p className="text-xs text-ash/50">
               {result.notes[0]}
             </p>
           </div>

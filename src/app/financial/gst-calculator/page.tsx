@@ -114,7 +114,7 @@ export default function GstCalculatorPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -122,7 +122,7 @@ export default function GstCalculatorPage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           Adding 18% GST to <strong>{formatINR(example.base)}</strong> gives{' '}
           <strong>{formatINR(example.gstAmount)}</strong> GST (
           {formatINR(example.cgst)} CGST + {formatINR(example.sgst)} SGST) for a
@@ -141,10 +141,10 @@ export default function GstCalculatorPage() {
         aria-labelledby="gst-2-0"
         className="mb-10 rounded-xl border border-hub-financial/25 bg-hub-financial/5 p-5"
       >
-        <h2 id="gst-2-0" className="font-display mb-2 text-xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="gst-2-0" className="font-display mb-2 text-xl font-bold text-ink-navy">
           What changed under GST 2.0
         </h2>
-        <p className="text-sm text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-sm text-ash/80">
           In September 2025, India&apos;s GST structure moved toward a
           simplified system built around two main slabs —{' '}
           <strong>5% (merit rate)</strong> and <strong>18% (standard
@@ -167,13 +167,13 @@ export default function GstCalculatorPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

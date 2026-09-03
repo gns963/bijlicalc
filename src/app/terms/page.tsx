@@ -17,7 +17,7 @@ export default function TermsPage() {
       stub={false}
       path="/terms"
     >
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Estimates, not advice
       </h2>
       <p>
@@ -30,7 +30,7 @@ export default function TermsPage() {
         .
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Accuracy and availability
       </h2>
       <p>
@@ -39,7 +39,7 @@ export default function TermsPage() {
         uninterrupted. We may change or remove tools at any time.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Advertising and affiliate links
       </h2>
       <p>
@@ -51,7 +51,7 @@ export default function TermsPage() {
         .
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Intellectual property
       </h2>
       <p>
@@ -60,7 +60,7 @@ export default function TermsPage() {
         you may not scrape, republish or resell them without written consent.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Limitation of liability
       </h2>
       <p>
@@ -69,7 +69,7 @@ export default function TermsPage() {
         of the site is at your own risk.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Governing law
       </h2>
       <p>

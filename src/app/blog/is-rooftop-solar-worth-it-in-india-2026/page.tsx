@@ -74,9 +74,9 @@ const faqLd = {
   })),
 }
 
-const h2Cls = 'font-display mb-3 text-2xl font-bold text-ink-navy dark:text-gazette-cream'
-const pCls = 'text-ash/80 dark:text-gazette-cream/70'
-const takeawayCls = 'mt-3 font-semibold text-ink-navy dark:text-gazette-cream'
+const h2Cls = 'font-display mb-3 text-2xl font-bold text-ink-navy'
+const pCls = 'text-ash/80'
+const takeawayCls = 'mt-3 font-semibold text-ink-navy'
 
 const workedExample = [
   ['System size', '3 kW'],
@@ -108,7 +108,7 @@ export default function SolarWorthItArticlePage() {
       />
 
       <main className="mx-auto max-w-3xl px-4 py-10">
-        <p className="text-sm text-ash/50 dark:text-gazette-cream/40">
+        <p className="text-sm text-ash/50">
           By{' '}
           <Link href="/author/editorial-team" className="text-brass hover:underline">
             DesiMetrics Editorial Team
@@ -222,7 +222,7 @@ export default function SolarWorthItArticlePage() {
               <li key={t} className="flex items-start gap-2">
                 <span className="mt-0.5 text-hub-solar" aria-hidden>✓</span>
                 <span className={pCls}>
-                  <strong className="text-ink-navy dark:text-gazette-cream">{t}</strong> — {d}
+                  <strong className="text-ink-navy">{t}</strong> — {d}
                 </span>
               </li>
             ))}
@@ -309,12 +309,12 @@ export default function SolarWorthItArticlePage() {
             Here&apos;s a fully worked, <strong>illustrative example</strong> for a 3kW
             system — treat every figure as an example, not a quote for your home:
           </p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {workedExample.map(([label, value]) => (
                   <tr key={label}>
-                    <td className="px-4 py-2.5 font-medium text-ash/70 dark:text-gazette-cream/60">
+                    <td className="px-4 py-2.5 font-medium text-ash/70">
                       {label}
                     </td>
                     <td className="px-4 py-2.5 text-right font-display font-bold tabular-nums text-hub-solar">
@@ -349,49 +349,49 @@ export default function SolarWorthItArticlePage() {
           <div className="grid gap-4 sm:grid-cols-2">
             <Link
               href="/solar/subsidy-calculator"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>💸</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 PM Surya Ghar subsidy calculator
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Check your exact eligibility and subsidy amount.
               </p>
             </Link>
             <Link
               href="/solar/roi-calculator"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>📈</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Solar ROI calculator
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 See your real payback and 25-year savings, priced on your DISCOM.
               </p>
             </Link>
             <Link
               href="/solar/panel-size-calculator"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>📐</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Panel size calculator
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 What system size and roof area you actually need.
               </p>
             </Link>
             <Link
               href="/blog/how-telescopic-electricity-slabs-work"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>📘</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 How telescopic electricity slabs work
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Why solar offsets your most expensive units first.
               </p>
             </Link>
@@ -402,13 +402,13 @@ export default function SolarWorthItArticlePage() {
           <h2 id="faq" className={h2Cls}>
             Frequently asked questions
           </h2>
-          <div className="divide-y divide-hairline dark:divide-white/10">
+          <div className="divide-y divide-hairline">
             {faqs.map((f, i) => (
               <details key={i} className="group py-3">
-                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                   {f.q}
                 </summary>
-                <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+                <p className="mt-2 text-ash/70">{f.a}</p>
               </details>
             ))}
           </div>

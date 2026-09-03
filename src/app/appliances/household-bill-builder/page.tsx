@@ -174,7 +174,7 @@ export default function ApplianceBuilderPage() {
           <h2 id="why" className="font-display mb-2 text-2xl font-semibold">
             Why appliance-level breakdown matters
           </h2>
-          <p className="text-ash/80 dark:text-gazette-cream/70">
+          <p className="text-ash/80">
             Your electricity bill isn&apos;t one number — it&apos;s the sum of
             every appliance running at its own wattage and hours, all landing
             on the SAME progressive tariff. Because Indian slabs are
@@ -197,7 +197,7 @@ export default function ApplianceBuilderPage() {
           <h2 id="trust" className="font-display mb-4 text-2xl font-semibold">
             Why our appliance cost numbers are more accurate
           </h2>
-          <p className="mb-4 text-ash/80 dark:text-gazette-cream/70">
+          <p className="mb-4 text-ash/80">
             Plenty of appliance calculators sum your wattage and hours, then
             price the total against a generic &ldquo;central tariffs
             database&rdquo; with no visible citation. We don&apos;t do that.
@@ -205,13 +205,13 @@ export default function ApplianceBuilderPage() {
             with a source link and a verification date — so you can check
             our numbers, not just trust them.
           </p>
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
             <p className="text-xs font-semibold tracking-wide text-hub-appliance uppercase">
               Example: {citationTariff.discomName} ({citationTariff.discomCode})
             </p>
             <dl className="mt-3 grid gap-2 text-sm sm:grid-cols-3">
               <div>
-                <dt className="text-ash/50 dark:text-gazette-cream/40">Source</dt>
+                <dt className="text-ash/50">Source</dt>
                 <dd>
                   <a
                     href={citationTariff.sourceUrl}
@@ -224,18 +224,18 @@ export default function ApplianceBuilderPage() {
                 </dd>
               </div>
               <div>
-                <dt className="text-ash/50 dark:text-gazette-cream/40">Last verified</dt>
-                <dd className="tabular-nums text-ink-navy dark:text-gazette-cream">
+                <dt className="text-ash/50">Last verified</dt>
+                <dd className="tabular-nums text-ink-navy">
                   {formatIsoDate(citationTariff.lastVerified)}
                 </dd>
               </div>
               <div>
-                <dt className="text-ash/50 dark:text-gazette-cream/40">Verification status</dt>
-                <dd className="text-ink-navy dark:text-gazette-cream">{citationTariff.verifiedBy}</dd>
+                <dt className="text-ash/50">Verification status</dt>
+                <dd className="text-ink-navy">{citationTariff.verifiedBy}</dd>
               </div>
             </dl>
           </div>
-          <p className="mt-3 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-3 text-xs text-ash/50">
             Every calculator on this site shows this same tariff-file
             citation — see it on any DISCOM page under the{' '}
             <Link href="/electricity" className="underline hover:text-hub-appliance">
@@ -249,24 +249,24 @@ export default function ApplianceBuilderPage() {
           <h2 id="formula" className="font-display mb-4 text-2xl font-semibold">
             How this calculator works
           </h2>
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
             <div className="space-y-2 font-mono text-sm">
-              <p className="rounded-lg bg-mist px-3 py-2 dark:bg-slate-800">
+              <p className="rounded-lg bg-mist px-3 py-2">
                 Units (kWh) = (Wattage × Hours per day × 30 days) / 1000
               </p>
-              <p className="rounded-lg bg-mist px-3 py-2 dark:bg-slate-800">
+              <p className="rounded-lg bg-mist px-3 py-2">
                 Household total = Σ (each appliance&apos;s units)
               </p>
-              <p className="rounded-lg bg-mist px-3 py-2 dark:bg-slate-800">
+              <p className="rounded-lg bg-mist px-3 py-2">
                 Bill = household total priced through your real DISCOM&apos;s progressive slab tariff
               </p>
             </div>
-            <p className="mt-3 text-sm text-ash/70 dark:text-gazette-cream/60">
+            <p className="mt-3 text-sm text-ash/70">
               Example: a <strong>1500W AC</strong> running <strong>8 hrs/day</strong> ={' '}
               1500 × 8 × 30 / 1000 ={' '}
               <strong className="text-hub-appliance">{formulaExample} units/month</strong>.
             </p>
-            <p className="mt-3 text-xs text-ash/50 dark:text-gazette-cream/40">
+            <p className="mt-3 text-xs text-ash/50">
               This is the exact function the builder above uses — not a
               simplified restatement. Every appliance&apos;s units add to one
               running total, which is then priced through the slab structure
@@ -292,7 +292,7 @@ export default function ApplianceBuilderPage() {
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hub-appliance font-display text-xs font-bold text-white">
                   {i + 1}
                 </span>
-                <span className="text-ash/80 dark:text-gazette-cream/70">{s}</span>
+                <span className="text-ash/80">{s}</span>
               </li>
             ))}
           </ol>
@@ -311,9 +311,9 @@ export default function ApplianceBuilderPage() {
               { title: 'Solar panel users', body: <>Compare your household consumption against what a rooftop system would generate — see our <Link href="/solar/roi-calculator" className="underline hover:text-hub-appliance">solar ROI calculator</Link>.</> },
               { title: 'Anyone wanting to save', body: 'Find your biggest line items first — that\'s where cutting usage actually moves the needle.' },
             ].map((c) => (
-              <div key={c.title} className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-                <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">{c.title}</p>
-                <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">{c.body}</p>
+              <div key={c.title} className="rounded-xl border border-hairline bg-paper p-5">
+                <p className="font-display font-bold text-ink-navy">{c.title}</p>
+                <p className="mt-1 text-sm text-ash/70">{c.body}</p>
               </div>
             ))}
           </div>
@@ -323,14 +323,14 @@ export default function ApplianceBuilderPage() {
           <h2 id="example" className="font-display mb-2 text-2xl font-semibold">
             Example calculation — a real household
           </h2>
-          <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+          <p className="mb-4 text-sm text-ash/60">
             A realistic Maharashtra household&apos;s appliance mix, computed
             live through {citationTariff.discomCode}&apos;s real slab tariff
             via the same engine as the builder above:
           </p>
-          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Appliance</th>
                   <th className="px-4 py-2 text-right font-semibold">Watt</th>
@@ -339,7 +339,7 @@ export default function ApplianceBuilderPage() {
                   <th className="px-4 py-2 text-right font-semibold">Approx. cost</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {exampleResult.items.map((item) => (
                   <tr key={item.id}>
                     <td className="px-4 py-2 font-medium">{item.name}</td>
@@ -352,7 +352,7 @@ export default function ApplianceBuilderPage() {
                   </tr>
                 ))}
               </tbody>
-              <tfoot className="bg-mist text-ink-navy dark:bg-slate-800 dark:text-gazette-cream">
+              <tfoot className="bg-mist text-ink-navy">
                 <tr>
                   <td className="px-4 py-2 font-semibold" colSpan={3}>
                     Combined total ({exampleResult.totalMonthlyUnits} units, real slab pricing)
@@ -364,7 +364,7 @@ export default function ApplianceBuilderPage() {
               </tfoot>
             </table>
           </div>
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             The per-appliance &ldquo;approx. cost&rdquo; column is illustrative,
             split at {citationTariff.discomCode}&apos;s top marginal rate
             (₹{exampleRate.toFixed(2)}/unit) — your real bill is the combined
@@ -378,13 +378,13 @@ export default function ApplianceBuilderPage() {
           <h2 id="wattage-chart" className="font-display mb-2 text-2xl font-semibold">
             Common home appliances — power consumption chart
           </h2>
-          <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+          <p className="mb-4 text-sm text-ash/60">
             Typical wattage by appliance, grouped by category — the exact
             reference data the builder above uses.
           </p>
-          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Appliance</th>
                   <th className="px-4 py-2 font-semibold">Category</th>
@@ -392,12 +392,12 @@ export default function ApplianceBuilderPage() {
                   <th className="px-4 py-2 text-right font-semibold">Typical use</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {APPLIANCE_CATEGORIES.flatMap((cat) =>
                   cat.appliances.map((a) => (
                     <tr key={a.name}>
                       <td className="px-4 py-2 font-medium">{a.name}</td>
-                      <td className="px-4 py-2 text-ash/60 dark:text-gazette-cream/50">{cat.category}</td>
+                      <td className="px-4 py-2 text-ash/60">{cat.category}</td>
                       <td className="px-4 py-2 text-right tabular-nums">{a.watts}W</td>
                       <td className="px-4 py-2 text-right tabular-nums">{a.typicalHoursPerDay} hrs/day</td>
                     </tr>
@@ -406,7 +406,7 @@ export default function ApplianceBuilderPage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             These are typical mid-range reference figures for estimation, not
             nameplate guarantees — always check your own appliance&apos;s
             rating label for its exact wattage, since real models vary.
@@ -417,15 +417,15 @@ export default function ApplianceBuilderPage() {
           <h2 id="ranked" className="font-display mb-2 text-2xl font-semibold">
             Biggest electricity consumers in an Indian home
           </h2>
-          <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+          <p className="mb-4 text-sm text-ash/60">
             Ranked by typical monthly units at commonly cited usage patterns —
             computed live from the same reference data the builder above uses,
             priced at a representative ₹{rate.toFixed(2)}/unit (Tamil Nadu top
             slab).
           </p>
-          <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+          <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+              <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
                   <th className="px-4 py-2 font-semibold">Appliance</th>
                   <th className="px-4 py-2 text-right font-semibold">Typical use</th>
@@ -433,7 +433,7 @@ export default function ApplianceBuilderPage() {
                   <th className="px-4 py-2 text-right font-semibold">Approx. cost/month</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-hairline dark:divide-white/10">
+              <tbody className="divide-y divide-hairline">
                 {rankedAppliances.map((a) => (
                   <tr key={a.name}>
                     <td className="px-4 py-2 font-medium">{a.name}</td>
@@ -447,7 +447,7 @@ export default function ApplianceBuilderPage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             Reference wattage figures are typical mid-range estimates, not
             nameplate guarantees for your specific model — see our{' '}
             <Link href="/appliances" className="underline hover:text-hub-appliance">
@@ -463,7 +463,7 @@ export default function ApplianceBuilderPage() {
           <h2 id="differ" className="font-display mb-2 text-2xl font-semibold">
             Why your estimate might differ from your actual bill
           </h2>
-          <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+          <div className="space-y-3 text-ash/80">
             <p>
               Our combined breakdown already includes your DISCOM&apos;s
               fixed/meter charge, fuel cost adjustment (FCA) and electricity
@@ -528,13 +528,13 @@ export default function ApplianceBuilderPage() {
                 body: 'A higher star rating directly lowers the wattage or annual kWh figure for the same job — especially impactful on always-on devices like refrigerators.',
               },
             ].map((t) => (
-              <div key={t.title} className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-                <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">{t.title}</p>
-                <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">{t.body}</p>
+              <div key={t.title} className="rounded-xl border border-hairline bg-paper p-5">
+                <p className="font-display font-bold text-ink-navy">{t.title}</p>
+                <p className="mt-1 text-sm text-ash/70">{t.body}</p>
               </div>
             ))}
           </div>
-          <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-2 text-xs text-ash/50">
             These are commonly cited indicative figures, not guaranteed
             savings for your specific household — your real saving depends on
             your current usage pattern, tariff slab, and the appliance&apos;s
@@ -549,49 +549,49 @@ export default function ApplianceBuilderPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
               href="/appliances/inverter-sizing-calculator"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>🔌</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Inverter sizing
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Same wattage data, sized for backup power instead.
               </p>
             </Link>
             <Link
               href="/appliances/phantom-load-checker"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>👻</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Phantom load checker
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 What always-on standby devices cost you.
               </p>
             </Link>
             <Link
               href="/ac"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>❄️</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 AC calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 A deeper dive into your biggest single line item.
               </p>
             </Link>
             <Link
               href="/electricity"
-              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
             >
               <span className="text-xl" aria-hidden>⚡</span>
-              <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+              <p className="font-display mt-2 font-bold text-ink-navy">
                 Electricity bill calculators
               </p>
-              <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+              <p className="mt-1 text-xs text-ash/60">
                 Your full bill from an actual meter reading.
               </p>
             </Link>
@@ -602,13 +602,13 @@ export default function ApplianceBuilderPage() {
           <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
             Frequently asked questions
           </h2>
-          <div className="divide-y divide-hairline dark:divide-white/10">
+          <div className="divide-y divide-hairline">
             {faqs.map((f, i) => (
               <details key={i} className="group py-3">
-                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+                <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                   {f.q}
                 </summary>
-                <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+                <p className="mt-2 text-ash/70">{f.a}</p>
               </details>
             ))}
           </div>

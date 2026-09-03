@@ -94,13 +94,13 @@ export default function UnitPriceIndexPage() {
             <li key={r.slug}>
               <Link
                 href={`/electricity/unit-price/${r.slug}`}
-                className="flex items-center justify-between rounded-xl border border-hairline bg-paper p-4 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+                className="flex items-center justify-between rounded-xl border border-hairline bg-paper p-4 transition hover:border-hub-electricity/50 hover:shadow-sm"
               >
                 <span>
-                  <span className="font-semibold text-ink-navy dark:text-gazette-cream">
+                  <span className="font-semibold text-ink-navy">
                     {r.state}
                   </span>
-                  <span className="mt-1 block text-xs text-ash/50 dark:text-gazette-cream/40">
+                  <span className="mt-1 block text-xs text-ash/50">
                     {r.discomCode}
                   </span>
                 </span>
@@ -117,13 +117,13 @@ export default function UnitPriceIndexPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

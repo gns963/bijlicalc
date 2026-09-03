@@ -15,7 +15,7 @@ export default function AcReductionTips() {
           <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hub-ac font-display text-xs font-bold text-white">
             {i + 1}
           </span>
-          <span className="text-ash/80 dark:text-gazette-cream/70">{t}</span>
+          <span className="text-ash/80">{t}</span>
         </li>
       ))}
     </ol>

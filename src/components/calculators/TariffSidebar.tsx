@@ -16,8 +16,8 @@ function fixedChargeLabel(fc: FixedCharge): string {
 function Fact({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-start justify-between gap-3">
-      <dt className="text-ash/60 dark:text-gazette-cream/50">{label}</dt>
-      <dd className="text-right font-medium text-ink-navy dark:text-gazette-cream">
+      <dt className="text-ash/60">{label}</dt>
+      <dd className="text-right font-medium text-ink-navy">
         {value}
       </dd>
     </div>
@@ -39,9 +39,9 @@ export default function TariffSidebar({
   return (
     <aside className="grid gap-4 lg:sticky lg:top-20 lg:self-start">
       {/* Tariff snapshot — visual slab bars */}
-      <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+      <div className="rounded-xl border border-hairline bg-paper p-5">
         <div className="flex items-center justify-between">
-          <h3 className="font-display text-sm font-bold uppercase tracking-wide text-ink-navy dark:text-gazette-cream">
+          <h3 className="font-display text-sm font-bold uppercase tracking-wide text-ink-navy">
             Tariff Snapshot
           </h3>
           <span className="rounded-full bg-spark-teal/15 px-2 py-0.5 text-[10px] font-semibold text-spark-teal">
@@ -55,14 +55,14 @@ export default function TariffSidebar({
             return (
               <div key={i}>
                 <div className="flex items-baseline justify-between text-xs">
-                  <span className="text-ash/60 dark:text-gazette-cream/50">
+                  <span className="text-ash/60">
                     {s.minUnits}–{s.maxUnits ?? '∞'} units
                   </span>
-                  <span className="font-display font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+                  <span className="font-display font-bold tabular-nums text-ink-navy">
                     ₹{s.ratePerUnit.toFixed(2)}
                   </span>
                 </div>
-                <div className="mt-1 h-1.5 rounded-full bg-mist dark:bg-slate-800">
+                <div className="mt-1 h-1.5 rounded-full bg-mist">
                   <div
                     className="h-1.5 rounded-full bg-brass"
                     style={{ width: `${pct}%`, opacity: 0.4 + (pct / 100) * 0.6 }}
@@ -73,7 +73,7 @@ export default function TariffSidebar({
           })}
         </div>
 
-        <dl className="mt-4 space-y-1.5 border-t border-hairline pt-3 text-xs dark:border-white/10">
+        <dl className="mt-4 space-y-1.5 border-t border-hairline pt-3 text-xs">
           <Fact label="Fixed charge" value={fixedChargeLabel(ct.fixedCharge)} />
           {tariff.fuelCostAdjustment > 0 && (
             <Fact label="FCA" value={`₹${tariff.fuelCostAdjustment}/unit`} />
@@ -85,8 +85,8 @@ export default function TariffSidebar({
       </div>
 
       {/* Key facts */}
-      <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-        <h3 className="font-display text-sm font-bold uppercase tracking-wide text-ink-navy dark:text-gazette-cream">
+      <div className="rounded-xl border border-hairline bg-paper p-5">
+        <h3 className="font-display text-sm font-bold uppercase tracking-wide text-ink-navy">
           Key Facts
         </h3>
         <dl className="mt-3 space-y-2 text-xs">
@@ -105,12 +105,12 @@ export default function TariffSidebar({
           sidebar; spark-teal signals savings, brass signals the action link */}
       <Link
         href="/solar/roi-calculator"
-        className="block rounded-xl border border-spark-teal/25 bg-paper p-5 transition hover:border-spark-teal/50 hover:shadow-sm dark:bg-slate-900"
+        className="block rounded-xl border border-spark-teal/25 bg-paper p-5 transition hover:border-spark-teal/50 hover:shadow-sm"
       >
         <span className="text-xl" aria-hidden>
           ☀️
         </span>
-        <p className="mt-2 text-sm font-semibold text-ink-navy dark:text-gazette-cream">
+        <p className="mt-2 text-sm font-semibold text-ink-navy">
           See what solar could save you in {tariff.state}
         </p>
         <p className="mt-1 text-xs font-semibold text-brass">

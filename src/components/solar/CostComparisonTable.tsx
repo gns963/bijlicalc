@@ -34,7 +34,7 @@ export default function CostComparisonTable({
       <h2 id="cost-comparison" className="font-display mb-2 text-2xl font-semibold">
         25-Year Cost Comparison: Solar vs. Grid
       </h2>
-      <p className="mb-4 text-ash/70 dark:text-gazette-cream/60">
+      <p className="mb-4 text-ash/70">
         How cumulative cost compares if your electricity tariff keeps rising —
         pick a scenario to see the effect:
       </p>
@@ -47,16 +47,16 @@ export default function CostComparisonTable({
             className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
               scenario === s.value
                 ? 'bg-hub-solar text-white'
-                : 'border border-hairline text-ash/70 hover:border-hub-solar/50 dark:border-white/10 dark:text-gazette-cream/70'
+                : 'border border-hairline text-ash/70 hover:border-hub-solar/50'
             }`}
           >
             {s.label}
           </button>
         ))}
       </div>
-      <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-hairline">
         <table className="w-full text-left text-sm">
-          <thead className="border-b border-hairline bg-mist dark:border-white/10 dark:bg-slate-800">
+          <thead className="border-b border-hairline bg-mist">
             <tr>
               <th className="px-4 py-2 font-semibold">Year</th>
               <th className="px-4 py-2 text-right font-semibold">Cumulative grid cost</th>
@@ -64,7 +64,7 @@ export default function CostComparisonTable({
               <th className="px-4 py-2 text-right font-semibold">Cumulative savings</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-hairline dark:divide-white/10">
+          <tbody className="divide-y divide-hairline">
             {rows.map((r) => (
               <tr key={r.year}>
                 <td className="px-4 py-2 font-medium">Year {r.year}</td>
@@ -89,7 +89,7 @@ export default function CostComparisonTable({
       >
         {showAll ? 'Show milestone years only' : 'Show all 25 years'}
       </button>
-      <p className="mt-3 text-xs text-ash/50 dark:text-gazette-cream/40">{result.notes[0]}</p>
+      <p className="mt-3 text-xs text-ash/50">{result.notes[0]}</p>
     </section>
   )
 }

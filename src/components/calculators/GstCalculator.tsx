@@ -26,7 +26,7 @@ export default function GstCalculator() {
   }, [amountStr, rate, mode])
 
   const fieldCls =
-    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30'
 
   return (
     <CalculatorCard>
@@ -36,7 +36,7 @@ export default function GstCalculator() {
         <div>
           <label
             htmlFor="gst-amount"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             Amount (₹)
           </label>
@@ -53,7 +53,7 @@ export default function GstCalculator() {
         <div>
           <label
             htmlFor="gst-rate"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             GST rate
           </label>
@@ -72,7 +72,7 @@ export default function GstCalculator() {
         </div>
 
         <fieldset>
-          <legend className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+          <legend className="mb-1.5 block text-sm font-medium text-ash">
             Amount is
           </legend>
           <div className="flex gap-2">
@@ -89,8 +89,8 @@ export default function GstCalculator() {
                 aria-pressed={mode === val}
                 className={`flex-1 rounded-lg border-2 px-3 py-2 text-xs transition ${
                   mode === val
-                    ? 'border-brass bg-brass/10 font-semibold text-ink-navy dark:text-gazette-cream'
-                    : 'border-hairline text-ash/70 dark:border-white/10 dark:text-gazette-cream/60'
+                    ? 'border-brass bg-brass/10 font-semibold text-ink-navy'
+                    : 'border-hairline text-ash/70'
                 }`}
               >
                 {label}
@@ -102,36 +102,36 @@ export default function GstCalculator() {
         <CalculatorCta label="Calculate GST" tone="financial" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Total {mode === 'inclusive' ? '(incl. GST)' : 'payable'}
               </p>
-              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+              <p className="font-display text-4xl font-bold tabular-nums text-ink-navy">
                 {formatINR(result.total)}
               </p>
             </div>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 Base amount
               </dt>
               <dd className="text-right tabular-nums">{formatINR(result.base)}</dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 GST @ {result.ratePercent}%
               </dt>
               <dd className="text-right tabular-nums">
                 {formatINR(result.gstAmount)}
               </dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">CGST</dt>
+              <dt className="text-ash/60">CGST</dt>
               <dd className="text-right tabular-nums">{formatINR(result.cgst)}</dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">SGST</dt>
+              <dt className="text-ash/60">SGST</dt>
               <dd className="text-right tabular-nums">{formatINR(result.sgst)}</dd>
             </dl>
           </div>

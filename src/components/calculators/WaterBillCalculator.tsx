@@ -73,16 +73,16 @@ export default function WaterBillCalculator() {
         <CalculatorCta label="Calculate Water Bill" tone="water" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-water/15 bg-hub-water/5 p-5 dark:border-hub-water/20 dark:bg-hub-water/10">
+      <div className="mt-6 rounded-xl border border-hub-water/15 bg-hub-water/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Estimated bill
               </p>
               <p className="font-display text-4xl font-bold tabular-nums text-hub-water">
@@ -90,11 +90,11 @@ export default function WaterBillCalculator() {
               </p>
             </div>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 Volumetric charge
               </dt>
               <dd className="text-right tabular-nums">{formatINR(result.volumetricCharge)}</dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">Fixed charge</dt>
+              <dt className="text-ash/60">Fixed charge</dt>
               <dd className="text-right tabular-nums">{formatINR(result.fixedCharge)}</dd>
             </dl>
           </div>

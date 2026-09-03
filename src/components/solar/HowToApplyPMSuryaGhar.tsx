@@ -34,13 +34,13 @@ export default function HowToApplyPMSuryaGhar() {
               {i + 1}
             </span>
             <div>
-              <p className="font-semibold text-ink-navy dark:text-gazette-cream">
+              <p className="font-semibold text-ink-navy">
                 {s.title}{' '}
-                <span className="ml-1 text-xs font-normal text-ash/50 dark:text-gazette-cream/40">
+                <span className="ml-1 text-xs font-normal text-ash/50">
                   ~{s.timeframe}
                 </span>
               </p>
-              <p className="mt-0.5 text-sm text-ash/70 dark:text-gazette-cream/60">{s.body}</p>
+              <p className="mt-0.5 text-sm text-ash/70">{s.body}</p>
             </div>
           </li>
         ))}
@@ -48,7 +48,7 @@ export default function HowToApplyPMSuryaGhar() {
 
       <div className="mt-5 rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-4">
         <p className="text-sm font-semibold text-caution-amber">Eligibility</p>
-        <ul className="mt-2 space-y-1 text-sm text-ash/80 dark:text-gazette-cream/70">
+        <ul className="mt-2 space-y-1 text-sm text-ash/80">
           <li>• You must own the roof/property, or have the owner&apos;s consent</li>
           <li>• A valid, active residential electricity connection</li>
           <li>• Haven&apos;t previously availed a rooftop solar subsidy on this connection</li>

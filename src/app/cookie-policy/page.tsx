@@ -17,7 +17,7 @@ export default function CookiePolicyPage() {
       stub={false}
       path="/cookie-policy"
     >
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         What cookies are
       </h2>
       <p>
@@ -26,7 +26,7 @@ export default function CookiePolicyPage() {
         is used.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Types we use
       </h2>
       <ul className="list-disc space-y-1 pl-5">
@@ -49,7 +49,7 @@ export default function CookiePolicyPage() {
         </li>
       </ul>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Google AdSense
       </h2>
       <p>
@@ -77,7 +77,7 @@ export default function CookiePolicyPage() {
         .
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Managing cookies
       </h2>
       <p>

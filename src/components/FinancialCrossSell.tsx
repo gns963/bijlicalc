@@ -39,15 +39,15 @@ export default function FinancialCrossSell({ current }: { current: string }) {
           <Link
             key={t.slug}
             href={`/financial/${t.slug}`}
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>
               {t.emoji}
             </span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               {t.title}
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               {t.body}
             </p>
           </Link>

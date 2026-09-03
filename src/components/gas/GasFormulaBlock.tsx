@@ -12,25 +12,25 @@ export default function GasFormulaBlock({ cgdCode = 'IGL' }: { cgdCode?: string 
   const rate = tariff.slabs[0].ratePerSCM
 
   return (
-    <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+    <div className="rounded-xl border border-hairline bg-paper p-5">
       <p className="font-display text-sm font-semibold tracking-wide text-hub-gas uppercase">
         The formula, in full
       </p>
       <div className="mt-3 space-y-2 font-mono text-sm">
-        <p className="rounded-lg bg-mist px-3 py-2 dark:bg-slate-800">
+        <p className="rounded-lg bg-mist px-3 py-2">
           Gas charge = SCM consumed × rate per SCM
         </p>
         {tariff.calorificValueAdjustment != null && (
-          <p className="rounded-lg bg-mist px-3 py-2 dark:bg-slate-800">
+          <p className="rounded-lg bg-mist px-3 py-2">
             + Calorific value adjustment ({tariff.calorificValueAdjustment}% of gas charge)
           </p>
         )}
-        <p className="rounded-lg bg-mist px-3 py-2 dark:bg-slate-800">
+        <p className="rounded-lg bg-mist px-3 py-2">
           + Fixed/meter charge ({formatINR(tariff.fixedCharge)}/cycle)
         </p>
-        <p className="rounded-lg bg-mist px-3 py-2 dark:bg-slate-800">= Total bill</p>
+        <p className="rounded-lg bg-mist px-3 py-2">= Total bill</p>
       </div>
-      <p className="mt-3 text-sm text-ash/70 dark:text-gazette-cream/60">
+      <p className="mt-3 text-sm text-ash/70">
         Worked at <strong>{tariff.cgdCode}</strong>&apos;s real rate of{' '}
         <strong>{formatINR(rate)}/SCM</strong>: 40 SCM ×{' '}
         {formatINR(rate)} = {formatINR(example.gasChargeGross)} gas charge,{' '}
@@ -40,7 +40,7 @@ export default function GasFormulaBlock({ cgdCode = 'IGL' }: { cgdCode?: string 
         + {formatINR(example.fixedCharge)} fixed charge ={' '}
         <strong className="text-hub-gas">{formatINR(example.total)}</strong>.
       </p>
-      <p className="mt-3 text-xs text-ash/50 dark:text-gazette-cream/40">
+      <p className="mt-3 text-xs text-ash/50">
         This is the exact function and tariff our calculator uses for{' '}
         {tariff.cgdCode} — not a simplified restatement. Unlike electricity,
         domestic PNG billing in India generally isn&apos;t telescopic-slabbed —

@@ -75,9 +75,9 @@ export default function InverterSizingCalculator() {
         <CalculatorCta label="Calculate Sizing" tone="appliance" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-appliance/15 bg-hub-appliance/5 p-5 dark:border-hub-appliance/20 dark:bg-hub-appliance/10">
+      <div className="mt-6 rounded-xl border border-hub-appliance/15 bg-hub-appliance/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
@@ -85,7 +85,7 @@ export default function InverterSizingCalculator() {
           <div className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="text-sm text-ash/60">
                   Inverter/UPS size
                 </p>
                 <p className="font-display text-3xl font-bold tabular-nums text-hub-appliance">
@@ -93,7 +93,7 @@ export default function InverterSizingCalculator() {
                 </p>
               </div>
               <div>
-                <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="text-sm text-ash/60">
                   Battery capacity
                 </p>
                 <p className="font-display text-3xl font-bold tabular-nums text-hub-appliance">
@@ -101,7 +101,7 @@ export default function InverterSizingCalculator() {
                 </p>
               </div>
             </div>
-            <p className="text-xs text-ash/50 dark:text-gazette-cream/40">
+            <p className="text-xs text-ash/50">
               {result.notes[0]}
             </p>
           </div>

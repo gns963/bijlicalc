@@ -54,12 +54,12 @@ export default function AcNeighborDiagnostic() {
       {CAUSES.map((c) => (
         <div
           key={c.title}
-          className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900"
+          className="rounded-xl border border-hairline bg-paper p-5"
         >
-          <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">
+          <p className="font-display font-bold text-ink-navy">
             {c.title}
           </p>
-          <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">{c.body}</p>
+          <p className="mt-1 text-sm text-ash/70">{c.body}</p>
         </div>
       ))}
     </div>

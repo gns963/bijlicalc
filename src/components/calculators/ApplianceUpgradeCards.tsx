@@ -35,14 +35,14 @@ export default function ApplianceUpgradeCards({
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+      <div className="rounded-xl border border-hairline bg-paper p-5">
         <span className="text-2xl" aria-hidden>
           💡
         </span>
-        <h3 className="mt-2 font-display text-lg font-bold text-ink-navy dark:text-gazette-cream">
+        <h3 className="mt-2 font-display text-lg font-bold text-ink-navy">
           Swap CFL for LED bulbs
         </h3>
-        <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+        <p className="mt-1 text-sm text-ash/70">
           Replacing a 15W CFL with a 9W LED bulb, run {cfl.typicalHoursPerDay}{' '}
           hrs/day, saves about{' '}
           <strong className="text-spark-teal">
@@ -54,15 +54,15 @@ export default function ApplianceUpgradeCards({
 
       <Link
         href="/ac/comparisons/3-star-vs-5-star-savings-guide"
-        className="rounded-xl border border-brass/30 bg-paper p-5 transition hover:border-brass/60 hover:shadow-sm dark:border-brass/20 dark:bg-slate-900"
+        className="rounded-xl border border-brass/30 bg-paper p-5 transition hover:border-brass/60 hover:shadow-sm"
       >
         <span className="text-2xl" aria-hidden>
           ❄️
         </span>
-        <h3 className="mt-2 font-display text-lg font-bold text-ink-navy dark:text-gazette-cream">
+        <h3 className="mt-2 font-display text-lg font-bold text-ink-navy">
           Upgrade to a 5-star AC
         </h3>
-        <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">
+        <p className="mt-1 text-sm text-ash/70">
           A 1.5 ton 5-star AC vs 3-star, run {hours} hrs/day, saves about{' '}
           <strong className="text-spark-teal">{formatINR(acSavings)}/year</strong>{' '}
           in {state}.

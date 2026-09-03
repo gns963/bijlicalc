@@ -116,13 +116,13 @@ export default function FuelCostHubPage() {
           <Link
             key={c.href}
             href={c.href}
-            className="flex flex-col rounded-2xl border border-hub-fuel/20 bg-hub-fuel/5 p-6 transition hover:border-hub-fuel/50 hover:shadow-sm dark:border-hub-fuel/20 dark:bg-hub-fuel/10"
+            className="flex flex-col rounded-2xl border border-hub-fuel/20 bg-hub-fuel/5 p-6 transition hover:border-hub-fuel/50 hover:shadow-sm"
           >
             <span className="text-2xl">{c.emoji}</span>
-            <h2 className="font-display mt-2 text-lg font-semibold text-ink-navy dark:text-gazette-cream">
+            <h2 className="font-display mt-2 text-lg font-semibold text-ink-navy">
               {c.title}
             </h2>
-            <p className="mt-1 flex-1 text-sm text-ash/70 dark:text-gazette-cream/70">
+            <p className="mt-1 flex-1 text-sm text-ash/70">
               {c.body}
             </p>
             <span className="mt-3 text-sm font-semibold text-hub-fuel">
@@ -136,7 +136,7 @@ export default function FuelCostHubPage() {
         <h2 id="why" className="font-display mb-4 text-2xl font-semibold">
           Real inputs, not national averages
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           Fuel prices vary by state, city and day, and your vehicle&apos;s or
           generator&apos;s real consumption depends on the specific unit. Rather
           than showing you an averaged figure that may be far from your
@@ -150,13 +150,13 @@ export default function FuelCostHubPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

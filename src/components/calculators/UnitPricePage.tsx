@@ -64,7 +64,7 @@ export default function UnitPricePage({ config }: { config: DiscomPageConfig }) 
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="price"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="price"
@@ -72,14 +72,14 @@ export default function UnitPricePage({ config }: { config: DiscomPageConfig }) 
         >
           Marginal unit price (top slab, incl. FCA &amp; duty)
         </h2>
-        <p className="font-display mt-2 text-4xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+        <p className="font-display mt-2 text-4xl font-bold tabular-nums text-ink-navy">
           ₹{marginalRate.toFixed(2)}
-          <span className="text-lg font-normal text-ash/60 dark:text-gazette-cream/50">
+          <span className="text-lg font-normal text-ash/60">
             {' '}
             /unit
           </span>
         </p>
-        <p className="mt-2 text-sm text-ash/60 dark:text-gazette-cream/50">
+        <p className="mt-2 text-sm text-ash/60">
           This is what your next unit costs once you&apos;re in the top
           slab — the realistic cost of running one more appliance.
         </p>
@@ -89,15 +89,15 @@ export default function UnitPricePage({ config }: { config: DiscomPageConfig }) 
         <h2 id="slabs" className="font-display mb-4 text-2xl font-semibold">
           Full slab-wise rates
         </h2>
-        <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-hairline">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+            <thead className="border-b border-hairline bg-mist text-ink-navy">
               <tr>
                 <th className="px-4 py-2 font-semibold">Slab</th>
                 <th className="px-4 py-2 text-right font-semibold">Rate/unit</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-hairline dark:divide-white/10">
+            <tbody className="divide-y divide-hairline">
               {residential.slabs.map((s, i) => (
                 <tr key={i}>
                   <td className="px-4 py-2 font-medium">
@@ -112,36 +112,36 @@ export default function UnitPricePage({ config }: { config: DiscomPageConfig }) 
           </table>
         </div>
         <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <div className="rounded-xl border border-hairline bg-paper px-3 py-3 text-center dark:border-white/10 dark:bg-slate-900">
-            <dt className="text-[11px] tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+          <div className="rounded-xl border border-hairline bg-paper px-3 py-3 text-center">
+            <dt className="text-[11px] tracking-wide text-ash/50 uppercase">
               Billing cycle
             </dt>
-            <dd className="font-display mt-1 font-bold text-ink-navy dark:text-gazette-cream">
+            <dd className="font-display mt-1 font-bold text-ink-navy">
               {cycleLabel(tariff.billingCycle)}
             </dd>
           </div>
           {tariff.fuelCostAdjustment > 0 && (
-            <div className="rounded-xl border border-hairline bg-paper px-3 py-3 text-center dark:border-white/10 dark:bg-slate-900">
-              <dt className="text-[11px] tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+            <div className="rounded-xl border border-hairline bg-paper px-3 py-3 text-center">
+              <dt className="text-[11px] tracking-wide text-ash/50 uppercase">
                 FCA
               </dt>
-              <dd className="font-display mt-1 font-bold text-ink-navy dark:text-gazette-cream">
+              <dd className="font-display mt-1 font-bold text-ink-navy">
                 ₹{tariff.fuelCostAdjustment}/unit
               </dd>
             </div>
           )}
           {tariff.electricityDutyPercent > 0 && (
-            <div className="rounded-xl border border-hairline bg-paper px-3 py-3 text-center dark:border-white/10 dark:bg-slate-900">
-              <dt className="text-[11px] tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+            <div className="rounded-xl border border-hairline bg-paper px-3 py-3 text-center">
+              <dt className="text-[11px] tracking-wide text-ash/50 uppercase">
                 Duty
               </dt>
-              <dd className="font-display mt-1 font-bold text-ink-navy dark:text-gazette-cream">
+              <dd className="font-display mt-1 font-bold text-ink-navy">
                 {tariff.electricityDutyPercent}%
               </dd>
             </div>
           )}
-          <div className="rounded-xl border border-hairline bg-paper px-3 py-3 text-center dark:border-white/10 dark:bg-slate-900">
-            <dt className="text-[11px] tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+          <div className="rounded-xl border border-hairline bg-paper px-3 py-3 text-center">
+            <dt className="text-[11px] tracking-wide text-ash/50 uppercase">
               Verified
             </dt>
             <dd className="font-display mt-1 font-bold text-seal-red">
@@ -168,13 +168,13 @@ export default function UnitPricePage({ config }: { config: DiscomPageConfig }) 
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

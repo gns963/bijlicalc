@@ -25,7 +25,7 @@ export default function SubsidyTierCards({ discomCode }: { discomCode: string })
       <h2 id="subsidy-tiers" className="font-display mb-2 text-2xl font-semibold">
         PM Surya Ghar Subsidy at a Glance
       </h2>
-      <p className="mb-4 text-ash/70 dark:text-gazette-cream/60">
+      <p className="mb-4 text-ash/70">
         The central subsidy amount is fixed by system size — here&apos;s what
         it looks like at common sizes.
       </p>
@@ -33,37 +33,37 @@ export default function SubsidyTierCards({ discomCode }: { discomCode: string })
         {rows.map((r) => (
           <div
             key={r.kw}
-            className="rounded-xl border border-hub-solar/20 bg-hub-solar/5 p-5 dark:border-hub-solar/20 dark:bg-hub-solar/10"
+            className="rounded-xl border border-hub-solar/20 bg-hub-solar/5 p-5"
           >
             <p className="font-display text-2xl font-bold text-hub-solar">{r.kw} kW</p>
             <dl className="mt-3 space-y-2 text-sm">
               <div className="flex justify-between">
-                <dt className="text-ash/60 dark:text-gazette-cream/50">Subsidy</dt>
+                <dt className="text-ash/60">Subsidy</dt>
                 <dd className="font-semibold text-spark-teal">{formatINR(r.subsidy)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-ash/60 dark:text-gazette-cream/50">System cost</dt>
+                <dt className="text-ash/60">System cost</dt>
                 <dd>{formatINR(r.systemCost)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-ash/60 dark:text-gazette-cream/50">Net cost</dt>
-                <dd className="font-semibold text-ink-navy dark:text-gazette-cream">
+                <dt className="text-ash/60">Net cost</dt>
+                <dd className="font-semibold text-ink-navy">
                   {formatINR(r.netCost)}
                 </dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-ash/60 dark:text-gazette-cream/50">Roof area</dt>
+                <dt className="text-ash/60">Roof area</dt>
                 <dd>{r.roofAreaSqFt} sq ft</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-ash/60 dark:text-gazette-cream/50">Payback*</dt>
+                <dt className="text-ash/60">Payback*</dt>
                 <dd>{r.paybackYears ?? '—'} yrs</dd>
               </div>
             </dl>
           </div>
         ))}
       </div>
-      <p className="mt-3 text-xs text-ash/50 dark:text-gazette-cream/40">
+      <p className="mt-3 text-xs text-ash/50">
         *Illustrative payback assumes monthly usage roughly matched to the
         system size (~{MATCHED_UNITS_PER_KW} units/kW/month) on your
         DISCOM&apos;s tariff — use the{' '}

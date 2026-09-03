@@ -53,9 +53,9 @@ export default function PngVsLpgComparison({ cgdCode }: { cgdCode: string }) {
         <CalculatorCta label="Compare PNG vs LPG" tone="gas" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-gas/15 bg-hub-gas/5 p-5 dark:border-hub-gas/20 dark:bg-hub-gas/10">
+      <div className="mt-6 rounded-xl border border-hub-gas/15 bg-hub-gas/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
@@ -63,7 +63,7 @@ export default function PngVsLpgComparison({ cgdCode }: { cgdCode: string }) {
           <div className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
                   PNG cost
                 </p>
                 <p className="font-display text-2xl font-bold tabular-nums text-hub-gas">
@@ -71,18 +71,18 @@ export default function PngVsLpgComparison({ cgdCode }: { cgdCode: string }) {
                 </p>
               </div>
               <div>
-                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
                   Equivalent LPG cost
                 </p>
-                <p className="font-display text-2xl font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+                <p className="font-display text-2xl font-bold tabular-nums text-ink-navy">
                   {formatINR(result.lpgEquivalentCost)}
                 </p>
-                <p className="mt-0.5 text-xs text-ash/50 dark:text-gazette-cream/40">
+                <p className="mt-0.5 text-xs text-ash/50">
                   ≈ {result.lpgEquivalentCylinders} cylinders
                 </p>
               </div>
             </div>
-            <p className="text-sm text-ash/80 dark:text-gazette-cream/70">
+            <p className="text-sm text-ash/80">
               {result.cheaperOption === 'equal' ? (
                 'At these numbers, PNG and LPG cost about the same.'
               ) : (

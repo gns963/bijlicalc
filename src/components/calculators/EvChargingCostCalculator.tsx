@@ -34,7 +34,7 @@ export default function EvChargingCostCalculator({ discoms }: { discoms: DiscomO
   }, [discomCode, battery, range])
 
   const fieldCls =
-    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30'
 
   return (
     <CalculatorCard>
@@ -48,7 +48,7 @@ export default function EvChargingCostCalculator({ discoms }: { discoms: DiscomO
         <div>
           <label
             htmlFor="ev-discom"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             DISCOM / state
           </label>
@@ -90,38 +90,38 @@ export default function EvChargingCostCalculator({ discoms }: { discoms: DiscomO
         <CalculatorCta label="Calculate Charging Cost" tone="brass" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-electricity/15 bg-hub-electricity/5 p-5 dark:border-hub-electricity/20 dark:bg-hub-electricity/10">
+      <div className="mt-6 rounded-xl border border-hub-electricity/15 bg-hub-electricity/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Cost to fully charge
               </p>
               <p className="font-display text-4xl font-bold tabular-nums text-hub-electricity">
                 {formatINR(result.costToFullCharge)}
               </p>
               {result.costPerKm != null && (
-                <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+                <p className="text-sm text-ash/60">
                   ≈ {formatINR(result.costPerKm)}/km
                 </p>
               )}
             </div>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-ash/60 dark:text-gazette-cream/50">Units needed</dt>
+              <dt className="text-ash/60">Units needed</dt>
               <dd className="text-right tabular-nums">{result.unitsNeeded}</dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">
+              <dt className="text-ash/60">
                 Billed at (top slab)
               </dt>
               <dd className="text-right tabular-nums">
                 {formatINR(result.effectiveRatePerUnit)}/unit
               </dd>
             </dl>
-            <p className="text-xs text-ash/50 dark:text-gazette-cream/40">
+            <p className="text-xs text-ash/50">
               {result.notes[0]}
             </p>
           </div>

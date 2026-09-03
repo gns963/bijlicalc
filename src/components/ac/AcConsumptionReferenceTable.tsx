@@ -17,9 +17,9 @@ export default function AcConsumptionReferenceTable() {
 
   return (
     <div>
-      <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-hairline">
         <table className="w-full text-left text-sm">
-          <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+          <thead className="border-b border-hairline bg-mist text-ink-navy">
             <tr>
               <th className="px-4 py-2 font-semibold">Tonnage</th>
               {STARS.map((s) => (
@@ -29,7 +29,7 @@ export default function AcConsumptionReferenceTable() {
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-hairline dark:divide-white/10">
+          <tbody className="divide-y divide-hairline">
             {TONNAGES.map((t) => (
               <tr key={t}>
                 <td className="px-4 py-2 font-medium">{t} Ton</td>
@@ -47,7 +47,7 @@ export default function AcConsumptionReferenceTable() {
           </tbody>
         </table>
       </div>
-      <p className="mt-2 text-xs text-ash/50 dark:text-gazette-cream/40">
+      <p className="mt-2 text-xs text-ash/50">
         Approximate figures at {REFERENCE_LABEL}&apos;s top-slab rate (
         {formatINR(rate)}/unit) and 8 hours/day usage, for quick browsing
         only. Use the calculator above for your own DISCOM and hours.

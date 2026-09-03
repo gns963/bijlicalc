@@ -31,13 +31,13 @@ export default function SolarMythsSection() {
         {MYTHS.map((m, i) => (
           <div
             key={i}
-            className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5"
           >
             <p className="text-sm font-semibold text-seal-red">
-              Myth: <span className="font-normal text-ash/80 dark:text-gazette-cream/70">{m.myth}</span>
+              Myth: <span className="font-normal text-ash/80">{m.myth}</span>
             </p>
             <p className="mt-2 text-sm font-semibold text-spark-teal">
-              Fact: <span className="font-normal text-ash/80 dark:text-gazette-cream/70">{m.fact}</span>
+              Fact: <span className="font-normal text-ash/80">{m.fact}</span>
             </p>
           </div>
         ))}

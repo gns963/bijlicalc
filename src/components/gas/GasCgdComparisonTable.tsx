@@ -22,9 +22,9 @@ export default function GasCgdComparisonTable({
     .sort((a, b) => b.result.total - a.result.total)
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+    <div className="overflow-x-auto rounded-xl border border-hairline">
       <table className="w-full text-left text-sm">
-        <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+        <thead className="border-b border-hairline bg-mist text-ink-navy">
           <tr>
             <th className="px-4 py-2 font-semibold">CGD</th>
             <th className="px-4 py-2 text-right font-semibold">₹/SCM</th>
@@ -32,7 +32,7 @@ export default function GasCgdComparisonTable({
             <th className="px-4 py-2 text-right font-semibold">Total ({scmConsumed} SCM)</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-hairline dark:divide-white/10">
+        <tbody className="divide-y divide-hairline">
           {rows.map(({ tariff, result }) => (
             <tr key={tariff.cgdCode}>
               <td className="px-4 py-2 font-medium">

@@ -33,13 +33,13 @@ export default function SolarTipsSection() {
       </h2>
       <div className="grid gap-4 sm:grid-cols-2">
         {TIPS.map((t, i) => (
-          <div key={t.title} className="flex gap-3 rounded-xl border border-hairline bg-paper p-4 dark:border-white/10 dark:bg-slate-900">
+          <div key={t.title} className="flex gap-3 rounded-xl border border-hairline bg-paper p-4">
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brass/15 font-display text-sm font-bold text-brass">
               {i + 1}
             </span>
             <div>
-              <p className="font-semibold text-ink-navy dark:text-gazette-cream">{t.title}</p>
-              <p className="mt-0.5 text-sm text-ash/70 dark:text-gazette-cream/60">{t.body}</p>
+              <p className="font-semibold text-ink-navy">{t.title}</p>
+              <p className="mt-0.5 text-sm text-ash/70">{t.body}</p>
             </div>
           </div>
         ))}

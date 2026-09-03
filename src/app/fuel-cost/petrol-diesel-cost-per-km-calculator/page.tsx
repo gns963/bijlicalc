@@ -118,7 +118,7 @@ export default function VehicleFuelCostPage() {
 
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -126,7 +126,7 @@ export default function VehicleFuelCostPage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           At <strong>₹100/litre</strong> and <strong>18 km/litre</strong>{' '}
           mileage, each km costs about <strong>{formatINR(example.costPerKm)}</strong>{' '}
           — roughly {formatINR(example.monthlyCost)}/month for 1,000 km driven.
@@ -144,35 +144,35 @@ export default function VehicleFuelCostPage() {
         <h2 id="quick-reference" className="font-display mb-2 text-2xl font-semibold">
           Quick reference
         </h2>
-        <p className="mb-4 text-sm text-ash/60 dark:text-gazette-cream/50">
+        <p className="mb-4 text-sm text-ash/60">
           At the worked example&apos;s ₹{100}/litre and 18 km/litre — swap in
           your own numbers in the calculator above for your real figures.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-            <p className="mb-2 text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="mb-2 text-xs font-semibold tracking-wide text-ash/50 uppercase">
               ₹ buys how many litres
             </p>
             <dl className="space-y-1.5 text-sm">
               {[100, 500, 1000].map((amt) => (
                 <div key={amt} className="flex justify-between">
-                  <dt className="text-ash/70 dark:text-gazette-cream/60">₹{amt}</dt>
-                  <dd className="font-semibold tabular-nums text-ink-navy dark:text-gazette-cream">
+                  <dt className="text-ash/70">₹{amt}</dt>
+                  <dd className="font-semibold tabular-nums text-ink-navy">
                     {(amt / 100).toFixed(2)} L
                   </dd>
                 </div>
               ))}
             </dl>
           </div>
-          <div className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-            <p className="mb-2 text-xs font-semibold tracking-wide text-ash/50 uppercase dark:text-gazette-cream/40">
+          <div className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="mb-2 text-xs font-semibold tracking-wide text-ash/50 uppercase">
               What common trips cost
             </p>
             <dl className="space-y-1.5 text-sm">
               {[50, 100, 500].map((km) => (
                 <div key={km} className="flex justify-between">
-                  <dt className="text-ash/70 dark:text-gazette-cream/60">{km} km</dt>
-                  <dd className="font-semibold tabular-nums text-ink-navy dark:text-gazette-cream">
+                  <dt className="text-ash/70">{km} km</dt>
+                  <dd className="font-semibold tabular-nums text-ink-navy">
                     {formatINR(km * example.costPerKm)}
                   </dd>
                 </div>
@@ -186,7 +186,7 @@ export default function VehicleFuelCostPage() {
         <h2 id="price-variation" className="font-display mb-2 text-2xl font-semibold">
           Why fuel prices vary by city
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           The pump price is built from the base fuel cost, central excise
           duty, dealer commission, and state VAT — and state VAT rates
           differ significantly, which is the main reason the same fuel costs
@@ -207,37 +207,37 @@ export default function VehicleFuelCostPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
             href="/fuel-cost/generator-fuel-consumption-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-fuel/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🛠️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Generator fuel cost
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               What a power cut actually costs you in diesel.
             </p>
           </Link>
           <Link
             href="/appliances/inverter-sizing-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔌</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Inverter sizing
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               An electric alternative to a fuel generator for outages.
             </p>
           </Link>
           <Link
             href="/financial"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🧮</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Financial calculators
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               GST, SIP, tax regime and gratuity — everyday money tools.
             </p>
           </Link>
@@ -248,13 +248,13 @@ export default function VehicleFuelCostPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

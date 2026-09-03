@@ -52,7 +52,7 @@ export default function WaterBoardBillCalculator({
 
         {meterSizes.length > 1 && (
           <div>
-            <span className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80">
+            <span className="mb-1.5 block text-sm font-medium text-ash">
               Meter size
             </span>
             <div className="flex flex-wrap gap-2">
@@ -64,8 +64,8 @@ export default function WaterBoardBillCalculator({
                   aria-pressed={m === meterSize}
                   className={`rounded-lg border-2 px-3 py-1.5 text-sm font-semibold transition ${
                     m === meterSize
-                      ? 'border-hub-water bg-hub-water/10 text-ink-navy dark:text-gazette-cream'
-                      : 'border-hairline text-ash/70 hover:border-hub-water/40 dark:border-white/10 dark:text-gazette-cream/60'
+                      ? 'border-hub-water bg-hub-water/10 text-ink-navy'
+                      : 'border-hairline text-ash/70 hover:border-hub-water/40'
                   }`}
                 >
                   {m}
@@ -78,23 +78,23 @@ export default function WaterBoardBillCalculator({
         <CalculatorCta label="Calculate Water Bill" tone="water" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-water/15 bg-hub-water/5 p-5 dark:border-hub-water/20 dark:bg-hub-water/10">
+      <div className="mt-6 rounded-xl border border-hub-water/15 bg-hub-water/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
           <div className="grid gap-4">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Estimated bill
               </p>
               <p className="font-display text-4xl font-bold tabular-nums text-hub-water">
                 {formatINR(result.total)}
               </p>
               {result.monthlyEquivalent && (
-                <p className="mt-1 text-xs text-ash/50 dark:text-gazette-cream/40">
+                <p className="mt-1 text-xs text-ash/50">
                   ≈ {formatINR(result.monthlyEquivalent.total)}/month equivalent
                 </p>
               )}
@@ -105,11 +105,11 @@ export default function WaterBoardBillCalculator({
               )}
             </div>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-ash/60 dark:text-gazette-cream/50">Water charge</dt>
+              <dt className="text-ash/60">Water charge</dt>
               <dd className="text-right tabular-nums">{formatINR(result.waterCharge)}</dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">Sewerage charge</dt>
+              <dt className="text-ash/60">Sewerage charge</dt>
               <dd className="text-right tabular-nums">{formatINR(result.sewerageCharge)}</dd>
-              <dt className="text-ash/60 dark:text-gazette-cream/50">Fixed charge</dt>
+              <dt className="text-ash/60">Fixed charge</dt>
               <dd className="text-right tabular-nums">{formatINR(result.fixedCharge)}</dd>
             </dl>
           </div>

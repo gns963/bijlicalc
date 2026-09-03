@@ -42,7 +42,7 @@ export default function LegalPageShell({
       </section>
 
       <main className="mx-auto max-w-3xl px-4 py-12">
-        <div className="space-y-4 text-ash/80 dark:text-gazette-cream/70">{children}</div>
+        <div className="space-y-4 text-ash/80">{children}</div>
         <p className="mt-10 text-sm text-ash/40">
           Last updated: 29 August 2026
           {stub ? ' · This page is a stub and will be expanded before launch.' : ''}

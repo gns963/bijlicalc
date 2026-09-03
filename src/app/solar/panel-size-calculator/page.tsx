@@ -107,7 +107,7 @@ export default function SolarPanelSizePage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -115,7 +115,7 @@ export default function SolarPanelSizePage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           A household using <strong>300 units/month</strong> aiming for a{' '}
           <strong>100% offset</strong> needs about a{' '}
           <strong>{example.recommendedKw} kW</strong> system, needing roughly{' '}
@@ -134,19 +134,19 @@ export default function SolarPanelSizePage() {
         <h2 id="roof-space" className="font-display mb-2 text-2xl font-semibold">
           How Much Roof Space Do You Actually Need?
         </h2>
-        <p className="mb-4 text-ash/70 dark:text-gazette-cream/60">
+        <p className="mb-4 text-ash/70">
           A quick reference at ~{ROOF_SQFT_PER_KW} sq ft per kW — real space
           needed varies with panel efficiency, spacing and roof layout.
         </p>
-        <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-hairline">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-hairline bg-mist dark:border-white/10 dark:bg-slate-800">
+            <thead className="border-b border-hairline bg-mist">
               <tr>
                 <th className="px-4 py-2 font-semibold">System size</th>
                 <th className="px-4 py-2 text-right font-semibold">Roof area needed</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-hairline dark:divide-white/10">
+            <tbody className="divide-y divide-hairline">
               {ROOF_AREA_SIZES.map((kw) => (
                 <tr key={kw}>
                   <td className="px-4 py-2 font-medium">{kw} kW</td>
@@ -164,7 +164,7 @@ export default function SolarPanelSizePage() {
         <h2 id="shading" className="font-display mb-2 text-2xl font-semibold">
           How Shading and Orientation Affect Your Effective System Size
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             The roof-area figures above assume unshaded, well-oriented space.
             A south-facing roof with no obstructions gets close to the
@@ -187,7 +187,7 @@ export default function SolarPanelSizePage() {
         <h2 id="ac-load" className="font-display mb-2 text-2xl font-semibold">
           System Size vs. Your AC and Appliance Load
         </h2>
-        <p className="mb-4 text-ash/80 dark:text-gazette-cream/70">
+        <p className="mb-4 text-ash/80">
           Your &quot;monthly units&quot; input should reflect your real
           household consumption, not just base lighting and fans — AC in
           particular can be the single biggest line on your bill, so leaving
@@ -198,25 +198,25 @@ export default function SolarPanelSizePage() {
         <div className="grid gap-4 sm:grid-cols-2">
           <Link
             href="/ac/bill-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>❄️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC running cost
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Find your AC&apos;s share of your monthly units.
             </p>
           </Link>
           <Link
             href="/appliances"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔌</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Appliance calculators
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Fridge, fan and other everyday loads.
             </p>
           </Link>
@@ -230,37 +230,37 @@ export default function SolarPanelSizePage() {
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
             href="/solar/roi-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>☀️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Solar ROI calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See payback and savings for this system size.
             </p>
           </Link>
           <Link
             href="/solar/subsidy-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>💸</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               PM Surya Ghar subsidy
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Check your subsidy amount for this size.
             </p>
           </Link>
           <Link
             href="/solar/net-metering-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔄</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Net metering earnings
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Sizing above 100%? See what the surplus is worth.
             </p>
           </Link>
@@ -271,13 +271,13 @@ export default function SolarPanelSizePage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

@@ -60,7 +60,7 @@ export default function StarComparisonTool({
         <div>
           <label
             htmlFor="cmp-discom"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             DISCOM / state
           </label>
@@ -68,7 +68,7 @@ export default function StarComparisonTool({
             id="cmp-discom"
             value={discomCode}
             onChange={(e) => setDiscomCode(e.target.value)}
-            className="w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream"
+            className="w-full rounded-lg border border-hairline px-3 py-2.5 outline-none focus:border-brass focus:ring-2 focus:ring-brass/30"
           >
             {discoms.map((d) => (
               <option key={d.code} value={d.code}>
@@ -100,16 +100,16 @@ export default function StarComparisonTool({
       </form>
 
       {data && (
-        <div className="mt-6 grid gap-4 rounded-xl bg-mist p-5 dark:bg-slate-800/60">
+        <div className="mt-6 grid gap-4 rounded-xl bg-mist p-5">
           <div className="space-y-3">
             <div>
               <div className="flex justify-between text-sm">
-                <span className="font-medium text-ash dark:text-gazette-cream/80">
+                <span className="font-medium text-ash">
                   3-star annual cost
                 </span>
                 <span className="tabular-nums">{formatINR(data.cost3)}</span>
               </div>
-              <div className="mt-1 h-3 rounded-full bg-hairline dark:bg-slate-700">
+              <div className="mt-1 h-3 rounded-full bg-hairline">
                 <div
                   className="h-3 rounded-full bg-brass"
                   style={{ width: `${(data.cost3 / max) * 100}%` }}
@@ -118,12 +118,12 @@ export default function StarComparisonTool({
             </div>
             <div>
               <div className="flex justify-between text-sm">
-                <span className="font-medium text-ash dark:text-gazette-cream/80">
+                <span className="font-medium text-ash">
                   5-star annual cost
                 </span>
                 <span className="tabular-nums">{formatINR(data.cost5)}</span>
               </div>
-              <div className="mt-1 h-3 rounded-full bg-hairline dark:bg-slate-700">
+              <div className="mt-1 h-3 rounded-full bg-hairline">
                 <div
                   className="h-3 rounded-full bg-spark-teal"
                   style={{ width: `${(data.cost5 / max) * 100}%` }}

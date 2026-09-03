@@ -47,15 +47,15 @@ export default function GridTypeComparison() {
         {TYPES.map((t) => (
           <div
             key={t.name}
-            className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5"
           >
-            <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">{t.name}</p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="font-display font-bold text-ink-navy">{t.name}</p>
+            <p className="mt-1 text-xs text-ash/60">
               Best for: {t.bestFor}
             </p>
             <div className="mt-3">
               <p className="text-xs font-semibold tracking-wide text-spark-teal uppercase">Pros</p>
-              <ul className="mt-1 space-y-1 text-sm text-ash/80 dark:text-gazette-cream/70">
+              <ul className="mt-1 space-y-1 text-sm text-ash/80">
                 {t.pros.map((p) => (
                   <li key={p}>+ {p}</li>
                 ))}
@@ -63,7 +63,7 @@ export default function GridTypeComparison() {
             </div>
             <div className="mt-3">
               <p className="text-xs font-semibold tracking-wide text-caution-amber uppercase">Cons</p>
-              <ul className="mt-1 space-y-1 text-sm text-ash/80 dark:text-gazette-cream/70">
+              <ul className="mt-1 space-y-1 text-sm text-ash/80">
                 {t.cons.map((c) => (
                   <li key={c}>− {c}</li>
                 ))}

@@ -110,7 +110,7 @@ export default function GenericApplianceCostPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -118,7 +118,7 @@ export default function GenericApplianceCostPage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           A <strong>100W appliance</strong> running{' '}
           <strong>4 hours/day</strong> in Tamil Nadu uses about{' '}
           <strong>{example.dailyUnits} units/day</strong> and costs roughly{' '}
@@ -137,20 +137,20 @@ export default function GenericApplianceCostPage() {
         <h2 id="reference" className="font-display mb-2 text-2xl font-semibold">
           Typical appliance wattage — reference only
         </h2>
-        <p className="mb-4 text-ash/70 dark:text-gazette-cream/60">
+        <p className="mb-4 text-ash/70">
           These are commonly published ranges to help you sanity-check a
           figure — always use the wattage printed on your specific
           appliance for an accurate calculation.
         </p>
-        <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-hairline">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+            <thead className="border-b border-hairline bg-mist text-ink-navy">
               <tr>
                 <th className="px-4 py-2 font-semibold">Appliance</th>
                 <th className="px-4 py-2 text-right font-semibold">Typical wattage</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-hairline dark:divide-white/10">
+            <tbody className="divide-y divide-hairline">
               {REFERENCE_APPLIANCES.map(([name, watts]) => (
                 <tr key={name}>
                   <td className="px-4 py-2 font-medium">{name}</td>
@@ -169,37 +169,37 @@ export default function GenericApplianceCostPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
             href="/appliances/ceiling-fan-cost-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🌀</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Ceiling fan cost
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Dedicated tool with fan-type presets.
             </p>
           </Link>
           <Link
             href="/appliances/fridge-cost-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>❄️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Fridge cost calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               More accurate — uses your fridge&apos;s BEE label.
             </p>
           </Link>
           <Link
             href="/electricity/ev-charging-cost-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔌</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               EV charging cost
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               A bigger load than most appliances — its own tool.
             </p>
           </Link>
@@ -210,13 +210,13 @@ export default function GenericApplianceCostPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

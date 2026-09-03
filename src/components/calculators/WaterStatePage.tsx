@@ -114,7 +114,7 @@ export default function WaterStatePage({ state }: { state: string }) {
         <h2 id="charges-explained" className="font-display mb-2 text-2xl font-semibold">
           Sewerage &amp; fixed charges explained
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             <strong>Sewerage charge.</strong> Many water boards add a
             wastewater treatment fee on top of the volumetric water charge,
@@ -135,7 +135,7 @@ export default function WaterStatePage({ state }: { state: string }) {
         <h2 id="tanker" className="font-display mb-2 text-2xl font-semibold">
           Piped water vs tanker/jar delivery
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           Piped municipal supply is almost always dramatically cheaper per
           litre than tanker or 20L jar delivery, when it&apos;s reliably
           available. As a rough sense of scale: a private water tanker
@@ -152,7 +152,7 @@ export default function WaterStatePage({ state }: { state: string }) {
         <h2 id="leaks" className="font-display mb-2 text-2xl font-semibold">
           Spotting a leak from your bill
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           If your consumption jumps well above your usual monthly range with
           no change in household usage, a running cistern or a slow pipe
           leak is a common cause — both can waste hundreds of litres a month
@@ -170,49 +170,49 @@ export default function WaterStatePage({ state }: { state: string }) {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/water/delhi"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📊</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               See a real-tariff example
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Delhi Jal Board uses a real, dated tariff — no rate entry needed.
             </p>
           </Link>
           <Link
             href="/gas"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-gas/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🔥</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Gas bill calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Same honest approach for your PNG bill.
             </p>
           </Link>
           <Link
             href="/electricity"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-electricity/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>⚡</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Electricity bill calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Real DISCOM tariffs, no guessing needed there.
             </p>
           </Link>
           <Link
             href="/appliances/water-tank-filling-time-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-appliance/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🚰</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Water tank fill time
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               How long your tank takes to fill.
             </p>
           </Link>
@@ -223,13 +223,13 @@ export default function WaterStatePage({ state }: { state: string }) {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

@@ -121,9 +121,9 @@ export default function WaterHubPage() {
             <li key={s.slug}>
               <Link
                 href={`/water/${s.slug}`}
-                className="block rounded-xl border border-hub-water/20 bg-hub-water/5 p-4 transition hover:border-hub-water/50 hover:shadow-sm dark:border-hub-water/20 dark:bg-hub-water/10"
+                className="block rounded-xl border border-hub-water/20 bg-hub-water/5 p-4 transition hover:border-hub-water/50 hover:shadow-sm"
               >
-                <span className="font-semibold text-ink-navy dark:text-gazette-cream">
+                <span className="font-semibold text-ink-navy">
                   {s.state}
                 </span>
                 <span className="mt-1 block text-xs text-hub-water">
@@ -139,13 +139,13 @@ export default function WaterHubPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

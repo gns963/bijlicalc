@@ -43,7 +43,7 @@ export default function EvVsFuelComparison({
 
   return (
     <CalculatorCard>
-      <p className="mb-4 text-sm text-ash/70 dark:text-gazette-cream/60">
+      <p className="mb-4 text-sm text-ash/70">
         EV cost is priced at your real DISCOM tariff (from the calculator
         above). Enter today&apos;s local fuel prices and your vehicle&apos;s
         real mileage for the rest — these vary too much by city and vehicle
@@ -63,16 +63,16 @@ export default function EvVsFuelComparison({
       <div className="mt-6 space-y-2">
         {rows.map((r) => (
           <div key={r.label} className="flex items-center gap-3">
-            <span className="w-32 shrink-0 text-sm font-medium text-ash dark:text-gazette-cream/80">
+            <span className="w-32 shrink-0 text-sm font-medium text-ash">
               <span aria-hidden>{r.icon}</span> {r.label}
             </span>
-            <div className="h-6 flex-1 overflow-hidden rounded-full bg-mist dark:bg-slate-800">
+            <div className="h-6 flex-1 overflow-hidden rounded-full bg-mist">
               <div
                 className="h-full rounded-full bg-hub-fuel"
                 style={{ width: `${Math.max(4, (r.costPerKm / maxCost) * 100)}%` }}
               />
             </div>
-            <span className="w-20 shrink-0 text-right text-sm font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+            <span className="w-20 shrink-0 text-right text-sm font-bold tabular-nums text-ink-navy">
               {formatINR(r.costPerKm)}/km
             </span>
           </div>

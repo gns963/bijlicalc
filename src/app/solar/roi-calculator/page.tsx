@@ -207,7 +207,7 @@ export default async function SolarRoiPage({
         <h2 id="why-solar" className="font-display mb-2 text-2xl font-semibold">
           Why Rooftop Solar Makes Sense in India
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           Indian electricity tariffs are telescopic — the more you consume,
           the higher the rate on your last units. In Tamil Nadu, for
           example, TNEB&apos;s top domestic slab rate is{' '}
@@ -224,10 +224,10 @@ export default async function SolarRoiPage({
         aria-labelledby="differentiator"
         className="mb-10 rounded-xl border border-brass/25 bg-brass/5 p-5"
       >
-        <h2 id="differentiator" className="font-display mb-2 text-xl font-bold text-ink-navy dark:text-gazette-cream">
+        <h2 id="differentiator" className="font-display mb-2 text-xl font-bold text-ink-navy">
           Why This Calculator Is More Accurate
         </h2>
-        <p className="text-ash/80 dark:text-gazette-cream/70">
+        <p className="text-ash/80">
           Most online solar calculators price your savings at a single flat,
           national-average electricity rate. That&apos;s not how Indian
           electricity actually works — each DISCOM sets its own telescopic
@@ -252,7 +252,7 @@ export default async function SolarRoiPage({
         <h2 id="how" className="font-display mb-4 text-2xl font-semibold">
           How solar payback is calculated
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             <strong>Savings on the expensive units first.</strong> Because Indian
             tariffs are telescopic, solar offsets your highest-priced slabs
@@ -299,37 +299,37 @@ export default async function SolarRoiPage({
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
             href="/solar/subsidy-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>💸</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               PM Surya Ghar subsidy
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Full subsidy breakdown, eligibility and how to apply.
             </p>
           </Link>
           <Link
             href="/ac/bill-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-ac/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>❄️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               AC running cost
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               See how much of your bill an AC adds — the load solar offsets first.
             </p>
           </Link>
           <Link
             href="/financial"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-financial/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>🧮</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Financial calculators
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               GST, SIP, tax regime and gratuity — everyday money tools.
             </p>
           </Link>
@@ -340,13 +340,13 @@ export default async function SolarRoiPage({
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

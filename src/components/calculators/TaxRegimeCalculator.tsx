@@ -15,7 +15,7 @@ export default function TaxRegimeCalculator() {
   )
 
   const fieldCls =
-    'w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30 dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream'
+    'w-full rounded-lg border border-hairline px-3 py-2.5 tabular-nums outline-none focus:border-hub-financial focus:ring-2 focus:ring-hub-financial/30'
 
   return (
     <CalculatorCard>
@@ -29,7 +29,7 @@ export default function TaxRegimeCalculator() {
         <div>
           <label
             htmlFor="tax-income"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             Gross annual income (₹)
           </label>
@@ -45,7 +45,7 @@ export default function TaxRegimeCalculator() {
         <div>
           <label
             htmlFor="tax-deductions"
-            className="mb-1.5 block text-sm font-medium text-ash dark:text-gazette-cream/80"
+            className="mb-1.5 block text-sm font-medium text-ash"
           >
             Old-regime deductions (80C, 80D, HRA…)
           </label>
@@ -57,7 +57,7 @@ export default function TaxRegimeCalculator() {
             onChange={(e) => setDeductions(Number(e.target.value) || 0)}
             className={fieldCls}
           />
-          <p className="mt-1 text-xs text-ash/50 dark:text-gazette-cream/40">
+          <p className="mt-1 text-xs text-ash/50">
             Only the old regime allows most deductions. Standard deduction is
             applied automatically for both.
           </p>
@@ -66,12 +66,12 @@ export default function TaxRegimeCalculator() {
         <CalculatorCta label="Compare Tax Regimes" tone="financial" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
+      <div className="mt-6 rounded-xl border border-hairline bg-paper p-5">
         <div className="grid gap-4">
           <div
             className={`rounded-lg px-3 py-2 text-sm font-semibold ${
               result.recommended === 'either'
-                ? 'bg-hairline text-ash/80 dark:bg-slate-700 dark:text-gazette-cream/90'
+                ? 'bg-hairline text-ash/80'
                 : 'bg-spark-teal/15 text-spark-teal'
             }`}
           >
@@ -82,15 +82,15 @@ export default function TaxRegimeCalculator() {
 
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-ash/60 dark:text-gazette-cream/50">
+              <tr className="text-left text-ash/60">
                 <th className="py-1 font-medium"></th>
                 <th className="py-1 text-right font-medium">New</th>
                 <th className="py-1 text-right font-medium">Old</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-hairline dark:divide-white/10">
+            <tbody className="divide-y divide-hairline">
               <tr>
-                <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
+                <td className="py-1.5 text-ash/70">
                   Taxable income
                 </td>
                 <td className="py-1.5 text-right tabular-nums">
@@ -101,7 +101,7 @@ export default function TaxRegimeCalculator() {
                 </td>
               </tr>
               <tr>
-                <td className="py-1.5 text-ash/70 dark:text-gazette-cream/60">
+                <td className="py-1.5 text-ash/70">
                   Rebate 87A
                 </td>
                 <td className="py-1.5 text-right tabular-nums">
@@ -111,7 +111,7 @@ export default function TaxRegimeCalculator() {
                   {formatINR(result.oldRegime.rebate87A)}
                 </td>
               </tr>
-              <tr className="text-base font-bold text-ink-navy dark:text-gazette-cream">
+              <tr className="text-base font-bold text-ink-navy">
                 <td className="py-2">Total tax</td>
                 <td className="py-2 text-right tabular-nums">
                   {formatINR(result.newRegime.totalTax)}
@@ -122,7 +122,7 @@ export default function TaxRegimeCalculator() {
               </tr>
             </tbody>
           </table>
-          <p className="text-xs text-ash/40 dark:text-gazette-cream/30">
+          <p className="text-xs text-ash/40">
             FY 2026-27 (AY 2027-28), incl. 4% cess. Surcharge (income &gt; ₹50L)
             and marginal relief not included.
           </p>

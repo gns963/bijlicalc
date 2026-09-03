@@ -18,7 +18,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <span className="text-brass" aria-label={`${rating} out of 5 stars`}>
       {'★'.repeat(full)}
-      <span className="text-slate-300 dark:text-ash/70">
+      <span className="text-slate-300">
         {'★'.repeat(5 - full)}
       </span>
     </span>
@@ -33,25 +33,25 @@ export default function AffiliateProductCard({
   highlight?: string
 }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-hairline bg-paper p-4 shadow-sm dark:border-white/10 dark:bg-slate-900">
+    <div className="flex flex-col rounded-2xl border border-hairline bg-paper p-4 shadow-sm">
       {highlight && (
-        <span className="mb-2 inline-block w-fit rounded-full bg-brass/10 px-2 py-0.5 text-xs font-semibold text-brass dark:bg-brass/15 dark:text-brass">
+        <span className="mb-2 inline-block w-fit rounded-full bg-brass/10 px-2 py-0.5 text-xs font-semibold text-brass">
           {highlight}
         </span>
       )}
-      <div className="flex h-28 items-center justify-center rounded-xl bg-mist text-5xl dark:bg-slate-800">
+      <div className="flex h-28 items-center justify-center rounded-xl bg-mist text-5xl">
         {product.emoji}
       </div>
-      <h3 className="font-display mt-3 text-sm font-semibold text-ink-navy dark:text-gazette-cream">
+      <h3 className="font-display mt-3 text-sm font-semibold text-ink-navy">
         {product.name}
       </h3>
-      <div className="mt-1 flex items-center gap-2 text-xs text-ash/60 dark:text-ash/40">
+      <div className="mt-1 flex items-center gap-2 text-xs text-ash/60">
         <Stars rating={product.rating} />
         <span>
           {product.rating} ({product.reviews.toLocaleString('en-IN')})
         </span>
       </div>
-      <p className="mt-2 text-lg font-bold tabular-nums text-ink-navy dark:text-gazette-cream">
+      <p className="mt-2 text-lg font-bold tabular-nums text-ink-navy">
         {formatINR(product.price)}
       </p>
       <a

@@ -154,13 +154,13 @@ export default function SolarHubPage() {
           <Link
             key={c.href}
             href={c.href}
-            className="flex flex-col rounded-2xl border border-hub-solar/20 bg-hub-solar/5 p-6 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-hub-solar/20 dark:bg-hub-solar/10"
+            className="flex flex-col rounded-2xl border border-hub-solar/20 bg-hub-solar/5 p-6 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-2xl">{c.emoji}</span>
-            <h2 className="font-display mt-2 text-xl font-semibold text-ink-navy dark:text-gazette-cream">
+            <h2 className="font-display mt-2 text-xl font-semibold text-ink-navy">
               {c.title}
             </h2>
-            <p className="mt-1 flex-1 text-sm text-ash/70 dark:text-gazette-cream/70">
+            <p className="mt-1 flex-1 text-sm text-ash/70">
               {c.body}
             </p>
             <span className="mt-3 text-sm font-semibold text-hub-solar">
@@ -174,7 +174,7 @@ export default function SolarHubPage() {
         <h2 id="how-solar" className="font-display mb-4 text-2xl font-semibold">
           How PM Surya Ghar makes solar affordable
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             PM Surya Ghar: Muft Bijli Yojana is the central government&apos;s
             rooftop solar scheme for households. It pays{' '}
@@ -203,13 +203,13 @@ export default function SolarHubPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

@@ -17,7 +17,7 @@ export default function EditorialPolicyPage() {
       stub={false}
       path="/editorial-policy"
     >
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Primary sources first
       </h2>
       <p>
@@ -27,7 +27,7 @@ export default function EditorialPolicyPage() {
         the figure as pending primary cross-check and prioritise verifying it.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Verify before publish
       </h2>
       <p>
@@ -39,7 +39,7 @@ export default function EditorialPolicyPage() {
         for the exact mechanism.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Label uncertainty honestly
       </h2>
       <p>
@@ -48,7 +48,7 @@ export default function EditorialPolicyPage() {
         precise-looking figure that is wrong.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Corrections
       </h2>
       <p>
@@ -63,7 +63,7 @@ export default function EditorialPolicyPage() {
         affected calculator&apos;s last-verified date so the change is visible.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Independence from revenue
       </h2>
       <p>

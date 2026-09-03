@@ -116,7 +116,7 @@ export default function NetMeteringPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
       <section
         aria-labelledby="worked-example"
-        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5 dark:border-white/10 dark:border-l-brass dark:bg-slate-900"
+        className="mb-8 rounded-xl border border-hairline border-l-4 border-l-brass bg-paper p-5"
       >
         <h2
           id="worked-example"
@@ -124,7 +124,7 @@ export default function NetMeteringPage() {
         >
           Worked example
         </h2>
-        <p className="mt-2 text-ash/80 dark:text-gazette-cream/90">
+        <p className="mt-2 text-ash/80">
           Generating <strong>400 units/month</strong> against{' '}
           <strong>300 units</strong> consumed, at a <strong>₹4/unit</strong>{' '}
           export rate, earns about{' '}
@@ -144,7 +144,7 @@ export default function NetMeteringPage() {
         <h2 id="how-it-works" className="font-display mb-2 text-2xl font-semibold">
           How Net Metering Actually Works
         </h2>
-        <div className="space-y-3 text-ash/80 dark:text-gazette-cream/70">
+        <div className="space-y-3 text-ash/80">
           <p>
             Your bidirectional meter tracks power flowing both ways.
             During the day, if your panels generate more than your home is
@@ -169,7 +169,7 @@ export default function NetMeteringPage() {
         <h2 id="state-policy" className="font-display mb-2 text-2xl font-semibold">
           Net-Metering Policy Varies by State — What to Check
         </h2>
-        <p className="mb-3 text-ash/80 dark:text-gazette-cream/70">
+        <p className="mb-3 text-ash/80">
           Net-metering rules are set individually by each state&apos;s
           electricity regulator (SERC) and are revised periodically. Rather
           than publish a state-by-state table that could go stale or be
@@ -177,7 +177,7 @@ export default function NetMeteringPage() {
           worth confirming directly with your installer or DISCOM before you
           install:
         </p>
-        <ul className="space-y-2 text-sm text-ash/80 dark:text-gazette-cream/70">
+        <ul className="space-y-2 text-sm text-ash/80">
           <li>
             <strong>Gross or net metering?</strong> Some states only offer
             one; a few let larger systems choose.
@@ -205,7 +205,7 @@ export default function NetMeteringPage() {
         <h2 id="mistakes" className="font-display mb-4 text-2xl font-semibold">
           Common Net-Metering Mistakes
         </h2>
-        <ul className="space-y-3 text-sm text-ash/80 dark:text-gazette-cream/70">
+        <ul className="space-y-3 text-sm text-ash/80">
           <li>
             <strong>Delaying the application.</strong> Units exported before
             your net meter is commissioned typically aren&apos;t credited —
@@ -246,37 +246,37 @@ export default function NetMeteringPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
             href="/solar/panel-size-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📐</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Solar panel size
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Not sizing above 100% yet? Start here.
             </p>
           </Link>
           <Link
             href="/solar/roi-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>☀️</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               Solar ROI calculator
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Full payback including self-consumption savings.
             </p>
           </Link>
           <Link
             href="/solar/subsidy-calculator"
-            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+            className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-solar/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>💸</span>
-            <p className="font-display mt-2 font-bold text-ink-navy dark:text-gazette-cream">
+            <p className="font-display mt-2 font-bold text-ink-navy">
               PM Surya Ghar subsidy
             </p>
-            <p className="mt-1 text-xs text-ash/60 dark:text-gazette-cream/50">
+            <p className="mt-1 text-xs text-ash/60">
               Check your central subsidy amount.
             </p>
           </Link>
@@ -287,13 +287,13 @@ export default function NetMeteringPage() {
         <h2 id="faq" className="font-display mb-4 text-2xl font-semibold">
           Frequently asked questions
         </h2>
-        <div className="divide-y divide-hairline dark:divide-white/10">
+        <div className="divide-y divide-hairline">
           {faqs.map((f, i) => (
             <details key={i} className="group py-3">
-              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden dark:text-gazette-cream">
+              <summary className="cursor-pointer list-none font-medium text-ash marker:hidden">
                 {f.q}
               </summary>
-              <p className="mt-2 text-ash/70 dark:text-gazette-cream/70">{f.a}</p>
+              <p className="mt-2 text-ash/70">{f.a}</p>
             </details>
           ))}
         </div>

@@ -22,9 +22,9 @@ export default function AcSlabComparisonTable({
     .sort((a, b) => b.result.monthlyCost - a.result.monthlyCost)
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-hairline dark:border-white/10">
+    <div className="overflow-x-auto rounded-xl border border-hairline">
       <table className="w-full text-left text-sm">
-        <thead className="border-b border-hairline bg-mist text-ink-navy dark:border-white/10 dark:bg-slate-800 dark:text-gazette-cream">
+        <thead className="border-b border-hairline bg-mist text-ink-navy">
           <tr>
             <th className="px-4 py-2 font-semibold">DISCOM</th>
             <th className="px-4 py-2 text-right font-semibold">₹/unit (top slab)</th>
@@ -32,7 +32,7 @@ export default function AcSlabComparisonTable({
             <th className="px-4 py-2 text-right font-semibold">Annual cost</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-hairline dark:divide-white/10">
+        <tbody className="divide-y divide-hairline">
           {rows.map((r) => (
             <tr key={r.code}>
               <td className="px-4 py-2 font-medium">{r.label}</td>

@@ -17,7 +17,7 @@ export default function DisclaimerPage() {
       stub={false}
       path="/disclaimer"
     >
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Electricity bills
       </h2>
       <p>
@@ -34,7 +34,7 @@ export default function DisclaimerPage() {
         .
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Solar and AC
       </h2>
       <p>
@@ -44,7 +44,7 @@ export default function DisclaimerPage() {
         factor and ISEER bands. Treat both as planning estimates.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         Financial calculators
       </h2>
       <p>
@@ -56,7 +56,7 @@ export default function DisclaimerPage() {
         acting.
       </p>
 
-      <h2 className="font-display text-xl font-semibold text-ash dark:text-gazette-cream">
+      <h2 className="font-display text-xl font-semibold text-ash">
         No affiliation
       </h2>
       <p>

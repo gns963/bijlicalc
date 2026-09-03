@@ -27,15 +27,15 @@ export default function SolarFinancingSection() {
       <h2 id="financing" className="font-display mb-2 text-2xl font-semibold">
         Solar Financing Options
       </h2>
-      <p className="mb-4 text-ash/70 dark:text-gazette-cream/60">
+      <p className="mb-4 text-ash/70">
         Interest rates and terms vary by lender and change over time — treat
         these as a starting point for comparison, not quoted rates.
       </p>
       <div className="grid gap-4 sm:grid-cols-2">
         {OPTIONS.map((o) => (
-          <div key={o.name} className="rounded-xl border border-hairline bg-paper p-5 dark:border-white/10 dark:bg-slate-900">
-            <p className="font-display font-bold text-ink-navy dark:text-gazette-cream">{o.name}</p>
-            <p className="mt-1 text-sm text-ash/70 dark:text-gazette-cream/60">{o.body}</p>
+          <div key={o.name} className="rounded-xl border border-hairline bg-paper p-5">
+            <p className="font-display font-bold text-ink-navy">{o.name}</p>
+            <p className="mt-1 text-sm text-ash/70">{o.body}</p>
             <p className="mt-2 text-xs font-semibold tracking-wide text-hub-solar uppercase">
               {o.tenure}
             </p>

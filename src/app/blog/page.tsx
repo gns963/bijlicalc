@@ -71,12 +71,12 @@ export default function BlogIndexPage() {
             <Link
               key={p.title}
               href={p.href}
-              className="flex flex-col rounded-2xl border border-hairline bg-paper p-6 transition hover:border-brass hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="flex flex-col rounded-2xl border border-hairline bg-paper p-6 transition hover:border-brass hover:shadow-sm"
             >
               <span className="w-fit rounded-full bg-brass/10 px-2.5 py-0.5 text-xs font-semibold text-brass">
                 {p.tag}
               </span>
-              <h2 className="mt-3 flex-1 font-display text-lg font-bold text-ink-navy dark:text-gazette-cream">
+              <h2 className="mt-3 flex-1 font-display text-lg font-bold text-ink-navy">
                 {p.title}
               </h2>
               <span className="mt-4 text-sm font-semibold text-brass">

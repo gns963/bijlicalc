@@ -71,23 +71,23 @@ export default function SolarBatteryBackupCalculator() {
         <CalculatorCta label="Size My Battery" tone="brass" />
       </form>
 
-      <div className="mt-6 rounded-xl border border-hub-solar/15 bg-hub-solar/5 p-5 dark:border-hub-solar/20 dark:bg-hub-solar/10">
+      <div className="mt-6 rounded-xl border border-hub-solar/15 bg-hub-solar/5 p-5">
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
           <div className="grid gap-3">
             <div>
-              <p className="text-sm text-ash/60 dark:text-gazette-cream/50">
+              <p className="text-sm text-ash/60">
                 Recommended battery capacity
               </p>
               <p className="font-display text-4xl font-bold tabular-nums text-hub-solar">
                 {result.recommendedCapacityKwh} kWh
               </p>
             </div>
-            <p className="text-xs text-ash/50 dark:text-gazette-cream/40">
+            <p className="text-xs text-ash/50">
               {result.notes[0]}
             </p>
           </div>
