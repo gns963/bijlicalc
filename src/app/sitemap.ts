@@ -11,7 +11,7 @@ import { getTariff } from '@/lib/calc/electricity'
 import { slugify } from '@/lib/format'
 
 const SITE = 'https://desimetrics.com'
-const LAST_UPDATED = '2026-08-29'
+const LAST_UPDATED = '2026-09-03'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date(LAST_UPDATED)
