@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import WaterBoardBillCalculator from '@/components/calculators/WaterBoardBillCalculator'
+import WorkedExampleTotal from '@/components/calculators/WorkedExampleTotal'
+import HowWeVerify from '@/components/HowWeVerify'
 import SplitHero from '@/components/SplitHero'
+import BudgetToKlCalculator from '@/components/water/BudgetToKlCalculator'
 import PipedVsTankerComparison from '@/components/water/PipedVsTankerComparison'
 import WaterBillComponentAudit from '@/components/water/WaterBillComponentAudit'
 import WaterBoardComparisonTable from '@/components/water/WaterBoardComparisonTable'
@@ -8,7 +11,7 @@ import WaterConsumptionReferenceTable from '@/components/water/WaterConsumptionR
 import WaterFormulaBlock from '@/components/water/WaterFormulaBlock'
 import WaterHouseholdConsumptionTable from '@/components/water/WaterHouseholdConsumptionTable'
 import WaterNeighborDiagnostic from '@/components/water/WaterNeighborDiagnostic'
-import WaterSampleCalculations from '@/components/water/WaterSampleCalculations'
+import WaterSlabBand from '@/components/water/WaterSlabBand'
 import { getWaterBoardFacts } from '@/data/water-board-facts'
 import waterBoardsJson from '@/data/water-boards.json'
 import { computeWaterBill, getConnectionTariff, getWaterTariff, waterTariffRegistry } from '@/lib/calc/water'
@@ -37,6 +40,10 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
   const heroExample = underExample ?? computeWaterBill(tariff, { consumptionKl: 15 })
   const auditExample = computeWaterBill(tariff, { consumptionKl: 20 })
   const commercialExample = commercial ? computeWaterBill(tariff, { consumptionKl: 20, connectionType: 'commercial' }) : null
+  // Boards without an all-or-nothing free threshold still get a 2-example
+  // pull-quote pair — low vs high usage — instead of the threshold framing.
+  const lowExample = freeKl == null ? computeWaterBill(tariff, { consumptionKl: 10 }) : null
+  const highExample = freeKl == null ? computeWaterBill(tariff, { consumptionKl: 30 }) : null
 
   const facts = getWaterBoardFacts(boardCode)
   const otherBoards = waterBoardsJson.boards.filter((b) => b.slug !== slug).slice(0, 3)
@@ -233,6 +240,41 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <WaterBoardBillCalculator boardCode={tariff.boardCode} boardName={tariff.boardName} />
         </section>
 
+        <section
+          aria-labelledby="worked-example"
+          className="mb-8 rounded-xl border border-hairline border-l-4 border-l-hub-water bg-paper p-5"
+        >
+          <h2
+            id="worked-example"
+            className="flex items-center gap-1.5 text-sm font-semibold tracking-wide text-hub-water uppercase"
+          >
+            <span aria-hidden>💧</span> Worked example
+          </h2>
+          <p className="mt-3 text-lg text-ash/90">
+            A <strong>{freeKl ?? 15} KL</strong> {tariff.billingCycle === 'bimonthly' ? 'bi-monthly' : 'monthly'} {tariff.boardCode} bill (domestic) works out to{' '}
+            <WorkedExampleTotal amount={heroExample.total} />
+            {heroExample.monthlyEquivalent && (
+              <> — about <strong>{formatINR(heroExample.monthlyEquivalent.total)}</strong> per month</>
+            )}
+            . That is {formatINR(heroExample.waterCharge)} water charge + {formatINR(heroExample.sewerageCharge)}{' '}
+            sewerage + {formatINR(heroExample.fixedCharge)} fixed charge.
+          </p>
+          <a href="#audit" className="mt-3 inline-block text-sm font-semibold text-hub-water hover:underline">
+            See the full breakdown ↓
+          </a>
+        </section>
+
+        <section aria-labelledby="budget-tool" className="mb-10 scroll-mt-20">
+          <h2 id="budget-tool" className="font-display mb-2 text-2xl font-semibold">
+            Have a fixed budget? Work backwards
+          </h2>
+          <p className="mb-4 text-ash/70">
+            Enter what you want to spend, and we&apos;ll tell you the maximum KL that stays within it — computed
+            through the exact same {tariff.boardCode} tariff engine as the calculator above.
+          </p>
+          <BudgetToKlCalculator tariff={tariff} />
+        </section>
+
         <section aria-labelledby="how-to" className="mb-10 scroll-mt-20">
           <h2 id="how-to" className="font-display mb-4 text-2xl font-semibold">
             How to calculate your {tariff.boardCode} water bill
@@ -323,6 +365,10 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <h2 id="tariff-table" className="font-display mb-4 text-2xl font-semibold">
             {tariff.boardCode} domestic water tariff
           </h2>
+          <WaterSlabBand slabs={connection.slabs} />
+          <p className="mt-4 mb-2 text-xs font-medium text-ash/50 uppercase tracking-wide">
+            Exact figures
+          </p>
           <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
               <thead className="border-b border-hairline bg-mist text-ink-navy">
@@ -431,54 +477,54 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <WaterBillComponentAudit bill={auditExample} />
         </section>
 
-        <section aria-labelledby="samples" className="mb-10 scroll-mt-20">
-          <h2 id="samples" className="font-display mb-2 text-2xl font-semibold">
-            Sample {tariff.boardCode} water bill calculations
+        <section aria-labelledby="worked-examples" className="mb-10 scroll-mt-20">
+          <h2 id="worked-examples" className="font-display mb-4 text-2xl font-semibold">
+            {underExample && overExample
+              ? 'Two worked examples — just under vs just over the threshold'
+              : 'Two worked examples — low vs high usage'}
           </h2>
-          <p className="mb-4 text-sm text-ash/60">
-            A spread of common consumption levels, computed live through{' '}
-            {tariff.boardCode}&apos;s real tariff — the same engine as the
-            calculator above, not restated numbers.
-          </p>
-          <WaterSampleCalculations tariff={tariff} />
+          <div className="space-y-3">
+            {underExample && overExample ? (
+              <>
+                <div className="rounded-xl border border-hairline border-l-4 border-l-spark-teal bg-paper p-5">
+                  <p className="text-base text-ash/90">
+                    Stay at or under the <strong>{freeKl} KL</strong> free threshold, and a{' '}
+                    {tariff.boardCode} bill costs just <WorkedExampleTotal amount={underExample.total} /> —
+                    only the fixed charge applies, since the water and sewerage charges are waived entirely.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-hairline border-l-4 border-l-caution-amber bg-paper p-5">
+                  <p className="text-base text-ash/90">
+                    Use just <strong>1 KL more</strong> — {(freeKl ?? 0) + 1} KL total — and the ENTIRE
+                    consumption becomes billable, not just the excess: the bill jumps to{' '}
+                    <WorkedExampleTotal amount={overExample.total} /> ({formatINR(overExample.waterCharge)} water +{' '}
+                    {formatINR(overExample.sewerageCharge)} sewerage).
+                  </p>
+                </div>
+              </>
+            ) : (
+              lowExample &&
+              highExample && (
+                <>
+                  <div className="rounded-xl border border-hairline border-l-4 border-l-spark-teal bg-paper p-5">
+                    <p className="text-base text-ash/90">
+                      A lighter <strong>10 KL</strong> {tariff.boardCode} bill comes to{' '}
+                      <WorkedExampleTotal amount={lowExample.total} /> — {formatINR(lowExample.waterCharge)} water +{' '}
+                      {formatINR(lowExample.sewerageCharge)} sewerage + {formatINR(lowExample.fixedCharge)} fixed.
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-hairline border-l-4 border-l-caution-amber bg-paper p-5">
+                    <p className="text-base text-ash/90">
+                      A heavier <strong>30 KL</strong> bill comes to <WorkedExampleTotal amount={highExample.total} />{' '}
+                      — {formatINR(highExample.waterCharge)} water + {formatINR(highExample.sewerageCharge)}{' '}
+                      sewerage, since the higher slabs kick in well before 30 KL.
+                    </p>
+                  </div>
+                </>
+              )
+            )}
+          </div>
         </section>
-
-        {underExample && overExample && (
-          <section aria-labelledby="worked-examples" className="mb-10 scroll-mt-20">
-            <h2 id="worked-examples" className="font-display mb-4 text-2xl font-semibold">
-              Two worked examples — just under vs just over the threshold
-            </h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-spark-teal/25 bg-spark-teal/5 p-5">
-                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
-                  {freeKl} KL — at the free threshold
-                </p>
-                <p className="font-display mt-1 text-2xl font-bold tabular-nums text-spark-teal">
-                  {formatINR(underExample.total)}
-                </p>
-                <p className="mt-1 text-sm text-ash/60">
-                  Water charge waived · only the fixed charge applies
-                </p>
-              </div>
-              <div className="rounded-xl border border-caution-amber/25 bg-caution-amber/5 p-5">
-                <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
-                  {(freeKl ?? 0) + 1} KL — just 1 KL over
-                </p>
-                <p className="font-display mt-1 text-2xl font-bold tabular-nums text-caution-amber">
-                  {formatINR(overExample.total)}
-                </p>
-                <p className="mt-1 text-sm text-ash/60">
-                  Full consumption billed · {formatINR(overExample.waterCharge)} water + {formatINR(overExample.sewerageCharge)} sewerage
-                </p>
-              </div>
-            </div>
-            <p className="mt-2 text-xs text-ash/50">
-              A single extra litre pushes the bill from{' '}
-              {formatINR(underExample.total)} to {formatINR(overExample.total)}{' '}
-              — the all-or-nothing rule in action.
-            </p>
-          </section>
-        )}
 
         <section aria-labelledby="household" className="mb-10 scroll-mt-20">
           <h2 id="household" className="font-display mb-2 text-2xl font-semibold">
@@ -850,42 +896,18 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           </div>
         </section>
 
-        <section aria-labelledby="features" className="mb-10 scroll-mt-20">
-          <h2 id="features" className="font-display mb-4 text-2xl font-semibold">
-            {tariff.boardCode} water bill calculator — key features
+        <section aria-labelledby="how-we-verify" className="mb-10 scroll-mt-20">
+          <h2 id="how-we-verify" className="sr-only">
+            How we verify {tariff.boardCode}&apos;s tariff
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: '📋', title: 'Real, dated tariff', body: `${tariff.boardCode}'s actual published slab rates, not a national average.` },
-              { icon: '📏', title: 'Meter-size aware', body: 'Fixed charge adjusts to your connection\'s meter size, where it varies.' },
-              { icon: '🚿', title: 'Sewerage charge included', body: 'Computed as a real percentage of your water charge, not skipped.' },
-              { icon: '📶', title: 'Telescopic slabs', body: 'Each KL band priced at its own rate, exactly as billed.' },
-              { icon: '🏢', title: 'Connection-type aware', body: commercial ? 'Domestic and commercial tariffs, priced separately and correctly.' : 'Domestic tariff today; commercial/industrial added once verified.' },
-              { icon: '🧾', title: 'Itemised breakdown', body: 'Water charge, sewerage and fixed charge shown separately, never bundled.' },
-            ].map((f) => (
-              <div key={f.title} className="rounded-xl border border-hairline bg-paper p-5">
-                <span className="text-2xl" aria-hidden>{f.icon}</span>
-                <p className="font-display mt-2 font-bold text-ink-navy">{f.title}</p>
-                <p className="mt-1 text-sm text-ash/70">{f.body}</p>
-              </div>
-            ))}
-          </div>
+          <HowWeVerify
+            sourceStepBody={`We pull rates straight from ${tariff.boardName}'s tariff notification / gazette order — the primary document, not another calculator.`}
+            crossCheckStepBody={`Every slab, the ${connection.sewerageChargePercent}% sewerage charge and every meter-size fixed charge for ${tariff.boardCode} is encoded into a schema-validated file, so the maths is reproducible and auditable.`}
+            verifiedDate={formatIsoDate(tariff.lastVerified)}
+          />
         </section>
 
         <footer className="rounded-xl border border-hairline bg-paper p-5">
-          <p className="font-display mb-3 font-bold text-ink-navy">
-            Official reference &amp; regulator details
-          </p>
-          <dl className="mb-3 grid gap-2 text-sm sm:grid-cols-2">
-            <div>
-              <dt className="text-ash/50">Utility provider</dt>
-              <dd className="text-ink-navy">{tariff.boardName} ({tariff.boardCode})</dd>
-            </div>
-            <div>
-              <dt className="text-ash/50">Jurisdiction / cities served</dt>
-              <dd className="text-ink-navy">{tariff.citiesServed.join(', ')}</dd>
-            </div>
-          </dl>
           <div className="flex flex-wrap items-center gap-2">
             <span className="flex items-center gap-1.5 rounded-full border border-seal-red/30 bg-seal-red/5 px-2.5 py-1 text-xs font-semibold text-seal-red">
               <span aria-hidden>⦿</span> Verified {formatIsoDate(tariff.lastVerified)}
@@ -910,7 +932,12 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
             DesiMetrics is an independent calculator, not affiliated with,
             endorsed by, or operated by {tariff.boardName} or any government
             body. Estimates are for planning purposes only — always verify
-            against your official bill.
+            against your official bill.{' '}
+            <Link href="/methodology" className="underline">
+              How we source &amp; verify data
+            </Link>{' '}
+            · <Link href="/data-sources" className="underline">Data sources</Link> ·{' '}
+            <Link href="/disclaimer" className="underline">Disclaimer</Link>
           </p>
         </footer>
 

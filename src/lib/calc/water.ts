@@ -235,3 +235,38 @@ export function calculateFullWaterBill(input: RealWaterBillInput): RealWaterBill
   const tariff = getWaterTariff(input.boardCode)
   return computeWaterBill(tariff, input)
 }
+
+export interface BudgetToKlResult {
+  maxKl: number
+  bill: RealWaterBillBreakdown
+}
+
+/** Reverse calculator: binary-searches computeWaterBill() for the maximum KL
+ *  that stays within a target budget — same algorithm as electricity's
+ *  findMaxUnitsForBudget, adapted for KL instead of units. */
+export function findMaxKlForBudget(
+  tariff: WaterTariffFile,
+  budget: number,
+  input: Omit<RealWaterBillInput, 'boardCode' | 'consumptionKl'>,
+): BudgetToKlResult {
+  if (budget <= 0) {
+    const bill = computeWaterBill(tariff, { ...input, consumptionKl: 0 })
+    return { maxKl: 0, bill }
+  }
+
+  let lo = 0
+  let hi = 1000
+  while (computeWaterBill(tariff, { ...input, consumptionKl: hi }).total <= budget && hi < 1_000_000) {
+    hi *= 2
+  }
+  while (lo < hi) {
+    const mid = Math.ceil((lo + hi + 1) / 2)
+    const total = computeWaterBill(tariff, { ...input, consumptionKl: mid }).total
+    if (total <= budget) {
+      lo = mid
+    } else {
+      hi = mid - 1
+    }
+  }
+  return { maxKl: lo, bill: computeWaterBill(tariff, { ...input, consumptionKl: lo }) }
+}

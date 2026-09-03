@@ -9,6 +9,7 @@ import {
   type WaterConnectionType,
 } from '@/lib/calc/water'
 import { formatINR } from '@/lib/format'
+import { AUDIT_ITEM_IDS } from '@/components/water/WaterBillComponentAudit'
 import { CalculatorCard, CalculatorCta, CalculatorHeader, SliderField } from './CalculatorShell'
 
 const COMPOSITION_COLORS = {
@@ -16,6 +17,26 @@ const COMPOSITION_COLORS = {
   sewerage: 'bg-caution-amber',
   fixed: 'bg-ash/40',
 } as const
+
+const COMPOSITION_AUDIT_ID = {
+  water: AUDIT_ITEM_IDS.water,
+  sewerage: AUDIT_ITEM_IDS.sewerage,
+  fixed: AUDIT_ITEM_IDS.fixed,
+} as const
+
+/** Clicking a cost-composition segment jumps to and opens the matching line
+ *  in the bill-component-audit accordion further down the page, briefly
+ *  highlighting it so the connection between the two is obvious. */
+function jumpToAuditItem(id: string) {
+  const el = document.getElementById(id)
+  if (!(el instanceof HTMLDetailsElement)) return
+  el.open = true
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  el.classList.add('bg-brass/10', 'ring-2', 'ring-brass/40')
+  window.setTimeout(() => {
+    el.classList.remove('bg-brass/10', 'ring-2', 'ring-brass/40')
+  }, 1600)
+}
 
 const CONNECTION_LABELS: Record<WaterConnectionType, string> = {
   domestic: 'Domestic',
@@ -165,7 +186,9 @@ export default function WaterBoardBillCalculator({
 
             {result.total > 0 && (
               <div>
-                <p className="mb-1.5 text-xs font-medium text-ash/60">Cost composition</p>
+                <p className="mb-1.5 text-xs font-medium text-ash/60">
+                  Cost composition — tap a segment to see what it is
+                </p>
                 <div className="flex h-3 w-full overflow-hidden rounded-full bg-mist">
                   {(
                     [
@@ -175,11 +198,14 @@ export default function WaterBoardBillCalculator({
                     ] as const
                   ).map(([key, amount]) =>
                     amount > 0 ? (
-                      <div
+                      <button
                         key={key}
-                        className={COMPOSITION_COLORS[key]}
+                        type="button"
+                        onClick={() => jumpToAuditItem(COMPOSITION_AUDIT_ID[key])}
+                        className={`${COMPOSITION_COLORS[key]} transition hover:brightness-110`}
                         style={{ width: `${(amount / result.total) * 100}%` }}
-                        title={`${key}: ${formatINR(amount)}`}
+                        title={`${key}: ${formatINR(amount)} — tap for details`}
+                        aria-label={`${key} charge: ${formatINR(amount)}. Jump to explanation.`}
                       />
                     ) : null,
                   )}

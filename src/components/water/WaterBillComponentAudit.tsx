@@ -16,9 +16,19 @@ const TAG_STYLE: Record<Tag, { label: string; cls: string }> = {
 
 /** Expandable, per-component breakdown of a real water bill — mirrors the
  *  electricity BillComponentAudit's exact pattern and tagging philosophy. */
+/** Stable IDs shared with WaterBoardBillCalculator's cost-composition bar —
+ *  clicking a bar segment there scrolls to and opens the matching item here.
+ *  Keep these in sync if either component's line items change. */
+export const AUDIT_ITEM_IDS = {
+  water: 'audit-water',
+  sewerage: 'audit-sewerage',
+  fixed: 'audit-fixed',
+} as const
+
 export default function WaterBillComponentAudit({ bill }: { bill: RealWaterBillBreakdown }) {
-  const items: { title: string; amount: number; tag: Tag; body: string }[] = [
+  const items: { id: string; title: string; amount: number; tag: Tag; body: string }[] = [
     {
+      id: AUDIT_ITEM_IDS.water,
       title: 'Water charge',
       amount: bill.waterCharge,
       tag: 'reducible',
@@ -27,12 +37,14 @@ export default function WaterBillComponentAudit({ bill }: { bill: RealWaterBillB
         : `Priced across telescopic slabs — the more you use, the higher the marginal rate. Cutting usage below your next slab threshold lowers this line directly. This example totals ${formatINR(bill.waterCharge)}.`,
     },
     {
+      id: AUDIT_ITEM_IDS.sewerage,
       title: 'Sewerage charge',
       amount: bill.sewerageCharge,
       tag: 'board-set',
       body: `A wastewater treatment and disposal fee, calculated as a fixed percentage of your water charge — it falls automatically whenever your water charge does, but the percentage itself is set by the board, not something you can change directly.`,
     },
     {
+      id: AUDIT_ITEM_IDS.fixed,
       title: 'Fixed charge',
       amount: bill.fixedCharge,
       tag: 'fixed',
@@ -42,6 +54,7 @@ export default function WaterBillComponentAudit({ bill }: { bill: RealWaterBillB
 
   if (bill.additionalFeesTotal > 0) {
     items.push({
+      id: 'audit-additional-fees',
       title: 'Additional fees',
       amount: bill.additionalFeesTotal,
       tag: 'check',
@@ -52,7 +65,7 @@ export default function WaterBillComponentAudit({ bill }: { bill: RealWaterBillB
   return (
     <div className="divide-y divide-hairline rounded-xl border border-hairline bg-paper">
       {items.map((item) => (
-        <details key={item.title} className="group p-4">
+        <details key={item.title} id={item.id} className="group scroll-mt-24 p-4 transition-colors duration-700">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
             <span className="flex items-center gap-2">
               <span className="font-semibold text-ink-navy">{item.title}</span>
