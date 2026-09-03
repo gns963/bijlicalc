@@ -4,25 +4,28 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
-// Only the homepage has a real Hindi translation so far (see src/app/hi/).
-// Every ready language links to its nearest translated page — today that's
-// always the homepage, not a per-page equivalent, since only Phase 1 of the
-// Hindi rollout is built.
+// Only the homepage has a real translation so far in each language (see
+// src/app/{hi,ta,te,mr,bn,kn,gu}/). Every ready language links to its
+// nearest translated page — today that's always the homepage, not a
+// per-page equivalent, since only Phase 1 of the i18n rollout is built.
 const LANGS = [
   { code: 'EN', label: 'English', ready: true, href: '/' },
   { code: 'HI', label: 'हिन्दी', ready: true, href: '/hi' },
-  { code: 'TA', label: 'தமிழ்', ready: false, href: null },
-  { code: 'TE', label: 'తెలుగు', ready: false, href: null },
-  { code: 'MR', label: 'मराठी', ready: false, href: null },
-  { code: 'BN', label: 'বাংলা', ready: false, href: null },
-  { code: 'KN', label: 'ಕನ್ನಡ', ready: false, href: null },
-  { code: 'GU', label: 'ગુજરાતી', ready: false, href: null },
+  { code: 'TA', label: 'தமிழ்', ready: true, href: '/ta' },
+  { code: 'TE', label: 'తెలుగు', ready: true, href: '/te' },
+  { code: 'MR', label: 'मराठी', ready: true, href: '/mr' },
+  { code: 'BN', label: 'বাংলা', ready: true, href: '/bn' },
+  { code: 'KN', label: 'ಕನ್ನಡ', ready: true, href: '/kn' },
+  { code: 'GU', label: 'ગુજરાતી', ready: true, href: '/gu' },
 ]
+
+const LOCALE_CODES = ['hi', 'ta', 'te', 'mr', 'bn', 'kn', 'gu']
 
 export default function LanguageSwitcher({ transparent = false }: { transparent?: boolean }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
-  const currentCode = pathname?.startsWith('/hi') ? 'HI' : 'EN'
+  const currentLocale = LOCALE_CODES.find((c) => pathname?.startsWith(`/${c}`))
+  const currentCode = currentLocale?.toUpperCase() ?? 'EN'
 
   return (
     <div className="relative">

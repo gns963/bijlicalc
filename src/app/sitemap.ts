@@ -25,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const core = [
     entry('/', 1.0, 'weekly'),
     entry('/hi', 0.9, 'weekly'),
+    entry('/ta', 0.9, 'weekly'),
+    entry('/te', 0.9, 'weekly'),
+    entry('/mr', 0.9, 'weekly'),
+    entry('/bn', 0.9, 'weekly'),
+    entry('/kn', 0.9, 'weekly'),
+    entry('/gu', 0.9, 'weekly'),
     entry('/electricity', 0.8),
     entry('/electricity/ev-charging-cost-calculator', 0.9),
     entry('/electricity/appliance-cost-calculator', 0.9),

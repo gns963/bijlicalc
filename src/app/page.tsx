@@ -10,6 +10,7 @@ import { calculateAcCost } from '@/lib/calc/ac'
 import { computeBill, getTariff } from '@/lib/calc/electricity'
 import { calculateSolarRoi } from '@/lib/calc/solar'
 import { formatINR, formatIsoDate } from '@/lib/format'
+import { homeHreflangAlternates } from '@/lib/homeShared'
 import { itemListLd } from '@/lib/seo'
 
 const SITE = 'https://desimetrics.com'
@@ -399,7 +400,7 @@ export const metadata: Metadata = {
   description: `Free, accurate calculators for Indian electricity, water and gas bills, rooftop solar, AC running cost, home appliances, fuel cost and personal finance. Real DISCOM tariffs for all ${stateCount} states + ${utCount} UTs, verified against SERC orders.`,
   alternates: {
     canonical: `${SITE}/`,
-    languages: { 'en-IN': `${SITE}/`, 'hi-IN': `${SITE}/hi` },
+    languages: homeHreflangAlternates(),
   },
   openGraph: { url: `${SITE}/`, type: 'website' },
 }
