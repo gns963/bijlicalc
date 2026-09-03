@@ -365,39 +365,56 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
           <h2 id="tariff-table" className="font-display mb-4 text-2xl font-semibold">
             {tariff.boardCode} domestic water tariff
           </h2>
-          <WaterSlabBand slabs={connection.slabs} />
-          <p className="mt-4 mb-2 text-xs font-medium text-ash/50 uppercase tracking-wide">
-            Exact figures
-          </p>
-          <div className="overflow-x-auto rounded-xl border border-hairline">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-hairline bg-mist text-ink-navy">
-                <tr>
-                  <th className="px-4 py-2 font-semibold">Slab (KL)</th>
-                  <th className="px-4 py-2 text-right font-semibold">Rate (₹/KL)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-hairline">
-                {connection.slabs.map((s, i) => (
-                  <tr key={i}>
-                    <td className="px-4 py-2">{s.minKL}–{s.maxKL ?? 'above'}</td>
-                    <td className="px-4 py-2 text-right tabular-nums">₹{s.ratePerKL.toFixed(2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-              <tfoot className="bg-mist text-ash/70">
-                <tr>
-                  <td className="px-4 py-2">Sewerage charge</td>
-                  <td className="px-4 py-2 text-right tabular-nums">{connection.sewerageChargePercent}% of water charge</td>
-                </tr>
-                {Object.entries(connection.fixedChargeByMeterSize).map(([size, amt]) => (
-                  <tr key={size}>
-                    <td className="px-4 py-2">Fixed charge ({size} meter)</td>
-                    <td className="px-4 py-2 text-right tabular-nums">{formatINR(amt)}/cycle</td>
-                  </tr>
-                ))}
-              </tfoot>
-            </table>
+          <div className="rounded-2xl border border-hairline bg-paper p-6 shadow-sm">
+            <WaterSlabBand slabs={connection.slabs} />
+
+            <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-hairline pt-4 text-xs text-ash/50">
+              <span>
+                Sewerage: <strong className="text-ash/70">{connection.sewerageChargePercent}% of water charge</strong>
+              </span>
+              {Object.entries(connection.fixedChargeByMeterSize).map(([size, amt]) => (
+                <span key={size}>
+                  Fixed ({size}): <strong className="text-ash/70">{formatINR(amt)}/cycle</strong>
+                </span>
+              ))}
+            </div>
+
+            <details className="group mt-4 border-t border-hairline pt-4">
+              <summary className="flex cursor-pointer list-none items-center gap-1.5 text-xs font-semibold tracking-wide text-ash/50 uppercase marker:hidden">
+                Exact figures
+                <span className="text-ash/40 transition group-open:rotate-180" aria-hidden>⌄</span>
+              </summary>
+              <div className="mt-3 overflow-x-auto rounded-xl border border-hairline">
+                <table className="w-full text-left text-sm">
+                  <thead className="border-b border-hairline bg-mist text-ink-navy">
+                    <tr>
+                      <th className="px-4 py-2 font-semibold">Slab (KL)</th>
+                      <th className="px-4 py-2 text-right font-semibold">Rate (₹/KL)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-hairline">
+                    {connection.slabs.map((s, i) => (
+                      <tr key={i}>
+                        <td className="px-4 py-2">{s.minKL}–{s.maxKL ?? 'above'}</td>
+                        <td className="px-4 py-2 text-right tabular-nums">₹{s.ratePerKL.toFixed(2)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot className="bg-mist text-ash/70">
+                    <tr>
+                      <td className="px-4 py-2">Sewerage charge</td>
+                      <td className="px-4 py-2 text-right tabular-nums">{connection.sewerageChargePercent}% of water charge</td>
+                    </tr>
+                    {Object.entries(connection.fixedChargeByMeterSize).map(([size, amt]) => (
+                      <tr key={size}>
+                        <td className="px-4 py-2">Fixed charge ({size} meter)</td>
+                        <td className="px-4 py-2 text-right tabular-nums">{formatINR(amt)}/cycle</td>
+                      </tr>
+                    ))}
+                  </tfoot>
+                </table>
+              </div>
+            </details>
           </div>
           <p className="mt-2 text-xs text-ash/50">
             Effective from {formatIsoDate(tariff.effectiveFrom)} · Verified{' '}

@@ -3,9 +3,19 @@
 import { useState } from 'react'
 import type { WaterSlab } from '@/data/water-tariffs/_schema'
 
-/** Increasing-intensity aqua shades — darker segment reads as "pricier",
- *  so the visual encodes the telescoping rate structure without a legend. */
-const INTENSITY = ['bg-hub-water/25', 'bg-hub-water/45', 'bg-hub-water/65', 'bg-hub-water/85', 'bg-hub-water']
+/** Increasing-intensity aqua shades — darker segment reads as "pricier", so
+ *  the visual encodes the telescoping rate structure without a legend. */
+const INTENSITY = [
+  { bg: 'bg-hub-water/20', text: 'text-ink-navy' },
+  { bg: 'bg-hub-water/45', text: 'text-ink-navy' },
+  { bg: 'bg-hub-water/70', text: 'text-white' },
+  { bg: 'bg-hub-water/90', text: 'text-white' },
+  { bg: 'bg-hub-water', text: 'text-white' },
+]
+
+function slabLabel(s: WaterSlab) {
+  return s.maxKL === null ? `${s.minKL}+ KL` : `${s.minKL}–${s.maxKL} KL`
+}
 
 /**
  * A single horizontal bar sliced into proportional colored segments, one per
@@ -23,13 +33,18 @@ export default function WaterSlabBand({ slabs }: { slabs: WaterSlab[] }) {
     return prevWidth
   })
   const totalWidth = widths.reduce((sum, w) => sum + w, 0)
+  const activeSlab = active !== null ? slabs[active] : null
 
   return (
     <div>
-      <div className="flex h-10 w-full overflow-hidden rounded-lg border border-hairline" role="group" aria-label="Tariff slabs by KL range">
+      <div
+        className="flex h-16 w-full overflow-hidden rounded-xl shadow-sm ring-1 ring-hairline"
+        role="group"
+        aria-label="Tariff slabs by KL range"
+      >
         {slabs.map((s, i) => {
           const pct = (widths[i] / totalWidth) * 100
-          const color = INTENSITY[Math.min(i, INTENSITY.length - 1)]
+          const tone = INTENSITY[Math.min(i, INTENSITY.length - 1)]
           const isActive = active === i
           return (
             <button
@@ -38,39 +53,43 @@ export default function WaterSlabBand({ slabs }: { slabs: WaterSlab[] }) {
               onClick={() => setActive(isActive ? null : i)}
               onMouseEnter={() => setActive(i)}
               onMouseLeave={() => setActive(null)}
+              onFocus={() => setActive(i)}
+              onBlur={() => setActive(null)}
               style={{ width: `${pct}%` }}
               aria-pressed={isActive}
-              className={`relative flex items-center justify-center text-xs font-semibold text-ink-navy transition ${color} ${
-                isActive ? 'ring-2 ring-inset ring-brass' : ''
-              } ${i > 0 ? 'border-l border-paper/60' : ''}`}
+              aria-label={`${slabLabel(s)}: ₹${s.ratePerKL.toFixed(2)} per KL`}
+              className={`group relative flex flex-col items-center justify-center gap-0.5 px-1 transition-[filter] ${tone.bg} ${tone.text} ${
+                isActive ? 'brightness-110' : 'hover:brightness-105'
+              } ${i > 0 ? 'border-l border-paper/50' : ''}`}
             >
-              {pct > 10 && <span className="hidden sm:inline">₹{s.ratePerKL.toFixed(1)}</span>}
+              {isActive && (
+                <span className="absolute inset-x-0 -top-0.5 h-0.5 bg-brass" aria-hidden />
+              )}
+              {pct > 16 && (
+                <span className="hidden text-[10px] font-medium tracking-wide opacity-80 sm:inline">
+                  {slabLabel(s)}
+                </span>
+              )}
+              {pct > 8 && (
+                <span className="font-display text-sm font-bold tabular-nums sm:text-base">
+                  ₹{s.ratePerKL.toFixed(2)}
+                </span>
+              )}
             </button>
           )
         })}
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-2">
-        {slabs.map((s, i) => {
-          const isActive = active === i
-          return (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setActive(isActive ? null : i)}
-              onMouseEnter={() => setActive(i)}
-              onMouseLeave={() => setActive(null)}
-              className={`rounded-lg border px-2.5 py-1.5 text-left text-xs transition ${
-                isActive ? 'border-brass bg-brass/10' : 'border-hairline bg-paper'
-              }`}
-            >
-              <span className="font-semibold text-ink-navy">
-                {s.minKL}–{s.maxKL ?? `${s.minKL}+`} KL
-              </span>
-              <span className="ml-1.5 tabular-nums text-ash/70">₹{s.ratePerKL.toFixed(2)}/KL</span>
-            </button>
-          )
-        })}
+      <div className="mt-2.5 flex min-h-[1.5rem] items-center text-sm">
+        {activeSlab ? (
+          <p className="text-ash/80">
+            <span className="font-semibold text-ink-navy">{slabLabel(activeSlab)}</span>
+            <span className="mx-1.5 text-ash/40">·</span>
+            <span className="tabular-nums">₹{activeSlab.ratePerKL.toFixed(2)}/KL</span>
+          </p>
+        ) : (
+          <p className="text-xs text-ash/50">Tap or hover a segment for its exact rate.</p>
+        )}
       </div>
     </div>
   )
