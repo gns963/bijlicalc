@@ -2,11 +2,17 @@ import Link from 'next/link'
 import WaterBillCalculator from '@/components/calculators/WaterBillCalculator'
 import { DropletIcon } from '@/components/HubMotifIcon'
 import SplitHero from '@/components/SplitHero'
+import { getLiveTariffBoardsByState } from '@/data/water-boards'
 import { slugify } from '@/lib/format'
 
 const SITE = 'https://desimetrics.com'
 
 export default function WaterStatePage({ state }: { state: string }) {
+  // A state's board slug often differs from the state's own slug (Chennai's
+  // board is "chennai", not "tamil-nadu"), so a real, sourced tariff can
+  // exist for this state without this page ever finding it on its own.
+  const liveBoards = getLiveTariffBoardsByState(state)
+
   const faqs = [
     {
       q: `Does DesiMetrics know my exact water board's tariff in ${state}?`,
@@ -103,6 +109,29 @@ export default function WaterStatePage({ state }: { state: string }) {
       />
 
       <main className="mx-auto max-w-4xl px-4 py-8">
+      {liveBoards.length > 0 && (
+        <section className="mb-8 rounded-xl border border-hairline border-l-4 border-l-hub-water bg-paper p-5">
+          <p className="flex items-center gap-1.5 text-sm font-semibold tracking-wide text-hub-water uppercase">
+            <span aria-hidden>✓</span> Real tariff available for {state}
+          </p>
+          <p className="mt-2 text-ash/80">
+            {liveBoards.map((b, i) => (
+              <span key={b.slug}>
+                {i > 0 && ' · '}
+                We have a real, dated tariff for <strong>{b.name} ({b.code})</strong>
+                {' '}— skip the guesswork and{' '}
+                <Link href={`/water/${b.slug}`} className="font-semibold text-hub-water hover:underline">
+                  use its real-tariff calculator →
+                </Link>
+              </span>
+            ))}
+          </p>
+          <p className="mt-1 text-xs text-ash/50">
+            If your connection is with a different board in {state}, the self-rate calculator below still applies.
+          </p>
+        </section>
+      )}
+
       <section aria-labelledby="calculator" className="mb-10 scroll-mt-20">
         <h2 id="calculator" className="font-display mb-4 text-2xl font-semibold">
           Calculate your {state} water bill
@@ -197,7 +226,7 @@ export default function WaterStatePage({ state }: { state: string }) {
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
-            href="/water/delhi"
+            href={liveBoards[0] ? `/water/${liveBoards[0].slug}` : '/water/delhi'}
             className="rounded-xl border border-hairline bg-paper p-5 transition hover:border-hub-water/50 hover:shadow-sm"
           >
             <span className="text-xl" aria-hidden>📊</span>
@@ -205,7 +234,9 @@ export default function WaterStatePage({ state }: { state: string }) {
               See a real-tariff example
             </p>
             <p className="mt-1 text-xs text-ash/60">
-              Delhi Jal Board uses a real, dated tariff — no rate entry needed.
+              {liveBoards[0]
+                ? `${liveBoards[0].name} uses a real, dated tariff — no rate entry needed.`
+                : 'Delhi Jal Board uses a real, dated tariff — no rate entry needed.'}
             </p>
           </Link>
           <Link

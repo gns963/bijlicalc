@@ -3,13 +3,13 @@
     "note": "Maps major Indian cities to the water board that serves them. hasTariffFile is true only where a real, schema-validated tariff JSON exists in src/data/water-tariffs/ — every other city still uses the honest self-rate-input calculator. Mirrors the discoms.json / gas-cgds.json pattern. IMPORTANT: unlike DISCOMs/CGDs, our /water/[slug] route is STATE-granularity (one page per state/UT), while water boards are CITY-granularity (a state can have multiple boards, e.g. Maharashtra has BMC for Mumbai, PMC for Pune, and PCMC for Pimpri-Chinchwad). Delhi, Chennai and Pimpri-Chinchwad happen to work cleanly as city routes distinct from their state slugs (see src/app/water/[slug]/page.tsx, which checks board slugs independently of state slugs). BWSSB and BMC were researched but NOT added: their published rates conflict by large margins across every secondary source we could reach, and their official portals were unreachable (cert error / non-machine-readable legacy portal) — publishing either with a confident SOURCED label would risk a wrong number. Revisit if better sources turn up. Boards below other than DJB, CMWSSB and PCMC are listed for future reference only."
   },
   "boards": [
-    { "slug": "delhi", "code": "DJB", "name": "Delhi Jal Board", "hasTariffFile": true },
-    { "slug": "bangalore", "code": "BWSSB", "name": "Bangalore Water Supply and Sewerage Board", "hasTariffFile": false },
-    { "slug": "chennai", "code": "CMWSSB", "name": "Chennai Metropolitan Water Supply and Sewerage Board", "hasTariffFile": true },
-    { "slug": "mumbai", "code": "BMC", "name": "Municipal Corporation of Greater Mumbai (Water Dept.)", "hasTariffFile": false },
-    { "slug": "pune", "code": "PMC", "name": "Pune Municipal Corporation (Water Dept.)", "hasTariffFile": false },
-    { "slug": "pimpri-chinchwad", "code": "PCMC", "name": "Pimpri Chinchwad Municipal Corporation", "hasTariffFile": true },
-    { "slug": "hyderabad", "code": "HMWSSB", "name": "Hyderabad Metropolitan Water Supply and Sewerage Board", "hasTariffFile": false },
-    { "slug": "kolkata", "code": "KMC", "name": "Kolkata Municipal Corporation (Water Dept.)", "hasTariffFile": false }
+    { "slug": "delhi", "code": "DJB", "name": "Delhi Jal Board", "state": "Delhi", "hasTariffFile": true },
+    { "slug": "bangalore", "code": "BWSSB", "name": "Bangalore Water Supply and Sewerage Board", "state": "Karnataka", "hasTariffFile": false },
+    { "slug": "chennai", "code": "CMWSSB", "name": "Chennai Metropolitan Water Supply and Sewerage Board", "state": "Tamil Nadu", "hasTariffFile": true },
+    { "slug": "mumbai", "code": "BMC", "name": "Municipal Corporation of Greater Mumbai (Water Dept.)", "state": "Maharashtra", "hasTariffFile": false },
+    { "slug": "pune", "code": "PMC", "name": "Pune Municipal Corporation (Water Dept.)", "state": "Maharashtra", "hasTariffFile": false },
+    { "slug": "pimpri-chinchwad", "code": "PCMC", "name": "Pimpri Chinchwad Municipal Corporation", "state": "Maharashtra", "hasTariffFile": true },
+    { "slug": "hyderabad", "code": "HMWSSB", "name": "Hyderabad Metropolitan Water Supply and Sewerage Board", "state": "Telangana", "hasTariffFile": false },
+    { "slug": "kolkata", "code": "KMC", "name": "Kolkata Municipal Corporation (Water Dept.)", "state": "West Bengal", "hasTariffFile": false }
   ]
 }
