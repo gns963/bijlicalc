@@ -63,6 +63,7 @@ const datasetLd = {
     'Monthly and annual running cost for a fixed AC configuration, computed across multiple Indian DISCOM tariffs at their real top electricity slab.',
   variableMeasured: ['Monthly cost (INR)', 'Annual cost (INR)', 'Effective rate per unit (INR/kWh)'],
   creator: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
+  license: `${SITE}/terms`,
 }
 const breadcrumb = breadcrumbLd([
   { name: 'Home', path: '' },

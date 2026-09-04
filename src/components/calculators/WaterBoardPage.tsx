@@ -166,6 +166,7 @@ export default function WaterBoardPage({ boardCode, slug }: { boardCode: string;
     description: `Municipal water tariff for ${tariff.boardName}, effective ${tariff.effectiveFrom} — also underlies the per-board comparison and consumption reference tables on this page.`,
     url: `${SITE}${path}#tariff-table`,
     dateModified: tariff.lastVerified,
+    creator: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
     license: tariff.sourceUrl,
     distribution: [
       { '@type': 'DataDownload', encodingFormat: 'text/html', contentUrl: tariff.sourceUrl },

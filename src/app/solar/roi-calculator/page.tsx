@@ -81,7 +81,8 @@ const datasetLd = {
   name: '25-Year Solar vs Grid Cost Comparison (Base Scenario)',
   description:
     'Year-by-year cumulative grid cost, solar cost and savings for a 3kW rooftop system in Tamil Nadu at 300 units/month, assuming 6%/year tariff escalation.',
-  creator: { '@type': 'Organization', name: 'DesiMetrics' },
+  creator: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
+  license: `${SITE}/terms`,
   variableMeasured: [
     'Cumulative grid cost (INR)',
     'Cumulative solar cost (INR)',

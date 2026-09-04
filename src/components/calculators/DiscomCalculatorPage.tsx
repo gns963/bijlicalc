@@ -183,6 +183,7 @@ export default function DiscomCalculatorPage({
     description: `Telescopic domestic electricity tariff slabs for ${tariff.state}, effective ${tariff.effectiveFrom}.`,
     url: `${SITE}${path}#tariff-table`,
     dateModified: tariff.lastVerified,
+    creator: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
     license: tariff.sourceUrl,
     distribution: [
       { '@type': 'DataDownload', encodingFormat: 'text/html', contentUrl: tariff.sourceUrl },

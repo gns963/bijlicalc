@@ -83,6 +83,8 @@ const datasetLd = {
     'Typical wattage and daily-use reference figures for common Indian household appliances, used to estimate monthly electricity units and cost.',
   url: `${SITE}${PATH}#wattage-chart`,
   variableMeasured: 'Power consumption (watts)',
+  creator: { '@type': 'Organization', name: 'DesiMetrics', url: SITE },
+  license: `${SITE}/terms`,
 }
 
 const faqs = [
