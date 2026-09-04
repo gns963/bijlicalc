@@ -15,6 +15,12 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: 'How Much Does Running an AC Actually Cost in India?',
+    tag: 'AC',
+    href: '/blog/ac-running-cost-india-guide',
+    live: true,
+  },
+  {
     title: 'Mahavitaran Bill: Check & Pay Your MSEDCL Bill Online',
     tag: 'Electricity',
     href: '/blog/mahavitaran-bill-kaise-check-kare',
