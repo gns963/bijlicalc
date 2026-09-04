@@ -26,6 +26,12 @@ export default function LanguageSwitcher({ transparent = false }: { transparent?
   const pathname = usePathname()
   const currentLocale = LOCALE_CODES.find((c) => pathname?.startsWith(`/${c}`))
   const currentCode = currentLocale?.toUpperCase() ?? 'EN'
+  // Translations only exist for the homepage today — on any other page
+  // (a blog post, a calculator, etc.) a locale link would silently carry
+  // the visitor away to an unrelated translated homepage instead of a
+  // translated version of the page they're actually on. Only offer real
+  // navigation while already on the (English or a locale) homepage.
+  const onHomepage = pathname === '/' || LOCALE_CODES.some((c) => pathname === `/${c}`)
 
   return (
     <div className="relative">
@@ -47,35 +53,50 @@ export default function LanguageSwitcher({ transparent = false }: { transparent?
           role="menu"
           className="absolute right-0 z-20 mt-1 w-44 overflow-hidden rounded-lg border border-hairline bg-paper shadow-lg"
         >
-          {LANGS.map((l) =>
-            l.ready && l.href ? (
-              <Link
-                key={l.code}
-                href={l.href}
-                role="menuitem"
-                onClick={() => setOpen(false)}
-                className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-mist ${
-                  l.code === currentCode ? 'font-semibold text-brass' : 'text-ash'
-                }`}
-              >
-                {l.label}
-                <span className="text-xs text-spark-teal">●</span>
-              </Link>
-            ) : (
+          {LANGS.map((l) => {
+            // English is always safe to offer (it's every page's native
+            // language), but a non-English locale is only a real
+            // navigation while we're already on a homepage — elsewhere it
+            // would silently jump the visitor to an unrelated page.
+            const canNavigate = l.ready && l.href && (l.code === 'EN' || onHomepage)
+            if (canNavigate) {
+              return (
+                <Link
+                  key={l.code}
+                  href={l.href}
+                  role="menuitem"
+                  onClick={() => setOpen(false)}
+                  className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-mist ${
+                    l.code === currentCode ? 'font-semibold text-brass' : 'text-ash'
+                  }`}
+                >
+                  {l.label}
+                  <span className="text-xs text-spark-teal">●</span>
+                </Link>
+              )
+            }
+            const homepageOnly = l.ready && !onHomepage
+            return (
               <button
                 key={l.code}
                 role="menuitem"
                 type="button"
                 disabled
                 aria-disabled="true"
-                title={`${l.label} — coming soon`}
+                title={
+                  homepageOnly
+                    ? `${l.label} — only the homepage is translated so far; this page isn't yet`
+                    : `${l.label} — coming soon`
+                }
                 className="flex w-full cursor-not-allowed items-center justify-between px-3 py-2 text-left text-sm text-ash/35"
               >
                 {l.label}
-                <span className="text-[10px] uppercase">soon</span>
+                <span className="text-[10px] uppercase">
+                  {homepageOnly ? 'home only' : 'soon'}
+                </span>
               </button>
-            ),
-          )}
+            )
+          })}
         </div>
       )}
     </div>
