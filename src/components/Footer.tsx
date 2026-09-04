@@ -5,6 +5,7 @@ const BOTTOM_GROUPS: { heading: string; links: { label: string; href: string }[]
     heading: 'Company',
     links: [
       { label: 'About', href: '/about' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Editorial Team', href: '/author/editorial-team' },
       { label: 'Contact', href: '/contact' },
     ],
