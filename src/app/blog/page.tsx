@@ -15,6 +15,12 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: 'Mahavitaran Bill: Check & Pay Your MSEDCL Bill Online',
+    tag: 'Electricity',
+    href: '/blog/mahavitaran-bill-kaise-check-kare',
+    live: true,
+  },
+  {
     title: 'Smart Meters in India: Mandatory? Recharge & Fixes',
     tag: 'Electricity',
     href: '/blog/smart-meters-in-india-guide',
