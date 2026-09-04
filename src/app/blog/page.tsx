@@ -15,6 +15,12 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: 'Smart Meters in India: Mandatory? Recharge & Fixes',
+    tag: 'Electricity',
+    href: '/blog/smart-meters-in-india-guide',
+    live: true,
+  },
+  {
     title: 'How Telescopic Electricity Slabs Actually Work',
     tag: 'Explainer',
     href: '/blog/how-telescopic-electricity-slabs-work',
