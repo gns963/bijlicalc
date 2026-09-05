@@ -85,6 +85,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const electricity = allCalculatorSlugs.map((slug) =>
     entry(`/electricity/${slug}`, 0.9),
   )
+  const electricityHi = allCalculatorSlugs.map((slug) =>
+    entry(`/hi/electricity/${slug}`, 0.8),
+  )
 
   const unitPrice = allDiscomCodeSlugs.map((slug) =>
     entry(`/electricity/unit-price/${slug}`, 0.7),
@@ -131,6 +134,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...core,
     ...electricity,
+    ...electricityHi,
     ...unitPrice,
     ...solarStates,
     ...acBrands,

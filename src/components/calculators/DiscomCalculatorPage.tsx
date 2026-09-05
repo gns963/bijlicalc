@@ -11,6 +11,7 @@ import TableOfContents from '@/components/TableOfContents'
 import ThresholdCallout from '@/components/ThresholdCallout'
 import { CALCULATOR_PAGES, type DiscomPageConfig } from '@/data/calculator-pages'
 import type { FixedCharge } from '@/data/tariffs/_schema'
+import { enDiscomPageTexts, type DiscomPageTexts } from '@/data/discom-page-texts'
 import { computeBill, getTariff } from '@/lib/calc/electricity'
 import { cycleLabel, formatINR, formatIsoDate } from '@/lib/format'
 
@@ -29,9 +30,12 @@ function fixedChargeLabel(fc: FixedCharge): string {
 
 export default function DiscomCalculatorPage({
   config,
+  texts = enDiscomPageTexts,
 }: {
   config: DiscomPageConfig
+  texts?: DiscomPageTexts
 }) {
+  const t = texts
   const tariff = getTariff(config.discomCode)
   const residential =
     tariff.connectionTypes.find((c) => c.connectionType === 'residential') ??
@@ -102,39 +106,37 @@ export default function DiscomCalculatorPage({
     .filter((p): p is DiscomPageConfig => Boolean(p))
 
   const tocItems = [
-    { id: 'calculator', label: 'Calculate your bill' },
-    { id: 'budget-tool', label: 'Budget → units calculator' },
-    { id: 'how-to-use', label: 'How to use this calculator' },
-    { id: 'billing-cycle', label: 'Billing cycle explained' },
-    { id: 'tariff-table', label: `${tariff.state} tariff slabs` },
-    { id: 'worked-examples', label: 'Worked examples' },
-    ...(config.billTraps ? [{ id: 'bill-traps', label: 'Common bill traps' }] : []),
-    { id: 'how-calculated', label: 'How the bill is calculated' },
-    { id: 'bill-audit', label: 'Your bill, component by component' },
-    { id: 'whats-included', label: "What's included in your bill" },
-    { id: 'meter-reading', label: 'How to read your meter' },
-    { id: 'solar', label: 'Solar savings' },
-    { id: 'appliance-upgrades', label: 'Tools that cut your bill' },
+    { id: 'calculator', label: t.toc.calculator },
+    { id: 'budget-tool', label: t.toc.budgetTool },
+    { id: 'how-to-use', label: t.toc.howToUse },
+    { id: 'billing-cycle', label: t.toc.billingCycle },
+    { id: 'tariff-table', label: t.toc.tariffTable(tariff.state) },
+    { id: 'worked-examples', label: t.toc.workedExamples },
+    ...(config.billTraps ? [{ id: 'bill-traps', label: t.toc.billTraps }] : []),
+    { id: 'how-calculated', label: t.toc.howCalculated },
+    { id: 'bill-audit', label: t.toc.billAudit },
+    { id: 'whats-included', label: t.toc.whatsIncluded },
+    { id: 'meter-reading', label: t.toc.meterReading },
+    { id: 'solar', label: t.toc.solar },
+    { id: 'appliance-upgrades', label: t.toc.applianceUpgrades },
     ...(neighbors.length
-      ? [{ id: 'comparison', label: `${tariff.discomCode} vs neighbouring DISCOMs` }]
+      ? [{ id: 'comparison', label: t.toc.comparison(tariff.discomCode) }]
       : []),
-    { id: 'tips', label: 'Tips to reduce your bill' },
-    { id: 'net-metering', label: 'Net metering explained' },
-    ...(config.aboutDiscom ? [{ id: 'about', label: `About ${tariff.discomCode}` }] : []),
-    ...(config.coverageQA ? [{ id: 'coverage', label: 'Coverage area' }] : []),
-    ...(config.howToPay ? [{ id: 'how-to-pay', label: 'Check & pay your bill' }] : []),
-    { id: 'faq', label: 'Frequently asked questions' },
-    { id: 'related', label: 'Related calculators' },
+    { id: 'tips', label: t.toc.tips },
+    { id: 'net-metering', label: t.toc.netMetering },
+    ...(config.aboutDiscom ? [{ id: 'about', label: t.toc.about(tariff.discomCode) }] : []),
+    ...(config.coverageQA ? [{ id: 'coverage', label: t.toc.coverage }] : []),
+    ...(config.howToPay ? [{ id: 'how-to-pay', label: t.toc.howToPay }] : []),
+    { id: 'faq', label: t.toc.faq },
+    { id: 'related', label: t.toc.related },
   ]
 
   const howToSteps = [
-    'Select your state — it\'s pre-selected for this page',
-    ...(residential.fixedCharge.basis === 'perLoad'
-      ? ['Enter your sanctioned load in kW, shown on your bill or meter agreement']
-      : []),
-    'Enter the units consumed shown on your bill, or your meter readings',
-    'Choose your connection phase (single or three) if applicable',
-    'Review the itemised slab-by-slab result below the calculator',
+    t.howToSteps.selectState,
+    ...(residential.fixedCharge.basis === 'perLoad' ? [t.howToSteps.sanctionedLoad] : []),
+    t.howToSteps.enterUnits,
+    t.howToSteps.choosePhase,
+    t.howToSteps.reviewResult,
   ]
 
   const faqLd = {
@@ -214,13 +216,13 @@ export default function DiscomCalculatorPage({
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
                 <Link href="/" className="hover:text-brass">
-                  Home
+                  {t.breadcrumbHome}
                 </Link>
               </li>
               <li aria-hidden>/</li>
               <li>
                 <Link href="/electricity" className="hover:text-brass">
-                  Electricity
+                  {t.breadcrumbElectricity}
                 </Link>
               </li>
               <li aria-hidden>/</li>
@@ -242,7 +244,7 @@ export default function DiscomCalculatorPage({
                 {config.h1}
               </h1>
               <p className="mt-2 font-display text-xl font-extrabold tracking-tight text-brass sm:text-2xl">
-                Estimate your {tariff.state} electricity bill
+                {t.heroSubhead(tariff.state)}
               </p>
 
               <p className="mt-4 max-w-xl text-lg text-white/70">
@@ -254,13 +256,13 @@ export default function DiscomCalculatorPage({
                   href="#calculator"
                   className="flex items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brass/90"
                 >
-                  <span aria-hidden>⚡</span> Calculate My {tariff.discomCode} Bill
+                  <span aria-hidden>⚡</span> {t.heroCta(tariff.discomCode)}
                 </a>
                 <Link
                   href="/electricity"
                   className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/50"
                 >
-                  All state calculators →
+                  {t.heroAllStates}
                 </Link>
               </div>
             </div>
@@ -272,11 +274,10 @@ export default function DiscomCalculatorPage({
             <div className="flex flex-col gap-4">
               <div className="rounded-2xl border border-white/15 bg-white/[0.07] p-6 backdrop-blur-md">
                 <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-white/50 uppercase">
-                  <span aria-hidden>⚡</span> Worked example
+                  <span aria-hidden>⚡</span> {t.heroWorkedExampleLabel}
                 </p>
                 <p className="mt-2 text-sm text-white/70">
-                  A {config.exampleUnits}-unit {cycleLabel(tariff.billingCycle)} bill
-                  works out to
+                  {t.heroWorkedExampleLead(config.exampleUnits, cycleLabel(tariff.billingCycle))}
                 </p>
                 <div className="mt-1">
                   <WorkedExampleTotal amount={example.total} />
@@ -356,7 +357,7 @@ export default function DiscomCalculatorPage({
             id="calculator"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Calculate your bill
+            {t.calculateYourBill}
           </h2>
           <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
             <Calculator tariff={tariff} defaultUnits={config.exampleUnits} />
@@ -377,7 +378,7 @@ export default function DiscomCalculatorPage({
             id="worked-example"
             className="flex items-center gap-1.5 text-sm font-semibold tracking-wide text-brass uppercase"
           >
-            <span aria-hidden>⚡</span> Worked example
+            <span aria-hidden>⚡</span> {t.workedExampleHeading}
           </h2>
           <p className="mt-3 text-lg text-ash/90">
             A <strong>{config.exampleUnits}-unit</strong>{' '}
@@ -387,21 +388,21 @@ export default function DiscomCalculatorPage({
             {example.monthlyEquivalent && (
               <>
                 {' '}
-                — about{' '}
+                — {t.workedExampleAboutPerMonth}{' '}
                 <strong>{formatINR(example.monthlyEquivalent.total)}</strong>{' '}
                 per month
               </>
             )}
-            . That is {formatINR(example.energyChargeGross)} energy charge
+            . {t.workedExampleThatIs} {formatINR(example.energyChargeGross)} {t.energyLabel}
             {example.subsidy.subsidyAmount > 0 && (
-              <> − {formatINR(example.subsidy.subsidyAmount)} subsidy</>
+              <> − {formatINR(example.subsidy.subsidyAmount)} {t.subsidyLabel}</>
             )}
             {example.fuelCostAdjustment.amount > 0 && (
-              <> + {formatINR(example.fuelCostAdjustment.amount)} FCA</>
+              <> + {formatINR(example.fuelCostAdjustment.amount)} {t.fcaLabel}</>
             )}{' '}
-            + {formatINR(example.fixedCharge.amount)} fixed charge
+            + {formatINR(example.fixedCharge.amount)} {t.fixedChargeLabel}
             {example.electricityDuty.amount > 0 && (
-              <> + {formatINR(example.electricityDuty.amount)} duty</>
+              <> + {formatINR(example.electricityDuty.amount)} {t.dutyLabel}</>
             )}
             .
           </p>
@@ -409,7 +410,7 @@ export default function DiscomCalculatorPage({
             href="#worked-examples"
             className="mt-3 inline-block text-sm font-semibold text-brass hover:underline"
           >
-            See the full breakdown ↓
+            {t.seeFullBreakdown}
           </a>
         </section>
 
@@ -419,12 +420,10 @@ export default function DiscomCalculatorPage({
             id="budget-tool"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Have a fixed budget? Work backwards
+            {t.budgetToolHeading}
           </h2>
           <p className="mb-4 text-ash/70">
-            Enter what you want to spend, and we&apos;ll tell you the maximum
-            units that stays within it — the exact inverse of the calculator
-            above.
+            {t.budgetToolBody}
           </p>
           <BudgetToUnitsCalculator tariff={tariff} />
         </section>
@@ -435,7 +434,7 @@ export default function DiscomCalculatorPage({
             id="how-to-use"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            How to use this calculator
+            {t.howToUseHeading}
           </h2>
           <ol className="space-y-2">
             {howToSteps.map((s, i) => (
@@ -456,22 +455,16 @@ export default function DiscomCalculatorPage({
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
             {tariff.billingCycle === 'monthly'
-              ? 'Your monthly billing cycle'
-              : `The ${cycleLabel(tariff.billingCycle)} rule`}
+              ? t.monthlyBillingCycle
+              : t.cycleRule(cycleLabel(tariff.billingCycle))}
           </h2>
           <p className="text-ash/80">
-            {tariff.discomCode} bills {cycleLabel(tariff.billingCycle)}.
-            {tariff.billingCycle !== 'monthly' && (
-              <>
-                {' '}
-                The units you enter represent your full{' '}
-                {tariff.billingCycle === 'bimonthly' ? '~60-day' : '~90-day'}{' '}
-                billing period — not a single month. To compare against a
-                monthly figure, we divide the total by{' '}
-                {tariff.billingCycle === 'bimonthly' ? '2' : '3'}, shown as the
-                monthly-equivalent on your result.
-              </>
-            )}
+            {t.billingCycleBody(tariff.discomCode, cycleLabel(tariff.billingCycle))}
+            {tariff.billingCycle !== 'monthly' &&
+              t.billingCycleLongBody(
+                tariff.billingCycle === 'bimonthly' ? '~60-day' : '~90-day',
+                tariff.billingCycle === 'bimonthly' ? '2' : '3',
+              )}
           </p>
           {config.thresholdCallout && (
             <div className="mt-4">
@@ -486,15 +479,15 @@ export default function DiscomCalculatorPage({
             id="tariff-table"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            {tariff.state} residential tariff slabs
+            {t.tariffTableHeading(tariff.state)}
           </h2>
           <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
               <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
-                  <th className="px-4 py-2 font-semibold">Slab (units)</th>
+                  <th className="px-4 py-2 font-semibold">{t.slabUnits}</th>
                   <th className="px-4 py-2 text-right font-semibold">
-                    Rate (₹/unit)
+                    {t.rateUnit}
                   </th>
                 </tr>
               </thead>
@@ -512,14 +505,14 @@ export default function DiscomCalculatorPage({
               </tbody>
               <tfoot className="bg-mist text-ash/70">
                 <tr>
-                  <td className="px-4 py-2">Fixed charge</td>
+                  <td className="px-4 py-2">{t.fixedChargeLabel}</td>
                   <td className="px-4 py-2 text-right tabular-nums">
                     {fixedChargeLabel(residential.fixedCharge)}
                   </td>
                 </tr>
                 {tariff.fuelCostAdjustment > 0 && (
                   <tr>
-                    <td className="px-4 py-2">Fuel cost adjustment</td>
+                    <td className="px-4 py-2">{t.fuelCostAdjustmentLabel}</td>
                     <td className="px-4 py-2 text-right tabular-nums">
                       ₹{tariff.fuelCostAdjustment}/unit
                     </td>
@@ -527,7 +520,7 @@ export default function DiscomCalculatorPage({
                 )}
                 {tariff.electricityDutyPercent > 0 && (
                   <tr>
-                    <td className="px-4 py-2">Electricity duty</td>
+                    <td className="px-4 py-2">{t.electricityDutyLabel}</td>
                     <td className="px-4 py-2 text-right tabular-nums">
                       {tariff.electricityDutyPercent}%
                     </td>
@@ -537,15 +530,14 @@ export default function DiscomCalculatorPage({
             </table>
           </div>
           <p className="mt-2 text-xs text-ash/50">
-            Effective from {formatIsoDate(tariff.effectiveFrom)} · Verified{' '}
-            {formatIsoDate(tariff.lastVerified)} ·{' '}
+            {t.effectiveFromVerified(formatIsoDate(tariff.effectiveFrom), formatIsoDate(tariff.lastVerified))}{' '}
             <a
               href={tariff.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-brass underline"
             >
-              source order
+              {t.sourceOrder}
             </a>
           </p>
         </section>
@@ -556,43 +548,43 @@ export default function DiscomCalculatorPage({
             id="worked-examples"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Two worked examples
+            {t.twoWorkedExamples}
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="rounded-xl border border-hairline bg-paper p-5">
               <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
-                Lower usage
+                {t.lowerUsage}
               </p>
               <p className="mt-1 font-display text-2xl font-bold tabular-nums text-brass">
                 {formatINR(example.total)}
               </p>
               <p className="mt-1 text-sm text-ash/60">
-                {config.exampleUnits} units · {formatINR(example.energyChargeGross)}{' '}
-                energy
+                {config.exampleUnits} {t.unitsLabel} · {formatINR(example.energyChargeGross)}{' '}
+                {t.energyLabel}
                 {example.subsidy.subsidyAmount > 0 &&
-                  ` − ${formatINR(example.subsidy.subsidyAmount)} subsidy`}{' '}
-                + {formatINR(example.fixedCharge.amount)} fixed
+                  ` − ${formatINR(example.subsidy.subsidyAmount)} ${t.subsidyLabel}`}{' '}
+                + {formatINR(example.fixedCharge.amount)} {t.fixedLabel}
                 {example.fuelCostAdjustment.amount > 0 &&
-                  ` + ${formatINR(example.fuelCostAdjustment.amount)} FCA`}
+                  ` + ${formatINR(example.fuelCostAdjustment.amount)} ${t.fcaLabel}`}
               </p>
             </div>
             <div className="rounded-xl border border-hairline bg-paper p-5">
               <p className="text-xs font-semibold tracking-wide text-ash/50 uppercase">
-                Higher usage
+                {t.higherUsage}
               </p>
               <p className="mt-1 font-display text-2xl font-bold tabular-nums text-brass">
                 {formatINR(example2.total)}
               </p>
               <p className="mt-1 text-sm text-ash/60">
-                {secondExampleUnits} units · {formatINR(example2.energyChargeGross)}{' '}
-                energy
+                {secondExampleUnits} {t.unitsLabel} · {formatINR(example2.energyChargeGross)}{' '}
+                {t.energyLabel}
                 {example2.subsidy.subsidyAmount > 0 &&
-                  ` − ${formatINR(example2.subsidy.subsidyAmount)} subsidy`}{' '}
-                + {formatINR(example2.fixedCharge.amount)} fixed
+                  ` − ${formatINR(example2.subsidy.subsidyAmount)} ${t.subsidyLabel}`}{' '}
+                + {formatINR(example2.fixedCharge.amount)} {t.fixedLabel}
                 {example2.fuelCostAdjustment.amount > 0 &&
-                  ` + ${formatINR(example2.fuelCostAdjustment.amount)} FCA`}
+                  ` + ${formatINR(example2.fuelCostAdjustment.amount)} ${t.fcaLabel}`}
                 {example2.electricityDuty.amount > 0 &&
-                  ` + ${formatINR(example2.electricityDuty.amount)} duty`}
+                  ` + ${formatINR(example2.electricityDuty.amount)} ${t.dutyLabel}`}
               </p>
             </div>
           </div>
@@ -606,7 +598,7 @@ export default function DiscomCalculatorPage({
               id="bill-traps"
               className="mb-4 font-display text-2xl font-bold text-ink-navy"
             >
-              Common {tariff.discomCode} bill traps
+              {t.commonBillTraps(tariff.discomCode)}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {config.billTraps.map((trap, i) => (
@@ -632,7 +624,7 @@ export default function DiscomCalculatorPage({
             id="how-calculated"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            How the {config.discomCode} bill is calculated
+            {t.howBillCalculated(config.discomCode)}
           </h2>
           <div className="space-y-4 text-ash/80">
             {config.explainer.map((block, i) => (
@@ -652,11 +644,10 @@ export default function DiscomCalculatorPage({
             id="bill-audit"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Your bill, component by component
+            {t.billAuditHeading}
           </h2>
           <p className="mb-4 text-ash/70">
-            Based on the {config.exampleUnits}-unit example above. Expand each
-            line for what it means and whether you can influence it.
+            {t.billAuditBody(config.exampleUnits)}
           </p>
           <BillComponentAudit bill={example} />
         </section>
@@ -667,24 +658,24 @@ export default function DiscomCalculatorPage({
             id="whats-included"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            What&apos;s included in your bill
+            {t.whatsIncludedHeading}
           </h2>
           <div className="overflow-x-auto rounded-xl border border-hairline">
             <table className="w-full text-left text-sm">
               <thead className="border-b border-hairline bg-mist text-ink-navy">
                 <tr>
-                  <th className="px-4 py-2 font-semibold">Component</th>
-                  <th className="px-4 py-2 font-semibold">What it is</th>
+                  <th className="px-4 py-2 font-semibold">{t.componentLabel}</th>
+                  <th className="px-4 py-2 font-semibold">{t.whatItIsLabel}</th>
                   <th className="px-4 py-2 text-right font-semibold">
-                    Typical range
+                    {t.typicalRangeLabel}
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-hairline">
                 <tr>
-                  <td className="px-4 py-2 font-medium">Energy charge</td>
+                  <td className="px-4 py-2 font-medium">{t.energyChargeRow.label}</td>
                   <td className="px-4 py-2 text-ash/70">
-                    Units × slab rate, telescopic
+                    {t.energyChargeRow.desc}
                   </td>
                   <td className="px-4 py-2 text-right tabular-nums">
                     ₹{residential.slabs[0].ratePerUnit.toFixed(2)}–₹
@@ -694,10 +685,10 @@ export default function DiscomCalculatorPage({
                 {tariff.fuelCostAdjustment > 0 && (
                   <tr>
                     <td className="px-4 py-2 font-medium">
-                      Fuel cost adjustment
+                      {t.fuelCostAdjustmentRow.label}
                     </td>
                     <td className="px-4 py-2 text-ash/70">
-                      Pass-through fuel surcharge
+                      {t.fuelCostAdjustmentRow.desc}
                     </td>
                     <td className="px-4 py-2 text-right tabular-nums">
                       ₹{tariff.fuelCostAdjustment}/unit
@@ -705,9 +696,9 @@ export default function DiscomCalculatorPage({
                   </tr>
                 )}
                 <tr>
-                  <td className="px-4 py-2 font-medium">Fixed charge</td>
+                  <td className="px-4 py-2 font-medium">{t.fixedChargeRow.label}</td>
                   <td className="px-4 py-2 text-ash/70">
-                    Flat, independent of usage
+                    {t.fixedChargeRow.desc}
                   </td>
                   <td className="px-4 py-2 text-right tabular-nums">
                     {fixedChargeLabel(residential.fixedCharge)}
@@ -715,9 +706,9 @@ export default function DiscomCalculatorPage({
                 </tr>
                 {tariff.electricityDutyPercent > 0 && (
                   <tr>
-                    <td className="px-4 py-2 font-medium">Electricity duty</td>
+                    <td className="px-4 py-2 font-medium">{t.electricityDutyRow.label}</td>
                     <td className="px-4 py-2 text-ash/70">
-                      State government levy
+                      {t.electricityDutyRow.desc}
                     </td>
                     <td className="px-4 py-2 text-right tabular-nums">
                       {tariff.electricityDutyPercent}%
@@ -726,12 +717,12 @@ export default function DiscomCalculatorPage({
                 )}
                 {freeUnitsScheme && (
                   <tr>
-                    <td className="px-4 py-2 font-medium">Subsidy</td>
+                    <td className="px-4 py-2 font-medium">{t.subsidyRow.label}</td>
                     <td className="px-4 py-2 text-ash/70">
                       {freeUnitsScheme.schemeName}
                     </td>
                     <td className="px-4 py-2 text-right tabular-nums">
-                      {freeUnitsScheme.discountValue} free units
+                      {t.freeUnits(freeUnitsScheme.discountValue)}
                     </td>
                   </tr>
                 )}
@@ -746,16 +737,10 @@ export default function DiscomCalculatorPage({
             id="meter-reading"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            How to read your meter
+            {t.meterReadingHeading}
           </h2>
           <p className="text-ash/80">
-            Digital meters show a running total in kWh (&quot;units&quot;) on
-            an LCD display — write down the number before the decimal point.
-            To find your consumption for a billing period, subtract your
-            previous reading from your current reading; that is exactly what
-            the &quot;Meter reading&quot; mode in the calculator above does
-            for you. Analog meters use a set of dial gauges read left to
-            right — note the number the pointer has just passed on each dial.
+            {t.meterReadingBody}
           </p>
         </section>
 
@@ -773,7 +758,7 @@ export default function DiscomCalculatorPage({
             id="appliance-upgrades"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Tools that cut your bill
+            {t.applianceUpgradesHeading}
           </h2>
           <ApplianceUpgradeCards discomCode={tariff.discomCode} state={tariff.state} />
         </section>
@@ -785,7 +770,7 @@ export default function DiscomCalculatorPage({
               id="comparison"
               className="mb-4 font-display text-2xl font-bold text-ink-navy"
             >
-              How does {tariff.discomCode} compare?
+              {t.comparisonHeading(tariff.discomCode)}
             </h2>
             <DiscomComparisonTable
               currentDiscomCode={tariff.discomCode}
@@ -826,30 +811,24 @@ export default function DiscomCalculatorPage({
             id="tips"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Tips to reduce your {tariff.discomCode} bill
+            {t.tipsHeading(tariff.discomCode)}
           </h2>
           <ul className="list-disc space-y-2 pl-5 text-ash/80">
             {freeUnitsScheme && (
               <li>
-                Confirm your eligibility for {freeUnitsScheme.schemeName} is
-                correctly marked on your account — it&apos;s worth{' '}
-                {freeUnitsScheme.discountValue} free units every cycle.
+                {t.tipSubsidy(freeUnitsScheme.schemeName, freeUnitsScheme.discountValue)}
               </li>
             )}
             <li>
-              Where practical, keep usage below your next slab threshold — the
-              marginal units above ₹{topRate.toFixed(2)}/unit cost the most.
+              {t.tipSlabThreshold(topRate.toFixed(2))}
             </li>
             {tariff.fuelCostAdjustment > 0 && (
               <li>
-                The ₹{tariff.fuelCostAdjustment}/unit fuel cost adjustment
-                applies to every unit you use, so reducing overall consumption
-                reduces this line too — unlike the fixed charge.
+                {t.tipFca(tariff.fuelCostAdjustment)}
               </li>
             )}
             <li>
-              For high-usage households, rooftop solar can offset your most
-              expensive top-slab units — see the solar section above.
+              {t.tipSolar}
             </li>
           </ul>
         </section>
@@ -860,17 +839,12 @@ export default function DiscomCalculatorPage({
             id="net-metering"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Net metering explained
+            {t.netMeteringHeading}
           </h2>
           <p className="text-ash/80">
-            Net metering lets a rooftop solar system export surplus power back
-            to the grid through your existing meter, which runs in reverse.
-            At billing time, your DISCOM credits the exported units against
-            what you drew from the grid — you&apos;re billed only for the net
-            difference. Combined with telescopic slabs, this typically offsets
-            your most expensive units first.{' '}
+            {t.netMeteringBody}{' '}
             <Link href="/solar/roi-calculator" className="text-brass underline">
-              Estimate your solar payback →
+              {t.estimateSolarPayback}
             </Link>
           </p>
         </section>
@@ -882,7 +856,7 @@ export default function DiscomCalculatorPage({
               id="about"
               className="mb-4 font-display text-2xl font-bold text-ink-navy"
             >
-              About {tariff.discomCode}
+              {t.aboutHeading(tariff.discomCode)}
             </h2>
             <div className="space-y-3 text-ash/80">
               {config.aboutDiscom.map((p, i) => (
@@ -914,7 +888,7 @@ export default function DiscomCalculatorPage({
               id="how-to-pay"
               className="mb-4 font-display text-2xl font-bold text-ink-navy"
             >
-              How to check and pay your bill
+              {t.howToPayHeading}
             </h2>
             <ol className="space-y-2">
               {config.howToPay.steps.map((s, i) => (
@@ -938,7 +912,7 @@ export default function DiscomCalculatorPage({
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="text-[11px] font-semibold tracking-wide text-brass uppercase">
-                    Official portal
+                    {t.officialPortal}
                   </p>
                   <p className="truncate font-semibold text-ink-navy">
                     {config.howToPay.portalLabel}
@@ -954,7 +928,7 @@ export default function DiscomCalculatorPage({
                 </span>
                 <div className="min-w-0">
                   <p className="text-[11px] font-semibold tracking-wide text-spark-teal uppercase">
-                    Helpline
+                    {t.helpline}
                   </p>
                   <p className="font-semibold text-ink-navy">
                     {config.howToPay.helpline}
@@ -971,7 +945,7 @@ export default function DiscomCalculatorPage({
             id="faq"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Frequently asked questions
+            {t.faqHeading}
           </h2>
           <div className="divide-y divide-hairline">
             {config.faqs.map((f, i) => (
@@ -991,7 +965,7 @@ export default function DiscomCalculatorPage({
             id="related"
             className="mb-4 font-display text-2xl font-bold text-ink-navy"
           >
-            Related calculators
+            {t.relatedHeading}
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
@@ -1010,8 +984,8 @@ export default function DiscomCalculatorPage({
                 chip: 'bg-hub-electricity/15',
                 accent: 'text-hub-electricity',
                 border: 'hover:border-hub-electricity/50',
-                label: 'All states & UTs',
-                sub: 'Every DISCOM calculator',
+                label: t.relatedAllStates.label,
+                sub: t.relatedAllStates.sub,
               },
               {
                 href: '/solar/roi-calculator',
@@ -1019,8 +993,8 @@ export default function DiscomCalculatorPage({
                 chip: 'bg-hub-solar/15',
                 accent: 'text-hub-solar',
                 border: 'hover:border-hub-solar/50',
-                label: 'Solar ROI',
-                sub: 'Payback on this tariff',
+                label: t.relatedSolarRoi.label,
+                sub: t.relatedSolarRoi.sub,
               },
               {
                 href: '/ac/bill-calculator',
@@ -1028,8 +1002,8 @@ export default function DiscomCalculatorPage({
                 chip: 'bg-hub-ac/15',
                 accent: 'text-hub-ac',
                 border: 'hover:border-hub-ac/50',
-                label: 'AC running cost',
-                sub: 'Priced at your top slab',
+                label: t.relatedAcCost.label,
+                sub: t.relatedAcCost.sub,
               },
               {
                 href: '/financial',
@@ -1037,8 +1011,8 @@ export default function DiscomCalculatorPage({
                 chip: 'bg-hub-financial/15',
                 accent: 'text-hub-financial',
                 border: 'hover:border-hub-financial/50',
-                label: 'Financial calculators',
-                sub: 'GST, SIP, gratuity, tax',
+                label: t.relatedFinancial.label,
+                sub: t.relatedFinancial.sub,
               },
             ].map((l) => (
               <Link
@@ -1075,36 +1049,36 @@ export default function DiscomCalculatorPage({
         <footer className="rounded-xl border border-hairline bg-paper p-5">
           <div className="flex flex-wrap items-center gap-2">
             <span className="flex items-center gap-1.5 rounded-full border border-seal-red/30 bg-seal-red/5 px-2.5 py-1 text-xs font-semibold text-seal-red">
-              <span aria-hidden>⦿</span> Verified {formatIsoDate(tariff.lastVerified)}
+              <span aria-hidden>⦿</span> {t.footerVerified(formatIsoDate(tariff.lastVerified))}
             </span>
             <span className="text-xs text-ash/50">
-              Effective from {formatIsoDate(tariff.effectiveFrom)}
+              {t.footerEffectiveFrom(formatIsoDate(tariff.effectiveFrom))}
             </span>
           </div>
           <p className="mt-3 text-sm text-ash/70">
-            Source:{' '}
+            {t.footerSource}{' '}
             <a
               href={tariff.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-brass underline"
             >
-              {tariff.discomName} tariff order
+              {t.footerTariffOrder(tariff.discomName)}
             </a>
           </p>
           <p className="mt-1 text-xs text-ash/50">{tariff.verifiedBy}</p>
           <p className="mt-3 border-t border-hairline pt-3 text-xs text-ash/50">
-            Estimates only.{' '}
+            {t.footerEstimatesOnly}{' '}
             <Link href="/methodology" className="text-brass underline">
-              How we source &amp; verify data
+              {t.footerMethodology}
             </Link>{' '}
             ·{' '}
             <Link href="/data-sources" className="text-brass underline">
-              Data sources
+              {t.footerDataSources}
             </Link>{' '}
             ·{' '}
             <Link href="/disclaimer" className="text-brass underline">
-              Disclaimer
+              {t.footerDisclaimer}
             </Link>
           </p>
         </footer>
