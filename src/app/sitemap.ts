@@ -7,11 +7,12 @@ import {
 } from '@/data/calculator-pages'
 import { allAcBrandSlugs } from '@/data/ac-brands'
 import { allGasCompanySlugs } from '@/data/gas-companies'
+import waterBoardsJson from '@/data/water-boards.json'
 import { getTariff } from '@/lib/calc/electricity'
 import { slugify } from '@/lib/format'
 
 const SITE = 'https://desimetrics.com'
-const LAST_UPDATED = '2026-09-03'
+const LAST_UPDATED = '2026-09-05'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date(LAST_UPDATED)
@@ -72,6 +73,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/blog/how-telescopic-electricity-slabs-work', 0.6),
     entry('/blog/is-rooftop-solar-worth-it-in-india-2026', 0.6),
     entry('/blog/new-vs-old-tax-regime-who-actually-saves', 0.6),
+    entry('/blog/smart-meters-in-india-guide', 0.6),
+    entry('/blog/mahavitaran-bill-kaise-check-kare', 0.6),
+    entry('/blog/ac-running-cost-india-guide', 0.6),
     entry('/fuel-cost', 0.8),
     entry('/fuel-cost/petrol-diesel-cost-per-km-calculator', 0.9),
     entry('/fuel-cost/lpg-cylinder-usage-calculator', 0.9),
@@ -92,9 +96,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const acBrands = allAcBrandSlugs.map((slug) => entry(`/ac/brands/${slug}`, 0.7))
 
-  const waterStates = Array.from(
+  const waterStateSlugs = Array.from(
     new Set(CALCULATOR_PAGES.map((p) => getTariff(p.discomCode).state)),
-  ).map((state) => entry(`/water/${slugify(state)}`, 0.7))
+  ).map((state) => slugify(state))
+  // Real-tariff water board pages are CITY-granularity (e.g. "chennai",
+  // "pimpri-chinchwad") and often have a different slug from their own
+  // state (e.g. Chennai's board isn't at "tamil-nadu") — Delhi is only
+  // covered by the state loop by coincidence, so board slugs must be
+  // added explicitly rather than assumed to already be included.
+  const liveBoardSlugs = waterBoardsJson.boards
+    .filter((b) => b.hasTariffFile)
+    .map((b) => b.slug)
+  const waterStates = Array.from(new Set([...waterStateSlugs, ...liveBoardSlugs])).map((slug) =>
+    entry(`/water/${slug}`, 0.7),
+  )
 
   const gasCompanies = allGasCompanySlugs.map((slug) => entry(`/gas/${slug}`, 0.7))
 
